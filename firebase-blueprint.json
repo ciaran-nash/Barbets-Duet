@@ -1,0 +1,38 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A registered user in the application.",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string", "description": "The user's display name" },
+        "bio": { "type": "string", "description": "User biography" },
+        "createdAt": { "type": "number", "description": "Timestamp when user was created" },
+        "updatedAt": { "type": "number", "description": "Timestamp when user was last updated" }
+      },
+      "required": ["displayName", "createdAt", "updatedAt"]
+    },
+    "SavedEvent": {
+      "title": "SavedEvent",
+      "description": "An event saved by a user.",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string", "description": "Global event ID" },
+        "title": { "type": "string", "description": "Event title" },
+        "date": { "type": "string", "description": "Event date" },
+        "savedAt": { "type": "number", "description": "Timestamp when the event was saved" }
+      },
+      "required": ["eventId", "title", "date", "savedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Users collection. Read/Write restricted to owner."
+    },
+    "/users/{userId}/saved_events/{eventId}": {
+      "schema": { "$ref": "#/entities/SavedEvent" },
+      "description": "Saved events subcollection for a given user."
+    }
+  }
+}
