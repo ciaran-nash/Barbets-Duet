@@ -1,5 +1,6 @@
 /* Barbets Duet — Global Styles */
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ─────────────────────────────────────────────
    Brand Token System — Scholarly Cycle palette
