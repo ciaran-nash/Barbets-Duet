@@ -23,7 +23,7 @@ export default function Mission() {
   ];
 
   return (
-    <section className="py-24 bg-white text-[#1A1A1A]">
+    <section className="py-24 bg-white text-night-forest">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h3 className="text-sm font-semibold tracking-wider uppercase mb-6 font-serif">The Barbets Duet Mission</h3>
         <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 max-w-4xl mx-auto tracking-tight leading-tight">
@@ -32,7 +32,7 @@ export default function Mission() {
         <p className="max-w-2xl mx-auto text-gray-600 mb-10 leading-relaxed text-lg">
           We are committed to making a tangible impact through targeted initiatives that address the most pressing environmental challenges of our time.
         </p>
-        <Button variant="outline" className="rounded-full px-8 border-gray-300 text-[#1A1A1A] hover:bg-gray-50 mb-20 text-base h-12 transition-colors">
+        <Button variant="outline" className="rounded-full px-8 border-gray-300 text-night-forest hover:bg-gray-50 mb-20 text-base h-12 transition-colors">
           Explore Our Mission
         </Button>
 

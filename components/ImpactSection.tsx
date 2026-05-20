@@ -61,7 +61,7 @@ function StatCircle({
         />
         <motion.circle 
           cx="112" cy="112" r={radius} 
-          stroke="#C7F16C" 
+          stroke="#DBFF66" 
           strokeWidth="1.5" 
           fill="none"
           strokeDasharray={circumference}
@@ -75,7 +75,7 @@ function StatCircle({
         <div className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white mb-2 tracking-tight">
            {displayValue}{suffix}
         </div>
-        <div className="text-[9px] uppercase tracking-[0.2em] text-[#F4F4F0]/50 font-mono mt-1 text-center leading-relaxed">
+        <div className="text-[9px] uppercase tracking-[0.2em] text-platinum/50 font-mono mt-1 text-center leading-relaxed">
           {label}
         </div>
       </div>

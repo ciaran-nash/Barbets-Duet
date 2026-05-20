@@ -48,7 +48,7 @@ export default function CaseStudies() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div>
-            <h2 className="font-mono text-[10px] tracking-[0.2em] uppercase mb-6 text-[#C7F16C] flex items-center gap-4">
+            <h2 className="font-mono text-[10px] tracking-[0.2em] uppercase mb-6 text-neon-lime flex items-center gap-4">
               <span className="w-12 h-[1px] bg-[#C7F16C]"></span>
               Case Studies
             </h2>
@@ -57,7 +57,7 @@ export default function CaseStudies() {
               <span className="italic text-white/50">Observations</span>.
             </h3>
           </div>
-          <button className="flex items-center gap-3 font-mono text-[10px] tracking-widest uppercase font-semibold pb-2 border-b border-[#C7F16C]/50 hover:border-[#C7F16C] text-[#C7F16C] transition-colors self-start md:self-end">
+          <button className="flex items-center gap-3 font-mono text-[10px] tracking-widest uppercase font-semibold pb-2 border-b border-neon-lime/50 hover:border-neon-lime text-neon-lime transition-colors self-start md:self-end">
             [ Read Full Ledger ] <ArrowRight size={14} />
           </button>
         </div>
@@ -92,7 +92,7 @@ export default function CaseStudies() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="font-mono text-xs text-[#C7F16C]">
+                <div className="font-mono text-xs text-neon-lime">
                   [{study.index}]
                 </div>
                 <div>

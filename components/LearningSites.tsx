@@ -74,11 +74,11 @@ const tags = [
 
 export default function LearningSites() {
   return (
-    <section id="learning-sites" className="py-24 bg-[#FAF9F6]">
+    <section id="learning-sites" className="py-24 bg-platinum">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-12">
           <div className="max-w-3xl">
-            <h2 className="text-4xl md:text-5xl font-serif font-extrabold text-[#1A1A1A] mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-serif font-extrabold text-night-forest mb-6 tracking-tight">
               Explore Our Learning Sites
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed font-sans">
@@ -94,11 +94,11 @@ export default function LearningSites() {
               <input 
                 type="text" 
                 placeholder="Search" 
-                className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2C3E35] focus:border-transparent font-sans"
+                className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans"
               />
             </div>
             <div className="relative min-w-[140px]">
-              <select className="w-full appearance-none bg-white border border-gray-300 rounded-md px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-[#2C3E35] focus:border-transparent font-sans cursor-pointer">
+              <select className="w-full appearance-none bg-white border border-gray-300 rounded-md px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans cursor-pointer">
                 <option>Sort by</option>
                 <option>Alphabetical</option>
                 <option>Newest</option>
@@ -145,7 +145,7 @@ export default function LearningSites() {
                 </div>
                 
                 <div className="pr-8 mb-4">
-                  <h3 className="text-2xl font-serif font-bold text-[#1A1A1A] mb-1">{site.name}</h3>
+                  <h3 className="text-2xl font-serif font-bold text-night-forest mb-1">{site.name}</h3>
                   <p className="text-gray-600 font-medium">{site.location}</p>
                 </div>
 
@@ -182,7 +182,7 @@ export default function LearningSites() {
                   </div>
                   
                   <Link href={site.href || "#"} passHref>
-                    <Button className="bg-black hover:bg-gray-800 text-white rounded-md px-6 font-medium">
+                    <Button className="bg-night-forest hover:bg-gray-800 text-white rounded-md px-6 font-medium">
                       Explore Site
                     </Button>
                   </Link>

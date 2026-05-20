@@ -106,11 +106,11 @@ export default function FAQSection() {
   });
 
   return (
-    <section className="py-24 bg-[#FAF9F6]">
+    <section className="py-24 bg-platinum">
       <div className="max-w-5xl mx-auto px-6">
         
         <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-serif font-extrabold text-[#1A1A1A] mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-serif font-extrabold text-night-forest mb-4 tracking-tight">
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-gray-700 font-sans max-w-2xl">
@@ -128,7 +128,7 @@ export default function FAQSection() {
               placeholder="Search questions..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2C3E35] focus:border-transparent font-sans shadow-sm"
+              className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans shadow-sm"
             />
           </div>
 
@@ -137,7 +137,7 @@ export default function FAQSection() {
             <div className="relative w-full sm:w-56">
               <button 
                 onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-                className="w-full flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#2C3E35] font-sans shadow-sm"
+                className="w-full flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-viridian font-sans shadow-sm"
               >
                 <span className="text-gray-800">{selectedCategory}</span>
                 <ChevronDown className="text-gray-500 w-5 h-5" />
@@ -156,7 +156,7 @@ export default function FAQSection() {
                     >
                       {selectedCategory === category && (
                          <div className="w-5 flex justify-center">
-                           <Check className="w-4 h-4 text-[#2C3E35]" />
+                           <Check className="w-4 h-4 text-night-forest" />
                          </div>
                       )}
                       <span className={selectedCategory === category ? "font-semibold" : "pl-8"}>
@@ -170,7 +170,7 @@ export default function FAQSection() {
 
             {/* Sort Dropdown (Mock) */}
             <div className="relative w-full sm:w-48">
-              <select className="w-full appearance-none bg-white border border-gray-200 rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-[#2C3E35] shadow-sm font-sans text-gray-800 cursor-pointer">
+              <select className="w-full appearance-none bg-white border border-gray-200 rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-viridian shadow-sm font-sans text-gray-800 cursor-pointer">
                 <option>Most Popular</option>
                 <option>Newest</option>
               </select>
@@ -181,7 +181,7 @@ export default function FAQSection() {
         </div>
 
         {/* FAQs List */}
-        <div className="space-y-0 text-[#1A1A1A]">
+        <div className="space-y-0 text-night-forest">
           {filteredFaqs.map((faq, index) => {
             const isOpen = openIds.includes(faq.id);
             return (
@@ -267,7 +267,7 @@ export default function FAQSection() {
               <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 mb-6">
                 <Search className="w-8 h-8 text-gray-400" />
               </div>
-              <h3 className="text-2xl font-bold font-serif text-[#1A1A1A] mb-3">No results found</h3>
+              <h3 className="text-2xl font-bold font-serif text-night-forest mb-3">No results found</h3>
               <p className="text-gray-500 font-sans max-w-md mb-8">
                 We couldn&apos;t find any questions matching &quot;{searchQuery}&quot;. Try adjusting your search or selecting a different category.
               </p>
