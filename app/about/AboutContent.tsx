@@ -2,16 +2,18 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-    ChevronDown, 
-    ArrowRight, 
-    ChevronRight, 
-    Info, 
-    Box, 
-    ArrowLeft, 
-    Mail 
+import {
+    ChevronDown,
+    ArrowRight,
+    ChevronRight,
+    Info,
+    Box,
+    ArrowLeft,
+    Mail
 } from 'lucide-react';
+import Link from 'next/link';
 import Image from 'next/image';
+import { teamMembers } from '@/lib/data/team';
 import Header from '@/components/Header';
 import CTA from '@/components/CTA';
 import { StickyFooter } from '@/components/ui/sticky-footer';
@@ -180,14 +182,19 @@ export default function AboutContent() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-16 mb-32">
-              {[
-                { name: 'Barbara Heinzen', loc: 'Hannacroix, Hudson Valley' },
-                { name: 'James Magode Ikuya', loc: 'East Africa' },
-                { name: 'Mwajuma Masaiganah', loc: 'Tanzania' },
-              ].map((member, idx) => (
-                <TeamCard key={idx} member={member} />
+            <div className="grid md:grid-cols-3 gap-16 mb-12">
+              {teamMembers.slice(0, 3).map((member) => (
+                <TeamCard key={member.slug} member={{ name: member.name, loc: member.location ?? '' }} />
               ))}
+            </div>
+            <div className="mb-32">
+              <Link
+                href="/about/team"
+                className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.3em]
+                           text-accent hover:opacity-70 transition-opacity border-b border-accent/30 pb-1"
+              >
+                Meet all {teamMembers.length} team members <ArrowRight className="w-3 h-3" />
+              </Link>
             </div>
 
             <div className="bg-accent p-16 md:p-24 rounded-[3rem] text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
