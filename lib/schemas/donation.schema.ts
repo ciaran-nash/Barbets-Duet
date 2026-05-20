@@ -64,7 +64,7 @@ export const donationSchema = z.object({
 
   // Agree to privacy policy
   agreeToPrivacyPolicy: z.literal(true, {
-    errorMap: () => ({ message: 'You must agree to the privacy policy' }),
+    error: 'You must agree to the privacy policy',
   }),
 });
 

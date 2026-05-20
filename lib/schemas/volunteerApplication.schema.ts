@@ -66,7 +66,7 @@ export const volunteerApplicationSchema = z.object({
 
   // Agreement
   agreeToTerms: z.literal(true, {
-    errorMap: () => ({ message: 'You must agree to the terms and conditions' }),
+    error: 'You must agree to the terms and conditions',
   }),
 });
 

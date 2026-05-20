@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { DM_Sans, BioRhyme, JetBrains_Mono } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/components/AuthProvider';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -37,6 +38,17 @@ export default function RootLayout({
         <AuthProvider>
           {children}
         </AuthProvider>
+        {/* TODO(T04): Umami analytics — awaiting-credentials
+            Set NEXT_PUBLIC_UMAMI_WEBSITE_ID in .env.local after creating a
+            website entry in the Umami Cloud dashboard (umami.is).
+            Script is cookieless: no GDPR consent banner required. */}
+        {process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+          <Script
+            src="https://cloud.umami.is/script.js"
+            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );
