@@ -12,7 +12,7 @@ const dmSans = DM_Sans({
 const bioRhyme = BioRhyme({
   weight: ['200', '300', '400', '700', '800'],
   subsets: ['latin'],
-  variable: '--font-serif', // Keep using --font-serif so it applies to font-serif tailwind classes
+  variable: '--font-serif',
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`scroll-smooth ${dmSans.variable} ${bioRhyme.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans antialiased bg-[#F4F4F0] text-[#111111]" suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <SmoothScroll />
         <AuthProvider>
           {children}

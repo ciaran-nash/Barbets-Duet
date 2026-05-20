@@ -6,6 +6,18 @@ import { Button } from '@/components/ui/button';
 
 const sites = [
   {
+    id: 0,
+    name: "Msichoke Seaweed Growers",
+    location: "Bagamoyo, Tanzania",
+    description: "Restoring the delicate balance between coastal livelihoods and mangrove ecosystems through sustainable mariculture.",
+    ecology: "Coastal/Marine",
+    restoration: "Mangrove planting",
+    economicVenture: "Seaweed mariculture",
+    leaderName: "Mwajuma Masaiganah",
+    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+    href: "/learning-sites/msichoke-seaweed-growers"
+  },
+  {
     id: 1,
     name: "Arboretum KaJok'Oby",
     location: "Kisumu, Kenya",
@@ -14,7 +26,7 @@ const sites = [
     restoration: "Native tree planting",
     economicVenture: "Eco-tourism & wellness",
     leaderName: "Hilda & Oby",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&q=80&w=800",
     href: "/learning-sites/arboretum-kajokoby"
   },
   {
@@ -52,30 +64,6 @@ const sites = [
     leaderName: "Sarah Jenkins",
     image: "https://picsum.photos/seed/forest/800/800",
     href: "/learning-sites/appalachian-forest-recovery"
-  },
-  {
-    id: 5,
-    name: "London Urban Canopy",
-    location: "London, UK",
-    description: "Integrating green infrastructure and pocket parks into the urban matrix to enhance urban biodiversity and air quality.",
-    ecology: "Urban Biodiversity",
-    restoration: "Green infrastructure",
-    economicVenture: "Community gardens",
-    leaderName: "James Arthur",
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=800",
-    href: "/learning-sites/london-urban-canopy"
-  },
-  {
-    id: 6,
-    name: "Pacific Northwest Old Growth",
-    location: "Oregon, US",
-    description: "Protecting existing old-growth forests and restoring surrounding logged areas through sustainable silviculture practices.",
-    ecology: "Temperate Rainforest",
-    restoration: "Silviculture restructuring",
-    economicVenture: "Carbon offset credits",
-    leaderName: "Michael Chen",
-    image: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&q=80&w=800",
-    href: "/learning-sites/pacific-northwest-old-growth"
   }
 ];
 
@@ -86,7 +74,7 @@ const tags = [
 
 export default function LearningSites() {
   return (
-    <section className="py-24 bg-[#FAF9F6]">
+    <section id="learning-sites" className="py-24 bg-[#FAF9F6]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-12">
           <div className="max-w-3xl">

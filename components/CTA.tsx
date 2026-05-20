@@ -7,35 +7,49 @@ import { Button } from '@/components/ui/button';
 
 export default function CTA() {
   return (
-    <section id="get-involved" className="bg-[#0B0F19] text-[#F4F4F0] pt-32 pb-32 px-6 border-t border-white/10 relative overflow-hidden">
+    <section id="get-involved" className="bg-[#2C3E35] text-[#FAF9F6] pt-32 pb-32 px-6 border-t border-[#FAF9F6]/10 relative overflow-hidden">
       {/* Decorative grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#FAF9F605_1px,transparent_1px),linear-gradient(to_bottom,#FAF9F605_1px,transparent_1px)] bg-[size:6rem_6rem]"></div>
+      
+      {/* Atmospheric Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[radial-gradient(circle_at_center,rgba(250,249,246,0.03)_0%,transparent_70%)] blur-[100px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          initial={{ scale: 0.95, opacity: 0, y: 20 }}
+          whileInView={{ scale: 1, opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center"
         >
-          <div className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#C7F16C] mb-8 border border-[#C7F16C]/20 px-4 py-1">
+          <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#FAF9F6]/40 mb-12 border border-[#FAF9F6]/10 px-6 py-2 rounded-full">
             [ NEXT STEPS ]
           </div>
-          <div className="w-24 h-24 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-8 cursor-pointer hover:bg-white hover:text-[#0B0F19] transition-colors duration-500">
-            <ArrowUpRight size={32} />
-          </div>
-          <h2 className="font-serif text-5xl md:text-8xl font-light mb-8">
-            <span className="italic text-white/60">Join the</span> Collective
+          
+          <motion.div 
+            whileHover={{ scale: 1.05, rotate: 45 }}
+            className="w-24 h-24 rounded-full border border-[#FAF9F6]/20 flex items-center justify-center mx-auto mb-12 cursor-pointer hover:bg-[#FAF9F6] hover:text-[#2C3E35] transition-all duration-700 ease-[0.16,1,0.3,1]"
+          >
+            <ArrowUpRight size={32} strokeWidth={1.5} />
+          </motion.div>
+
+          <h2 className="font-serif text-5xl md:text-8xl font-light mb-12 leading-[0.9] tracking-tight">
+            <span className="italic text-[#FAF9F6]/40">Join the</span><br />Collective
           </h2>
-          <p className="max-w-xl mx-auto text-[#F4F4F0]/70 leading-relaxed text-base font-sans mb-12">
-            Whether you are a researcher, community organizer, or funder, join us in building systems that reward ecological restoration.
+          
+          <p className="max-w-xl mx-auto text-[#FAF9F6]/60 leading-relaxed text-base font-sans mb-16">
+            Whether you are a researcher, community organizer, or funder, join us in building systems that reward ecological restoration and local innovation.
           </p>
           
-          <Button asChild size="lg" className="rounded-none bg-[#C7F16C] text-[#0B0F19] hover:bg-[#D9F99D] font-mono text-[10px] uppercase tracking-widest px-8 h-12 transition-all duration-300 font-bold border border-[#0B0F19]/20">
-             <Link href="#contact">
+          <Button asChild size="lg" className="rounded-none bg-[#FAF9F6] text-[#2C3E35] hover:bg-[#FAF9F6]/90 font-mono text-[11px] uppercase tracking-[0.2em] px-12 h-14 transition-all duration-500 font-bold group">
+             <Link href="#contact" className="flex items-center">
                [ Initiate Contact ]
-               <ArrowRight className="ml-3 w-4 h-4" />
+               <motion.span
+                 animate={{ x: [0, 5, 0] }}
+                 transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+               >
+                 <ArrowRight className="ml-4 w-4 h-4" />
+               </motion.span>
              </Link>
           </Button>
         </motion.div>
@@ -43,3 +57,4 @@ export default function CTA() {
     </section>
   );
 }
+

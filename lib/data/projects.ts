@@ -6,7 +6,7 @@ export const projects: Project[] = [
     title: 'Mangrove Honey Initiative',
     description: 'A sustainable apiculture project utilizing restored mangrove forests for high-value medicinal honey.',
     category: 'Mariculture',
-    siteOrigin: 'Msichoke Seaweed Growers',
+    siteSlug: 'msichoke-seaweed-growers',
     maturity: 'Pilot',
     featured: true,
     image: 'https://images.unsplash.com/photo-1587334274328-64186a80aeee?q=80&w=2081&auto=format&fit=crop',
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: 'Seaweed Bio-Packaging',
     description: 'Transforming waste seaweed biomass into biodegradable alternatives for single-use plastics.',
     category: 'Bio-Materials',
-    siteOrigin: 'Msichoke Seaweed Growers',
+    siteSlug: 'msichoke-seaweed-growers',
     maturity: 'Scaling',
     image: 'https://images.unsplash.com/photo-1584444262846-e2716db1294b?q=80&w=2070&auto=format&fit=crop',
     impactMetrics: [
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     title: 'Urban Pollinator Corridors',
     description: 'Connecting fragmented city parks through high-biodiversity pocket gardens and green roofs.',
     category: 'Urban',
-    siteOrigin: 'London Urban Canopy',
+    siteSlug: 'london-urban-canopy',
     maturity: 'Systemic',
     image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2064&auto=format&fit=crop',
     impactMetrics: [

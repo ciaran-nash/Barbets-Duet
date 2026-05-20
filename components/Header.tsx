@@ -28,31 +28,46 @@ interface MenuItem {
 type AnimationDirection = 'right-to-left' | 'left-to-right';
 
 const aboutDropdownData: DropdownData = [
-    { 
-      heading: 'Who We Are', 
+    {
+      heading: 'Who We Are',
       links: [
-        { text: 'About Us', href: '/#about-us' }, 
-        { text: 'Our Work', href: '/#our-work' },
-        { text: 'Learning & Innovation', href: '/#learning-and-innovation' }
-      ] 
+        { text: 'About Us', href: '/about' },
+        { text: 'Mission & Vision', href: '/about/mission-vision' },
+        { text: 'Philosophy & History', href: '/about/philosophy-history' },
+      ]
+    },
+    {
+      heading: 'Our Work',
+      links: [
+        { text: 'Innovation Hub', href: '/projects' },
+        { text: 'Learning Sites', href: '/learning-sites' },
+        { text: 'Stories', href: '/stories' },
+      ]
     }
 ];
 
 const communityDropdownData: DropdownData = [
-    { 
-      heading: 'People & Impact', 
+    {
+      heading: 'Get Involved',
       links: [
-        { text: 'Community & Partnerships', href: '/#community-and-partnerships' }, 
-        { text: 'Education & Resources', href: '/#education-and-resources' },
-        { text: 'Economic Opportunities', href: '/#economic-opportunities' }
-      ] 
+        { text: 'Events', href: '/events' },
+        { text: 'Support Us', href: '/support-us' },
+        { text: 'Community & Partnerships', href: '#' },
+      ]
+    },
+    {
+      heading: 'Resources',
+      links: [
+        { text: 'Education & Resources', href: '#' },
+        { text: 'Economic Opportunities', href: '#' },
+      ]
     }
 ];
 
 const menuItems: MenuItem[] = [
     { label: 'About', dropdownData: aboutDropdownData },
     { label: 'Community', dropdownData: communityDropdownData },
-    { label: 'Get Involved', href: '/#get-involved' },
+    { label: 'Get Involved', href: '/support-us' },
 ];
 
 export default function Header() {

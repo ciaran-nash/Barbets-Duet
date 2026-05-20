@@ -11,7 +11,7 @@ export interface Project {
   title: string;
   description: string;
   category: 'Mariculture' | 'Agroforestry' | 'Urban' | 'Bio-Materials';
-  siteOrigin: string;
+  siteSlug: string;
   maturity: ProjectMaturity;
   image: string;
   featured?: boolean;

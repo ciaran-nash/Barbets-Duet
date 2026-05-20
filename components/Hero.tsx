@@ -40,7 +40,7 @@ export default function Hero() {
             
             <div className="flex flex-col sm:flex-row gap-4 relative z-10">
               <Button asChild size="lg" className="rounded-full bg-[#2C3E35] text-white hover:bg-[#1A1A1A] px-8 h-14 text-base transition-all duration-300">
-                <Link href="/sites">
+                <Link href="/#learning-sites">
                   Explore Learning Sites
                   <ArrowUpRight className="ml-2 w-5 h-5" />
                 </Link>

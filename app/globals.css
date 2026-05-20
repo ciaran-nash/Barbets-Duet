@@ -1,4 +1,30 @@
+/* @tailwind base; */
 @import "tailwindcss";
+
+@theme {
+  --color-forest: #2C3E35;
+  --color-platinum: #FAF9F6;
+  --color-accent: #C7F16C;
+}
+
+:root {
+  --background: #2C3E35;
+  --foreground: #FAF9F6;
+  --primary: #C7F16C;
+  --secondary: #FAF9F6;
+  --accent: #C7F16C;
+  
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+  --font-sans: var(--font-sans);
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
 
 /* Animation for the pulsing effect */
 @keyframes pulse {
@@ -52,7 +78,7 @@
 
 /* Custom gradients */
 .bg-gradient-orbital {
-  background: linear-gradient(to bottom right, #6366f1, #3b82f6, #14b8a6);
+  background: linear-gradient(to bottom right, var(--color-forest), var(--color-accent));
 }
 
 /* Z-index utilities */
@@ -66,7 +92,7 @@
 
 /* Custom shadows */
 .shadow-orbital {
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(199, 241, 108, 0.1);
 }
 
 /* Custom transforms */
@@ -88,40 +114,41 @@
 }
 
 /* Custom border opacity */
-.border-white\/10 {
-  border-color: rgba(255, 255, 255, 0.1);
+.border-forest\/10 {
+  border-color: rgba(44, 62, 53, 0.1);
 }
 
-.border-white\/20 {
-  border-color: rgba(255, 255, 255, 0.2);
+.border-forest\/20 {
+  border-color: rgba(44, 62, 53, 0.2);
 }
 
-.border-white\/30 {
-  border-color: rgba(255, 255, 255, 0.3);
+.border-platinum\/10 {
+  border-color: rgba(250, 249, 246, 0.1);
 }
 
-.border-white\/40 {
-  border-color: rgba(255, 255, 255, 0.4);
+.border-platinum\/20 {
+  border-color: rgba(250, 249, 246, 0.2);
 }
 
 /* Custom background opacity */
-.bg-black\/90 {
-  background-color: rgba(0, 0, 0, 0.9);
+.bg-forest\/90 {
+  background-color: rgba(44, 62, 53, 0.9);
 }
 
-.bg-white\/50 {
-  background-color: rgba(255, 255, 255, 0.5);
+.bg-platinum\/50 {
+  background-color: rgba(250, 249, 246, 0.5);
 }
 
-.bg-white\/80 {
-  background-color: rgba(255, 255, 255, 0.8);
+.bg-platinum\/80 {
+  background-color: rgba(250, 249, 246, 0.8);
 }
 
 /* Custom text opacity */
-.text-white\/70 {
-  color: rgba(255, 255, 255, 0.7);
+.text-forest\/70 {
+  color: rgba(44, 62, 53, 0.7);
 }
 
-.text-white\/80 {
-  color: rgba(255, 255, 255, 0.8);
+.text-forest\/80 {
+  color: rgba(44, 62, 53, 0.8);
 }
+
