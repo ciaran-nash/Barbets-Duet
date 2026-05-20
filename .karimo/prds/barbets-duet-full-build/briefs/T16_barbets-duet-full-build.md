@@ -1,0 +1,202 @@
+# Task Brief: T16
+
+**Title:** Arcjet middleware
+**PRD:** barbets-duet-full-build
+**Priority:** should
+**Complexity:** 1/10
+**Wave:** 4
+
+---
+
+## Objective
+
+Install Arcjet and configure rate limiting and bot protection middleware on the `/api/volunteer` and `/api/create-checkout-session` API routes — the two sensitive form submission endpoints.
+
+---
+
+## Context
+
+**Parent Feature:** Barbets Duet — Full Platform Build
+
+Public forms that submit to a database (volunteer applications) and initiate payments (donations) are common targets for bot abuse, spam submissions, and brute-force attempts. Arcjet provides a developer-friendly middleware layer for Next.js with a generous free tier (10k requests/month). This task protects the platform's two most sensitive endpoints before they go live.
+
+This task is **Wave 4** — no hard upstream dependencies (Arcjet is independent of Zod/Resend). T14 and T15 depend on this being in place before going live.
+
+---
+
+## Requirements
+
+1. Install `@arcjet/next`
+2. Create or update `middleware.ts` at the project root with Arcjet configuration
+3. Apply rate limiting to `/api/volunteer`: max 5 requests per hour per IP
+4. Apply rate limiting to `/api/create-checkout-session`: max 10 requests per hour per IP
+5. Apply bot detection to both endpoints
+6. Arcjet API key stored in `ARCJET_KEY` environment variable
+7. Document env var in `.env.local.example`
+
+---
+
+## Success Criteria
+
+Complete ALL criteria before marking task done:
+
+- [ ] `@arcjet/next` in `package.json`
+- [ ] `middleware.ts` exists at project root with Arcjet rules
+- [ ] Rate limiting active on `/api/volunteer`
+- [ ] Rate limiting active on `/api/create-checkout-session`
+- [ ] Bot detection active on both routes
+- [ ] `ARCJET_KEY` documented in `.env.local.example`
+- [ ] `npx tsc --noEmit` passes
+
+---
+
+## Files to Modify
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `package.json` | modify | Add `@arcjet/next` |
+| `middleware.ts` | create | Next.js middleware with Arcjet rules |
+| `.env.local.example` | modify | Document `ARCJET_KEY` |
+
+---
+
+## Implementation Guidance
+
+### Install
+
+```bash
+npm install @arcjet/next
+```
+
+### Arcjet Setup
+
+Sign up at arcjet.com (free tier: 10k requests/month). Create a new site and copy the API key.
+
+```bash
+# .env.local.example
+ARCJET_KEY=ajkey_your_arcjet_key_here
+```
+
+### Middleware Pattern
+
+```typescript
+// middleware.ts
+import arcjet, { tokenBucket, shield, detectBot } from '@arcjet/next';
+import { NextRequest, NextResponse } from 'next/server';
+
+const aj = arcjet({
+  key: process.env.ARCJET_KEY!,
+  rules: [
+    shield({ mode: 'LIVE' }),          // block common attacks
+    detectBot({
+      mode: 'LIVE',
+      allow: ['CATEGORY:SEARCH_ENGINE'], // allow legitimate bots
+    }),
+  ],
+});
+
+const volunteerLimiter = arcjet({
+  key: process.env.ARCJET_KEY!,
+  characteristics: ['ip.src'],
+  rules: [
+    tokenBucket({
+      mode: 'LIVE',
+      refillRate: 5,       // 5 requests
+      interval: 3600,      // per hour
+      capacity: 5,
+    }),
+  ],
+});
+
+const donationLimiter = arcjet({
+  key: process.env.ARCJET_KEY!,
+  characteristics: ['ip.src'],
+  rules: [
+    tokenBucket({
+      mode: 'LIVE',
+      refillRate: 10,
+      interval: 3600,
+      capacity: 10,
+    }),
+  ],
+});
+
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (pathname === '/api/volunteer') {
+    const decision = await volunteerLimiter.protect(request);
+    if (decision.isDenied()) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+  }
+
+  if (pathname === '/api/create-checkout-session') {
+    const decision = await donationLimiter.protect(request);
+    if (decision.isDenied()) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: ['/api/volunteer', '/api/create-checkout-session'],
+};
+```
+
+### Note on Middleware in Next.js App Router
+
+Next.js middleware runs at the Edge. Ensure `@arcjet/next` supports Edge runtime. Check Arcjet docs for Next.js App Router compatibility — the SDK is designed for this.
+
+---
+
+## Boundaries
+
+### Files You MUST NOT Touch
+
+- `.env*` actual files
+- `firebase-applet-config.json`, `firestore.rules`
+- `components/ui/`
+
+---
+
+## Dependencies
+
+### Upstream Tasks
+
+None — Arcjet is independent.
+
+### Downstream Impact
+
+T14 (volunteer form) and T15 (donations page) depend on this middleware being active before their API routes go live.
+
+---
+
+## Commit Guidelines
+
+```
+feat(security): add Arcjet rate limiting and bot protection middleware
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+```
+
+---
+
+## Validation Checklist
+
+- [ ] All success criteria met
+- [ ] `npx tsc --noEmit` passes
+- [ ] Rapid repeated POST to `/api/volunteer` returns 429 after 5 attempts
+
+---
+
+*Generated by KARIMO Brief Writer*
+*PRD: barbets-duet-full-build | Task: T16 | Wave: 4*
