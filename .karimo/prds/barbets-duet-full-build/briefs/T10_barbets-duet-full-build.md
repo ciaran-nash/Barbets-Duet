@@ -40,10 +40,15 @@ This task is **Wave 2** — depends only on T01 (brand tokens).
 
 ## Requirements
 
+0. **Verify file state before extracting hardcoded names.** Run:
+   ```bash
+   grep -n 'Barbara\|James\|Mwajuma\|team' components/About.tsx app/about/AboutContent.tsx
+   ```
+   This confirms which file actually contains hardcoded team names and their exact line numbers. If no team names are found in `AboutContent.tsx`, the removal step (requirement 4) is a no-op — skip it and note in the commit message that no hardcoded names were present.
 1. Create `types/team.ts` with `TeamMember` interface
 2. Create `lib/data/team.ts` with all known team members
 3. Build `/about/team` page with `TeamSection` component
-4. Remove hardcoded names from `AboutContent.tsx` and reference `lib/data/team.ts` instead
+4. Remove hardcoded names from whichever file the grep confirms contains them (see requirement 0) and reference `lib/data/team.ts` instead
 5. Link team members to their associated learning sites where applicable
 
 ---
@@ -71,7 +76,7 @@ Complete ALL criteria before marking task done:
 | `lib/data/team.ts` | create | Team member data |
 | `app/about/team/page.tsx` | create | /about/team page route |
 | `components/about/TeamSection.tsx` | create | Team display component |
-| `app/about/AboutContent.tsx` | modify | Replace hardcoded names with team data imports |
+| `app/about/AboutContent.tsx` | modify (if hardcoded names found — see Requirement 0) | Replace hardcoded names with team data imports. Run grep first to confirm names are present before modifying. |
 
 ---
 

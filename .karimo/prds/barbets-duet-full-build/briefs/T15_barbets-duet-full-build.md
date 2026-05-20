@@ -84,7 +84,8 @@ Complete ALL criteria before marking task done:
 
 - [ ] `/support-us` page renders with donation form
 - [ ] Preset amounts selectable ($10, $25, $50, $100) + custom input
-- [ ] One-time and monthly toggle works
+- [ ] One-time donation flow works end-to-end in test mode (Stripe Checkout redirects, returns to success page)
+- [ ] Monthly donation toggle is present in the UI but stubbed with a visible TODO comment — it does NOT attempt a Stripe subscription (subscription mode with inline price_data throws an API error)
 - [ ] Site selector shows all 13 learning sites
 - [ ] Stripe Checkout flow works in test mode (redirects to Stripe, returns to success page)
 - [ ] PayPal button renders in test mode
@@ -144,9 +145,13 @@ export async function POST(request: Request) {
 
   const { amount, currency, donationType, siteSlug, donorEmail } = parsed.data;
 
+  // IMPORTANT: Only use mode:'payment' with inline price_data.
+  // mode:'subscription' does NOT work with price_data + unit_amount — Stripe will throw an API error.
+  // Monthly subscriptions require a pre-created Price object in the Stripe dashboard.
+  // For this task, implement one-time payments only. Monthly is stubbed with a TODO.
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    mode: donationType === 'monthly' ? 'subscription' : 'payment',
+    mode: 'payment',  // Always 'payment' — do not use 'subscription' with price_data
     customer_email: donorEmail,
     line_items: [{
       price_data: {
@@ -164,8 +169,11 @@ export async function POST(request: Request) {
     cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/support-us`,
     metadata: {
       siteSlug: siteSlug || '',
+      // TODO(post-launch): add donationType to metadata for monthly upgrade path
     },
   });
+  // TODO(post-launch — monthly subscriptions): Create a Price object in the Stripe dashboard
+  // with recurring.interval='month', then pass { price: 'price_xxxxx' } instead of price_data.
 
   return Response.json({ url: session.url });
 }
@@ -203,15 +211,18 @@ const effectiveAmount = customAmount ? parseInt(customAmount) : selectedAmount;
 
 const handleStripeCheckout = async () => {
   setIsLoading(true);
+  // Note: donorEmail and donorName are omitted here — Stripe collects them on the hosted
+  // checkout page. Remove donorEmail/donorName from the pre-redirect Zod schema or make
+  // them optional, because the API call will fail validation if sent as empty strings.
   const res = await fetch('/api/create-checkout-session', {
     method: 'POST',
     body: JSON.stringify({
       amount: effectiveAmount,
       currency: 'USD',
-      donationType,
+      donationType: 'one-time',  // Always one-time for now — monthly is post-launch (see API route note)
       siteSlug: selectedSiteSlug || undefined,
-      donorEmail: '',  // collect before redirect or let Stripe collect
-      donorName: '',
+      // donorEmail: collected by Stripe hosted page
+      // donorName: collected by Stripe hosted page
     }),
   });
   const { url } = await res.json();

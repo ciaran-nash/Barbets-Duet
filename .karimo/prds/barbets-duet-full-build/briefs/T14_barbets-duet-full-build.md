@@ -82,18 +82,26 @@ T17 creates the `VolunteerConfirmation.tsx` email template. The API route calls 
 
 ## Success Criteria
 
-Complete ALL criteria before marking task done:
+Criteria are split into two tiers due to the Resend domain verification DNS gate (see note below).
+
+### Immediate (testable same day — required for PR merge)
 
 - [ ] `/get-involved` page renders
 - [ ] Form has at least 3 steps with progress indicator
 - [ ] Preferred site selector populated from `learningSites` (all 13)
 - [ ] Zod validation shows field-level errors before submission
 - [ ] Successful submission: document appears in Firestore `volunteer_applications` collection
-- [ ] Confirmation email sent to applicant email address
+- [ ] Resend API call fires without error in test mode (check server logs — a 200 from Resend is sufficient even if email is not yet deliverable)
 - [ ] Arcjet bot protection active on `/api/volunteer` endpoint
 - [ ] Success state shown after form completion
 - [ ] Mobile responsive — all steps usable on 375px
 - [ ] `npx tsc --noEmit` passes
+
+### Gated (requires Resend domain verification — ~24h DNS wait)
+
+- [ ] Confirmation email delivered to a real inbox
+
+**DNS gate — do not block PR merge on email delivery. Merge when all Immediate criteria pass (Firestore write success + Resend API 200). Verify email delivery in a follow-up check after DNS propagates.**
 
 ---
 

@@ -10,7 +10,11 @@
 
 ## Objective
 
-Complete the `/stories/[slug]` detail page so it renders story content properly, supports rich text (at minimum markdown), and links back to the associated learning site. The `CinematicReader` component exists but renders `story.content` as a plain string — real Barbets stories will be long-form narratives requiring proper formatting.
+Upgrade the `/stories/[slug]` detail page to render story content properly, support rich text (at minimum markdown), and link back to the associated learning site.
+
+**IMPORTANT: `app/stories/[slug]/page.tsx` ALREADY EXISTS and should NOT be recreated.** It is a complete, functioning page with `generateStaticParams`, `generateMetadata`, and a `CinematicReader` render. The entire scope of this task is upgrading `components/stories/CinematicReader.tsx` — the page route file itself is out of scope.
+
+The `CinematicReader` component currently renders `story.content` as a plain string — real Barbets stories will be long-form narratives requiring proper formatting.
 
 ---
 
@@ -21,6 +25,13 @@ Complete the `/stories/[slug]` detail page so it renders story content properly,
 The stories section is a critical discovery and trust-building surface. Conservation stories from Msichoke, Himo, Hannacroix, and other sites are long-form narratives with multiple paragraphs, potentially images inline, and metric callouts. Currently `story.content` is a plain string that gets rendered in a single paragraph — this will break completely with real content.
 
 The `CinematicReader` component (`components/stories/CinematicReader.tsx`) handles the page-level layout with a fullscreen hero image + title. The content body below needs to be upgraded to support rich text rendering.
+
+**Task scope — three upgrades to `CinematicReader.tsx` only:**
+1. Upgrade the content body to support rich text / markdown
+2. Add a `siteSlug` backlink to the associated learning site
+3. Ensure `impactMetrics` render in a styled callout block
+
+Do not touch `app/stories/[slug]/page.tsx` — that file is already complete.
 
 This task is **Wave 2** — depends only on T01 (brand tokens).
 
@@ -95,6 +106,7 @@ Complete ALL criteria before marking task done:
 | `package.json` | modify | Add `react-markdown` dependency |
 | `components/stories/CinematicReader.tsx` | modify | Add markdown rendering, site link, impact metrics display |
 | `types/narrative.ts` | modify | If `content` type needs widening (it likely stays `string`, just rendered differently) |
+| `app/stories/[slug]/page.tsx` | DO NOT TOUCH | Already exists and is complete — out of scope for this task |
 
 ---
 

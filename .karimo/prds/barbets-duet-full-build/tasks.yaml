@@ -1,0 +1,592 @@
+prd: barbets-duet-full-build
+created: 2026-05-20
+
+tasks:
+  # Wave 1 — Foundation
+  - id: T01
+    title: Brand audit & design system bootstrap
+    wave: 1
+    priority: must
+    complexity: 3
+    depends_on: []
+    description: |
+      Full brand audit using .agents/skills/redesign-existing-projects fix
+      priority order:
+      1. Font swap — BioRhyme + DM Sans via next/font/google
+      2. Colour cleanup — globals.css tokens to exact brand HEX
+      3. Hover + active states across all interactive components
+      4. Layout/spacing — max-width, grid, consistent padding
+      5. Replace generic components — no Inter, no neon glows, no pure black
+      6. Add missing load/empty/error states
+      7. Typography scale polish
+      Generate DESIGN.md skeleton via .agents/skills/stitch-design-taste.
+      Apply .agents/skills/design-taste-frontend anti-pattern rules throughout.
+    skills:
+      - .agents/skills/redesign-existing-projects  # primary audit tool
+      - .agents/skills/stitch-design-taste          # DESIGN.md generation
+      - .agents/skills/design-taste-frontend        # baseline rules
+    files_affected:
+      - app/globals.css
+      - app/layout.tsx
+      - components/**
+    acceptance_criteria:
+      - globals.css contains only #DBFF66, #006F53, #06211A, #FFFFFF, #F4F4F5 tokens
+      - BioRhyme + DM Sans loaded via next/font/google
+      - No Inter, no pure black, no neon glows in any component
+      - DESIGN.md exists at project root
+      - Dark mode uses Night Forest bg, Neon Lime accents
+      - Light mode uses Platinum bg, Viridian accents
+
+  - id: T02
+    title: Seed all 13 real learning sites
+    wave: 1
+    priority: must
+    complexity: 3
+    depends_on: [T01]
+    description: |
+      Populate lib/data/learning-sites.ts with all 13 real learning sites from
+      the CSV data in pastebin/learning-sites/. Use LearningSite type as defined
+      in types/learning-site.ts. Minimum per site: name, slug, location, manager
+      names, ecological focus, economic activities, restoration strategies,
+      key achievements.
+    sites:
+      - woodland-valley-farm
+      - hannacroix-creek
+      - molo-magode-farm
+      - lukenya-zumula-farm
+      - seme
+      - msichoke-seaweed-growers
+      - mwasama-primary-school
+      - himo
+      - sikia-community-dam
+      - arboretum-kajokoby
+      - cichlid-breeding
+      - rufiji
+      - nkoroi
+    files_affected:
+      - lib/data/learning-sites.ts
+    acceptance_criteria:
+      - 13 entries in learning-sites.ts
+      - All slugs are URL-safe kebab-case
+      - TypeScript strict mode passes with no errors
+
+  - id: T03
+    title: Add Zod validation library
+    wave: 1
+    priority: must
+    complexity: 1
+    depends_on: []
+    description: |
+      Install Zod. Create lib/schemas/ directory with initial schemas:
+      volunteerApplication.schema.ts and donation.schema.ts (stub).
+    files_affected:
+      - package.json
+      - lib/schemas/volunteerApplication.schema.ts
+      - lib/schemas/donation.schema.ts
+    acceptance_criteria:
+      - Zod installed and importable
+      - Two schema files exist with typed exports
+
+  - id: T04
+    title: Umami analytics installation
+    wave: 1
+    priority: should
+    complexity: 1
+    depends_on: []
+    description: |
+      Add Umami analytics script to app/layout.tsx. Configure for
+      privacy-first, no cookie banner required. Use Umami Cloud free tier.
+    files_affected:
+      - app/layout.tsx
+    acceptance_criteria:
+      - Script loads in production
+      - No cookie consent banner required
+      - Tracking verified in Umami dashboard
+
+  - id: T05
+    title: Complete Header nav routes
+    wave: 1
+    priority: must
+    complexity: 1
+    depends_on: []
+    description: |
+      Resolve all remaining # placeholder hrefs in components/Header.tsx.
+      Routes that don't exist yet should point to explicit TODO placeholders
+      or be removed from nav until built. No nav item should silently do nothing.
+    files_affected:
+      - components/Header.tsx
+    acceptance_criteria:
+      - No href="#" remaining in Header
+      - All nav items either point to real routes or are commented out with TODO
+
+  # Wave 2 — Content Completeness
+  - id: T06
+    title: Learning site 4 missing page sections
+    wave: 2
+    priority: must
+    complexity: 3
+    depends_on: [T01, T02]
+    description: |
+      Build 4 missing sections for learning site [slug] pages:
+      1. Testimonial — quote block with author name + position
+      2. Contact — CTA block with button and contact link
+      3. RestorationStrategies — distinct from MarketInventions, focus on
+         ecological methods (trait-based management, mosaic rights)
+      4. ExploreOtherSites — related sites carousel using relatedSitesSlugs
+    skills:
+      - .agents/skills/high-end-visual-design   # premium section builds
+      - .agents/skills/design-taste-frontend    # baseline rules
+    files_affected:
+      - components/learning-sites/SiteTestimonial.tsx
+      - components/learning-sites/SiteContact.tsx
+      - components/learning-sites/SiteRestorationStrategies.tsx
+      - components/learning-sites/ExploreOtherSites.tsx
+      - app/learning-sites/[slug]/LearningSiteContent.tsx
+    acceptance_criteria:
+      - All 4 components render with real data from a seeded learning site
+      - On-brand styling (brand tokens, BioRhyme/DM Sans)
+      - Mobile responsive
+      - KineticReveal animation wrapper applied
+
+  - id: T07
+    title: Stories slug detail page
+    wave: 2
+    priority: must
+    complexity: 2
+    depends_on: [T01]
+    description: |
+      Complete /stories/[slug] detail page. Add rich text support for
+      story.content (currently plain string — will break with real content).
+      Link to associated learning site via story.siteSlug.
+    files_affected:
+      - app/stories/[slug]/page.tsx
+      - components/stories/
+      - types/narrative.ts
+    acceptance_criteria:
+      - Story detail page renders
+      - Rich text content supported (at minimum markdown)
+      - Links to associated learning site
+
+  - id: T08
+    title: Events slug detail page
+    wave: 2
+    priority: must
+    complexity: 2
+    depends_on: [T01]
+    description: |
+      Build /events/[slug] individual event detail page. Include event
+      description, date/time, location, associated learning site link,
+      registration CTA. BarbetsEvent.siteSlug links to learning site.
+    files_affected:
+      - app/events/[slug]/page.tsx
+      - components/events/EventDetail.tsx
+    acceptance_criteria:
+      - Event detail page renders from lib/data/events.ts
+      - Links to associated learning site
+      - Registration CTA present
+
+  - id: T09
+    title: Projects page real structure
+    wave: 2
+    priority: should
+    complexity: 2
+    depends_on: [T01]
+    description: |
+      Refine /projects page structure. lib/data/projects.ts is placeholder —
+      build the UI to be data-ready for real content. Add project detail
+      drawer/modal. Link projects to learning sites via siteSlug.
+    files_affected:
+      - app/projects/page.tsx
+      - components/projects/
+    acceptance_criteria:
+      - Projects page renders with current placeholder data
+      - ProjectDetailDrawer functional
+      - siteSlug links work when learning site exists
+
+  - id: T10
+    title: About/team page
+    wave: 2
+    priority: must
+    complexity: 2
+    depends_on: [T01]
+    description: |
+      Extract hardcoded team names from AboutContent.tsx into:
+      types/team.ts (TeamMember interface) and lib/data/team.ts.
+      Build /about/team page. Known team: Barbara Heinzen, James Magode Ikuya,
+      Mwajuma Masaiganah + others from site data.
+    files_affected:
+      - types/team.ts
+      - lib/data/team.ts
+      - app/about/team/page.tsx
+      - components/about/TeamSection.tsx
+    acceptance_criteria:
+      - types/team.ts and lib/data/team.ts created
+      - /about/team page renders
+      - No hardcoded names in components
+
+  - id: T11
+    title: About/careers page
+    wave: 2
+    priority: could
+    complexity: 1
+    depends_on: [T01]
+    description: |
+      Build /about/careers static page. Content: Barbets Duet internship
+      programme, SCA (Site Communications Administrator) role, youth
+      engagement programme (2028 legacy). Calls to action for volunteers.
+    files_affected:
+      - app/about/careers/page.tsx
+    acceptance_criteria:
+      - Page renders with static content
+      - Links to /get-involved
+
+  # Wave 3 — Discovery
+  - id: T12
+    title: Learning sites browse/index page
+    wave: 3
+    priority: must
+    complexity: 4
+    depends_on: [T02, T06, T13]
+    description: |
+      Build /learning-sites browse page with:
+      - MapLibre GL map showing all 13 site locations (Night Forest styled)
+      - Site cards grid with filter (by region: East Africa, International)
+      - Hover on card highlights map pin and vice versa
+      - Site card: name, location, ecological focus, 1 image
+    skills:
+      - .agents/skills/high-end-visual-design   # premium browse layout
+      - .agents/skills/design-taste-frontend    # baseline rules
+    files_affected:
+      - app/learning-sites/page.tsx
+      - components/learning-sites/SitesBrowse.tsx
+      - components/learning-sites/SitesMap.tsx
+      - components/learning-sites/SiteCard.tsx
+    acceptance_criteria:
+      - All 13 sites visible on map and grid
+      - Map styled to brand palette
+      - Region filter works
+      - Mobile responsive (map stacks above grid)
+      - Hover cross-highlighting between map and cards
+
+  - id: T13
+    title: MapLibre GL JS + Stadia Maps setup
+    wave: 3
+    priority: must
+    complexity: 3
+    depends_on: [T01]
+    description: |
+      Install react-map-gl + maplibre-gl. Create custom Night Forest map
+      style using Maputnik (open-source). Stadia Maps API key for tile hosting.
+      Style: dark canvas, Neon Lime pins, Viridian accents. Wrap in client
+      component per design-taste-frontend isolation rules.
+    files_affected:
+      - package.json
+      - components/learning-sites/SitesMap.tsx
+      - lib/map/style.json
+    acceptance_criteria:
+      - Map renders with Night Forest dark style
+      - Custom pin markers in brand colours
+      - Stadia tiles load correctly
+      - No performance issues on mobile (isolated client component)
+
+  # Wave 4 — Platform Actions
+  - id: T14
+    title: Volunteer application form (/get-involved)
+    wave: 4
+    priority: must
+    complexity: 3
+    depends_on: [T03, T16, T17]
+    description: |
+      Build /get-involved page with multi-step volunteer application form.
+      Fields: name, email, location, preferred site (from 13 sites list),
+      availability, skills/interests, motivation. Zod validation. Firestore
+      submission to 'volunteer_applications' collection. Resend confirmation
+      email. Arcjet rate limiting on submit endpoint.
+    files_affected:
+      - app/get-involved/page.tsx
+      - components/forms/VolunteerForm.tsx
+      - lib/schemas/volunteerApplication.schema.ts
+      - app/api/volunteer/route.ts
+    acceptance_criteria:
+      - Form validates with Zod before submission
+      - Successful submission writes to Firestore
+      - Confirmation email sent to applicant
+      - Bot/spam protection via Arcjet
+      - Success state shown after submission
+
+  - id: T15
+    title: Support-us donations page
+    wave: 4
+    priority: must
+    complexity: 4
+    depends_on: [T02, T03]
+    description: |
+      Build /support-us page with:
+      - General organisation donation (Stripe Checkout + PayPal)
+      - Site-tagged donation (donor selects specific learning site)
+      - Recurring donation option (Stripe)
+      - Donation amounts: preset + custom input
+      - Stripe + PayPal integrated as stubs with test keys
+      - Real payment keys plugged in pre-launch
+    skills:
+      - .agents/skills/high-end-visual-design   # premium donation experience
+      - .agents/skills/design-taste-frontend    # baseline rules
+    files_affected:
+      - app/support-us/page.tsx
+      - components/donations/DonationForm.tsx
+      - components/donations/SiteSelector.tsx
+      - app/api/create-checkout-session/route.ts
+      - app/api/paypal-order/route.ts
+      - lib/schemas/donation.schema.ts
+    acceptance_criteria:
+      - General donation flow works in test mode
+      - Site-tagged donation shows learning site selector
+      - Both Stripe Checkout and PayPal button render
+      - Donation amount validation via Zod
+      - Test mode transactions complete successfully
+
+  - id: T16
+    title: Arcjet middleware
+    wave: 4
+    priority: should
+    complexity: 1
+    depends_on: []
+    description: |
+      Install Arcjet. Add rate limiting + bot protection middleware to
+      /api/volunteer and /api/create-checkout-session routes.
+    files_affected:
+      - middleware.ts
+      - package.json
+    acceptance_criteria:
+      - Rate limiting active on form submission routes
+      - Bot requests blocked
+
+  - id: T17
+    title: Resend email setup
+    wave: 4
+    priority: should
+    complexity: 2
+    depends_on: []
+    description: |
+      Install Resend. Configure domain verification for transactional email.
+      Create email templates for: volunteer application confirmation,
+      donation receipt. Use React Email for template rendering.
+    files_affected:
+      - package.json
+      - lib/email/
+      - emails/VolunteerConfirmation.tsx
+      - emails/DonationReceipt.tsx
+    acceptance_criteria:
+      - Domain verified with Resend
+      - Volunteer confirmation email sends on form submit
+      - Email renders correctly in Gmail + Apple Mail
+
+  # Wave 5 — CMS
+  - id: T18
+    title: Sanity schema design
+    wave: 5
+    priority: must
+    complexity: 4
+    depends_on: [T02, T06, T07, T08, T09, T10]
+    description: |
+      Design Sanity schemas for all content types. Match TypeScript types
+      exactly. Content types: LearningSite, Story, BarbetsEvent, Project,
+      TeamMember. Ensure all fields from types/learning-site.ts are covered.
+      Define references between types (e.g. Story.siteSlug → LearningSite).
+    files_affected:
+      - sanity/schemas/learningSite.ts
+      - sanity/schemas/story.ts
+      - sanity/schemas/event.ts
+      - sanity/schemas/project.ts
+      - sanity/schemas/teamMember.ts
+      - sanity/schemaTypes/index.ts
+    acceptance_criteria:
+      - All TypeScript types have corresponding Sanity schemas
+      - Cross-references use Sanity reference type
+      - Schema validates in Sanity Studio without errors
+
+  - id: T19
+    title: Sanity Studio setup
+    wave: 5
+    priority: must
+    complexity: 3
+    depends_on: [T18]
+    description: |
+      Configure Sanity Studio. Deploy to /studio route in Next.js app.
+      Configure for non-dev Barbets Duet staff: simple field labels,
+      helpful descriptions, image upload with Sanity CDN. Create initial
+      content by migrating existing lib/data entries.
+    files_affected:
+      - sanity.config.ts
+      - app/studio/[[...tool]]/page.tsx
+    acceptance_criteria:
+      - /studio route renders Sanity Studio
+      - Non-dev user can create/edit LearningSite entries
+      - Images upload to Sanity CDN correctly
+      - Existing lib/data content migrated as seed
+
+  - id: T20
+    title: GROQ queries + next-sanity integration
+    wave: 5
+    priority: must
+    complexity: 4
+    depends_on: [T19]
+    description: |
+      Replace lib/data/* imports with GROQ queries via next-sanity.
+      Maintain existing TypeScript types as query return types.
+      Enable React Server Component data fetching. Implement caching
+      via Next.js fetch cache tags for each content type.
+    files_affected:
+      - lib/sanity/client.ts
+      - lib/sanity/queries.ts
+      - app/learning-sites/[slug]/page.tsx
+      - app/stories/[slug]/page.tsx
+      - app/events/[slug]/page.tsx
+    acceptance_criteria:
+      - All pages fetch from Sanity instead of lib/data
+      - TypeScript types maintained
+      - No regression on existing functionality
+      - Cache tags set for revalidation
+
+  - id: T21
+    title: On-demand revalidation via Sanity webhooks
+    wave: 5
+    priority: must
+    complexity: 3
+    depends_on: [T20]
+    description: |
+      Configure Sanity webhook to fire on document publish. Next.js
+      API route receives webhook, calls revalidateTag() to clear cache.
+      Result: instant live site update when staff publishes in Studio.
+    files_affected:
+      - app/api/revalidate/route.ts
+    acceptance_criteria:
+      - Publishing in Sanity Studio updates live site within 5 seconds
+      - Webhook secret validated (no unauthorized revalidation)
+
+  - id: T22
+    title: Sanity image pipeline
+    wave: 5
+    priority: should
+    complexity: 2
+    depends_on: [T19]
+    description: |
+      Configure Sanity image CDN delivery with automatic webp/avif
+      transformation. Integrate with Next.js Image component via
+      @sanity/image-url builder.
+    files_affected:
+      - lib/sanity/image.ts
+      - components/SanityImage.tsx
+    acceptance_criteria:
+      - All Sanity images served as webp/avif
+      - Next.js Image optimisation applied
+      - No layout shift from images
+
+  - id: T23
+    title: AI SDK + OpenRouter scaffold
+    wave: 5
+    priority: could
+    complexity: 2
+    depends_on: []
+    description: |
+      Install AI SDK + OpenRouter. Create basic site search endpoint
+      using free Llama/Gemma models via OpenRouter. Scaffold for future
+      multilingual support (sites in KE/TZ/UG/UK/USA).
+    files_affected:
+      - package.json
+      - app/api/search/route.ts
+    acceptance_criteria:
+      - AI SDK installed
+      - Search endpoint responds with relevant results
+      - OpenRouter free model selected
+
+  # Wave 6 — Greenfield
+  - id: T24
+    title: Community/Jumuiya network section
+    wave: 6
+    priority: should
+    complexity: 4
+    depends_on: [T20]
+    description: |
+      Build /community section. Visualise the Jumuiya peer review network
+      (circular accountability chain). Show inter-site relationships and
+      circular peer review assignments. Community resources, Barbets Game
+      info, knowledge sharing.
+    files_affected:
+      - app/community/page.tsx
+      - components/community/
+    acceptance_criteria:
+      - /community page renders
+      - Circular peer review network visualised
+      - Links to individual learning sites
+
+  - id: T25
+    title: Research knowledge hub
+    wave: 6
+    priority: should
+    complexity: 3
+    depends_on: [T20]
+    description: |
+      Build /research page. Document library: strategic frameworks,
+      Mosaic vs Column Rights, Barbets Game, 20-year experiment data.
+      Pull from Sanity document type.
+    files_affected:
+      - app/research/page.tsx
+      - components/research/
+    acceptance_criteria:
+      - /research page renders
+      - Documents accessible and readable
+
+  - id: T26
+    title: Blog / News / FAQ pages
+    wave: 6
+    priority: could
+    complexity: 3
+    depends_on: [T20]
+    description: |
+      Build /blog (Sanity posts), /news (announcements), /faq
+      (accordion-style Q&A). All backed by Sanity CMS.
+    files_affected:
+      - app/blog/page.tsx
+      - app/news/page.tsx
+      - app/faq/page.tsx
+    acceptance_criteria:
+      - All three pages render
+      - Content manageable by non-dev staff via Studio
+
+  - id: T27
+    title: Admin dashboard
+    wave: 6
+    priority: could
+    complexity: 4
+    depends_on: [T14, T15, T20]
+    description: |
+      Build admin dashboard (/admin). Features: volunteer applications
+      list + status management, donation records overview, site content
+      status. Firebase Auth role-based access (admin role).
+    files_affected:
+      - app/admin/page.tsx
+      - components/admin/
+    acceptance_criteria:
+      - Admin route protected by Firebase Auth + admin role
+      - Volunteer applications viewable and status-updatable
+      - Donation records visible
+
+  - id: T28
+    title: Full DESIGN.md design system
+    wave: 6
+    priority: should
+    complexity: 3
+    depends_on: [T01]
+    description: |
+      Generate complete DESIGN.md design system document using
+      .agents/skills/stitch-design-taste skill. Document all components,
+      tokens, motion principles, anti-patterns. This becomes the canonical
+      design source for all future development on this project.
+    files_affected:
+      - DESIGN.md
+    acceptance_criteria:
+      - DESIGN.md complete with all sections from stitch-design-taste template
+      - All brand tokens documented with hex codes and functional roles
+      - All component behaviors documented
+      - Anti-patterns list complete

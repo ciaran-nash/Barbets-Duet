@@ -102,6 +102,18 @@ Complete ALL criteria before marking task done:
 
 ## Implementation Guidance
 
+### Before Starting — Verify Actual File State
+
+Run this command first to confirm exact line numbers and current `href="#"` occurrences:
+
+```bash
+grep -n 'href="#"' components/Header.tsx
+```
+
+The research context above documents what was found at review time, but the executor must confirm the actual state of the file before making changes. Reference the real line numbers from this output, not assumptions.
+
+Also note: `/learning-sites` in `aboutDropdownData` under "Our Work" is a real link that currently 404s because `app/learning-sites/page.tsx` does not exist yet — it is built in T12 (Wave 3). Do not remove or comment out this link. This is a known pre-existing 404 and is expected.
+
 ### Recommended Final Link Structure
 
 ```typescript

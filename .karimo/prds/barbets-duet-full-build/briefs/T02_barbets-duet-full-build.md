@@ -67,7 +67,7 @@ Check `pastebin/learning-sites/` for any CSV files containing additional site-sp
 5. TypeScript strict mode passes — no `any`, no missing required fields
 6. Coordinate data added: each site needs `lat` and `lng` approximate values for the map in Wave 3 T12/T13
 
-**Note on coordinates:** The `LearningSite` type may not yet have `lat`/`lng` fields. If not, add them as optional fields to `types/learning-site.ts` as part of this task. They are needed for the Wave 3 MapLibre map.
+**Step 0 — Type update required before writing any site data:** Add `lat: number` and `lng: number` to `types/learning-site.ts` before populating any site entries. These fields do NOT currently exist in the type. This must be the literal first code change in this task. The Wave 3 MapLibre map (T12/T13) depends on every site having coordinates.
 
 ---
 
@@ -78,7 +78,7 @@ Complete ALL criteria before marking task done:
 - [ ] `lib/data/learning-sites.ts` contains exactly 13 entries
 - [ ] All 13 slugs match the kebab-case list in Requirements exactly
 - [ ] Each entry has all required fields populated (no `undefined` on required fields)
-- [ ] `types/learning-site.ts` has optional `lat?: number` and `lng?: number` fields
+- [ ] `types/learning-site.ts` has `lat: number` and `lng: number` fields added (these did not exist before this task — add them first, before any data entries)
 - [ ] All 13 sites have approximate `lat`/`lng` coordinates
 - [ ] `npx tsc --noEmit` passes with zero errors
 - [ ] `getLearningSite('woodland-valley-farm')` returns a full object (smoke test)
@@ -90,7 +90,7 @@ Complete ALL criteria before marking task done:
 | File | Action | Purpose |
 |------|--------|---------|
 | `lib/data/learning-sites.ts` | modify | Add 11 new site entries alongside the existing 2 |
-| `types/learning-site.ts` | modify | Add optional `lat?: number; lng?: number` fields to LearningSite interface |
+| `types/learning-site.ts` | modify (FIRST, before data) | Add `lat: number; lng: number` fields — these fields do not exist yet and must be added before any site object is written |
 
 ### File Ownership Notes
 

@@ -73,8 +73,11 @@ From `lib/data/events.ts`:
 
 ## Requirements
 
+0. **Check directory state before creating any files:**
+   - Confirm `app/events/[slug]/` does not exist. If it does, check its contents before creating `page.tsx`.
+   - Confirm what already exists in `components/events/` — the directory exists but may already contain components relevant to this task. Do not duplicate existing work.
 1. Create `app/events/[slug]/page.tsx` with `generateStaticParams` from `events` array
-2. Create `components/events/EventDetail.tsx` as the display component
+2. Create `components/events/EventDetail.tsx` as the display component (only if it does not already exist)
 3. Event detail includes: hero image, title, date/time, location, full description, type badge, registration status
 4. If `event.siteSlug` is set, show a "Hosted at [Site Name]" link to `/learning-sites/[siteSlug]`
 5. Registration CTA: if `registrationStatus === 'Open'` → green button with link; if `'Waitlist'` → amber badge; if `'Closed'` → greyed out
@@ -106,6 +109,18 @@ Complete ALL criteria before marking task done:
 ---
 
 ## Implementation Guidance
+
+### Before Starting — Check Existing State
+
+```bash
+# Check if the [slug] directory exists
+ls app/events/
+
+# Check what is already in components/events/
+ls components/events/
+```
+
+The events list page `app/events/page.tsx` exists. The `app/events/[slug]/` detail route is expected to be absent — create it. The `components/events/` directory exists and may have partial work — review its contents before creating `EventDetail.tsx` to avoid duplicating existing components.
 
 ### Page Route (follow stories pattern)
 
