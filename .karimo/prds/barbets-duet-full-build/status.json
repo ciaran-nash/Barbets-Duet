@@ -6,8 +6,30 @@
   "created": "2026-05-20",
   "approved": "2026-05-20",
   "execution_started": "2026-05-20",
-  "current_wave": 1,
-  "completed_tasks": [],
+  "current_wave": 2,
+  "completed_tasks": ["T01", "T02", "T03", "T04", "T05"],
   "in_progress_tasks": [],
-  "blocked_tasks": []
+  "blocked_tasks": [],
+  "active_worktrees": [],
+  "tasks": {
+    "T01": { "status": "done", "wave": 1, "title": "Brand audit & design system bootstrap", "merged_at": "2026-05-20T00:00:00Z" },
+    "T02": { "status": "done", "wave": 1, "title": "Seed all 13 real learning sites", "merged_at": "2026-05-20T00:00:00Z" },
+    "T03": { "status": "done", "wave": 1, "title": "Add Zod validation library", "merged_at": "2026-05-20T00:00:00Z" },
+    "T04": { "status": "done", "wave": 1, "title": "Umami analytics installation", "merged_at": "2026-05-20T00:00:00Z", "note": "implementation-complete, awaiting-credentials: NEXT_PUBLIC_UMAMI_WEBSITE_ID" },
+    "T05": { "status": "done", "wave": 1, "title": "Complete Header nav routes", "merged_at": "2026-05-20T00:00:00Z" },
+    "T06": { "status": "queued", "wave": 2, "title": "Learning site detail page shell" },
+    "T07": { "status": "queued", "wave": 2, "title": "Stories index + detail pages" },
+    "T08": { "status": "queued", "wave": 2, "title": "Events index + detail pages" },
+    "T09": { "status": "queued", "wave": 2, "title": "Projects index + detail pages" },
+    "T10": { "status": "queued", "wave": 2, "title": "About page" },
+    "T11": { "status": "queued", "wave": 2, "title": "Get Involved page" }
+  },
+  "wave_history": [
+    {
+      "wave": 1,
+      "completed_at": "2026-05-20T00:00:00Z",
+      "tasks": ["T01", "T02", "T03", "T04", "T05"],
+      "notes": "T04 awaiting Umami credentials"
+    }
+  ]
 }
