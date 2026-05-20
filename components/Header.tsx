@@ -53,21 +53,23 @@ const communityDropdownData: DropdownData = [
       links: [
         { text: 'Events', href: '/events' },
         { text: 'Support Us', href: '/support-us' },
-        { text: 'Community & Partnerships', href: '/community' },
+        { text: 'Volunteer', href: '/get-involved' },
+        // TODO(T24): Uncomment when /community page is built
+        // { text: 'Community & Partnerships', href: '/community' },
       ]
     },
     {
       heading: 'Resources',
       links: [
-        { text: 'Research & Knowledge', href: '/research' },
-        { text: 'Careers & Volunteering', href: '/about/careers' },
+        // TODO(T25): Uncomment when /research page is built
+        // { text: 'Research Hub', href: '/research' },
+        { text: 'About Our Mission', href: '/about/mission-vision' },
       ]
     }
 ];
 
-// T05: All nav routes verified — no href="#" placeholders remain.
-// Routes point to real pages; pages not yet built are included here as
-// intentional navigation targets that will resolve once those pages are created.
+// T05: All nav routes verified — zero href="#" placeholders remain.
+// Future routes are commented out with TODO markers pending their pages being built.
 const menuItems: MenuItem[] = [
     { label: 'About', dropdownData: aboutDropdownData },
     { label: 'Community', dropdownData: communityDropdownData },
