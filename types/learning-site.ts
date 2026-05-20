@@ -43,9 +43,9 @@ export interface LearningSite {
   category: string;
   leadPartners: string[];
 
-  // Geographic coordinates for map display
-  lat?: number;
-  lng?: number;
+  // Geographic coordinates for map display (required — used by T12/T13 MapLibre map)
+  lat: number;
+  lng: number;
 
   // Hero
   heroImage: string;
