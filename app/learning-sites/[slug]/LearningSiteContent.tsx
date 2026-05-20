@@ -12,6 +12,10 @@ import { MarketInventions } from '@/components/learning-sites/MarketInventions';
 import { ImpactGrid } from '@/components/learning-sites/ImpactGrid';
 import { FutureGoals } from '@/components/learning-sites/FutureGoals';
 import { SiteGallery } from '@/components/learning-sites/SiteGallery';
+import { SiteRestorationStrategies } from '@/components/learning-sites/SiteRestorationStrategies';
+import { SiteTestimonial } from '@/components/learning-sites/SiteTestimonial';
+import { ExploreOtherSites } from '@/components/learning-sites/ExploreOtherSites';
+import { SiteContact } from '@/components/learning-sites/SiteContact';
 import { ScrollGlow } from '@/components/motion/ScrollGlow';
 
 export default function LearningSiteContent({ site }: { site: LearningSite }) {
@@ -30,12 +34,20 @@ export default function LearningSiteContent({ site }: { site: LearningSite }) {
         <SiteProjects site={site} />
         
         <MarketInventions site={site} />
-        
+
+        <SiteRestorationStrategies site={site} />
+
         <ImpactGrid site={site} />
-        
+
         <FutureGoals site={site} />
-        
+
         <SiteGallery site={site} />
+
+        <SiteTestimonial site={site} />
+
+        <ExploreOtherSites site={site} />
+
+        <SiteContact site={site} />
       </main>
 
       <CTA />
