@@ -1,0 +1,92 @@
+prd: barbets-duet-full-build
+generated: 2026-05-20
+
+waves:
+  wave_1:
+    name: Foundation
+    tasks: [T01, T02, T03, T04, T05]
+    note: No dependencies. Run T01 first (brand tokens needed by all visual tasks). T02–T05 can run in parallel after T01.
+    gate: All 13 sites seeded, brand tokens aligned, no 404 nav links
+
+  wave_2:
+    name: Content Completeness
+    tasks: [T06, T07, T08, T09, T10, T11]
+    depends_on: wave_1
+    note: T06 depends on T02 (needs real site data). T10 must run before any page using team data. Others can run in parallel.
+    gate: All content pages render with real data, no placeholder content in primary paths
+
+  wave_3:
+    name: Discovery
+    tasks: [T12, T13]
+    depends_on: wave_2
+    note: T13 (MapLibre setup) must complete before T12 (browse page). Stadia Maps API key required.
+    gate: /learning-sites browse page live with all 13 sites on map
+
+  wave_4:
+    name: Platform Actions
+    tasks: [T14, T15, T16, T17]
+    depends_on: wave_2
+    note: T16 + T17 can run independently. T14 depends on T03/T16/T17. T15 depends on T02/T03. Can run parallel to Wave 3.
+    gate: Volunteer form submits, donation page works in test mode
+
+  wave_5:
+    name: CMS Migration
+    tasks: [T18, T19, T20, T21, T22, T23]
+    depends_on: [wave_2, wave_4]
+    note: T18 → T19 → T20 → T21 sequential. T22 can parallel T20. T23 independent.
+    pre_requisites:
+      - Sanity account created at sanity.io
+      - All TypeScript types frozen (no breaking changes after T02)
+    gate: Non-dev staff can publish content, live site updates within 5 seconds
+
+  wave_6:
+    name: Greenfield
+    tasks: [T24, T25, T26, T27, T28]
+    depends_on: wave_5
+    note: All can run in parallel. T27 depends on T14+T15. T28 can start after T01.
+    gate: Full platform feature-complete
+
+dependency_graph:
+  T01: []
+  T02: [T01]
+  T03: []
+  T04: []
+  T05: []
+  T06: [T01, T02]
+  T07: [T01]
+  T08: [T01]
+  T09: [T01]
+  T10: [T01]
+  T11: [T01]
+  T12: [T02, T06, T13]
+  T13: [T01]
+  T14: [T03, T16, T17]
+  T15: [T02, T03]
+  T16: []
+  T17: []
+  T18: [T02, T06, T07, T08, T09, T10]
+  T19: [T18]
+  T20: [T19]
+  T21: [T20]
+  T22: [T19]
+  T23: []
+  T24: [T20]
+  T25: [T20]
+  T26: [T20]
+  T27: [T14, T15, T20]
+  T28: [T01]
+
+longest_chain:
+  path: T01 → T02 → T06 → T12 → T18 → T20 → T24
+  tasks: 7
+  total_complexity: 23
+
+complexity_summary:
+  total_tasks: 28
+  total_complexity_points: 72
+  wave_1: 9
+  wave_2: 12
+  wave_3: 7
+  wave_4: 10
+  wave_5: 18
+  wave_6: 17

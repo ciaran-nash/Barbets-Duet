@@ -1,0 +1,60 @@
+project:
+  name: Barbets Duet
+  runtime: node
+  node_version: "20"
+  framework: nextjs
+  framework_version: "15"
+  router: app
+  package_manager: npm
+  language: typescript
+  typescript_strict: true
+  path_alias: "@/*"
+
+commands:
+  build: next build
+  dev: next dev
+  lint: eslint .
+  typecheck: npx tsc --noEmit
+  test: null
+
+directories:
+  pages: app/
+  components: components/
+  lib: lib/
+  types: types/
+  hooks: hooks/
+  data: lib/data/
+  ui_primitives: components/ui/
+  motion: components/motion/
+
+key_dependencies:
+  next: "^15.4.9"
+  react: "^19.2.1"
+  typescript: "5.9.3"
+  tailwindcss: "4.1.11"
+  framer_motion: "^12.38.0"
+  firebase: "^12.12.1"
+  lenis: "^1.0.42"
+  react_globe_gl: "^2.37.1"
+  shadcn_ui: true
+
+notes:
+  - Tailwind v4 — config in app/globals.css, no tailwind.config.js
+  - ESLint 9 flat config (eslint.config.mjs) — ignore legacy .eslintrc.json
+  - firebase-applet-config.json contains live credentials, treat as secret
+
+boundaries:
+  never_touch:
+    - ".env*"
+    - "firebase-applet-config.json"
+    - "firestore.rules"
+    - "package-lock.json"
+    - ".next/"
+    - "node_modules/"
+    - "next-env.d.ts"
+  require_review:
+    - "lib/firebase.ts"
+    - "components/AuthProvider.tsx"
+    - "app/dashboard/**"
+    - "next.config.ts"
+    - "firestore.rules"
