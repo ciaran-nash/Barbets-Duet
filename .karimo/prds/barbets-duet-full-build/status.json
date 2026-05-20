@@ -1,9 +1,12 @@
 {
   "prd": "barbets-duet-full-build",
-  "status": "ready",
+  "status": "executing",
+  "execution_mode": "feature-branch",
+  "feature_branch": "feature/barbets-duet-full-build",
   "created": "2026-05-20",
   "approved": "2026-05-20",
-  "current_wave": null,
+  "execution_started": "2026-05-20",
+  "current_wave": 1,
   "completed_tasks": [],
   "in_progress_tasks": [],
   "blocked_tasks": []
