@@ -32,6 +32,7 @@ const aboutDropdownData: DropdownData = [
       heading: 'Who We Are',
       links: [
         { text: 'About Us', href: '/about' },
+        { text: 'Our Team', href: '/about/team' },
         { text: 'Mission & Vision', href: '/about/mission-vision' },
         { text: 'Philosophy & History', href: '/about/philosophy-history' },
       ]
