@@ -5,9 +5,9 @@ import EarthGlobe from './EarthGlobe';
 
 export default function Network() {
   return (
-    <section id="network" className="py-32 bg-night-forest text-white relative overflow-hidden flex flex-col items-center">
+    <section id="network" className="py-32 bg-night-forest text-platinum relative overflow-hidden flex flex-col items-center">
       <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-        <h2 className="text-sm font-semibold tracking-widest uppercase mb-6 text-white/50">
+        <h2 className="text-sm font-semibold tracking-widest uppercase mb-6 text-platinum/50">
           Global Expansion
         </h2>
         <h3 className="font-serif text-4xl lg:text-5xl font-light leading-tight mb-16 max-w-3xl">
@@ -20,7 +20,7 @@ export default function Network() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 border-t border-white/10 pt-16 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 border-t border-platinum/10 pt-16 w-full">
           {[
             { value: "14", label: "Active Sites" },
             { value: "6", label: "Countries" },

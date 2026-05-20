@@ -1,37 +1,53 @@
 # Design System: Barbets Duet
 
-## 1. Visual Theme & Atmosphere
+> **Canonical reference for the "Scholarly Cycle" aesthetic.**
+> All screens, components, and interactions trace back to this document.
+> Last updated: 2026-05-20
+
+## 1. Brand Identity & Visual Atmosphere
+
+Barbets Duet is a global ecological restoration collective. The visual language draws from natural history journals, scientific periodicals, and circular cultural references — not tech-startup minimalism. It is expressive, rigorous, and grounded in the living world.
+
+The interface operates primarily in **dark mode** (Night Forest `#06211A` background) with a **light mode** variant (Platinum `#F4F4F5` background) accessible via `[data-theme="light"]`. The accent colour — Neon Lime `#DBFF66` — is used sparingly, only for CTAs, active states, and interactive highlights. It should feel like a single flash of light in the canopy, not a repeated pattern.
 
 A scholarly, editorial interface inspired by natural history journals and scientific periodicals. The atmosphere is measured and purposeful — "Scholarly Cycle" — where expressive slab-serif headings (BioRhyme) frame precise geometric body copy (DM Sans) against a deep Night Forest canvas.
 
-The interface operates primarily in dark mode with the Night Forest background as the resting state. Light surfaces (Platinum) emerge for content sections requiring legibility contrast. The accent colour — Neon Lime — is used sparingly, only for CTAs, active states, and interactive highlights. It should feel like a single flash of light in the canopy, not a repeated pattern.
-
 **Design dials:**
 - Density: 4 (Daily App — generous whitespace, content breathes)
-- Variance: 7 (Offset asymmetric — deliberate broken grids, not chaotic)
+- Variance: 8 (Offset asymmetric — deliberate broken grids, bento structures)
 - Motion: 6 (Fluid CSS with spring physics on interactive elements)
 
 ## 2. Colour Palette & Roles
 
-| Token | Hex | Name | Functional Role |
-|-------|-----|------|-----------------|
-| `--color-neon-lime` | `#DBFF66` | Neon Lime | Primary CTA accent, active states, focus rings, interactive highlights |
-| `--color-viridian` | `#006F53` | Viridian | Brand green, light-mode accent, secondary links |
-| `--color-night-forest` | `#06211A` | Night Forest | Dark background, primary text on light surfaces |
-| `--color-white` | `#FFFFFF` | White | Card surfaces, content backgrounds within sections |
-| `--color-platinum` | `#F4F4F5` | Platinum | Light mode background, secondary surfaces |
+These are the **only 5 base colours** in the system. No other hex values are permitted.
 
-**Semantic layer:**
-- `--background`: `#06211A` (Night Forest in dark mode; `#F4F4F5` in light mode)
-- `--foreground`: `#F4F4F5` (Platinum in dark mode; `#06211A` in light mode)
-- `--accent`: `#DBFF66` (dark mode); `#006F53` (light mode)
+| Token | Hex | Tailwind class | Functional Role |
+|-------|-----|------|-----------------|
+| **Neon Lime** | `#DBFF66` | `neon-lime` | Primary CTA accent, active states, focus rings, interactive highlights |
+| **Viridian** | `#006F53` | `viridian` | Brand green, light-mode accent, secondary links |
+| **Night Forest** | `#06211A` | `night-forest` | Dark background, primary text on light surfaces |
+| **White** | `#FFFFFF` | `white` | Card surfaces, content backgrounds within sections |
+| **Platinum** | `#F4F4F5` | `platinum` | Light mode background, foreground on dark backgrounds |
+
+**Semantic layer (CSS variables):**
+- `--background`: `#06211A` (dark) / `#F4F4F5` (light)
+- `--foreground`: `#F4F4F5` (dark) / `#06211A` (light)
+- `--accent`: `#DBFF66` (dark) / `#006F53` (light)
+- `--primary`: `#DBFF66` (dark) / `#006F53` (light)
+- `--brand`: `#006F53` (both modes)
+
+**Dark mode renders:** Night Forest background, Neon Lime accents
+**Light mode renders:** Platinum background, Viridian accents
+
+**Opacity variants:** Use Tailwind modifier syntax — `text-night-forest/70`, `bg-platinum/50`, `border-platinum/10`.
 
 **Banned colour patterns:**
 - Pure black (`#000000`) — use Night Forest instead
-- Off-brand greens (`#2C3E35`, `#1A1A1A`) — these are gone
-- Off-brand platinum (`#FAF9F6`, `#F4F4F0`) — replaced with `#F4F4F5`
-- Off-brand accent (`#C7F16C`) — replaced with `#DBFF66`
-- Neon glow box-shadows (e.g. `shadow-[0_0_30px_#DBFF66]`) — tint shadows to palette hue at low opacity only
+- Pure white text — use `text-platinum` on dark backgrounds
+- `text-black`, `bg-black`, `text-white`, `bg-white` — use brand token equivalents
+- Off-brand tokens: `#2C3E35`, `#FAF9F6`, `#C7F16C`, `#F4F4F0`, `#0B0F19`, `#E5EFE2`, `#2A4433`, `#35A1AB`, `#8CD8DF`
+- Tailwind `gray-*` classes — use `night-forest/N` opacity variants instead
+- Neon glow box-shadows — use tinted diffusion shadows at low opacity only
 
 ## 3. Typography Rules
 

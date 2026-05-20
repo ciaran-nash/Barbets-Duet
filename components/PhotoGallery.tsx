@@ -166,12 +166,12 @@ export default function PhotoGallery({ siteId, initialImages }: PhotoGalleryProp
               <button 
                 type="submit" 
                 disabled={submitting || !selectedFile}
-                className="bg-night-forest text-white px-6 py-3 rounded-xl font-semibold tracking-widest uppercase text-xs hover:bg-night-forest/90 transition-colors disabled:opacity-50 flex items-center justify-center min-w-[120px]"
+                className="bg-night-forest text-platinum px-6 py-3 rounded-xl font-semibold tracking-widest uppercase text-xs hover:bg-night-forest/90 transition-colors disabled:opacity-50 flex items-center justify-center min-w-[120px]"
               >
                 {submitting ? <Loader2 size={16} className="animate-spin" /> : 'Upload'}
               </button>
               {submitting && uploadProgress > 0 && (
-                <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                <div className="w-full bg-night-forest/20 rounded-full h-1.5 mt-2">
                   <div className="bg-night-forest h-1.5 rounded-full" style={{ width: `${uploadProgress}%` }}></div>
                 </div>
               )}

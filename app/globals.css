@@ -20,10 +20,8 @@
   --color-brand: #006F53;
   --color-forest: #06211A;
 
-  /* Typography variables */
-  --font-serif: var(--font-serif);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  /* Typography variables are injected by next/font into :root as CSS custom properties.
+     Tailwind v4 picks them up automatically via the variable names set in layout.tsx. */
 }
 
 /* ─────────────────────────────────────────────
@@ -43,10 +41,7 @@
   --border: rgba(244, 244, 245, 0.12);
   --border-strong: rgba(244, 244, 245, 0.25);
 
-  /* Font tokens (fed by next/font variables) */
-  --font-serif: var(--font-serif);
-  --font-mono: var(--font-mono);
-  --font-sans: var(--font-sans);
+  /* Font tokens are injected by next/font (see app/layout.tsx) */
 }
 
 /* Light mode overrides */

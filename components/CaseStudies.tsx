@@ -34,7 +34,7 @@ const cases = [
 
 export default function CaseStudies() {
   return (
-    <section id="case-studies" className="py-32 px-6 bg-[#0B0F19] text-white border-t border-white/10 relative overflow-hidden">
+    <section id="case-studies" className="py-32 px-6 bg-night-forest text-platinum border-t border-platinum/10 relative overflow-hidden">
       {/* Background diagram */}
       <div className="absolute opacity-5 pointer-events-none -right-64 -top-64">
         <svg width="800" height="800" viewBox="0 0 100 100" fill="none" stroke="white" strokeWidth="0.1">
@@ -49,12 +49,12 @@ export default function CaseStudies() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div>
             <h2 className="font-mono text-[10px] tracking-[0.2em] uppercase mb-6 text-neon-lime flex items-center gap-4">
-              <span className="w-12 h-[1px] bg-[#C7F16C]"></span>
+              <span className="w-12 h-[1px] bg-neon-lime"></span>
               Case Studies
             </h2>
             <h3 className="font-serif text-4xl lg:text-7xl font-light leading-none">
               Scholarly <br />
-              <span className="italic text-white/50">Observations</span>.
+              <span className="italic text-platinum/50">Observations</span>.
             </h3>
           </div>
           <button className="flex items-center gap-3 font-mono text-[10px] tracking-widest uppercase font-semibold pb-2 border-b border-neon-lime/50 hover:border-neon-lime text-neon-lime transition-colors self-start md:self-end">
@@ -73,7 +73,7 @@ export default function CaseStudies() {
               className="group cursor-pointer relative"
             >
               <div className="relative aspect-[3/4] overflow-hidden rounded-none border border-white/10 mb-6">
-                <div className="absolute inset-0 bg-[#0B0F19]/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <div className="absolute inset-0 bg-night-forest/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                 <Image 
                   src={study.image} 
                   alt={study.title} 
@@ -82,8 +82,8 @@ export default function CaseStudies() {
                   referrerPolicy="no-referrer"
                   className="object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale hover:grayscale-0"
                 />
-                <div className="absolute top-4 left-4 z-20 bg-[#0B0F19]/80 backdrop-blur-md px-3 py-1.5 border border-white/20">
-                  <span className="font-mono text-[10px] tracking-widest uppercase text-white shadow-sm">
+                <div className="absolute top-4 left-4 z-20 bg-night-forest/80 backdrop-blur-md px-3 py-1.5 border border-platinum/20">
+                  <span className="font-mono text-[10px] tracking-widest uppercase text-platinum shadow-sm">
                     {study.location}
                   </span>
                 </div>
@@ -96,7 +96,7 @@ export default function CaseStudies() {
                   [{study.index}]
                 </div>
                 <div>
-                  <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-white/50 mb-2">{study.category}</p>
+                  <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-platinum/50 mb-2">{study.category}</p>
                   <h4 className="font-serif text-2xl font-light leading-snug">{study.title}</h4>
                 </div>
               </div>

@@ -79,11 +79,11 @@ export default function EarthGlobe() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-32 z-10 bg-black/60 backdrop-blur-md px-6 py-4 rounded-xl border border-white/20 text-white shadow-xl pointer-events-none text-center min-w-[200px]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-32 z-10 bg-night-forest/80 backdrop-blur-md px-6 py-4 rounded-xl border border-platinum/20 text-platinum shadow-xl pointer-events-none text-center min-w-[200px]"
           >
             <h4 className="font-serif text-xl mb-1">{hoverD.title}</h4>
             <p className="text-[10px] tracking-widest uppercase opacity-80">{hoverD.subtitle}</p>
-            <p className="text-[10px] text-white/50 italic mt-2">Click to view details</p>
+            <p className="text-[10px] text-platinum/50 italic mt-2">Click to view details</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -96,28 +96,28 @@ export default function EarthGlobe() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="absolute top-0 right-0 h-full w-full md:w-96 bg-black/80 backdrop-blur-xl border-l border-white/10 z-30 p-8 flex flex-col justify-center shadow-2xl cursor-default"
+            className="absolute top-0 right-0 h-full w-full md:w-96 bg-night-forest/90 backdrop-blur-xl border-l border-platinum/10 z-30 p-8 flex flex-col justify-center shadow-2xl cursor-default"
           >
             <button 
               onClick={() => setSelectedD(null)}
-              className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors cursor-pointer"
+              className="absolute top-6 right-6 text-platinum/50 hover:text-platinum transition-colors cursor-pointer"
             >
               <X size={24} />
             </button>
             
-            <div className="text-[10px] tracking-widest uppercase font-semibold text-white/60 mb-4 flex items-center gap-2">
+            <div className="text-[10px] tracking-widest uppercase font-semibold text-platinum/60 mb-4 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
               {selectedD.subtitle}
             </div>
-            <h3 className="font-serif text-3xl md:text-4xl font-light text-white mb-8 leading-tight">
+            <h3 className="font-serif text-3xl md:text-4xl font-light text-platinum mb-8 leading-tight">
               {selectedD.title}
             </h3>
             
-            <div className="mb-10 text-white/70 text-sm leading-relaxed">
+            <div className="mb-10 text-platinum/70 text-sm leading-relaxed">
               Explore the initiatives and activities specific to our {selectedD.title} learning site. Discover how the community is harmonizing conservation with economic growth.
             </div>
 
-            <Link href={selectedD.url} onClick={() => setSelectedD(null)} className="group flex justify-between items-center bg-white text-black px-6 py-4 rounded-full font-semibold uppercase tracking-widest text-[10px] hover:bg-gray-200 transition-colors w-full cursor-pointer">
+            <Link href={selectedD.url} onClick={() => setSelectedD(null)} className="group flex justify-between items-center bg-platinum text-night-forest px-6 py-4 rounded-full font-semibold uppercase tracking-widest text-[10px] hover:bg-neon-lime transition-colors w-full cursor-pointer">
               View Site Details
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>

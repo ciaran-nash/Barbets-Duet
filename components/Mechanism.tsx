@@ -66,8 +66,8 @@ export default function Mechanism() {
               transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative flex flex-col items-center text-center group"
             >
-              <div className="relative z-10 w-full max-w-[280px] mx-auto aspect-square rounded-full overflow-hidden mb-8 border-[6px] border-[#F4F4F0] shadow-xl group-hover:border-white transition-all duration-500 bg-night-forest">
-                <div className="absolute inset-0 bg-transparent group-hover:bg-[#0B0F19]/30 transition-colors duration-500 z-10 rounded-full" />
+              <div className="relative z-10 w-full max-w-[280px] mx-auto aspect-square rounded-full overflow-hidden mb-8 border-[6px] border-platinum shadow-xl group-hover:border-white transition-all duration-500 bg-night-forest">
+                <div className="absolute inset-0 bg-transparent group-hover:bg-night-forest/30 transition-colors duration-500 z-10 rounded-full" />
                 <Image 
                   src={step.image} 
                   alt={step.title} 

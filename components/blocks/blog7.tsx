@@ -73,19 +73,19 @@ const Blog7 = ({
   ],
 }: Blog7Props) => {
   return (
-    <section className="py-32 bg-white">
+    <section className="py-32 bg-platinum text-night-forest">
       <div className="container mx-auto flex flex-col items-center gap-16 px-4 lg:px-16">
         <div className="text-center">
           <Badge variant="secondary" className="mb-6">
             {tagline}
           </Badge>
-          <h2 className="mb-3 text-pretty text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6 lg:max-w-3xl lg:text-5xl font-serif text-[#1A1A1A]">
+          <h2 className="mb-3 text-pretty text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6 lg:max-w-3xl lg:text-5xl font-serif text-night-forest">
             {heading}
           </h2>
           <p className="mb-8 text-muted-foreground md:text-base lg:max-w-2xl lg:text-lg">
             {description}
           </p>
-          <Button variant="link" className="w-full sm:w-auto text-[#35A1AB] font-bold" asChild>
+          <Button variant="link" className="w-full sm:w-auto text-viridian font-bold" asChild>
             <a href={buttonUrl} target="_blank">
               {buttonText}
               <ArrowRight className="ml-2 size-4" />
@@ -94,7 +94,7 @@ const Blog7 = ({
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 w-full">
           {posts.map((post) => (
-            <Card key={post.id} className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden rounded-2xl border-gray-100 shadow-sm hover:shadow-lg transition-shadow">
+            <Card key={post.id} className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden rounded-2xl border-night-forest/10 shadow-sm hover:shadow-lg transition-shadow bg-white text-night-forest">
               <div className="aspect-[16/9] w-full relative">
                 <a
                   href={post.url}
@@ -110,21 +110,21 @@ const Blog7 = ({
                 </a>
               </div>
               <CardHeader>
-                <h3 className="text-lg font-bold hover:text-[#35A1AB] transition-colors md:text-xl font-serif leading-snug">
+                <h3 className="text-lg font-bold hover:text-viridian transition-colors md:text-xl font-serif leading-snug">
                   <a href={post.url} target="_blank">
                     {post.title}
                   </a>
                 </h3>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 line-clamp-3 leading-relaxed">{post.summary}</p>
+                <p className="text-night-forest/60 line-clamp-3 leading-relaxed">{post.summary}</p>
               </CardContent>
               <CardFooter className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">{post.published}</span>
+                <span className="text-sm text-night-forest/50">{post.published}</span>
                 <a
                   href={post.url}
                   target="_blank"
-                  className="flex items-center text-[#2A4433] hover:text-[#35A1AB] font-semibold text-sm transition-colors"
+                  className="flex items-center text-night-forest hover:text-viridian font-semibold text-sm transition-colors"
                 >
                   Read more
                   <ArrowRight className="ml-1 size-4" />

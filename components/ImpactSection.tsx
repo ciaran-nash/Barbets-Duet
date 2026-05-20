@@ -72,7 +72,7 @@ function StatCircle({
         />
       </svg>
       <div className="flex flex-col items-center justify-center z-10 px-6">
-        <div className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white mb-2 tracking-tight">
+        <div className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-platinum mb-2 tracking-tight">
            {displayValue}{suffix}
         </div>
         <div className="text-[9px] uppercase tracking-[0.2em] text-platinum/50 font-mono mt-1 text-center leading-relaxed">
@@ -85,11 +85,11 @@ function StatCircle({
 
 export default function ImpactSection() {
   return (
-    <section className="bg-white text-black">
+    <section className="bg-platinum text-night-forest">
       {/* 1. Impact Numbers Section - Styled like the screenshot */}
-      <div className="bg-[#0B0F19] py-32 border-y border-white/10 relative overflow-hidden">
+      <div className="bg-night-forest py-32 border-y border-platinum/10 relative overflow-hidden">
         {/* Subtle background texture */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(244,244,245,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,244,245,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 text-center">
@@ -148,14 +148,14 @@ export default function ImpactSection() {
             <h2 className="text-5xl sm:text-6xl font-serif font-bold leading-tight mb-6">
               Headline highlighting Barbets results
             </h2>
-            <p className="text-lg text-white/80 font-sans leading-relaxed mb-8">
+            <p className="text-lg text-platinum/80 font-sans leading-relaxed mb-8">
               We believe in transparent, measurable results. Here&apos;s a look at the progress we&apos;ve made together.
             </p>
             <div className="flex flex-wrap items-center gap-6">
-              <Link href="#" className="inline-flex items-center justify-center bg-transparent border border-white hover:bg-white hover:text-black font-sans font-medium px-8 py-3 rounded-md transition-colors">
-                Explore Our Learning Sites
+              <Link href="#" className="inline-flex items-center justify-center bg-transparent border border-platinum hover:bg-platinum hover:text-night-forest font-sans font-medium px-8 py-3 rounded-md transition-colors">
+                Explore our learning sites
               </Link>
-              <Link href="#" className="inline-flex items-center gap-2 text-white hover:opacity-80 font-sans font-medium transition-opacity">
+              <Link href="#" className="inline-flex items-center gap-2 text-platinum hover:opacity-80 font-sans font-medium transition-opacity">
                 Apply to Become a Learning Site <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -163,9 +163,9 @@ export default function ImpactSection() {
 
           {/* Feature Card overlaying the globe */}
           <div className="flex-1 w-full flex justify-center lg:justify-end">
-            <div className="bg-white text-black p-6 rounded-xl w-full max-w-[480px] shadow-2xl relative">
+            <div className="bg-platinum text-night-forest p-6 rounded-xl w-full max-w-[480px] shadow-2xl relative">
               <div className="flex flex-col sm:flex-row gap-6 mb-6">
-                <div className="w-full sm:w-[160px] h-[200px] bg-gray-200 rounded-lg relative overflow-hidden shrink-0">
+                <div className="w-full sm:w-[160px] h-[200px] bg-night-forest/10 rounded-lg relative overflow-hidden shrink-0">
                   <Image src="https://images.unsplash.com/photo-1596489370005-3e4b77dbd4aa?auto=format&fit=crop&q=80&w=400" fill className="object-cover" alt="Msichoke Seaweed Growers" unoptimized={true} />
                 </div>
                 <div className="flex flex-col pt-2">
@@ -176,12 +176,12 @@ export default function ImpactSection() {
                        <span className="text-xs font-bold font-sans">TZ</span>
                      </div>
                    </div>
-                   <p className="text-sm font-sans leading-relaxed text-gray-700">
+                   <p className="text-sm font-sans leading-relaxed text-night-forest/70">
                      A seaweed farming group based in Mlingotini, Bagamoyo, Tanzania. They are known for their production of both raw seaweed and seaweed products like soap. The group initially comprised older members but has since expanded to include youth from the village. They are involved in various aspects of seaweed production, including farming, processing, and packaging.
                    </p>
                 </div>
               </div>
-              <div className="w-full h-px bg-gray-200 mb-4"></div>
+              <div className="w-full h-px bg-night-forest/10 mb-4"></div>
               <Link href="#" className="inline-flex items-center text-sm font-bold font-sans hover:underline">
                 Explore Learning Site <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
