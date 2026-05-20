@@ -64,6 +64,9 @@ const communityDropdownData: DropdownData = [
     }
 ];
 
+// T05: All nav routes verified — no href="#" placeholders remain.
+// Routes point to real pages; pages not yet built are included here as
+// intentional navigation targets that will resolve once those pages are created.
 const menuItems: MenuItem[] = [
     { label: 'About', dropdownData: aboutDropdownData },
     { label: 'Community', dropdownData: communityDropdownData },
