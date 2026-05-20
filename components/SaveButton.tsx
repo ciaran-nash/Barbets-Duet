@@ -75,8 +75,8 @@ export default function SaveButton({ eventId, title, date = 'Ongoing', className
       disabled={loading}
       className={`p-2 rounded-full backdrop-blur-md border transition-all ${
         isSaved 
-          ? 'bg-white text-[#2C3E35] border-white' 
-          : 'bg-black/30 text-white border-white/20 hover:bg-white/20'
+          ? 'bg-white text-night-forest border-white' 
+          : 'bg-night-forest/30 text-white border-white/20 hover:bg-white/20'
       } ${className}`}
       aria-label={isSaved ? "Remove from saved" : "Save case study"}
     >
