@@ -3,8 +3,10 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, Share2, Download } from 'lucide-react';
+import Link from 'next/link';
 import { Project } from '@/types/project';
 import Image from 'next/image';
+import { learningSites } from '@/lib/data/learning-sites';
 
 interface Props {
   project: Project | null;
@@ -14,6 +16,8 @@ interface Props {
 
 export function ProjectDetailDrawer({ project, isOpen, onClose }: Props) {
   if (!project) return null;
+
+  const associatedSite = learningSites.find(s => s.slug === project.siteSlug);
 
   return (
     <AnimatePresence>
@@ -49,7 +53,20 @@ export function ProjectDetailDrawer({ project, isOpen, onClose }: Props) {
                     <div className="lg:col-span-8">
                         <h2 className="text-5xl md:text-7xl font-serif font-bold leading-none mb-8">{project.title}</h2>
                         <div className="flex flex-wrap gap-4 mb-12">
-                            <span className="px-4 py-2 bg-brand/10 text-brand rounded-full text-xs font-mono uppercase tracking-widest font-bold">Origin: {project.siteSlug}</span>
+                            {associatedSite ? (
+                              <Link
+                                href={`/learning-sites/${associatedSite.slug}`}
+                                onClick={onClose}
+                                className="px-4 py-2 bg-brand/10 text-brand rounded-full text-xs font-mono uppercase tracking-widest font-bold
+                                           hover:bg-brand/20 transition-colors inline-flex items-center gap-1"
+                              >
+                                From: {associatedSite.name} <ArrowRight className="w-3 h-3" />
+                              </Link>
+                            ) : (
+                              <span className="px-4 py-2 bg-brand/10 text-brand rounded-full text-xs font-mono uppercase tracking-widest font-bold">
+                                Origin: {project.siteSlug}
+                              </span>
+                            )}
                             <span className="px-4 py-2 bg-forest text-platinum rounded-full text-xs font-mono uppercase tracking-widest font-bold">Maturity: {project.maturity}</span>
                         </div>
 
