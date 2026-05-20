@@ -8,6 +8,8 @@ export const learningSites: LearningSite[] = [
     founded: '2009',
     category: 'Regenerative Organic Farming',
     leadPartners: ['Chris Jones', 'Janet Jones', 'Felicity Jones'],
+    lat: 50.30,
+    lng: -4.90,
 
     heroImage: 'https://picsum.photos/seed/woodland-valley-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/woodland-valley-accent/800/600',
@@ -122,6 +124,8 @@ export const learningSites: LearningSite[] = [
     founded: '2010',
     category: 'Freshwater Tidal Swamp Restoration',
     leadPartners: ['Barbara Heinzen', 'Eric Remillard'],
+    lat: 42.46,
+    lng: -73.78,
 
     heroImage: 'https://picsum.photos/seed/hannacroix-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/hannacroix-accent/800/600',
@@ -229,6 +233,8 @@ export const learningSites: LearningSite[] = [
     founded: '2010',
     category: 'Watershed & Stream Restoration',
     leadPartners: ['James Magode Ikuya'],
+    lat: 0.69,
+    lng: 34.18,
 
     heroImage: 'https://picsum.photos/seed/molo-magode-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/molo-magode-accent/800/600',
@@ -336,6 +342,8 @@ export const learningSites: LearningSite[] = [
     founded: '2012',
     category: 'Dryland Restoration & Water Harvesting',
     leadPartners: ['Sammy Muvelah'],
+    lat: -1.5,
+    lng: 36.9,
 
     heroImage: 'https://picsum.photos/seed/lukenya-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/lukenya-accent/800/600',
@@ -443,6 +451,8 @@ export const learningSites: LearningSite[] = [
     founded: '2013',
     category: 'Watershed & Soil Restoration',
     leadPartners: ['Oby Obyerodhyambo', 'Hilda Obyerodhyambo'],
+    lat: -0.1,
+    lng: 34.6,
 
     heroImage: 'https://picsum.photos/seed/seme-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/seme-accent/800/600',
@@ -550,6 +560,8 @@ export const learningSites: LearningSite[] = [
     founded: '2013',
     category: 'Coastal Restoration & Mariculture',
     leadPartners: ['Mwajuma Masaiganah'],
+    lat: -6.44,
+    lng: 38.9,
 
     heroImage: 'https://picsum.photos/seed/msichoke-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/msichoke-accent/800/600',
@@ -657,6 +669,8 @@ export const learningSites: LearningSite[] = [
     founded: '2013',
     category: 'Environmental Education & School Restoration',
     leadPartners: ['Mwajuma Masaiganah'],
+    lat: -6.44,
+    lng: 38.9,
 
     heroImage: 'https://picsum.photos/seed/mwasama-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/mwasama-accent/800/600',
@@ -763,6 +777,8 @@ export const learningSites: LearningSite[] = [
     founded: '2013',
     category: 'Soil Fertility & Medicinal Plants',
     leadPartners: ['Rose Lyimo', 'Hans Mtika'],
+    lat: -3.38,
+    lng: 37.52,
 
     heroImage: 'https://picsum.photos/seed/himo-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/himo-accent/800/600',
@@ -869,6 +885,8 @@ export const learningSites: LearningSite[] = [
     founded: '2020',
     category: 'Water Resilience & Community Infrastructure',
     leadPartners: ['Village and farmers\' cooperatives'],
+    lat: 1.0,
+    lng: 34.5,
 
     heroImage: 'https://picsum.photos/seed/sikia-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/sikia-accent/800/600',
@@ -968,6 +986,8 @@ export const learningSites: LearningSite[] = [
     founded: '2020',
     category: 'Agroforestry & Biodiversity',
     leadPartners: ['Village and farmers\' cooperatives'],
+    lat: -0.1,
+    lng: 34.6,
 
     heroImage: 'https://picsum.photos/seed/kajokoby-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/kajokoby-accent/800/600',
@@ -1068,6 +1088,8 @@ export const learningSites: LearningSite[] = [
     founded: '2014',
     category: 'Freshwater Fish Conservation',
     leadPartners: ['Hans Mtika'],
+    lat: -6.8,
+    lng: 39.27,
 
     heroImage: 'https://picsum.photos/seed/cichlid-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/cichlid-accent/800/600',
@@ -1173,6 +1195,8 @@ export const learningSites: LearningSite[] = [
     founded: '2015',
     category: 'Carbon Forest Conservation',
     leadPartners: ['Rose Lyimo'],
+    lat: -7.8,
+    lng: 38.5,
 
     heroImage: 'https://picsum.photos/seed/rufiji-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/rufiji-accent/800/600',
@@ -1279,6 +1303,8 @@ export const learningSites: LearningSite[] = [
     founded: '2010',
     category: 'Environmental Restoration',
     leadPartners: ['Oby Obyerodhyambo', 'Hilda Obyerodhyambo'],
+    lat: -1.35,
+    lng: 36.82,
 
     heroImage: 'https://picsum.photos/seed/nkoroi-hero/1600/900',
     accentImage: 'https://picsum.photos/seed/nkoroi-accent/800/600',

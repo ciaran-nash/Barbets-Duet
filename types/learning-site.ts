@@ -43,6 +43,10 @@ export interface LearningSite {
   category: string;
   leadPartners: string[];
 
+  // Geographic coordinates for map display
+  lat?: number;
+  lng?: number;
+
   // Hero
   heroImage: string;
   heroVideo?: string;
