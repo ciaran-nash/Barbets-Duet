@@ -35,6 +35,7 @@ const aboutDropdownData: DropdownData = [
         { text: 'Our Team', href: '/about/team' },
         { text: 'Mission & Vision', href: '/about/mission-vision' },
         { text: 'Philosophy & History', href: '/about/philosophy-history' },
+        { text: 'Careers & Opportunities', href: '/about/careers' },
       ]
     },
     {
