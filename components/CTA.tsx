@@ -7,35 +7,49 @@ import { Button } from '@/components/ui/button';
 
 export default function CTA() {
   return (
-    <section id="get-involved" className="bg-[#0B0F19] text-[#F4F4F0] pt-32 pb-32 px-6 border-t border-white/10 relative overflow-hidden">
+    <section id="get-involved" className="bg-night-forest text-platinum pt-32 pb-32 px-6 border-t border-platinum/10 relative overflow-hidden">
       {/* Decorative grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(244,244,245,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,244,245,0.03)_1px,transparent_1px)] bg-[size:6rem_6rem]"></div>
+
+      {/* Atmospheric glow — tinted to palette */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[radial-gradient(circle_at_center,rgba(219,255,102,0.04)_0%,transparent_70%)] blur-[100px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          initial={{ scale: 0.95, opacity: 0, y: 20 }}
+          whileInView={{ scale: 1, opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center"
         >
-          <div className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#C7F16C] mb-8 border border-[#C7F16C]/20 px-4 py-1">
-            [ NEXT STEPS ]
+          <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-platinum/40 mb-12 border border-platinum/10 px-6 py-2 rounded-full">
+            [ Next steps ]
           </div>
-          <div className="w-24 h-24 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-8 cursor-pointer hover:bg-white hover:text-[#0B0F19] transition-colors duration-500">
-            <ArrowUpRight size={32} />
-          </div>
-          <h2 className="font-serif text-5xl md:text-8xl font-light mb-8">
-            <span className="italic text-white/60">Join the</span> Collective
+
+          <motion.div
+            whileHover={{ scale: 1.05, rotate: 45 }}
+            className="w-24 h-24 rounded-full border border-platinum/20 flex items-center justify-center mx-auto mb-12 cursor-pointer hover:bg-platinum hover:text-night-forest transition-all duration-700 ease-[0.16,1,0.3,1]"
+          >
+            <ArrowUpRight size={32} strokeWidth={1.5} />
+          </motion.div>
+
+          <h2 className="font-serif text-5xl md:text-8xl font-light mb-12 leading-[0.9] tracking-tight">
+            <span className="italic text-platinum/40">Join the</span><br />Collective
           </h2>
-          <p className="max-w-xl mx-auto text-[#F4F4F0]/70 leading-relaxed text-base font-sans mb-12">
-            Whether you are a researcher, community organizer, or funder, join us in building systems that reward ecological restoration.
+
+          <p className="max-w-xl mx-auto text-platinum/60 leading-relaxed text-base font-sans mb-16">
+            Whether you are a researcher, community organiser, or funder, join us in building systems that reward ecological restoration and local innovation.
           </p>
-          
-          <Button asChild size="lg" className="rounded-none bg-[#C7F16C] text-[#0B0F19] hover:bg-[#D9F99D] font-mono text-[10px] uppercase tracking-widest px-8 h-12 transition-all duration-300 font-bold border border-[#0B0F19]/20">
-             <Link href="#contact">
-               [ Initiate Contact ]
-               <ArrowRight className="ml-3 w-4 h-4" />
+
+          <Button asChild size="lg" className="rounded-none bg-platinum text-night-forest hover:bg-platinum/90 font-mono text-[11px] uppercase tracking-[0.2em] px-12 h-14 transition-all duration-500 font-bold group active:scale-[0.98]">
+             <Link href="/get-involved" className="flex items-center">
+               [ Get involved ]
+               <motion.span
+                 animate={{ x: [0, 5, 0] }}
+                 transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+               >
+                 <ArrowRight className="ml-4 w-4 h-4" />
+               </motion.span>
              </Link>
           </Button>
         </motion.div>

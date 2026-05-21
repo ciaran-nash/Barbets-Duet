@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { DM_Sans, BioRhyme, JetBrains_Mono } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/components/AuthProvider';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -12,7 +13,7 @@ const dmSans = DM_Sans({
 const bioRhyme = BioRhyme({
   weight: ['200', '300', '400', '700', '800'],
   subsets: ['latin'],
-  variable: '--font-serif', // Keep using --font-serif so it applies to font-serif tailwind classes
+  variable: '--font-serif',
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -32,11 +33,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`scroll-smooth ${dmSans.variable} ${bioRhyme.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans antialiased bg-[#F4F4F0] text-[#111111]" suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <SmoothScroll />
         <AuthProvider>
           {children}
         </AuthProvider>
+        {/* TODO(T04): Umami analytics — awaiting-credentials
+            Set NEXT_PUBLIC_UMAMI_WEBSITE_ID in .env.local after creating a
+            website entry in the Umami Cloud dashboard (umami.is).
+            Script is cookieless: no GDPR consent banner required. */}
+        {process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+          <Script
+            src="https://cloud.umami.is/script.js"
+            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );

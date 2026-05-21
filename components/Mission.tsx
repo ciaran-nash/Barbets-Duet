@@ -23,36 +23,36 @@ export default function Mission() {
   ];
 
   return (
-    <section className="py-24 bg-white text-[#1A1A1A]">
+    <section className="py-24 bg-platinum text-night-forest">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h3 className="text-sm font-semibold tracking-wider uppercase mb-6 font-serif">The Barbets Duet Mission</h3>
         <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 max-w-4xl mx-auto tracking-tight leading-tight">
-          Restoring Ecosystems Through Collaborative Innovation
+          Restoring ecosystems through collaborative innovation
         </h2>
-        <p className="max-w-2xl mx-auto text-gray-600 mb-10 leading-relaxed text-lg">
+        <p className="max-w-2xl mx-auto text-night-forest/60 mb-10 leading-relaxed text-lg">
           We are committed to making a tangible impact through targeted initiatives that address the most pressing environmental challenges of our time.
         </p>
-        <Button variant="outline" className="rounded-full px-8 border-gray-300 text-[#1A1A1A] hover:bg-gray-50 mb-20 text-base h-12 transition-colors">
-          Explore Our Mission
+        <Button variant="outline" className="rounded-full px-8 border-night-forest/20 text-night-forest hover:bg-night-forest/5 mb-20 text-base h-12 transition-colors">
+          Explore our mission
         </Button>
 
         <div className="grid md:grid-cols-3 gap-12 text-center">
           {missions.map((mission, idx) => (
-            <div key={idx} className="flex flex-col items-center group transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl p-8 rounded-3xl bg-white border border-gray-100 cursor-pointer">
-              <div className="w-full aspect-[4/3] relative rounded-2xl overflow-hidden mb-8 bg-gray-100 shadow-sm">
-                <Image 
-                  src={mission.image} 
-                  alt={mission.title} 
-                  fill 
+            <div key={idx} className="flex flex-col items-center group transition-all duration-300 hover:scale-[1.03] p-8 rounded-3xl bg-white border border-night-forest/10 cursor-pointer">
+              <div className="w-full aspect-[4/3] relative rounded-2xl overflow-hidden mb-8 bg-night-forest/10 shadow-sm">
+                <Image
+                  src={mission.image}
+                  alt={mission.title}
+                  fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
               </div>
               <h4 className="text-2xl font-serif font-bold mb-4 leading-snug">{mission.title}</h4>
-              <p className="text-gray-600 mb-6 text-[15px] leading-relaxed max-w-sm">{mission.description}</p>
-              <a href="#" className="flex items-center px-6 py-3 bg-[#E5EFE2] text-[#2A4433] rounded-full text-sm font-bold hover:bg-[#35A1AB] hover:text-white transition-all mt-auto uppercase tracking-wide group/btn">
-                Learn More <ArrowUpRight className="ml-1 w-5 h-5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"/>
+              <p className="text-night-forest/60 mb-6 text-[15px] leading-relaxed max-w-sm">{mission.description}</p>
+              <a href="#" className="flex items-center px-6 py-3 bg-night-forest/5 text-night-forest rounded-full text-sm font-bold hover:bg-viridian hover:text-platinum transition-all mt-auto uppercase tracking-wide group/btn">
+                Learn more <ArrowUpRight className="ml-1 w-5 h-5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"/>
               </a>
             </div>
           ))}

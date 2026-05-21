@@ -26,7 +26,7 @@ export default function ShareButton({ title, text }: { title?: string, text?: st
   return (
     <button 
       onClick={handleShare}
-      className="flex-1 flex justify-center items-center gap-2 border border-[#2C3E35] rounded-full text-sm font-semibold tracking-widest uppercase hover:bg-[#2C3E35] hover:text-white transition-colors py-3"
+      className="flex-1 flex justify-center items-center gap-2 border border-night-forest rounded-full text-sm font-semibold tracking-widest uppercase hover:bg-night-forest hover:text-platinum transition-colors py-3"
     >
       <Share2 className="w-4 h-4" />
       {shared ? 'Copied' : 'Share'}

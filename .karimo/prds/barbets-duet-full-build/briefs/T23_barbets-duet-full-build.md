@@ -1,0 +1,177 @@
+# Task Brief: T23
+
+**Title:** AI SDK + OpenRouter scaffold
+**PRD:** barbets-duet-full-build
+**Priority:** could
+**Complexity:** 2/10
+**Wave:** 5
+
+---
+
+## Objective
+
+Install the Vercel AI SDK and configure OpenRouter as the AI provider. Create a basic site search endpoint using a free model (Llama/Gemma via OpenRouter) and scaffold the architecture for future multilingual support (sites span KE/TZ/UG/UK/USA with local language needs).
+
+---
+
+## Context
+
+**Parent Feature:** Barbets Duet — Full Platform Build
+
+As the site grows to 13 learning sites, stories, events, and projects, a semantic search capability will help users discover relevant content. The AI SDK provides a framework-agnostic AI integration layer; OpenRouter provides access to free models (Llama 3, Gemma 2) without requiring OpenAI or Anthropic API keys. The search endpoint is a foundation — full implementation comes post-launch.
+
+This task is **Wave 5** — no hard upstream dependencies (can be built independently).
+
+---
+
+## Requirements
+
+1. Install `ai` (Vercel AI SDK) and configure `openai` provider pointed at OpenRouter base URL
+2. Create `app/api/search/route.ts` — search endpoint using streaming AI response
+3. Document `OPENROUTER_API_KEY` in environment variables
+4. Create a basic search prompt that queries over learning site content
+5. Scaffold multilingual support notes in code comments
+
+---
+
+## Success Criteria
+
+Complete ALL criteria before marking task done:
+
+- [ ] `ai` package in `package.json`
+- [ ] `app/api/search/route.ts` exists and responds to POST with `{ query: string }`
+- [ ] Response uses a free OpenRouter model (e.g. `meta-llama/llama-3.1-8b-instruct:free`)
+- [ ] `OPENROUTER_API_KEY` documented in `.env.local.example`
+- [ ] `npx tsc --noEmit` passes
+
+---
+
+## Files to Modify
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `package.json` | modify | Add `ai`, `@ai-sdk/openai` |
+| `app/api/search/route.ts` | create | AI search endpoint |
+| `.env.local.example` | modify | Document `OPENROUTER_API_KEY` |
+
+---
+
+## Implementation Guidance
+
+### Install
+
+```bash
+npm install ai @ai-sdk/openai
+```
+
+### OpenRouter Configuration
+
+OpenRouter uses OpenAI-compatible API endpoints:
+
+```typescript
+// app/api/search/route.ts
+import { createOpenAI } from '@ai-sdk/openai';
+import { generateText } from 'ai';
+import { learningSites } from '@/lib/data/learning-sites';
+
+const openrouter = createOpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: process.env.OPENROUTER_API_KEY!,
+});
+
+export async function POST(request: Request) {
+  const { query } = await request.json();
+
+  if (!query || typeof query !== 'string') {
+    return Response.json({ error: 'Query required' }, { status: 400 });
+  }
+
+  // Build context from learning sites (simple RAG)
+  const sitesContext = learningSites.map(s =>
+    `${s.name} (${s.location}): ${s.visionStatement}`
+  ).join('\n');
+
+  const { text } = await generateText({
+    model: openrouter('meta-llama/llama-3.1-8b-instruct:free'),
+    prompt: `You are a helpful assistant for Barbets Duet, a network of 13 conservation learning sites.
+
+Available learning sites:
+${sitesContext}
+
+User query: ${query}
+
+Respond helpfully about which learning sites match the user's query or question.
+Keep your response concise and direct. If asking about a specific location or topic,
+recommend the most relevant 1-3 sites.`,
+    maxTokens: 300,
+  });
+
+  return Response.json({ result: text });
+}
+```
+
+### Multilingual Scaffold (comments in route)
+
+```typescript
+// TODO(multilingual): When implementing multilingual support:
+// 1. Detect request language from Accept-Language header
+// 2. Pass language as system prompt instruction: "Respond in ${language}"
+// 3. Learning site names in KE/TZ/UG/UK/USA are in:
+//    - Kiswahili (East African sites): Jumuiya, Mwasama, Msichoke vocabulary
+//    - English (UK/USA sites): standard
+// 4. Consider maintaining translated visionStatements in LearningSite type
+// 5. OpenRouter free models support multilingual responses adequately
+```
+
+### Environment Variable
+
+```bash
+# .env.local.example
+OPENROUTER_API_KEY=your-openrouter-api-key  # Free at openrouter.ai
+```
+
+---
+
+## Boundaries
+
+### Files You MUST NOT Touch
+
+- `.env*` actual files
+- `firebase-applet-config.json`, `firestore.rules`
+- `components/ui/`
+
+---
+
+## Dependencies
+
+### Upstream Tasks
+
+None — independent.
+
+### Downstream Impact
+
+Future search UI can call `POST /api/search`. No tasks in this PRD depend on T23.
+
+---
+
+## Commit Guidelines
+
+```
+feat(ai): scaffold AI search endpoint with OpenRouter free models
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+```
+
+---
+
+## Validation Checklist
+
+- [ ] All success criteria met
+- [ ] `npx tsc --noEmit` passes
+- [ ] `POST /api/search` with `{ "query": "seaweed tanzania" }` returns a relevant response
+- [ ] Free model used (no paid API costs)
+
+---
+
+*Generated by KARIMO Brief Writer*
+*PRD: barbets-duet-full-build | Task: T23 | Wave: 5*
