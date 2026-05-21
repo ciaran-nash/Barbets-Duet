@@ -6,9 +6,10 @@ export const donationSchema = z.object({
   donationType: z.enum(['one-time', 'monthly']).default('one-time'),
   // Optional: tag to a specific learning site
   siteSlug: z.string().optional(),
-  // Donor info (collected pre-payment)
-  donorEmail: z.string().email('Please enter a valid email address'),
-  donorName: z.string().min(2, 'Please enter your name'),
+  // Donor info — optional here because Stripe collects these on the hosted checkout page.
+  // donorEmail and donorName are NOT collected in the pre-checkout form.
+  donorEmail: z.string().email('Please enter a valid email address').optional(),
+  donorName: z.string().min(2, 'Please enter your name').optional(),
 });
 
 export type DonationData = z.infer<typeof donationSchema>;
