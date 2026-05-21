@@ -2,12 +2,13 @@
   "prd": "barbets-duet-full-build",
   "status": "executing",
   "execution_mode": "feature-branch",
-  "feature_branch": "feature/barbets-duet-full-build",
+  "feature_branch": "feature/barbets-duet-wave3-4",
   "created": "2026-05-20",
   "approved": "2026-05-20",
   "execution_started": "2026-05-20",
+  "resumed_at": "2026-05-21",
   "current_wave": 3,
-  "completed_tasks": ["T01", "T02", "T03", "T04", "T05", "T06", "T07", "T08", "T09", "T10", "T11"],
+  "completed_tasks": ["T01", "T02", "T03", "T04", "T05", "T06", "T07", "T08", "T09", "T10", "T11", "T13", "T15", "T16"],
   "in_progress_tasks": [],
   "blocked_tasks": [],
   "active_worktrees": [],
@@ -23,12 +24,23 @@
     "T09": { "status": "done", "wave": 2, "title": "Projects page real structure", "merged_at": "2026-05-20T00:00:00Z" },
     "T10": { "status": "done", "wave": 2, "title": "About/team page", "merged_at": "2026-05-20T00:00:00Z" },
     "T11": { "status": "done", "wave": 2, "title": "About/careers page", "merged_at": "2026-05-20T00:00:00Z" },
-    "T12": { "status": "queued", "wave": 3, "title": "Learning sites browse/filter page" },
-    "T13": { "status": "queued", "wave": 3, "title": "MapLibre/Stadia map integration" },
-    "T14": { "status": "queued", "wave": 3, "title": "Get Involved / volunteer form" },
-    "T15": { "status": "queued", "wave": 3, "title": "Donation form stub" },
-    "T16": { "status": "queued", "wave": 3, "title": "Resend email integration stub" },
-    "T17": { "status": "queued", "wave": 3, "title": "Theme toggle" }
+    "T12": { "status": "queued", "wave": 3, "title": "Learning sites browse/index page" },
+    "T13": { "status": "done", "wave": 3, "title": "MapLibre GL JS + Stadia Maps setup", "merged_at": "2026-05-21T00:00:00Z", "note": "merged via feature/barbets-duet-full-build" },
+    "T14": { "status": "queued", "wave": 4, "title": "Volunteer application form (/get-involved)", "depends_on": ["T03", "T16", "T17"] },
+    "T15": { "status": "done", "wave": 4, "title": "Support-us donations page", "merged_at": "2026-05-21T00:00:00Z", "note": "merged via feature/barbets-duet-full-build — Stripe + PayPal integrated" },
+    "T16": { "status": "done", "wave": 4, "title": "Arcjet middleware", "merged_at": "2026-05-21T00:00:00Z", "note": "merged via feature/barbets-duet-full-build" },
+    "T17": { "status": "queued", "wave": 4, "title": "Resend email setup" },
+    "T18": { "status": "queued", "wave": 5, "title": "Sanity schema design" },
+    "T19": { "status": "queued", "wave": 5, "title": "Sanity Studio setup" },
+    "T20": { "status": "queued", "wave": 5, "title": "GROQ queries + next-sanity integration" },
+    "T21": { "status": "queued", "wave": 5, "title": "On-demand revalidation via Sanity webhooks" },
+    "T22": { "status": "queued", "wave": 5, "title": "Sanity image pipeline" },
+    "T23": { "status": "queued", "wave": 5, "title": "AI SDK + OpenRouter scaffold" },
+    "T24": { "status": "queued", "wave": 6, "title": "Community/Jumuiya network section" },
+    "T25": { "status": "queued", "wave": 6, "title": "Research knowledge hub" },
+    "T26": { "status": "queued", "wave": 6, "title": "Blog / News / FAQ pages" },
+    "T27": { "status": "queued", "wave": 6, "title": "Admin dashboard" },
+    "T28": { "status": "queued", "wave": 6, "title": "Full DESIGN.md design system" }
   },
   "wave_history": [
     {
@@ -41,6 +53,18 @@
       "wave": 2,
       "completed_at": "2026-05-20T00:00:00Z",
       "tasks": ["T06", "T07", "T08", "T09", "T10", "T11"]
+    },
+    {
+      "wave": "3-partial",
+      "completed_at": "2026-05-21T00:00:00Z",
+      "tasks": ["T13"],
+      "notes": "T13 merged via feature/barbets-duet-full-build. T12 pending."
+    },
+    {
+      "wave": "4-partial",
+      "completed_at": "2026-05-21T00:00:00Z",
+      "tasks": ["T15", "T16"],
+      "notes": "T15 + T16 merged via feature/barbets-duet-full-build. T14 + T17 pending."
     }
   ],
   "gate_history": [
