@@ -4,16 +4,16 @@
   "branch": "feature/data-model-unify",
   "execution_mode": "feature-branch",
   "created": "2026-06-09",
-  "wave_current": 1,
-  "tasks_complete": ["C1", "C2"],
-  "tasks_pending": ["C3", "C4", "C5", "C6", "C7"],
+  "wave_current": 2,
+  "tasks_complete": ["C1", "C2", "C3", "C4", "C6"],
+  "tasks_pending": ["C5", "C7"],
   "tasks": {
     "C1": { "status": "done", "wave": 1, "pr_number": 10, "merged_at": "2026-06-09T20:34:25Z" },
     "C2": { "status": "done", "wave": 1, "pr_number": 11, "merged_at": "2026-06-09T20:38:47Z" },
-    "C3": { "status": "queued", "wave": 2 },
-    "C4": { "status": "queued", "wave": 2 },
+    "C3": { "status": "done", "wave": 2, "pr_number": 12, "merged_at": "2026-06-09T20:53:44Z" },
+    "C4": { "status": "done", "wave": 2, "pr_number": 13, "merged_at": "2026-06-09T20:53:48Z" },
     "C5": { "status": "queued", "wave": 3 },
-    "C6": { "status": "queued", "wave": 2 },
+    "C6": { "status": "done", "wave": 2, "pr_number": 14, "merged_at": "2026-06-09T20:53:56Z" },
     "C7": { "status": "queued", "wave": 3 }
   },
   "gate_history": [
@@ -22,10 +22,23 @@
       "label": "Foundation types complete",
       "model": "pause",
       "reached_at": "2026-06-09T20:39:00Z",
-      "outcome": "awaiting-human",
+      "outcome": "human-approved",
+      "approved_by": "user",
+      "completed_at": "2026-06-09T21:00:00Z",
       "conditions_evaluated": {
         "typecheck": { "result": "pre-existing-errors-only", "details": "7 pre-existing errors in DevThemeHub/radix-ui — 0 new errors" },
         "lint": { "result": "pre-existing-errors-only", "details": "Errors in worktree files outside scope — 0 new errors in changed files" }
+      }
+    },
+    {
+      "wave": 2,
+      "label": "Consumers + Story.content updated",
+      "model": "pause",
+      "reached_at": "2026-06-09T20:54:00Z",
+      "outcome": "awaiting-human",
+      "conditions_evaluated": {
+        "typecheck": { "result": "pre-existing-errors-only", "details": "7 pre-existing errors in DevThemeHub/radix-ui components — 0 new errors from wave 2 changes" },
+        "lint": { "result": "pass", "details": "0 errors on all 5 changed files: ImpactGrid, CinematicReader, projects.ts, learning-site.ts, narrative.ts" }
       }
     }
   ],
