@@ -62,8 +62,7 @@ const communityDropdownData: DropdownData = [
     {
       heading: 'Resources',
       links: [
-        // TODO(T25): Uncomment when /research page is built
-        // { text: 'Research Hub', href: '/research' },
+        { text: 'Research Hub', href: '/research' },
         { text: 'About Our Mission', href: '/about/mission-vision' },
       ]
     }
