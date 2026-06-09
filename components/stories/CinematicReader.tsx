@@ -128,7 +128,15 @@ export default function CinematicReader({ story }: { story: Story }) {
                            prose-li:font-sans prose-li:text-base
                            prose-blockquote:border-l-accent prose-blockquote:text-platinum/60 prose-blockquote:italic prose-blockquote:font-serif"
               >
-                <ReactMarkdown>{story.content}</ReactMarkdown>
+                {typeof story.content === 'string' ? (
+                  <ReactMarkdown>{story.content}</ReactMarkdown>
+                ) : (
+                  // PortableTextBlock[] — render plain text fallback until
+                  // @portabletext/react is wired up for CMS-sourced stories
+                  <p className="text-platinum/80 font-sans text-lg leading-relaxed italic">
+                    {story.excerpt}
+                  </p>
+                )}
               </div>
             </div>
 
