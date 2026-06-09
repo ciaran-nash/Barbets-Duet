@@ -118,4 +118,32 @@ export interface LearningSite {
   // Network
   featuredSiteSlug?: string;
   relatedSitesSlugs?: string[];
+
+  // ── Community Network fields (Wave 5, Task B1) ──────────────
+  // These are populated from the Supabase learning_sites table;
+  // the static TS data in lib/data/learning-sites.ts may omit them.
+
+  /**
+   * Pentangle geographic cluster for this site.
+   * 'east_african' | 'usa_ne' | 'uk_cornwall' | 'india' | undefined
+   */
+  pentangleGroup?: string;
+
+  /**
+   * Cached member count from learning_site_memberships.
+   * Updated by database trigger on membership changes.
+   */
+  memberCount?: number;
+
+  /**
+   * URL to the site's forum thread (Wave 6).
+   * Null/undefined until forums are live.
+   */
+  forumLink?: string;
+
+  /**
+   * 1-indexed position in the pentangle peer-review chain.
+   * Null/undefined for sites not yet assigned to a chain.
+   */
+  peerReviewChainPosition?: number;
 }
