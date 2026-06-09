@@ -103,11 +103,13 @@ function AccessibleGallerySection({ site }: { site: LearningSite }) {
 interface CommunitySiteContentProps {
   site: LearningSite;
   fourReturns: FourReturnsMetrics | null;
+  baselinePending?: boolean;
 }
 
 export default function CommunitySiteContent({
   site,
   fourReturns,
+  baselinePending = false,
 }: CommunitySiteContentProps) {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-accent-foreground overflow-x-hidden">
@@ -132,11 +134,11 @@ export default function CommunitySiteContent({
         {/* Section 4: Restoration Strategies */}
         <SiteRestorationStrategies site={site} />
 
-        {/* Section 5: 4 Returns Metrics */}
+        {/* Section 5: 4 Returns Metrics (E4 wired) */}
         <div className="max-w-[1600px] mx-auto px-6">
           <FourReturnsDisplay
             metrics={fourReturns}
-            showPending={fourReturns === null}
+            showPending={baselinePending || fourReturns === null}
           />
         </div>
 
