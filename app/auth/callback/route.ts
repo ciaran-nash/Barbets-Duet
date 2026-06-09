@@ -1,0 +1,50 @@
+// ============================================================
+// /auth/callback — Supabase OAuth redirect handler
+// Wave 5, Task A2
+// ============================================================
+// After Google OAuth, Supabase redirects here with a `code`
+// param. We exchange it for a session and redirect the user.
+// ============================================================
+
+import { NextRequest, NextResponse } from 'next/server';
+import { createServerClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
+
+export async function GET(request: NextRequest) {
+  const { searchParams, origin } = new URL(request.url);
+  const code = searchParams.get('code');
+  // Optional: where to redirect after successful login
+  const next = searchParams.get('next') ?? '/community';
+
+  if (code) {
+    const cookieStore = await cookies();
+
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return cookieStore.getAll();
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value, options }) => {
+              cookieStore.set(name, value, options);
+            });
+          },
+        },
+      }
+    );
+
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+    if (!error) {
+      return NextResponse.redirect(`${origin}${next}`);
+    }
+
+    console.error('[auth/callback] exchangeCodeForSession error:', error.message);
+  }
+
+  // Redirect to sign-in page on failure
+  return NextResponse.redirect(`${origin}/community/sign-in?error=auth_callback_failed`);
+}

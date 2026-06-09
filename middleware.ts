@@ -1,6 +1,7 @@
 import arcjet, { tokenBucket, shield, detectBot } from "@arcjet/next";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { createServerClient } from "@supabase/ssr";
 
 /**
  * Base Arcjet instance with shield (common attack protection) and bot detection.
@@ -45,9 +46,45 @@ const donationLimiter = aj.withRule(
   })
 );
 
+// ── Supabase session refresh helper ────────────────────────
+
+async function refreshSupabaseSession(request: NextRequest) {
+  let response = NextResponse.next({ request });
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value)
+          );
+          response = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options)
+          );
+        },
+      },
+    }
+  );
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  return { response, user };
+}
+
+// ── Middleware ──────────────────────────────────────────────
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // ── 1. Arcjet rate limits for API routes ────────────────
   if (pathname === "/api/volunteer") {
     const decision = await volunteerLimiter.protect(request, { requested: 1 });
     if (decision.isDenied()) {
@@ -68,9 +105,33 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  // ── 2. Supabase session refresh + protected route guard ─
+  const { response, user } = await refreshSupabaseSession(request);
+
+  // Protected: /community/dashboard, /community/profile
+  const isProtectedCommunityRoute =
+    pathname.startsWith("/community/dashboard") ||
+    pathname.startsWith("/community/profile");
+
+  if (isProtectedCommunityRoute && !user) {
+    const signInUrl = new URL("/community/sign-in", request.url);
+    signInUrl.searchParams.set("next", pathname);
+    return NextResponse.redirect(signInUrl);
+  }
+
+  // Legacy /dashboard — redirect signed-in users to community dashboard
+  if (pathname === "/dashboard" && user) {
+    return NextResponse.redirect(new URL("/community/dashboard", request.url));
+  }
+
+  return response;
 }
 
 export const config = {
-  matcher: ["/api/volunteer", "/api/create-checkout-session"],
+  matcher: [
+    "/api/volunteer",
+    "/api/create-checkout-session",
+    // Run Supabase refresh on all page/API routes (not static assets)
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
 };
