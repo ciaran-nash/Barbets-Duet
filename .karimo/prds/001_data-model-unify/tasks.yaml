@@ -1,0 +1,174 @@
+prd: data-model-unify
+generated: "2026-06-09"
+model_default: sonnet
+
+tasks:
+
+  - id: C1
+    title: "Create shared ImpactPoint type"
+    complexity: 3
+    priority: 1
+    model: sonnet
+    depends_on: []
+    files:
+      - types/shared.ts           # NEW
+    description: >
+      Create `types/shared.ts` with the unified `ImpactPoint` interface.
+      Fields: label (string), value (string), unit? (string),
+      description? (string), trend? ('up' | 'down').
+      This is a superset of all three existing impact shapes.
+    acceptance_criteria:
+      - types/shared.ts exists and exports ImpactPoint
+      - ImpactPoint has all five fields with correct types
+      - File includes JSDoc explaining the unification rationale
+      - npx tsc --noEmit passes (file is well-formed)
+
+  - id: C2
+    title: "Migrate ImpactMetric, ImpactStat, ProjectImpact to ImpactPoint re-exports"
+    complexity: 3
+    priority: 2
+    model: sonnet
+    depends_on: [C1]
+    files:
+      - types/narrative.ts
+      - types/learning-site.ts
+      - types/project.ts
+    description: >
+      In each type file, replace the local impact-metric interface with a re-export
+      of ImpactPoint from types/shared.ts. Keep the old type name as a deprecated
+      type alias (export type ImpactMetric = ImpactPoint) so existing imports do
+      not break immediately. Update the field types on Story, LearningSite, and Project
+      to use ImpactPoint directly.
+    acceptance_criteria:
+      - types/narrative.ts exports `ImpactMetric` as alias for `ImpactPoint`
+      - types/learning-site.ts exports `ImpactStat` as alias for `ImpactPoint`
+      - types/project.ts exports `ProjectImpact` as alias for `ImpactPoint`
+      - Story.impactMetrics typed as ImpactPoint[]
+      - LearningSite.impactData.ecological and .community typed as ImpactPoint[]
+      - Project.impactMetrics typed as ImpactPoint[]
+      - npx tsc --noEmit passes
+
+  - id: C3
+    title: "Update ImpactGrid, ProjectCard, ProjectDetailDrawer imports"
+    complexity: 1
+    priority: 3
+    model: sonnet
+    depends_on: [C2]
+    files:
+      - components/learning-sites/ImpactGrid.tsx
+      - components/projects/ProjectCard.tsx
+      - components/projects/ProjectDetailDrawer.tsx
+    description: >
+      Update component imports to use ImpactPoint (or the alias) from the correct
+      source. No logic changes required — the type shapes are backward compatible.
+      Verify no TypeScript errors in these files.
+    acceptance_criteria:
+      - ImpactGrid.tsx compiles without error using updated type
+      - ProjectCard.tsx compiles without error using updated type
+      - ProjectDetailDrawer.tsx compiles without error using updated type
+      - No runtime behaviour changes
+
+  - id: C4
+    title: "Update Story.content type to string | PortableTextBlock[]"
+    complexity: 2
+    priority: 4
+    model: sonnet
+    depends_on: [C2]
+    files:
+      - types/narrative.ts
+      - package.json           # verify @portabletext/types is present; add if missing
+    description: >
+      Check package.json for @portabletext/types. If absent, add it (npm install
+      @portabletext/types). Update Story.content from `string` to
+      `string | PortableTextBlock[]`. This is a union type — no existing static
+      data is broken (strings remain valid).
+    acceptance_criteria:
+      - Story.content is typed as `string | PortableTextBlock[]`
+      - @portabletext/types is in package.json dependencies
+      - npx tsc --noEmit passes
+      - lib/data/stories.ts static data (plain strings) still satisfies the type
+
+  - id: C5
+    title: "Update CinematicReader to render PortableText with string fallback"
+    complexity: 3
+    priority: 5
+    model: sonnet
+    depends_on: [C4]
+    files:
+      - components/stories/CinematicReader.tsx
+      - package.json           # verify @portabletext/react is present; add if missing
+    description: >
+      Check package.json for @portabletext/react. If absent, add it.
+      In CinematicReader.tsx, replace the single ReactMarkdown render block with:
+        1. A type guard: `const isPortableText = Array.isArray(story.content)`
+        2. If true: render with <PortableText value={story.content} components={...} />
+           (components should mirror the existing prose Tailwind classes)
+        3. If false: render with <ReactMarkdown>{story.content as string}</ReactMarkdown>
+      The PortableText components config must produce visually equivalent output
+      to the existing ReactMarkdown prose block.
+    acceptance_criteria:
+      - CinematicReader compiles without error
+      - Static story data (string content) renders correctly via ReactMarkdown path
+      - PortableText array content renders correctly via PortableText path
+      - No TypeScript `any` casts
+      - Existing prose styles (prose-headings, prose-p, etc.) applied to both paths
+
+  - id: C6
+    title: "Add LearningSite.projects[] optional field and getProjectsBySite query"
+    complexity: 2
+    priority: 6
+    model: sonnet
+    depends_on: [C2]
+    files:
+      - types/learning-site.ts
+      - lib/sanity/queries.ts
+    description: >
+      Add `projects?: Project[]` to the LearningSite interface (after the community
+      network fields, before closing brace). Add a JSDoc comment explaining this is
+      populated only by the detail-view query, not the list query.
+
+      Add `getProjectsBySite(siteSlug: string): Promise<Project[]>` to
+      lib/sanity/queries.ts. GROQ:
+        *[_type == "project" && associatedSite->slug.current == $siteSlug] | order(maturity asc) {
+          "slug": slug.current,
+          title,
+          description,
+          category,
+          "siteSlug": associatedSite->slug.current,
+          maturity,
+          "image": image.asset->url,
+          featured,
+          impactMetrics[] { label, value, unit },
+          innovationSummary,
+          longDescription
+        }
+      Cache tags: ['project', `project:site:${siteSlug}`]
+    acceptance_criteria:
+      - LearningSite.projects typed as `Project[] | undefined`
+      - getProjectsBySite exported from lib/sanity/queries.ts
+      - GROQ projection maps to Project interface shape
+      - Function returns [] if NEXT_PUBLIC_SANITY_PROJECT_ID is not set
+      - npx tsc --noEmit passes
+      - lib/data/learning-sites.ts static data (no projects field) still satisfies LearningSite type
+
+  - id: C7
+    title: "Document BarbetsEvent.siteSlug Sanity alignment and run final typecheck"
+    complexity: 1
+    priority: 7
+    model: sonnet
+    depends_on: [C3, C5, C6]
+    files:
+      - types/narrative.ts
+    description: >
+      Add a JSDoc block to BarbetsEvent.siteSlug explaining:
+        - In Sanity: resolved from `associatedSite` reference via GROQ projection
+          `"siteSlug": associatedSite->slug.current`
+        - In static data (lib/data/events.ts): set directly as a plain string
+        - The two paths are equivalent at runtime
+      Run `npx tsc --noEmit` and `eslint .` — fix any outstanding errors.
+      Run `npm run build` to confirm clean build.
+    acceptance_criteria:
+      - BarbetsEvent.siteSlug has JSDoc comment describing Sanity vs static alignment
+      - npx tsc --noEmit exits 0
+      - eslint . exits 0 (no new errors)
+      - npm run build succeeds
