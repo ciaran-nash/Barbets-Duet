@@ -1,9 +1,7 @@
-export interface ImpactStat {
-  label: string;
-  value: string;
-  description: string;
-  trend?: 'up' | 'down';
-}
+import type { ImpactPoint } from '@/types/shared';
+
+/** @deprecated Use ImpactPoint from @/types/shared directly */
+export type ImpactStat = ImpactPoint;
 
 export interface ImpactReport {
   label: string;
@@ -96,8 +94,8 @@ export interface LearningSite {
   impactIntro?: string;
   impactReports?: ImpactReport[];
   impactData: {
-    ecological: ImpactStat[];
-    community: ImpactStat[];
+    ecological: ImpactPoint[];
+    community: ImpactPoint[];
   };
   impactImages?: string[];
 
