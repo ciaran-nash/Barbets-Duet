@@ -10,11 +10,11 @@ import { AnimatePresence, motion } from 'motion/react';
 const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
 
 const markersData = [
-  { id: '1', lat: -1.2921, lng: 36.8219, title: "Nairobi, Kenya", subtitle: "Eco-tourism & Reforestation", url: "/sites/nairobi" },
-  { id: '2', lat: -6.7924, lng: 39.2083, title: "Dar es Salaam, Tanzania", subtitle: "Sustainable Agriculture Markets", url: "/sites/dar-es-salaam" },
-  { id: '3', lat: 0.3476, lng: 32.5825, title: "Kampala, Uganda", subtitle: "Wetland Protection Incentives", url: "/sites/kampala" },
-  { id: '4', lat: 51.5074, lng: -0.1278, title: "London, UK", subtitle: "Global Convention 2024", url: "/sites/london" },
-  { id: '5', lat: 40.7128, lng: -74.0060, title: "New York, USA", subtitle: "Climate Conference 2023", url: "/sites/new-york" },
+  { id: '1', lat: -1.2921, lng: 36.8219, title: "Nairobi, Kenya", subtitle: "Eco-tourism & Reforestation", url: "/learning-sites/nairobi" },
+  { id: '2', lat: -6.7924, lng: 39.2083, title: "Dar es Salaam, Tanzania", subtitle: "Sustainable Agriculture Markets", url: "/learning-sites/dar-es-salaam" },
+  { id: '3', lat: 0.3476, lng: 32.5825, title: "Kampala, Uganda", subtitle: "Wetland Protection Incentives", url: "/learning-sites/kampala" },
+  { id: '4', lat: 51.5074, lng: -0.1278, title: "London, UK", subtitle: "Global Convention 2024", url: "/learning-sites/london" },
+  { id: '5', lat: 40.7128, lng: -74.0060, title: "New York, USA", subtitle: "Climate Conference 2023", url: "/learning-sites/new-york" },
 ];
 
 export default function EarthGlobe() {
