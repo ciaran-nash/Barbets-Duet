@@ -1,4 +1,5 @@
 import type { ImpactPoint } from '@/types/shared';
+import type { Project } from '@/types/project';
 
 /** @deprecated Use ImpactPoint from @/types/shared directly */
 export type ImpactStat = ImpactPoint;
@@ -116,4 +117,11 @@ export interface LearningSite {
   // Network
   featuredSiteSlug?: string;
   relatedSitesSlugs?: string[];
+
+  /**
+   * Projects associated with this learning site.
+   * Populated by getProjectsBySite() at runtime, or via Sanity GROQ reference expansion.
+   * Optional — not present on lightweight LearningSite stubs used in map/browse views.
+   */
+  projects?: Project[];
 }
