@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { KineticReveal } from '@/components/motion/KineticReveal';
 import { Clock, ArrowLeft, ArrowRight } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { PortableText } from '@portabletext/react';
 import { learningSites } from '@/lib/data/learning-sites';
 
 export default function CinematicReader({ story }: { story: Story }) {
@@ -115,7 +116,7 @@ export default function CinematicReader({ story }: { story: Story }) {
                 </motion.div>
               )}
 
-              {/* Markdown content */}
+              {/* Story content */}
               <div
                 className="prose prose-invert max-w-none
                            prose-headings:font-serif prose-headings:text-platinum prose-headings:font-bold prose-headings:leading-tight
@@ -131,11 +132,8 @@ export default function CinematicReader({ story }: { story: Story }) {
                 {typeof story.content === 'string' ? (
                   <ReactMarkdown>{story.content}</ReactMarkdown>
                 ) : (
-                  // PortableTextBlock[] — render plain text fallback until
-                  // @portabletext/react is wired up for CMS-sourced stories
-                  <p className="text-platinum/80 font-sans text-lg leading-relaxed italic">
-                    {story.excerpt}
-                  </p>
+                  // PortableTextBlock[] — CMS-sourced rich text via @portabletext/react
+                  <PortableText value={story.content} />
                 )}
               </div>
             </div>
