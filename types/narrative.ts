@@ -1,8 +1,7 @@
-export interface ImpactMetric {
-  label: string;
-  value: string;
-  unit: string;
-}
+import type { ImpactPoint } from '@/types/shared';
+
+/** @deprecated Use ImpactPoint from @/types/shared directly */
+export type ImpactMetric = ImpactPoint;
 
 export interface Story {
   slug: string;
@@ -14,7 +13,7 @@ export interface Story {
   category: 'Restoration' | 'Community' | 'Innovation';
   date: string;
   readTime: string;
-  impactMetrics: ImpactMetric[];
+  impactMetrics: ImpactPoint[];
   siteSlug?: string;
 }
 
