@@ -1,0 +1,61 @@
+{
+  "prd": "route-gaps",
+  "status": "paused-at-gate",
+  "branch": "feature/route-gaps",
+  "execution_mode": "feature-branch",
+  "feature_branch": "feature/route-gaps",
+  "current_wave": 1,
+  "started_at": "2026-06-10T00:00:00Z",
+  "tasks": {
+    "RG-1": {
+      "status": "done",
+      "wave": 1,
+      "title": "FAQ standalone page",
+      "complexity": 1,
+      "model": "sonnet",
+      "pr_number": 18,
+      "pr_url": "https://github.com/ciaran-nash/Barbets-Duet/pull/18",
+      "merged_at": "2026-06-10T00:00:00Z"
+    },
+    "RG-2": {
+      "status": "done",
+      "wave": 1,
+      "title": "Research index page + nav unlock + Blog7Demo fixes",
+      "complexity": 2,
+      "model": "sonnet",
+      "pr_number": 19,
+      "pr_url": "https://github.com/ciaran-nash/Barbets-Duet/pull/19",
+      "merged_at": "2026-06-10T00:00:00Z"
+    },
+    "RG-6": {
+      "status": "done",
+      "wave": 1,
+      "title": "Delete legacy /sites/[id] route",
+      "complexity": 2,
+      "model": "sonnet",
+      "pr_number": 20,
+      "pr_url": "https://github.com/ciaran-nash/Barbets-Duet/pull/20",
+      "merged_at": "2026-06-10T00:00:00Z"
+    }
+  },
+  "gate_reached": {
+    "wave": 1,
+    "label": "FAQ + Research + /sites deletion complete",
+    "reached_at": "2026-06-10T00:00:00Z",
+    "model": "pause"
+  },
+  "gate_history": [
+    {
+      "wave": 1,
+      "label": "FAQ + Research + /sites deletion complete",
+      "model": "pause",
+      "reached_at": "2026-06-10T00:00:00Z",
+      "outcome": "pending-human-approval"
+    }
+  ],
+  "active_worktrees": [
+    { "task_id": "RG-1", "path": ".karimo/.worktrees/route-gaps/RG-1", "branch": "worktree/route-gaps-RG-1" },
+    { "task_id": "RG-2", "path": ".karimo/.worktrees/route-gaps/RG-2", "branch": "worktree/route-gaps-RG-2" },
+    { "task_id": "RG-6", "path": ".karimo/.worktrees/route-gaps/RG-6", "branch": "worktree/route-gaps-RG-6" }
+  ]
+}
