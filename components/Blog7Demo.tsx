@@ -6,7 +6,7 @@ const demoData = {
   description:
     "Discover the latest news on ecological restoration, community successes, and sustainable finance from the Barbets Duet team.",
   buttonText: "Explore all posts",
-  buttonUrl: "#",
+  buttonUrl: "/blog",
   posts: [
     {
       id: "post-1",
@@ -16,7 +16,7 @@ const demoData = {
       label: "Ecology",
       author: "Jane Doe",
       published: "12 Oct 2024",
-      url: "#",
+      url: "/blog/post-1",
       image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800&h=600",
     },
     {
@@ -27,7 +27,7 @@ const demoData = {
       label: "Finance",
       author: "John Smith",
       published: "28 Sep 2024",
-      url: "#",
+      url: "/blog/post-2",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800&h=600",
     },
     {
@@ -38,7 +38,7 @@ const demoData = {
       label: "Community",
       author: "Alice Johnson",
       published: "15 Sep 2024",
-      url: "#",
+      url: "/blog/post-3",
       image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800&h=600",
     },
   ],
