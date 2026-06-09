@@ -52,3 +52,19 @@ export const projects: Project[] = [
 export function getProject(slug: string): Project | undefined {
   return projects.find(p => p.slug === slug);
 }
+
+/**
+ * Returns all projects whose siteSlug matches the given learning site slug.
+ *
+ * GROQ equivalent (for future Sanity integration):
+ *   *[_type == "project" && site->slug.current == $siteSlug]{
+ *     slug, title, description, category, maturity, image,
+ *     "siteSlug": site->slug.current,
+ *     impactMetrics, innovationSummary, longDescription
+ *   }
+ *
+ * Used to populate LearningSite.projects on site detail pages.
+ */
+export function getProjectsBySite(siteSlug: string): Project[] {
+  return projects.filter(p => p.siteSlug === siteSlug);
+}
