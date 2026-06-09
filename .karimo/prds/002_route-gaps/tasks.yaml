@@ -1,0 +1,128 @@
+prd: route-gaps
+tasks:
+
+  - id: RG-1
+    title: "FAQ standalone page"
+    wave: 1
+    complexity: 1
+    model: sonnet
+    description: >
+      Create app/faq/page.tsx. Import and render the existing FAQSection component.
+      Add page metadata. Use Header + StickyFooter wrapper pattern (no CTA needed).
+    files_to_create:
+      - app/faq/page.tsx
+    files_to_modify: []
+    acceptance:
+      - /faq renders FAQSection with search, category filter, and accordion
+      - Metadata title set to "FAQ | Barbets Duet"
+
+  - id: RG-2
+    title: "Research index page + nav unlock"
+    wave: 1
+    complexity: 2
+    model: sonnet
+    description: >
+      Create app/research/page.tsx as a substantive stub. Include a hero heading,
+      short description of Barbets Duet research intent, and a "coming soon" card
+      grid or publications placeholder. Use KineticReveal on heading. Add metadata.
+      In components/Header.tsx, uncomment the /research nav link in communityDropdownData
+      Resources section (remove TODO(T25) comment and uncomment the 2 lines).
+      In components/Blog7Demo.tsx, update buttonUrl from "#" to "/blog" and update
+      the 3 post url fields from "#" to "/blog/post-1", "/blog/post-2", "/blog/post-3".
+    files_to_create:
+      - app/research/page.tsx
+    files_to_modify:
+      - components/Header.tsx
+      - components/Blog7Demo.tsx
+    acceptance:
+      - /research resolves without 404
+      - About.tsx link href="/research" no longer broken
+      - Header nav shows "Research Hub" link under Resources
+      - Blog7Demo "Explore all posts" button href="/blog"
+      - tsc --noEmit passes
+
+  - id: RG-3
+    title: "Blog index + slug pages"
+    wave: 2
+    complexity: 3
+    model: sonnet
+    description: >
+      Create app/blog/page.tsx as a full blog index. Reuse the Blog7 block component
+      (components/blocks/blog7.tsx) as the primary content block — same data as
+      Blog7Demo but with real hrefs. Add a hero section above it. Add metadata.
+      Create app/blog/[slug]/page.tsx as a stub article detail page. Include hero
+      image area, title, author, date, and placeholder body text. Handle unknown
+      slugs with notFound(). Static data only — no Sanity.
+    files_to_create:
+      - app/blog/page.tsx
+      - app/blog/[slug]/page.tsx
+    files_to_modify: []
+    acceptance:
+      - /blog renders blog index with 3 placeholder posts
+      - /blog/post-1 renders article stub without error
+      - /blog/unknown-slug returns 404
+      - generateMetadata implemented on slug page
+      - tsc --noEmit passes
+
+  - id: RG-4
+    title: "News index + slug pages"
+    wave: 2
+    complexity: 3
+    model: sonnet
+    description: >
+      Create app/news/page.tsx as a news/announcements index. Parallel structure to
+      the blog index — hero section + news card grid with 3-4 placeholder items.
+      Create app/news/[slug]/page.tsx as a stub news item detail page. Handle unknown
+      slugs with notFound(). Static data only. Add metadata to both pages.
+    files_to_create:
+      - app/news/page.tsx
+      - app/news/[slug]/page.tsx
+    files_to_modify: []
+    acceptance:
+      - /news renders news index with placeholder items
+      - /news/[slug] renders stub detail page without error
+      - /news/unknown-slug returns 404
+      - generateMetadata implemented on slug page
+      - tsc --noEmit passes
+
+  - id: RG-5
+    title: "Legal pages (privacy, terms, cookies)"
+    wave: 2
+    complexity: 2
+    model: sonnet
+    description: >
+      Create app/legal/layout.tsx as a shared wrapper (Header + StickyFooter, no CTA).
+      Create app/legal/privacy/page.tsx, app/legal/terms/page.tsx,
+      app/legal/cookies/page.tsx. Each page: clean prose layout, placeholder legal
+      copy with a prominent "TODO: Replace with real legal text before production"
+      banner at the top. Add metadata per page. No KineticReveal or ScrollGlow needed.
+    files_to_create:
+      - app/legal/layout.tsx
+      - app/legal/privacy/page.tsx
+      - app/legal/terms/page.tsx
+      - app/legal/cookies/page.tsx
+    files_to_modify: []
+    acceptance:
+      - All 3 legal routes resolve without 404
+      - Each page displays a visible placeholder/TODO banner
+      - Shared layout renders Header and StickyFooter correctly
+      - tsc --noEmit passes
+
+  - id: RG-6
+    title: "Delete legacy /sites/[id] route"
+    wave: 1
+    complexity: 2
+    model: sonnet
+    description: >
+      Delete the entire app/sites/ directory (contains [id]/page.tsx only).
+      Verify zero inbound href references to /sites/ exist in app/ and components/.
+      Run grep to confirm before deleting. After deletion, verify next build passes.
+    files_to_create: []
+    files_to_modify: []
+    files_to_delete:
+      - app/sites/[id]/page.tsx
+      - app/sites/
+    acceptance:
+      - app/sites/ directory no longer exists
+      - No broken imports or references remain
+      - next build passes without error

@@ -1,0 +1,48 @@
+prd: route-gaps
+total_tasks: 6
+total_complexity: 13
+model_distribution:
+  sonnet: 6
+  opus: 0
+
+waves:
+  - wave: 1
+    label: "Foundation — FAQ, Research, Blog links, Delete legacy"
+    tasks: [RG-1, RG-2, RG-6]
+    total_complexity: 5
+    rationale: >
+      These tasks are independent and unblock the most urgent broken links.
+      RG-1 (FAQ) and RG-6 (delete sites/) are trivially safe.
+      RG-2 (research) fixes the live broken link in About.tsx and unlocks the Header nav.
+      All three can execute in parallel.
+    parallelizable: true
+
+  - wave: 2
+    label: "Content stubs — Blog, News, Legal"
+    tasks: [RG-3, RG-4, RG-5]
+    total_complexity: 8
+    rationale: >
+      These tasks create the bulk of the new route structure. RG-3 and RG-4 are
+      parallel (independent route groups). RG-5 (legal) is also independent.
+      All three can execute in parallel within this wave.
+    parallelizable: true
+
+orchestration:
+  integration_cadence: wave
+  review_cadence:
+    trigger: on-umbrella
+    scope: cumulative
+  gates: []
+
+verification:
+  after_wave_1:
+    - npx tsc --noEmit
+    - verify /faq, /research resolve
+    - verify /sites/nairobi returns 404
+    - verify Header shows Research Hub link
+  after_wave_2:
+    - npx tsc --noEmit
+    - next build
+    - verify all 10 routes resolve
+    - verify /sites/[id] still 404
+    - verify legal pages show placeholder banner
