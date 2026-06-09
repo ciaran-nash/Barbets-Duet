@@ -1,9 +1,8 @@
-export interface ImpactStat {
-  label: string;
-  value: string;
-  description: string;
-  trend?: 'up' | 'down';
-}
+import type { ImpactPoint } from '@/types/shared';
+import type { Project } from '@/types/project';
+
+/** @deprecated Use ImpactPoint from @/types/shared directly */
+export type ImpactStat = ImpactPoint;
 
 export interface ImpactReport {
   label: string;
@@ -96,8 +95,8 @@ export interface LearningSite {
   impactIntro?: string;
   impactReports?: ImpactReport[];
   impactData: {
-    ecological: ImpactStat[];
-    community: ImpactStat[];
+    ecological: ImpactPoint[];
+    community: ImpactPoint[];
   };
   impactImages?: string[];
 
@@ -118,4 +117,11 @@ export interface LearningSite {
   // Network
   featuredSiteSlug?: string;
   relatedSitesSlugs?: string[];
+
+  /**
+   * Projects associated with this learning site.
+   * Populated by getProjectsBySite() at runtime, or via Sanity GROQ reference expansion.
+   * Optional — not present on lightweight LearningSite stubs used in map/browse views.
+   */
+  projects?: Project[];
 }

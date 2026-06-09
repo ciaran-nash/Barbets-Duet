@@ -230,7 +230,7 @@ ${Object.entries(theme)
                   max={1.2} 
                   step={0.05} 
                   value={[parseFloat(theme['--font-scale'])]} 
-                  onValueChange={(vals) => updateVar('--font-scale', vals[0].toString())} 
+                  onValueChange={(vals: number[]) => updateVar('--font-scale', vals[0].toString())}
                   className="py-4"
                 />
                 <p className="text-[10px] text-muted-foreground italic text-center">Adjusts the base 16px root font size.</p>
@@ -248,7 +248,7 @@ ${Object.entries(theme)
                   max={2} 
                   step={0.1} 
                   value={[parseFloat(theme['--radius'])]} 
-                  onValueChange={(vals) => updateVar('--radius', vals[0].toString())} 
+                  onValueChange={(vals: number[]) => updateVar('--radius', vals[0].toString())}
                   className="py-4"
                 />
               </div>

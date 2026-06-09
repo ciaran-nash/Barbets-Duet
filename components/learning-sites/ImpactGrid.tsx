@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { LearningSite, ImpactStat } from '@/types/learning-site';
+import { LearningSite } from '@/types/learning-site';
+import { ImpactPoint } from '@/types/shared';
 import { KineticReveal } from '@/components/motion/KineticReveal';
 import { ArrowUpRight, TrendingUp, Info } from 'lucide-react';
 
@@ -60,7 +61,7 @@ export function ImpactGrid({ site }: { site: LearningSite }) {
   );
 }
 
-function StatItem({ stat }: { stat: ImpactStat }) {
+function StatItem({ stat }: { stat: ImpactPoint }) {
     return (
         <div className="group">
             <div className="flex items-baseline gap-4 mb-4">
