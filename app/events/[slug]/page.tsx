@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { events } from '@/lib/data/events';
+import { getEventFromSanity, getAllEventsFromSanity } from '@/lib/sanity/queries';
 import EventDetail from '@/components/events/EventDetail';
 import Header from '@/components/Header';
 import { StickyFooter } from '@/components/ui/sticky-footer';
@@ -12,7 +13,8 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const event = events.find(e => e.slug === slug);
+  const event =
+    (await getEventFromSanity(slug)) ?? events.find((e) => e.slug === slug);
   if (!event) return { title: 'Event Not Found' };
   return {
     title: `${event.title} | Barbets Duet`,
@@ -20,18 +22,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: event.title,
       description: event.description,
-      images: [{ url: event.image }],
+      images: event.image ? [{ url: event.image }] : [],
     },
   };
 }
 
 export async function generateStaticParams() {
-  return events.map(e => ({ slug: e.slug }));
+  const sanityEvents = await getAllEventsFromSanity();
+  const allEvents = sanityEvents.length > 0 ? sanityEvents : events;
+  return allEvents.map((e) => ({ slug: e.slug }));
 }
 
 export default async function EventPage({ params }: Props) {
   const { slug } = await params;
-  const event = events.find(e => e.slug === slug);
+  const event =
+    (await getEventFromSanity(slug)) ?? events.find((e) => e.slug === slug);
   if (!event) notFound();
 
   return (
