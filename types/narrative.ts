@@ -1,4 +1,5 @@
 import type { ImpactPoint } from '@/types/shared';
+import type { PortableTextBlock } from '@portabletext/types';
 
 /** @deprecated Use ImpactPoint from @/types/shared directly */
 export type ImpactMetric = ImpactPoint;
@@ -8,7 +9,12 @@ export interface Story {
   title: string;
   subtitle: string;
   excerpt: string;
-  content: string;
+  /**
+   * Story body content.
+   * - `string` — plain text (legacy static data, still valid)
+   * - `PortableTextBlock[]` — Sanity CMS rich text (future CMS integration)
+   */
+  content: string | PortableTextBlock[];
   image: string;
   category: 'Restoration' | 'Community' | 'Innovation';
   date: string;
