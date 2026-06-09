@@ -1,6 +1,85 @@
 {
   "prd": "community-network",
-  "status": "research-pending",
+  "status": "in-progress",
   "created": "2026-06-09",
-  "feature_description": "Build /community/* routes covering jumuiya governance, network browse, and member-facing community pages. Closes sitemap gap from project_sitemap_architecture memory."
+  "updated": "2026-06-09",
+  "feature_description": "Build /community/* routes covering jumuiya governance, network browse, and member-facing community pages. Closes sitemap gap from project_sitemap_architecture memory.",
+  "waves": {
+    "wave_5": {
+      "tasks": ["A1", "A2", "A3", "B1"],
+      "complexity": 22,
+      "status": "complete",
+      "task_status": {
+        "A1": "done",
+        "A2": "done",
+        "A3": "done",
+        "B1": "done"
+      }
+    },
+    "wave_6": {
+      "tasks": ["A2-alt", "B2", "B3", "C1", "C2", "C3", "D1", "D2", "D3", "E1-E2", "E4"],
+      "complexity": 71,
+      "status": "not-started"
+    }
+  },
+  "total_complexity": 93,
+  "gates": {
+    "A2": "require_review — AuthProvider.tsx + firestore.rules",
+    "E3": "REMOVED — stakeholder alignment confirmed"
+  },
+  "notes": [
+    "E3 gate removed — Jumuiya leaders approved 4 Returns framing + circular peer-review",
+    "E4 moved to Wave 6 — no gate",
+    "D1-D3 incorporate Liveblocks",
+    "E1-E2 consolidated into single Opus task at complexity 8",
+    "B2 references Learning_Sites_Page.jpg wireframe",
+    "Wave 5 complete: A1+A2+A3+B1 all done on 2026-06-09"
+  ],
+  "wave_5_progress": {
+    "A1": {
+      "status": "done",
+      "commit": "660ee4d",
+      "files": [
+        "supabase/migrations/20260609_001_community_schema.sql",
+        "types/community.ts"
+      ],
+      "summary": "Postgres schema: profiles + learning_site_memberships tables, member_role enum, RLS policies, auto-profile trigger"
+    },
+    "A2": {
+      "status": "done",
+      "commit": "e6fc503",
+      "files": [
+        "components/AuthProvider.tsx",
+        "app/auth/callback/route.ts",
+        "app/community/sign-in/page.tsx",
+        "app/community/sign-in/SignInClient.tsx",
+        "app/community/sign-up/page.tsx",
+        "app/community/sign-up/SignUpClient.tsx",
+        "app/dashboard/DashboardClient.tsx",
+        "middleware.ts",
+        "lib/supabase.ts"
+      ],
+      "summary": "Supabase Auth migration: AuthProvider, sign-in/sign-up pages, OAuth callback, middleware route guard, DashboardClient ported to Supabase"
+    },
+    "A3": {
+      "status": "done",
+      "commit": "760b6a5",
+      "files": [
+        "app/community/dashboard/page.tsx",
+        "app/community/dashboard/MemberDashboard.tsx"
+      ],
+      "summary": "Member dashboard shell: avatar upload (Supabase Storage), role badge, site affiliations with pentangle groups, Wave 6 content placeholders"
+    },
+    "B1": {
+      "status": "done",
+      "commit": "5380731",
+      "files": [
+        "supabase/migrations/20260609_002_learning_sites_table.sql",
+        "supabase/seeds/001_learning_sites.sql",
+        "types/learning-site.ts",
+        "lib/data/learning-sites.ts"
+      ],
+      "summary": "learning_sites table with pentangle_group + member_count + peer_review_chain_position; seed for 13 CSV sites; TypeScript type extended; pentangle assignments added to static data"
+    }
+  }
 }
