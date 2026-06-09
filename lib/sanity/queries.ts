@@ -235,3 +235,95 @@ export async function getAllEventsFromSanity(): Promise<BarbetsEvent[]> {
     { next: { tags: ['event'] } }
   );
 }
+
+// ─── Trial & Error ───────────────────────────────────────────────────────────
+
+export interface TrialAndErrorEntry {
+  slug: string;
+  title: string;
+  siteSlug: string;
+  authorMemberSlug: string;
+  prompt1: unknown[];
+  prompt2: unknown[];
+  prompt3: unknown[];
+  prompt4: unknown[];
+  challengeType: string[];
+  interventionType: string[];
+  propertyRightsRegime: string | null;
+  status: 'draft' | 'pending_review' | 'published' | 'rejected';
+  submittedAt: string | null;
+  publishedAt: string | null;
+  images: { url: string; altText: string; caption?: string }[];
+}
+
+const T_AND_E_PROJECTION = `{
+  "slug": slug.current,
+  title,
+  siteSlug,
+  authorMemberSlug,
+  prompt1,
+  prompt2,
+  prompt3,
+  prompt4,
+  challengeType,
+  interventionType,
+  propertyRightsRegime,
+  status,
+  submittedAt,
+  publishedAt,
+  "images": images[] { "url": asset->url, altText, caption }
+}`;
+
+/**
+ * Fetch all published T&E entries for a given site slug.
+ * Wave 6, Task C1.
+ */
+export async function getContributionsBySite(
+  siteSlug: string
+): Promise<TrialAndErrorEntry[]> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
+
+  return sanityClient.fetch<TrialAndErrorEntry[]>(
+    `*[_type == "trialAndError" && siteSlug == $siteSlug && status == "published"]
+      | order(publishedAt desc) ${T_AND_E_PROJECTION}`,
+    { siteSlug },
+    { next: { tags: ['trialAndError', `trialAndError:site:${siteSlug}`] } }
+  );
+}
+
+/**
+ * Fetch all published T&E entries by a given member slug.
+ * Wave 6, Task C1.
+ */
+export async function getContributionsByMember(
+  memberSlug: string
+): Promise<TrialAndErrorEntry[]> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
+
+  return sanityClient.fetch<TrialAndErrorEntry[]>(
+    `*[_type == "trialAndError" && authorMemberSlug == $memberSlug && status == "published"]
+      | order(publishedAt desc) ${T_AND_E_PROJECTION}`,
+    { memberSlug },
+    { next: { tags: ['trialAndError', `trialAndError:member:${memberSlug}`] } }
+  );
+}
+
+/**
+ * Full-text search across published T&E entries.
+ * Searches title + prompt text fields via GROQ text matching.
+ * Wave 6, Task C1.
+ */
+export async function searchContributions(
+  query: string
+): Promise<TrialAndErrorEntry[]> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
+
+  return sanityClient.fetch<TrialAndErrorEntry[]>(
+    `*[_type == "trialAndError" && status == "published" &&
+       (title match $q || pt::text(prompt1) match $q || pt::text(prompt2) match $q ||
+        pt::text(prompt3) match $q || pt::text(prompt4) match $q)]
+      | order(publishedAt desc) ${T_AND_E_PROJECTION}`,
+    { q: `*${query}*` },
+    { next: { tags: ['trialAndError'] } }
+  );
+}
