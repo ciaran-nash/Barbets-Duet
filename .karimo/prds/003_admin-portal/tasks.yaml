@@ -1,0 +1,345 @@
+prd: admin-portal
+created: 2026-06-10
+
+tasks:
+  # Wave 1 — Auth & Shell (Gate before Wave 2)
+
+  - id: AP1
+    title: Supabase auth helper + role check utilities
+    wave: 1
+    priority: must
+    complexity: 2
+    depends_on: []
+    description: |
+      Install @supabase/ssr. Create lib/supabase/admin-auth.ts with:
+        - createServerClient() helper (reads cookies via Next.js cookies())
+        - getSessionUser() — returns authenticated Supabase user or null
+        - requireRole(roles: MemberRole[]) — server-side guard; throws redirect
+          to /auth/login if unauthenticated, /403 if insufficient role
+        - MemberRole type: 'member' | 'coordinator' | 'admin' (derived from
+          profiles.member_role enum in PR #9 schema)
+      Create lib/supabase/client.ts (browser client) and lib/supabase/server.ts
+      (server component client) following @supabase/ssr patterns.
+      No UI in this task.
+    files_affected:
+      - package.json
+      - lib/supabase/admin-auth.ts
+      - lib/supabase/client.ts
+      - lib/supabase/server.ts
+    acceptance_criteria:
+      - "@supabase/ssr installed and importable"
+      - getSessionUser() returns null when no session cookie present
+      - requireRole(['admin']) redirects to /403 when called with coordinator session
+      - TypeScript strict mode passes
+      - lib/firebase.ts not modified
+
+  - id: AP2
+    title: Middleware route protection
+    wave: 1
+    priority: must
+    complexity: 3
+    depends_on: [AP1]
+    description: |
+      Extend middleware.ts to add Supabase role-based route protection for
+      /admin/* and /superadmin/* paths. Composition order:
+        1. Arcjet shield + bot detection (existing — runs first for all routes)
+        2. Arcjet rate limiters for /api/volunteer and /api/create-checkout-session
+           (existing — must not regress)
+        3. NEW: Supabase session check for /admin/* paths
+           - Unauthenticated: redirect to /auth/login
+           - Authenticated, role = member: redirect to /403
+           - Authenticated, role = coordinator or admin: pass through /admin/*
+        4. NEW: Supabase session check for /superadmin/* paths
+           - Authenticated, role != admin: redirect to /403
+           - Authenticated, role = admin: pass through
+
+      Create app/403/page.tsx — simple "Access Denied" page.
+      Create app/auth/login/page.tsx — Supabase email+password sign-in form
+      (Google OAuth optional, can be TODO comment).
+
+      IMPORTANT: Run existing Arcjet rate limit tests after changes. The matcher
+      must include all four path groups.
+    files_affected:
+      - middleware.ts
+      - app/403/page.tsx
+      - app/auth/login/page.tsx
+    acceptance_criteria:
+      - GET /admin without session redirects to /auth/login
+      - GET /admin with coordinator session returns 200
+      - GET /superadmin with coordinator session redirects to /403
+      - GET /superadmin with admin session returns 200
+      - Arcjet volunteer/donation rate limiting still active (verified by
+        checking middleware matcher includes /api/volunteer and
+        /api/create-checkout-session)
+      - TypeScript strict mode passes
+      - middleware.ts changes flagged for human review before merge
+
+  - id: AP3
+    title: Admin layout + nav shell
+    wave: 1
+    priority: must
+    complexity: 2
+    depends_on: [AP2]
+    description: |
+      Create app/admin/layout.tsx:
+        - Server component: call getSessionUser() to read role
+        - Sidebar nav links (shown by role):
+            coordinator + admin: "T&E Queue" → /admin/submissions
+            coordinator + admin: "Peer Review" → /admin/peer-review
+            admin only: "Members" → /admin/members
+            admin only: "Pentangles" → /admin/pentangles
+        - Active link: Neon Lime (#DBFF66) left border + text colour
+        - Background: Night Forest (#06211A) sidebar, Platinum (#F4F4F5) content
+        - DM Sans navigation labels (no BioRhyme in admin UI)
+        - Mobile: sidebar collapses to hamburger → slide-out drawer
+        - Sign out button calls Supabase signOut()
+
+      Create app/admin/page.tsx — simple dashboard home showing:
+        - "Welcome, {user.email}" heading
+        - Quick-stat cards: pending submissions count, overdue peer reviews count
+          (both fetched server-side)
+
+      Apply design-taste-frontend anti-pattern rules throughout.
+    skills:
+      - .agents/skills/design-taste-frontend
+    files_affected:
+      - app/admin/layout.tsx
+      - app/admin/page.tsx
+      - components/admin/AdminSidebar.tsx
+      - components/admin/AdminNav.tsx
+    acceptance_criteria:
+      - Layout renders for coordinator and admin sessions
+      - Members + Pentangles links hidden for coordinator session
+      - Active nav link shows Neon Lime left border
+      - Mobile sidebar collapses without layout shift
+      - WCAG 2.2 AA contrast on all nav text
+      - TypeScript strict mode passes
+
+  # Gate: Auth layer complete — human review of middleware.ts required
+  # before Wave 2 (CRUD UI) begins.
+
+  # Wave 2 — CRUD UI
+
+  - id: AP4
+    title: T&E submission review queue
+    wave: 2
+    priority: must
+    complexity: 4
+    depends_on: [AP3]
+    description: |
+      Build app/admin/submissions/page.tsx — server component fetching all
+      contributions from Supabase ordered by created_at desc.
+
+      Components to build:
+        - SubmissionQueue — tabbed list (Draft / Published / Rejected)
+        - SubmissionRow — summary row: author display_name, site_slug,
+          submitted date, prompt completion badge (e.g. "4/4 complete")
+        - SubmissionDetail — inline expandable panel showing full submission
+          content for all 4 mandatory prompts
+        - PromptCompletionBadge — green (4/4), amber (3/4), red (<3/4)
+
+      4 mandatory prompt fields (from contributions schema in PR #9):
+        1. what_did_you_try
+        2. what_happened
+        3. what_did_you_learn
+        4. what_would_you_do_differently
+
+      Show warning banner on SubmissionDetail if any mandatory prompt is empty.
+      Filter tabs update URL search params (?status=draft|published|rejected)
+      for shareable links and browser back/forward.
+
+      Read-only in this task — publish/reject actions in AP5.
+    skills:
+      - .agents/skills/design-taste-frontend
+    files_affected:
+      - app/admin/submissions/page.tsx
+      - components/admin/SubmissionQueue.tsx
+      - components/admin/SubmissionRow.tsx
+      - components/admin/SubmissionDetail.tsx
+      - components/admin/PromptCompletionBadge.tsx
+    acceptance_criteria:
+      - Draft submissions list renders with real Supabase data
+      - PromptCompletionBadge accurately reflects completion status
+      - Warning banner shown when mandatory prompt is empty
+      - Filter tabs change ?status param and re-fetch correctly
+      - Page accessible via keyboard navigation
+      - TypeScript strict mode passes
+
+  - id: AP5
+    title: T&E publish/reject server actions
+    wave: 2
+    priority: must
+    complexity: 3
+    depends_on: [AP4]
+    description: |
+      Create app/admin/submissions/actions.ts with two server actions:
+
+      publishSubmission(id: string):
+        - Calls requireRole(['coordinator', 'admin']) first
+        - UPDATE contributions SET status='published', published_at=now()
+          WHERE id=$1
+        - RLS enforces coordinator/admin access at DB level
+        - Returns { success: true } or throws error
+
+      rejectSubmission(id: string, reason: string):
+        - Calls requireRole(['coordinator', 'admin']) first
+        - UPDATE contributions SET status='rejected',
+          rejection_reason=$1 WHERE id=$2
+        - reason stored in contributions.rejection_reason (assume column exists
+          from PR #9; if absent, add a note in handoff that migration needed)
+        - Returns { success: true } or throws error
+
+      UI wiring in SubmissionDetail:
+        - Publish button: green, calls publishSubmission, optimistic status flip
+        - Reject button: opens modal with textarea for reason, calls
+          rejectSubmission on confirm
+        - Toast notification (shadcn Sonner) on success/failure
+        - Coordinator cannot publish their own site's submissions (check
+          profiles.site_slug matches — if match, disable Publish with tooltip)
+
+      Rejected submissions: their rejection_reason should be visible to the
+      original author on their community profile page (out of scope to build
+      that view here — add TODO comment in contributions query for community PRD).
+    skills:
+      - .agents/skills/design-taste-frontend
+    files_affected:
+      - app/admin/submissions/actions.ts
+      - components/admin/SubmissionDetail.tsx
+      - components/admin/RejectModal.tsx
+    acceptance_criteria:
+      - publishSubmission updates DB and UI without page reload
+      - rejectSubmission stores reason in contributions.rejection_reason
+      - Toast appears on success and on error
+      - Coordinator cannot publish own-site submissions (disabled state with tooltip)
+      - RLS prevents direct DB bypass (tested with wrong-role service call)
+      - TypeScript strict mode passes
+
+  - id: AP6
+    title: Member list + role assignment UI
+    wave: 2
+    priority: must
+    complexity: 3
+    depends_on: [AP3]
+    description: |
+      Build app/admin/members/page.tsx — admin-only (requireRole(['admin'])).
+
+      Features:
+        - Server component fetching profiles paginated (50 per page)
+        - MemberTable component: columns — display_name, email, site_slug,
+          member_role, joined_at
+        - Search: client-side filter by display_name or email (no full-text
+          search needed for expected member count < 200)
+        - RoleSelector inline dropdown per row: 'member' | 'coordinator' | 'admin'
+        - Role change server action: updateMemberRole(profileId, newRole)
+          calls requireRole(['admin']), then UPDATE profiles SET
+          member_role=$1 WHERE id=$2
+        - Confirm modal before elevating to 'admin':
+          "Grant admin access to {name}? This cannot be undone without admin action."
+        - Pagination: next/prev controls, URL ?page= param
+
+      Own account: cannot demote self (disable selector for current user's row
+      with tooltip "Cannot change your own role").
+    skills:
+      - .agents/skills/design-taste-frontend
+    files_affected:
+      - app/admin/members/page.tsx
+      - app/admin/members/actions.ts
+      - components/admin/MemberTable.tsx
+      - components/admin/RoleSelector.tsx
+      - components/admin/ConfirmRoleModal.tsx
+    acceptance_criteria:
+      - Member list renders with real profiles data
+      - Role change reflected immediately in UI after server action
+      - Confirm modal appears before admin elevation
+      - Current user's role selector disabled
+      - Coordinator session cannot access /admin/members (redirects to /403)
+      - TypeScript strict mode passes
+
+  - id: AP7
+    title: Peer review chain overview + overdue flagging
+    wave: 2
+    priority: must
+    complexity: 4
+    depends_on: [AP3]
+    description: |
+      Build app/admin/peer-review/page.tsx.
+
+      Features:
+        1. Chain ring diagram — reuse/adapt the peer review visualisation
+           already built in the community-network PRD. Source component from
+           components/community/ — do not rebuild, wrap or extend if possible.
+           Show coordinator/admin view: all sites and their reviewer assignments.
+
+        2. Open assessments table — list all peer_review_assignments with:
+           - reviewing_site, target_site, due_date, status
+           - Overdue badge (red) if due_date < now() and status != 'complete'
+           - Sort: overdue first, then by due_date ascending
+
+        3. Bulk reminder stub — "Send Reminder" button per overdue row.
+           Logs to console: console.log('Reminder stub: send to', site_slug)
+           Real notifications deferred to Notifications PRD.
+           Add TODO comment: // TODO: wire to notifications PRD send-reminder action
+
+        4. Summary cards at top:
+           - Total assignments in period
+           - Complete
+           - In progress
+           - Overdue
+
+      Read-only except the reminder stub. No assignment editing in this PRD.
+    skills:
+      - .agents/skills/design-taste-frontend
+    files_affected:
+      - app/admin/peer-review/page.tsx
+      - components/admin/PeerReviewTable.tsx
+      - components/admin/OverdueBadge.tsx
+      - components/admin/ReviewSummaryCards.tsx
+    acceptance_criteria:
+      - Chain diagram renders (reused from community-network or adapted)
+      - Overdue assignments show red badge
+      - Overdue rows sorted before non-overdue
+      - Reminder stub logs to console without error
+      - Summary card counts accurate against DB data
+      - TypeScript strict mode passes
+
+  - id: AP8
+    title: Pentangle group management
+    wave: 2
+    priority: must
+    complexity: 3
+    depends_on: [AP3]
+    description: |
+      Build app/admin/pentangles/page.tsx — admin-only.
+
+      Features:
+        - List all pentangle_groups with member sites (from PR #9 schema)
+        - Create group form: name input + multi-select of learning sites
+          (max 5, enforced client + server side)
+        - Edit group: add/remove sites inline (max 5 constraint)
+        - Delete group: confirm dialog ("Delete {name}? All site assignments
+          in this group will be removed.")
+        - Each group card shows: group name, member site slugs as chips,
+          link to peer review assignments involving this group
+
+      Server actions in app/admin/pentangles/actions.ts:
+        - createPentangle(name, siteIds[])
+        - updatePentangle(id, siteIds[])
+        - deletePentangle(id)
+        All call requireRole(['admin']).
+
+      Use learning-sites.ts data for site name display (slug → name lookup).
+    skills:
+      - .agents/skills/design-taste-frontend
+    files_affected:
+      - app/admin/pentangles/page.tsx
+      - app/admin/pentangles/actions.ts
+      - components/admin/PentangleCard.tsx
+      - components/admin/PentangleForm.tsx
+      - components/admin/SiteMultiSelect.tsx
+    acceptance_criteria:
+      - Pentangle list renders with real DB data
+      - Create form enforces max 5 sites
+      - Edit updates DB and reflects in UI without reload
+      - Delete requires confirmation and removes group from list
+      - Coordinator session cannot access /admin/pentangles (redirects to /403)
+      - TypeScript strict mode passes

@@ -1,0 +1,62 @@
+{
+  "prd": "admin-portal",
+  "status": "draft",
+  "created": "2026-06-10",
+  "approved": null,
+  "execution_started": null,
+  "current_wave": null,
+  "feature_branch": "feature/barbets-duet-full-build",
+  "pre_requisites": {
+    "pr_9_merged": false,
+    "supabase_credentials": false,
+    "community_network_waves_merged": false
+  },
+  "tasks": {
+    "AP1": {
+      "status": "queued",
+      "wave": 1,
+      "title": "Supabase auth helper + role check utilities"
+    },
+    "AP2": {
+      "status": "queued",
+      "wave": 1,
+      "title": "Middleware route protection"
+    },
+    "AP3": {
+      "status": "queued",
+      "wave": 1,
+      "title": "Admin layout + nav shell"
+    },
+    "AP4": {
+      "status": "queued",
+      "wave": 2,
+      "title": "T&E submission review queue"
+    },
+    "AP5": {
+      "status": "queued",
+      "wave": 2,
+      "title": "T&E publish/reject server actions"
+    },
+    "AP6": {
+      "status": "queued",
+      "wave": 2,
+      "title": "Member list + role assignment UI"
+    },
+    "AP7": {
+      "status": "queued",
+      "wave": 2,
+      "title": "Peer review chain overview + overdue flagging"
+    },
+    "AP8": {
+      "status": "queued",
+      "wave": 2,
+      "title": "Pentangle group management"
+    }
+  },
+  "completed_tasks": [],
+  "in_progress_tasks": [],
+  "blocked_tasks": [],
+  "active_worktrees": [],
+  "gate_history": [],
+  "blocked_by": "PR #9 (feature/barbets-duet-full-build) must merge first \u2014 provides member_role enum, contributions, peer_review_assignments, pentangle_groups tables"
+}
