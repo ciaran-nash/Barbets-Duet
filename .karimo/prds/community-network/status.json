@@ -1,6 +1,6 @@
 {
   "prd": "community-network",
-  "status": "in-progress",
+  "status": "complete",
   "created": "2026-06-09",
   "updated": "2026-06-09",
   "feature_description": "Build /community/* routes covering jumuiya governance, network browse, and member-facing community pages. Closes sitemap gap from project_sitemap_architecture memory.",
@@ -19,7 +19,20 @@
     "wave_6": {
       "tasks": ["A2-alt", "B2", "B3", "C1", "C2", "C3", "D1", "D2", "D3", "E1-E2", "E4"],
       "complexity": 71,
-      "status": "not-started"
+      "status": "complete",
+      "task_status": {
+        "B3": "done",
+        "B2": "done",
+        "C1": "done",
+        "C3": "done",
+        "A2-alt": "done",
+        "C2": "done",
+        "D1": "done",
+        "D2": "done",
+        "D3": "done",
+        "E1-E2": "done",
+        "E4": "done"
+      }
     }
   },
   "total_complexity": 93,
@@ -33,7 +46,8 @@
     "D1-D3 incorporate Liveblocks",
     "E1-E2 consolidated into single Opus task at complexity 8",
     "B2 references Learning_Sites_Page.jpg wireframe",
-    "Wave 5 complete: A1+A2+A3+B1 all done on 2026-06-09"
+    "Wave 5 complete: A1+A2+A3+B1 all done on 2026-06-09",
+    "Wave 6 complete: all 11 tasks done on 2026-06-09"
   ],
   "wave_5_progress": {
     "A1": {
@@ -80,6 +94,121 @@
         "lib/data/learning-sites.ts"
       ],
       "summary": "learning_sites table with pentangle_group + member_count + peer_review_chain_position; seed for 13 CSV sites; TypeScript type extended; pentangle assignments added to static data"
+    }
+  },
+  "wave_6_progress": {
+    "B3": {
+      "status": "done",
+      "commit": "4a232b2",
+      "files": [
+        "app/community/page.tsx",
+        "app/community/CommunityBrowse.tsx",
+        "components/community/MemberCard.tsx"
+      ],
+      "summary": "/community browse: bento-grid hero (impact stats), 50/50 sticky-map + SiteCard layout, region filter tabs; MemberCard forked from SiteCard"
+    },
+    "B2": {
+      "status": "done",
+      "commit": "95273e6",
+      "files": [
+        "app/community/sites/[slug]/page.tsx",
+        "app/community/sites/[slug]/CommunitySiteContent.tsx",
+        "components/community/FourReturnsDisplay.tsx"
+      ],
+      "summary": "9-section community site profile page; FourReturnsDisplay with animated counters + SVG arc indicators + aria-labels; WCAG 2.1 AA gallery section"
+    },
+    "C1": {
+      "status": "done",
+      "commit": "32954a3",
+      "files": [
+        "sanity/schemas/trialAndError.ts",
+        "sanity/schemaTypes/index.ts",
+        "lib/sanity/queries.ts"
+      ],
+      "summary": "TrialAndError Sanity schema: 4 mandatory prompt fields, taxonomy tags, status workflow; GROQ queries: getContributionsBySite, getContributionsByMember, searchContributions"
+    },
+    "C3": {
+      "status": "done",
+      "commit": "fe30436",
+      "files": [
+        "components/community/ContributionFeed.tsx",
+        "app/community/trials/page.tsx",
+        "app/community/members/[id]/page.tsx",
+        "app/community/members/[id]/MemberProfileContent.tsx"
+      ],
+      "summary": "Filterable T&E feed (site/challenge/property rights/date sort); member profile pages; /community/trials global feed"
+    },
+    "A2-alt": {
+      "status": "done",
+      "commit": "1165ecb",
+      "files": [
+        "lib/supabase-server.ts",
+        "app/community/dashboard/page.tsx",
+        "app/community/sites/[slug]/page.tsx"
+      ],
+      "summary": "Server-side Supabase helpers (getServerUser, getServerProfile, requireServerAuth); RSC auth guard on dashboard; live Supabase data augmentation on site profile"
+    },
+    "C2": {
+      "status": "done",
+      "commit": "c70f233",
+      "files": [
+        "lib/liveblocks.ts",
+        "app/api/liveblocks-auth/route.ts",
+        "app/community/contribute/page.tsx",
+        "app/community/contribute/ContributeClient.tsx",
+        "app/api/community/submit-contribution/route.ts"
+      ],
+      "summary": "4-step T&E submission form with Liveblocks collaborative drafting (TeDraftRoomProvider, real-time field sync, presence bar); Liveblocks auth endpoint; Sanity draft creation API"
+    },
+    "D1": {
+      "status": "done",
+      "commit": "1485c9a",
+      "files": [
+        "supabase/migrations/20260609_003_forum_schema.sql",
+        "types/forum.ts",
+        "app/community/sites/[slug]/forum/page.tsx",
+        "app/community/sites/[slug]/forum/ForumClient.tsx"
+      ],
+      "summary": "forum_threads + forum_posts schema (liveblocks_room generated column, post_count trigger, coordinator RLS); thread list with ForumRoomProvider presence + new thread form"
+    },
+    "D2": {
+      "status": "done",
+      "commit": "82948ee",
+      "files": [
+        "app/community/sites/[slug]/forum/[threadId]/page.tsx",
+        "app/community/sites/[slug]/forum/[threadId]/ThreadClient.tsx"
+      ],
+      "summary": "Thread view: post chain (2-level reply nesting), ComposeBox with typing presence, coordinator lock/pin/hide controls, ForumRoomProvider scoped to thread room"
+    },
+    "D3": {
+      "status": "done",
+      "commit": "c6c7c2f",
+      "files": [
+        "supabase/migrations/20260609_004_notifications.sql",
+        "app/api/liveblocks-webhook/route.ts",
+        "components/community/NotificationBell.tsx"
+      ],
+      "summary": "notifications table (type enum, RLS, thread_locked trigger); Liveblocks webhook handler → Supabase notifications; NotificationBell with unread count + realtime subscription"
+    },
+    "E1-E2": {
+      "status": "done",
+      "commit": "902bd74",
+      "files": [
+        "supabase/migrations/20260609_005_peer_review_schema.sql",
+        "app/community/governance/page.tsx",
+        "app/community/governance/GovernanceClient.tsx"
+      ],
+      "summary": "peer_reviews + pentangle_groups tables (seeded 4 groups, coordinator RLS); governance page: explainer, RadialOrbitalTimeline chain visualization, coordinator review form with baseline checklist, 4 Returns display"
+    },
+    "E4": {
+      "status": "done",
+      "commit": "52509f7",
+      "files": [
+        "lib/community/four-returns.ts",
+        "app/community/sites/[slug]/page.tsx",
+        "app/community/sites/[slug]/CommunitySiteContent.tsx"
+      ],
+      "summary": "getFourReturnsForSite: fetches baseline_locked row + latest submitted review, calculates (current/baseline)*100; getFourReturnsForSites; getNetworkFourReturnsAverages; wired into site profile page with baselinePending prop"
     }
   }
 }
