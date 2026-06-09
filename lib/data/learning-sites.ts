@@ -115,6 +115,9 @@ export const learningSites: LearningSite[] = [
     },
 
     relatedSitesSlugs: ['hannacroix-creek', 'seme', 'arboretum-kajokoby'],
+
+    pentangleGroup: 'uk_cornwall',
+    peerReviewChainPosition: 1,
   },
 
   {
@@ -224,6 +227,9 @@ export const learningSites: LearningSite[] = [
     },
 
     relatedSitesSlugs: ['woodland-valley-farm', 'sikia-community-dam', 'rufiji'],
+
+    pentangleGroup: 'usa_ne',
+    peerReviewChainPosition: 1,
   },
 
   {
@@ -333,6 +339,9 @@ export const learningSites: LearningSite[] = [
     },
 
     relatedSitesSlugs: ['seme', 'himo', 'mwasama-primary-school'],
+
+    pentangleGroup: 'east_african',
+    peerReviewChainPosition: 4,
   },
 
   {
@@ -442,6 +451,9 @@ export const learningSites: LearningSite[] = [
     },
 
     relatedSitesSlugs: ['seme', 'sikia-community-dam', 'nkoroi'],
+
+    pentangleGroup: 'east_african',
+    peerReviewChainPosition: 5,
   },
 
   {
@@ -551,6 +563,9 @@ export const learningSites: LearningSite[] = [
     },
 
     relatedSitesSlugs: ['arboretum-kajokoby', 'nkoroi', 'lukenya-zumula-farm'],
+
+    pentangleGroup: 'east_african',
+    peerReviewChainPosition: 3,
   },
 
   {
@@ -660,6 +675,9 @@ export const learningSites: LearningSite[] = [
     },
 
     relatedSitesSlugs: ['mwasama-primary-school', 'himo', 'cichlid-breeding'],
+
+    pentangleGroup: 'east_african',
+    peerReviewChainPosition: 1,
   },
 
   {
@@ -769,6 +787,7 @@ export const learningSites: LearningSite[] = [
 
     relatedSitesSlugs: ['msichoke-seaweed-growers', 'himo', 'molo-magode-farm'],
   },
+  // mwasama-primary-school: not in a pentangle group yet — will be assigned in Wave 6
 
   {
     slug: 'himo',
@@ -876,6 +895,9 @@ export const learningSites: LearningSite[] = [
     },
 
     relatedSitesSlugs: ['mwasama-primary-school', 'rufiji', 'cichlid-breeding'],
+
+    pentangleGroup: 'east_african',
+    peerReviewChainPosition: 2,
   },
 
   {

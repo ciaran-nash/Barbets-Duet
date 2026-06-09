@@ -1,0 +1,64 @@
+prd: data-model-unify
+generated: "2026-06-09"
+branch: feature/barbets-duet-full-build
+total_complexity: 15
+wave_count: 3
+
+# Orchestration
+integration_cadence: wave
+review_cadence:
+  trigger: per-wave
+  scope: wave-diff
+gates: []   # No gates — all tasks complexity <=3, no require_review files touched
+
+waves:
+
+  - wave: 1
+    label: "Foundation — shared types"
+    tasks: [C1, C2]
+    total_complexity: 6
+    rationale: >
+      C1 creates the shared ImpactPoint type. C2 migrates all three source files
+      to use it. These must land together so the type system is consistent before
+      any consumers are touched.
+    validation:
+      - npx tsc --noEmit
+
+  - wave: 2
+    label: "Consumer updates — components and content type fixes"
+    tasks: [C3, C4, C6]
+    total_complexity: 6
+    rationale: >
+      C3 updates three components to use the unified type (no logic changes).
+      C4 corrects the Story.content type union.
+      C6 adds the reverse LearningSite.projects[] link and query helper.
+      These three tasks are independent of each other and can run in parallel
+      within the wave.
+    validation:
+      - npx tsc --noEmit
+      - All three component files render correctly
+
+  - wave: 3
+    label: "Renderer + final verification"
+    tasks: [C5, C7]
+    total_complexity: 4
+    rationale: >
+      C5 updates CinematicReader to handle both PortableText and string content —
+      depends on C4 having established the union type. C7 finalises the JSDoc
+      documentation and runs the full build verification.
+    validation:
+      - npx tsc --noEmit
+      - eslint .
+      - npm run build
+      - Manual smoke-test: /stories/[slug] renders for both static and Sanity content
+
+# Complexity summary
+complexity_assessment:
+  total_points: 15
+  task_count: 7
+  wave_count: 3
+  sonnet_count: 7
+  opus_count: 0
+  high_risk_count: 0
+  slicing_needed: false
+  recommendation: "No slicing needed — 15 points across 7 tasks, all Sonnet-class"

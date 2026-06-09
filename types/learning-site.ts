@@ -118,10 +118,10 @@ export interface LearningSite {
   featuredSiteSlug?: string;
   relatedSitesSlugs?: string[];
 
-  /**
-   * Projects associated with this learning site.
-   * Populated by getProjectsBySite() at runtime, or via Sanity GROQ reference expansion.
-   * Optional — not present on lightweight LearningSite stubs used in map/browse views.
-   */
+  pentangleGroup?: string;
+  memberCount?: number;
+  forumLink?: string;
+  peerReviewChainPosition?: number;
+
   projects?: Project[];
 }
