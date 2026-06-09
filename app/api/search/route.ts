@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     .join('\n\n');
 
   const { text } = await generateText({
-    model: openrouter('meta-llama/llama-3.1-8b-instruct:free'),
+    model: openrouter('google/gemma-2-9b-it:free'),
     system: `You are a helpful assistant for Barbets Duet, a network of conservation learning sites across East Africa and beyond (Kenya, Tanzania, Uganda, UK, USA).
 Help users discover which learning sites are relevant to their questions.
 Be concise and direct — 2-4 sentences maximum.

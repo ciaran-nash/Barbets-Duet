@@ -1,0 +1,6 @@
+{
+  "prd": "community-network",
+  "status": "research-pending",
+  "created": "2026-06-09",
+  "feature_description": "Build /community/* routes covering jumuiya governance, network browse, and member-facing community pages. Closes sitemap gap from project_sitemap_architecture memory."
+}
