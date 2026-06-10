@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import { AdminNav } from './AdminNav'
 import { List, X } from '@phosphor-icons/react'
+import type { MemberRole } from '@/lib/supabase/admin-auth'
 
 interface AdminSidebarProps {
-  role: 'coordinator' | 'admin'
+  role: MemberRole
   userEmail: string
   onSignOut: () => Promise<void>
 }
