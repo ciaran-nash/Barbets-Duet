@@ -2,22 +2,19 @@ import { createClient } from './server'
 import { redirect } from 'next/navigation'
 
 /**
- * Role values matching the profiles.role column enum defined in:
- *   supabase/migrations/20260609000001_community_schema.sql
+ * Role values matching profiles.role enum (community_schema migration + add_admin_role migration).
  *
- * Role hierarchy (lowest → highest privilege):
- *   local_community < barbets_friend < junior_member < site_coordinator
- *
- * NOTE: middleware.ts (AP2) uses a different MemberRole type ('member'|'coordinator'|'admin')
- * that does not match this schema. That is a known mismatch in the middleware UX layer only.
- * middleware.ts is the human-reviewed boundary (PR #26) and must not be modified.
- * // TODO: middleware.ts member_role column mismatch — tracked, fix in future wave
+ * Access map:
+ *   /admin/*      → site_coordinator | admin
+ *   /superadmin/* → admin only
+ *   community     → any role
  */
 export type MemberRole =
   | 'site_coordinator'
   | 'junior_member'
   | 'barbets_friend'
   | 'local_community'
+  | 'admin'
 
 /**
  * Authenticated session user shape returned by getSessionUser().
@@ -57,14 +54,12 @@ export async function getSessionUser(): Promise<SessionUser | null> {
     return null
   }
 
-  // Fetch role from profiles table (column name is 'role', not 'member_role')
   const { data: profile } = await supabase
     .from('profiles')
     .select('role')
     .eq('id', user.id)
     .single()
 
-  // Default to 'local_community' if profile not found or role is null
   const role: MemberRole = (profile?.role as MemberRole) ?? 'local_community'
 
   return {
@@ -83,10 +78,10 @@ export async function getSessionUser(): Promise<SessionUser | null> {
  * Returns the session user if role check passes.
  *
  * Usage in a Server Component:
- *   const user = await requireRole(['site_coordinator'])
+ *   const user = await requireRole(['site_coordinator', 'admin'])
  *
  * Usage in a Server Action:
- *   const user = await requireRole(['site_coordinator'])
+ *   const user = await requireRole(['admin'])
  */
 export async function requireRole(allowedRoles: MemberRole[]): Promise<SessionUser> {
   const user = await getSessionUser()

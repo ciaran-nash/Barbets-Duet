@@ -10,28 +10,26 @@ interface NavItem {
   roles: MemberRole[]
 }
 
-// All nav items are visible to site_coordinator (the only role with portal access).
-// Future role additions can update the roles array per item.
 const NAV_ITEMS: NavItem[] = [
   {
     label: 'T&E Queue',
     href: '/admin/submissions',
-    roles: ['site_coordinator'],
+    roles: ['site_coordinator', 'admin'],
   },
   {
     label: 'Peer Review',
     href: '/admin/peer-review',
-    roles: ['site_coordinator'],
+    roles: ['site_coordinator', 'admin'],
   },
   {
     label: 'Members',
     href: '/admin/members',
-    roles: ['site_coordinator'],
+    roles: ['admin'],
   },
   {
     label: 'Pentangles',
     href: '/admin/pentangles',
-    roles: ['site_coordinator'],
+    roles: ['admin'],
   },
 ]
 

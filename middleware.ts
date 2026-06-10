@@ -92,7 +92,7 @@ async function refreshSupabaseSession(request: NextRequest) {
 // credentials), this function returns null and middleware does NOT block the
 // route. Set credentials in production. RLS enforces access at the DB level.
 
-type MemberRole = "member" | "coordinator" | "admin";
+type MemberRole = "site_coordinator" | "junior_member" | "barbets_friend" | "local_community" | "admin";
 
 async function getAdminSession(
   request: NextRequest
@@ -131,14 +131,13 @@ async function getAdminSession(
     return null;
   }
 
-  // Fetch member_role from profiles — admin traffic is staff-only (low volume)
   const { data: profile } = await supabase
     .from("profiles")
-    .select("member_role")
+    .select("role")
     .eq("id", user.id)
     .single();
 
-  const role = ((profile?.member_role ?? "member") as MemberRole);
+  const role = ((profile?.role ?? "local_community") as MemberRole);
 
   return { id: user.id, role };
 }
@@ -189,8 +188,8 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/403", request.url));
     }
 
-    if (isAdminRoute && session.role === "member") {
-      // /admin/* requires coordinator or admin role
+    if (isAdminRoute && session.role !== "site_coordinator" && session.role !== "admin") {
+      // /admin/* requires site_coordinator or admin role
       return NextResponse.redirect(new URL("/403", request.url));
     }
 
