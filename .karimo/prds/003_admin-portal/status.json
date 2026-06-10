@@ -1,0 +1,90 @@
+{
+  "prd": "admin-portal",
+  "status": "paused-at-gate",
+  "created": "2026-06-10",
+  "approved": "2026-06-10",
+  "execution_started": "2026-06-10T00:00:00Z",
+  "wave_1_completed_at": "2026-06-10T03:40:42Z",
+  "current_wave": 1,
+  "feature_branch": "feature/admin-portal",
+  "base_branch": "main",
+  "execution_mode": "feature-branch",
+  "pre_requisites": {
+    "pr_9_merged": true,
+    "supabase_credentials": false,
+    "community_network_waves_merged": true
+  },
+  "tasks": {
+    "AP1": {
+      "status": "done",
+      "wave": 1,
+      "title": "Supabase auth helper + role check utilities",
+      "pr_number": 25,
+      "merged_at": "2026-06-09T22:54:59Z"
+    },
+    "AP2": {
+      "status": "done",
+      "wave": 1,
+      "title": "Middleware route protection",
+      "pr_number": 26,
+      "merged_at": "2026-06-10T03:37:37Z",
+      "require_review": true,
+      "require_review_note": "middleware.ts modified — human review mandatory before Wave 2"
+    },
+    "AP3": {
+      "status": "done",
+      "wave": 1,
+      "title": "Admin layout + nav shell",
+      "pr_number": 27,
+      "merged_at": "2026-06-10T03:40:42Z"
+    },
+    "AP4": {
+      "status": "queued",
+      "wave": 2,
+      "title": "T&E submission review queue"
+    },
+    "AP5": {
+      "status": "queued",
+      "wave": 2,
+      "title": "T&E publish/reject server actions"
+    },
+    "AP6": {
+      "status": "queued",
+      "wave": 2,
+      "title": "Member list + role assignment UI"
+    },
+    "AP7": {
+      "status": "queued",
+      "wave": 2,
+      "title": "Peer review chain overview + overdue flagging"
+    },
+    "AP8": {
+      "status": "queued",
+      "wave": 2,
+      "title": "Pentangle group management"
+    }
+  },
+  "completed_tasks": ["AP1", "AP2", "AP3"],
+  "in_progress_tasks": [],
+  "blocked_tasks": [],
+  "active_worktrees": [],
+  "gate_history": [
+    {
+      "wave": 1,
+      "label": "Auth layer verified",
+      "model": "pause",
+      "reached_at": "2026-06-10T03:40:42Z",
+      "outcome": "pending-human-review",
+      "conditions": [
+        "middleware.ts reviewed by human (require_review boundary) — PENDING",
+        "GET /admin without session redirects to /auth/login — code verified",
+        "GET /superadmin with coordinator session redirects to /403 — code verified",
+        "Arcjet volunteer/donation rate limiting confirmed in matcher — VERIFIED",
+        "TypeScript strict mode passes — VERIFIED (0 new errors)",
+        "next build clean — PENDING (no credentials to run full build)"
+      ]
+    }
+  ],
+  "blocked_by": null,
+  "notes": "Wave 1 complete. Paused at Gate 1 — human must review middleware.ts (PR #26) and approve before Wave 2 begins. Set NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_ANON_KEY to run npx tsc --noEmit and next build cleanly."
+}
