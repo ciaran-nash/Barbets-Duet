@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { CaretDown, CaretRight, Warning } from '@phosphor-icons/react'
 import type { AdminTrialAndErrorEntry } from '@/lib/sanity/admin-queries'
+import { publishSubmission, rejectSubmission } from './actions'
+import { Toast } from './Toast'
 
 interface SubmissionRowProps {
   entry: AdminTrialAndErrorEntry
@@ -23,6 +25,154 @@ const PROMPT_LABELS = [
   'What did you learn and what made you laugh?',
   'Who would you include in your Barbet circle and why?',
 ]
+
+// ─── PendingActions ───────────────────────────────────────────────────────────
+
+interface PendingActionsProps {
+  docId: string
+}
+
+function PendingActions({ docId }: PendingActionsProps) {
+  const [showRejectForm, setShowRejectForm] = useState(false)
+  const [reason, setReason] = useState('')
+  const [loading, setLoading] = useState<'publish' | 'reject' | null>(null)
+  const [toast, setToast] = useState<{
+    message: string
+    variant: 'success' | 'error'
+  } | null>(null)
+
+  async function handlePublish() {
+    setLoading('publish')
+    const result = await publishSubmission(docId)
+    setLoading(null)
+    setToast({
+      message: result.ok ? result.message : result.error,
+      variant: result.ok ? 'success' : 'error',
+    })
+  }
+
+  async function handleReject(e: React.FormEvent) {
+    e.preventDefault()
+    setLoading('reject')
+    const result = await rejectSubmission(docId, reason)
+    setLoading(null)
+    if (result.ok) {
+      setShowRejectForm(false)
+      setReason('')
+    }
+    setToast({
+      message: result.ok ? result.message : result.error,
+      variant: result.ok ? 'success' : 'error',
+    })
+  }
+
+  return (
+    <div className="pt-2 border-t border-[#06211A]/8">
+      {!showRejectForm ? (
+        <div className="flex items-center gap-3 flex-wrap">
+          {/* Publish */}
+          <button
+            type="button"
+            onClick={handlePublish}
+            disabled={loading !== null}
+            className={[
+              "text-xs font-medium px-3 py-1.5 rounded font-['DM_Sans'] transition-colors",
+              'bg-[#06211A] text-[#DBFF66] hover:bg-[#0d3627]',
+              'disabled:opacity-50 disabled:cursor-not-allowed',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DBFF66] focus-visible:ring-offset-1',
+            ].join(' ')}
+          >
+            {loading === 'publish' ? 'Publishing...' : 'Publish'}
+          </button>
+
+          {/* Reject */}
+          <button
+            type="button"
+            onClick={() => setShowRejectForm(true)}
+            disabled={loading !== null}
+            className={[
+              "text-xs font-medium px-3 py-1.5 rounded font-['DM_Sans'] transition-colors",
+              'bg-transparent text-red-600 border border-red-300 hover:bg-red-50',
+              'disabled:opacity-50 disabled:cursor-not-allowed',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-1',
+            ].join(' ')}
+          >
+            Reject
+          </button>
+
+          {/* Open in Studio */}
+          <a
+            href={`https://barbetsduet.sanity.studio/desk/trialAndError;${docId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-[#06211A]/50 hover:text-[#06211A] underline underline-offset-2 font-['DM_Sans'] transition-colors"
+          >
+            Open in Studio
+          </a>
+        </div>
+      ) : (
+        // Rejection form
+        <form onSubmit={handleReject} className="space-y-2">
+          <label
+            htmlFor={`reject-reason-${docId}`}
+            className="block text-xs font-medium text-[#06211A]/70 font-['DM_Sans']"
+          >
+            Rejection reason <span className="text-red-500" aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id={`reject-reason-${docId}`}
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            rows={2}
+            required
+            placeholder="Explain why this submission is being rejected..."
+            className={[
+              'w-full text-xs border border-[#06211A]/20 rounded px-2.5 py-2',
+              "font-['DM_Sans'] text-[#06211A] placeholder:text-[#06211A]/30",
+              'focus:outline-none focus:ring-2 focus:ring-[#06211A]/30 focus:border-[#06211A]/40',
+              'resize-none',
+            ].join(' ')}
+          />
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              disabled={loading !== null || !reason.trim()}
+              className={[
+                "text-xs font-medium px-3 py-1.5 rounded font-['DM_Sans'] transition-colors",
+                'bg-red-600 text-white hover:bg-red-700',
+                'disabled:opacity-50 disabled:cursor-not-allowed',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-1',
+              ].join(' ')}
+            >
+              {loading === 'reject' ? 'Rejecting...' : 'Confirm Reject'}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setShowRejectForm(false)
+                setReason('')
+              }}
+              disabled={loading !== null}
+              className="text-xs text-[#06211A]/50 hover:text-[#06211A] font-['DM_Sans'] transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      )}
+
+      {toast && (
+        <Toast
+          message={toast.message}
+          variant={toast.variant}
+          onDismiss={() => setToast(null)}
+        />
+      )}
+    </div>
+  )
+}
+
+// ─── SubmissionRow ────────────────────────────────────────────────────────────
 
 export function SubmissionRow({ entry }: SubmissionRowProps) {
   const [expanded, setExpanded] = useState(false)
@@ -154,18 +304,9 @@ export function SubmissionRow({ entry }: SubmissionRowProps) {
             </div>
           )}
 
-          {/* Action link for pending items — full action buttons added by AP5 */}
+          {/* Pending actions — publish/reject buttons */}
           {entry.status === 'pending_review' && (
-            <div className="flex gap-3 pt-2 border-t border-[#06211A]/8">
-              <a
-                href={`https://barbetsduet.sanity.studio/desk/trialAndError;${entry._id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-[#06211A]/60 hover:text-[#06211A] underline underline-offset-2 font-['DM_Sans'] transition-colors"
-              >
-                Open in Sanity Studio
-              </a>
-            </div>
+            <PendingActions docId={entry._id} />
           )}
         </div>
       )}
