@@ -2,38 +2,41 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import type { MemberRole } from '@/lib/supabase/admin-auth'
 
 interface NavItem {
   label: string
   href: string
-  roles: Array<'coordinator' | 'admin'>
+  roles: MemberRole[]
 }
 
+// All nav items are visible to site_coordinator (the only role with portal access).
+// Future role additions can update the roles array per item.
 const NAV_ITEMS: NavItem[] = [
   {
     label: 'T&E Queue',
     href: '/admin/submissions',
-    roles: ['coordinator', 'admin'],
+    roles: ['site_coordinator'],
   },
   {
     label: 'Peer Review',
     href: '/admin/peer-review',
-    roles: ['coordinator', 'admin'],
+    roles: ['site_coordinator'],
   },
   {
     label: 'Members',
     href: '/admin/members',
-    roles: ['admin'],
+    roles: ['site_coordinator'],
   },
   {
     label: 'Pentangles',
     href: '/admin/pentangles',
-    roles: ['admin'],
+    roles: ['site_coordinator'],
   },
 ]
 
 interface AdminNavProps {
-  role: 'coordinator' | 'admin'
+  role: MemberRole
 }
 
 export function AdminNav({ role }: AdminNavProps) {
