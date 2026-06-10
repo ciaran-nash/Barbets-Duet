@@ -1,11 +1,13 @@
 {
   "prd": "admin-portal",
-  "status": "paused-at-gate",
+  "status": "wave-2-prs-open",
   "created": "2026-06-10",
   "approved": "2026-06-10",
   "execution_started": "2026-06-10T00:00:00Z",
   "wave_1_completed_at": "2026-06-10T03:40:42Z",
-  "current_wave": 1,
+  "wave_2_started_at": "2026-06-10T05:00:00Z",
+  "wave_2_prs_created_at": "2026-06-10T06:30:00Z",
+  "current_wave": 2,
   "feature_branch": "feature/admin-portal",
   "base_branch": "main",
   "execution_mode": "feature-branch",
@@ -27,9 +29,7 @@
       "wave": 1,
       "title": "Middleware route protection",
       "pr_number": 26,
-      "merged_at": "2026-06-10T03:37:37Z",
-      "require_review": true,
-      "require_review_note": "middleware.ts modified — human review mandatory before Wave 2"
+      "merged_at": "2026-06-10T03:37:37Z"
     },
     "AP3": {
       "status": "done",
@@ -39,52 +39,85 @@
       "merged_at": "2026-06-10T03:40:42Z"
     },
     "AP4": {
-      "status": "queued",
+      "status": "in-review",
       "wave": 2,
-      "title": "T&E submission review queue"
+      "title": "T&E submission review queue",
+      "pr_number": 28,
+      "pr_url": "https://github.com/ciaran-nash/Barbets-Duet/pull/28",
+      "branch": "worktree/admin-portal-AP4",
+      "target": "feature/admin-portal"
     },
     "AP5": {
-      "status": "queued",
+      "status": "in-review",
       "wave": 2,
-      "title": "T&E publish/reject server actions"
+      "title": "T&E publish/reject server actions",
+      "pr_number": 32,
+      "pr_url": "https://github.com/ciaran-nash/Barbets-Duet/pull/32",
+      "branch": "worktree/admin-portal-AP5",
+      "target": "worktree/admin-portal-AP4",
+      "note": "PR targets AP4 branch — retarget to feature/admin-portal after AP4 merges, then merge AP5"
     },
     "AP6": {
-      "status": "queued",
+      "status": "in-review",
       "wave": 2,
-      "title": "Member list + role assignment UI"
+      "title": "Member list + role assignment UI",
+      "pr_number": 29,
+      "pr_url": "https://github.com/ciaran-nash/Barbets-Duet/pull/29",
+      "branch": "worktree/admin-portal-AP6",
+      "target": "feature/admin-portal"
     },
     "AP7": {
-      "status": "queued",
+      "status": "in-review",
       "wave": 2,
-      "title": "Peer review chain overview + overdue flagging"
+      "title": "Peer review chain overview + overdue flagging",
+      "pr_number": 30,
+      "pr_url": "https://github.com/ciaran-nash/Barbets-Duet/pull/30",
+      "branch": "worktree/admin-portal-AP7",
+      "target": "feature/admin-portal"
     },
     "AP8": {
-      "status": "queued",
+      "status": "in-review",
       "wave": 2,
-      "title": "Pentangle group management"
+      "title": "Pentangle group management",
+      "pr_number": 31,
+      "pr_url": "https://github.com/ciaran-nash/Barbets-Duet/pull/31",
+      "branch": "worktree/admin-portal-AP8",
+      "target": "feature/admin-portal"
     }
   },
   "completed_tasks": ["AP1", "AP2", "AP3"],
   "in_progress_tasks": [],
   "blocked_tasks": [],
-  "active_worktrees": [],
+  "active_worktrees": [
+    { "task_id": "AP4", "path": ".karimo/.worktrees/admin-portal/AP4", "branch": "worktree/admin-portal-AP4" },
+    { "task_id": "AP5", "path": ".karimo/.worktrees/admin-portal/AP5", "branch": "worktree/admin-portal-AP5" },
+    { "task_id": "AP6", "path": ".karimo/.worktrees/admin-portal/AP6", "branch": "worktree/admin-portal-AP6" },
+    { "task_id": "AP7", "path": ".karimo/.worktrees/admin-portal/AP7", "branch": "worktree/admin-portal-AP7" },
+    { "task_id": "AP8", "path": ".karimo/.worktrees/admin-portal/AP8", "branch": "worktree/admin-portal-AP8" }
+  ],
   "gate_history": [
     {
       "wave": 1,
       "label": "Auth layer verified",
       "model": "pause",
       "reached_at": "2026-06-10T03:40:42Z",
-      "outcome": "pending-human-review",
-      "conditions": [
-        "middleware.ts reviewed by human (require_review boundary) — PENDING",
-        "GET /admin without session redirects to /auth/login — code verified",
-        "GET /superadmin with coordinator session redirects to /403 — code verified",
-        "Arcjet volunteer/donation rate limiting confirmed in matcher — VERIFIED",
-        "TypeScript strict mode passes — VERIFIED (0 new errors)",
-        "next build clean — PENDING (no credentials to run full build)"
-      ]
+      "outcome": "human-approved",
+      "completed_at": "2026-06-10T05:00:00Z",
+      "approved_by": "user",
+      "notes": "Human approved Gate 1 — middleware.ts reviewed, Wave 2 authorized"
     }
   ],
+  "gate_2": {
+    "model": "conditional",
+    "label": "Wave 2 complete — all 8 tasks done",
+    "conditions": [
+      "All tasks AP1-AP8 status = done",
+      "TypeScript strict mode passes (npx tsc --noEmit)",
+      "next build clean or pre-existing-errors-only",
+      "WCAG 2.2 AA spot-check on T&E queue and member list"
+    ],
+    "note": "Gate 2 evaluates after all Wave 2 PRs merge to feature/admin-portal"
+  },
   "blocked_by": null,
-  "notes": "Wave 1 complete. Paused at Gate 1 — human must review middleware.ts (PR #26) and approve before Wave 2 begins. Set NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_ANON_KEY to run npx tsc --noEmit and next build cleanly."
+  "notes": "Wave 2 PRs open: AP4 (#28), AP5 (#32), AP6 (#29), AP7 (#30), AP8 (#31). IMPORTANT: AP5 PR currently targets worktree/admin-portal-AP4 — must be retargeted to feature/admin-portal after AP4 merges. Merge order: AP4 first, retarget AP5, then AP5+AP6+AP7+AP8 in any order. Key schema corrections applied in all Wave 2 tasks: profiles.role column (not member_role), MemberRole = site_coordinator|junior_member|barbets_friend|local_community. T&E via Sanity (not Supabase). peer_reviews table (not peer_review_assignments)."
 }
