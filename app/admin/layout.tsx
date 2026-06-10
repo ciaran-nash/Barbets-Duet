@@ -29,14 +29,18 @@ export default async function AdminLayout({
     redirect('/auth/login')
   }
 
-  if (user.role === 'member') {
+  // Only site_coordinator can access the admin portal.
+  // All other roles (junior_member, barbets_friend, local_community) are redirected.
+  // Note: middleware.ts uses a legacy role model ('member'|'coordinator'|'admin') as
+  // the UX redirect layer. This check is the authoritative server-side guard.
+  if (user.role !== 'site_coordinator') {
     redirect('/403')
   }
 
   return (
     <div className="flex min-h-[100dvh] bg-[#F4F4F5]">
       <AdminSidebar
-        role={user.role as 'coordinator' | 'admin'}
+        role={user.role}
         userEmail={user.email ?? ''}
         onSignOut={handleSignOut}
       />
