@@ -2,13 +2,22 @@ import { createClient } from './server'
 import { redirect } from 'next/navigation'
 
 /**
- * Role values derived from profiles.member_role enum (PR #9 schema).
- * Keep in sync with Supabase migration if the enum values change.
+ * Role values matching the profiles.role column enum defined in:
+ *   supabase/migrations/20260609000001_community_schema.sql
  *
  * Role hierarchy (lowest → highest privilege):
- *   member < coordinator < admin
+ *   local_community < barbets_friend < junior_member < site_coordinator
+ *
+ * NOTE: middleware.ts (AP2) uses a different MemberRole type ('member'|'coordinator'|'admin')
+ * that does not match this schema. That is a known mismatch in the middleware UX layer only.
+ * middleware.ts is the human-reviewed boundary (PR #26) and must not be modified.
+ * // TODO: middleware.ts member_role column mismatch — tracked, fix in future wave
  */
-export type MemberRole = 'member' | 'coordinator' | 'admin'
+export type MemberRole =
+  | 'site_coordinator'
+  | 'junior_member'
+  | 'barbets_friend'
+  | 'local_community'
 
 /**
  * Authenticated session user shape returned by getSessionUser().
@@ -20,7 +29,7 @@ export interface SessionUser {
 }
 
 /**
- * Returns the authenticated Supabase user with their member_role from profiles.
+ * Returns the authenticated Supabase user with their role from profiles.
  *
  * Returns null if:
  *   - Supabase is not configured (missing env vars)
@@ -48,15 +57,15 @@ export async function getSessionUser(): Promise<SessionUser | null> {
     return null
   }
 
-  // Fetch member_role from profiles table
+  // Fetch role from profiles table (column name is 'role', not 'member_role')
   const { data: profile } = await supabase
     .from('profiles')
-    .select('member_role')
+    .select('role')
     .eq('id', user.id)
     .single()
 
-  // Default to 'member' if profile not found or role is null
-  const role: MemberRole = (profile?.member_role as MemberRole) ?? 'member'
+  // Default to 'local_community' if profile not found or role is null
+  const role: MemberRole = (profile?.role as MemberRole) ?? 'local_community'
 
   return {
     id: user.id,
@@ -74,10 +83,10 @@ export async function getSessionUser(): Promise<SessionUser | null> {
  * Returns the session user if role check passes.
  *
  * Usage in a Server Component:
- *   const user = await requireRole(['coordinator', 'admin'])
+ *   const user = await requireRole(['site_coordinator'])
  *
  * Usage in a Server Action:
- *   const user = await requireRole(['admin'])
+ *   const user = await requireRole(['site_coordinator'])
  */
 export async function requireRole(allowedRoles: MemberRole[]): Promise<SessionUser> {
   const user = await getSessionUser()
