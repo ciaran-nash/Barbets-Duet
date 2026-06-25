@@ -6,3 +6,12 @@ coverage/
 .env*
 !.env.example
 graphify-out/
+
+# Secrets / local tooling state — must never be committed
+.mcp.json
+.claude/settings.local.json
+.claude/worktrees/
+.karimo/.worktrees/
+supabase/.temp/
+pastebin/
+.vscode/
