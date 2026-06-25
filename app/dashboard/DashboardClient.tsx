@@ -10,7 +10,7 @@ import { useAuth } from '@/components/AuthProvider';
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { LogOut, Save, User as UserIcon, Calendar, Edit2, Loader2, Home } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import Link from 'next/link';
 import { MEMBER_ROLE_LABELS } from '@/types/community';
 

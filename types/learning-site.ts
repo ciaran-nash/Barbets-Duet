@@ -1,8 +1,6 @@
 import type { ImpactPoint } from '@/types/shared';
 import type { Project } from '@/types/project';
 
-/** @deprecated Use ImpactPoint from @/types/shared directly */
-export type ImpactStat = ImpactPoint;
 
 export interface ImpactReport {
   label: string;

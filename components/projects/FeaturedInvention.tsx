@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { KineticReveal } from '@/components/motion/KineticReveal';
 import Image from 'next/image';
 import { Lightbulb, ArrowRight } from 'lucide-react';

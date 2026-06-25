@@ -10,7 +10,7 @@
 // ============================================================
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring } from 'motion/react';
 import { Leaf, Users, TrendingUp, Sparkles } from 'lucide-react';
 
 // ── Types ────────────────────────────────────────────────────

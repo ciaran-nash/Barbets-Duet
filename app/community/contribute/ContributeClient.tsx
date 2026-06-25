@@ -15,7 +15,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight, Users, Loader2, Check, AlertCircle } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { TeDraftRoomProvider, useTeDraftMyPresence, useTeDraftOthers, useTeDraftStorage, useTeDraftMutation, useTeDraftStatus } from '@/lib/liveblocks';
 
 // ── Step config ───────────────────────────────────────────────

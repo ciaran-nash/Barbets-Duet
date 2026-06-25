@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { type Variant, type Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
+import { type Variant, type Variants } from 'motion/react';
 import { Menu, X, ChevronRight } from 'lucide-react';
 
 interface Link {

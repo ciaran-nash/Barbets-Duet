@@ -41,6 +41,21 @@
   --border: rgba(244, 244, 245, 0.12);
   --border-strong: rgba(244, 244, 245, 0.25);
 
+  /* shadcn semantic tokens — wired to brand system */
+  --card: #06211A;
+  --card-foreground: #F4F4F5;
+  --popover: #06211A;
+  --popover-foreground: #F4F4F5;
+  --primary-foreground: #06211A;
+  --secondary-foreground: #06211A;
+  --muted: rgba(244, 244, 245, 0.06);
+  --muted-foreground: rgba(244, 244, 245, 0.5);
+  --destructive: #ef4444;
+  --destructive-foreground: #F4F4F5;
+  --input: rgba(244, 244, 245, 0.12);
+  --ring: #DBFF66;
+  --radius: 0.5rem;
+
   /* Font tokens are injected by next/font (see app/layout.tsx) */
 }
 
@@ -53,6 +68,17 @@
   --surface: rgba(6, 33, 26, 0.04);
   --border: rgba(6, 33, 26, 0.12);
   --border-strong: rgba(6, 33, 26, 0.25);
+
+  /* shadcn light overrides */
+  --card: #F4F4F5;
+  --card-foreground: #06211A;
+  --popover: #F4F4F5;
+  --popover-foreground: #06211A;
+  --primary-foreground: #F4F4F5;
+  --muted: rgba(6, 33, 26, 0.06);
+  --muted-foreground: rgba(6, 33, 26, 0.5);
+  --input: rgba(6, 33, 26, 0.12);
+  --ring: #006F53;
 }
 
 /* ─────────────────────────────────────────────
@@ -116,6 +142,19 @@
 /* ─────────────────────────────────────────────
    Utility classes
    ──────────────────────────────────────────── */
+
+/* Eyebrow tag — precedes H1/H2 headings */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 10px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

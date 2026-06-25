@@ -12,11 +12,11 @@
 // ============================================================
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { GitBranch, Users, Leaf, ArrowRight, CheckCircle, AlertCircle, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import RadialOrbitalTimeline from '@/components/ui/radial-orbital-timeline';
 import FourReturnsDisplay from '@/components/community/FourReturnsDisplay';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import type { Profile } from '@/types/community';
 
 // ── Types ─────────────────────────────────────────────────────

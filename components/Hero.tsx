@@ -24,9 +24,8 @@ export default function Hero() {
               </svg>
             </div>
 
-            <span className="text-sm font-semibold tracking-wider uppercase text-night-forest mb-4 md:mb-6 flex items-center gap-2">
-              <span className="w-8 h-px bg-night-forest"></span>
-              Restoring ecosystems through collaborative innovation
+            <span className="eyebrow border border-night-forest/20 text-night-forest/60 mb-4 md:mb-6">
+              Ecological Restoration Collective
             </span>
 
             <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl text-night-forest leading-[1.1] tracking-tight mb-6 mt-2 relative z-10">

@@ -29,6 +29,7 @@ const ROLE_BADGE: Record<MemberRole, string> = {
   junior_member: 'bg-[#2D6A4F]/15 text-[#2D6A4F]',
   barbets_friend: 'bg-blue-50 text-blue-700',
   local_community: 'bg-[#06211A]/8 text-[#06211A]/60',
+  admin: 'bg-red-50 text-red-700',
 }
 
 const PAGE_SIZE = 50

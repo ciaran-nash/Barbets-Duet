@@ -1,0 +1,666 @@
+{
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/middleware.ts": {
+    "mtime": 1779346505.5722995,
+    "hash": "7d877499f00363f437ff60edc47f319c"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/postcss.config.mjs": {
+    "mtime": 1778342074.1353428,
+    "hash": "b2f5d23a090943dc40e19a92862cc2c1"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/next-env.d.ts": {
+    "mtime": 1778425206.0148413,
+    "hash": "ba64ff7d54714a8f64db89b1003207d8"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/eslint.config.mjs": {
+    "mtime": 1778342074.1331482,
+    "hash": "514279e2189c54adb2442e384cc25404"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/next.config.ts": {
+    "mtime": 1778510637.7046978,
+    "hash": "3ba501ac8fb87a6b4c373074cf3d1d0a"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/types/project.ts": {
+    "mtime": 1779275548.272086,
+    "hash": "460ec1bb46289fd5a8733884e2c0fe80"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/types/learning-site.ts": {
+    "mtime": 1779346505.5758646,
+    "hash": "876412a60c80ea004cbed1ba34fe74c3"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/types/team.ts": {
+    "mtime": 1779346505.5761123,
+    "hash": "d92268698de6379eb372c58c99fccc01"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/types/narrative.ts": {
+    "mtime": 1779275545.1177244,
+    "hash": "55a7234748172fbef1780ee77c199d8f"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/layout.tsx": {
+    "mtime": 1779346505.5580862,
+    "hash": "f3257b33147ea79d9905a41201e668f7"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/page.tsx": {
+    "mtime": 1778510637.6995747,
+    "hash": "45f1adc20aa664e7422a407ae8502bf5"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/learning-sites/page.tsx": {
+    "mtime": 1779360023.4963696,
+    "hash": "01d47f9404d731bb84ad4b3fe58b42f4"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/learning-sites/[slug]/LearningSiteContent.tsx": {
+    "mtime": 1779346505.5584533,
+    "hash": "37d8ef20f7ae251d29f048d603270df2"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/learning-sites/[slug]/page.tsx": {
+    "mtime": 1778946203.006067,
+    "hash": "69d1a113a03ea63d10b0df34c268c154"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/get-involved/page.tsx": {
+    "mtime": 1779360023.4960105,
+    "hash": "01d4fdea89baa26f73287a5036cc3b65"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/projects/InnovationHubContent.tsx": {
+    "mtime": 1778487326.9482646,
+    "hash": "182063c6a537b8b4ab6c867561b022e9"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/projects/page.tsx": {
+    "mtime": 1778487259.0554094,
+    "hash": "19104c77632650a979114223b88bf965"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/support-us/SupportUsBanner.tsx": {
+    "mtime": 1779346505.5586593,
+    "hash": "0e5f16034f3ba99eef7d7336c8c65851"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/support-us/page.tsx": {
+    "mtime": 1779346505.5589051,
+    "hash": "ef2d8375632e769ed79fe379775f6917"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/support-us/success/page.tsx": {
+    "mtime": 1779346505.5592992,
+    "hash": "0e57d757e3b818aecea41ad2ea57f6a2"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/about/AboutContent.tsx": {
+    "mtime": 1779346505.555536,
+    "hash": "41fdd979485f6a7d9271d419b9a8f959"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/about/page.tsx": {
+    "mtime": 1778425205.4402637,
+    "hash": "74ff64b875e871bf174f2819f0d95a5a"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/about/mission-vision/page.tsx": {
+    "mtime": 1778408526.4476085,
+    "hash": "e8e1cf841933ee873f52276849e8879f"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/about/mission-vision/MissionVisionContent.tsx": {
+    "mtime": 1778504044.5554366,
+    "hash": "0aea69081d75bccb344ab4ba5bf4f52f"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/about/careers/page.tsx": {
+    "mtime": 1779346505.5562224,
+    "hash": "b5a23e55ab5c63de161922a33b922641"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/about/team/page.tsx": {
+    "mtime": 1779346505.556517,
+    "hash": "c1658cddcda081eac240901bca8ba21d"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/about/philosophy-history/PhilosophyHistoryContent.tsx": {
+    "mtime": 1778504056.2451777,
+    "hash": "6af4504ffdfeec81c195345f93144cc2"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/about/philosophy-history/page.tsx": {
+    "mtime": 1778410356.0041955,
+    "hash": "5472dfc56f13191a5d00725d703424c9"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/dashboard/DashboardClient.tsx": {
+    "mtime": 1779468878.6910942,
+    "hash": "1fe06fd3affd92be3ea8135c0fdf3759"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/dashboard/page.tsx": {
+    "mtime": 1778425205.4424179,
+    "hash": "aa73aec3565eb4748b4937ec708b13db"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/sites/[id]/page.tsx": {
+    "mtime": 1778510637.7000487,
+    "hash": "9ebcc39adfc937b54806f1906a969fab"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/stories/page.tsx": {
+    "mtime": 1778497130.9382088,
+    "hash": "375bdd6b6fd87d8a4cdbb0cc3666b1e1"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/stories/[slug]/page.tsx": {
+    "mtime": 1778497171.784734,
+    "hash": "62c5befacd4655aedfdb2b87fda88f46"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/api/create-checkout-session/route.ts": {
+    "mtime": 1779346505.5568988,
+    "hash": "f9f99b4ca1fff077c77ee02a69aedcfe"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/api/volunteer/route.ts": {
+    "mtime": 1779468822.6889932,
+    "hash": "375c14b7343d6d8d0076593043842a55"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/api/paypal-order/route.ts": {
+    "mtime": 1779346505.557183,
+    "hash": "97af44ea2581887c5b052e4b75d777df"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/events/page.tsx": {
+    "mtime": 1778497150.3304205,
+    "hash": "fe3b8e52be462e82d1007d61d1b2edf0"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/app/events/[slug]/page.tsx": {
+    "mtime": 1779346505.557451,
+    "hash": "b0eb75c2a3e4d303e90e6ef8ce35b2de"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/emails/VolunteerConfirmation.tsx": {
+    "mtime": 1779360023.498297,
+    "hash": "6b9cdd56601532365481b7dd6960b351"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/emails/DonationReceipt.tsx": {
+    "mtime": 1779360023.4976037,
+    "hash": "6bb09d0b5857106e5eb8c907eea96937"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/Hero.tsx": {
+    "mtime": 1779346505.562071,
+    "hash": "fa30692755351de3db2641f4e44eadee"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/Mission.tsx": {
+    "mtime": 1779346505.5636022,
+    "hash": "9b80dbf934b451ecbcf66ef72ebc9aaf"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/PhotoGallery.tsx": {
+    "mtime": 1779468906.398938,
+    "hash": "c5eafa03785105211fa9a089a2af7be3"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/DevThemeHub.tsx": {
+    "mtime": 1778945896.5666459,
+    "hash": "12890b29c7745ae10bb837e5fb885cbe"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/EarthGlobe.tsx": {
+    "mtime": 1779346505.5606399,
+    "hash": "8370c82922f04298aa849fa8a08a6607"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/CaseStudies.tsx": {
+    "mtime": 1779346505.5603096,
+    "hash": "bbc50ac85e5c994e1c8d1c21627696e6"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/FAQSection.tsx": {
+    "mtime": 1779346505.56134,
+    "hash": "e583e53a9c0c247e5944c4798fc29933"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/Timeline.tsx": {
+    "mtime": 1779346505.5652225,
+    "hash": "318156443277d2f6e3beaaa53ccb6b44"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/Blog7Demo.tsx": {
+    "mtime": 1778425206.0364277,
+    "hash": "8bd653f25659dadb2ac8e0a2a9dba366"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/Feature108Demo.tsx": {
+    "mtime": 1778425206.0367272,
+    "hash": "06a6b383ef025d477673e81db5bac5c7"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ThemeToggle.tsx": {
+    "mtime": 1778506786.6413682,
+    "hash": "2b7265149c7bddcf5e0cfc8dcdafebcc"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/CTA.tsx": {
+    "mtime": 1779346505.560056,
+    "hash": "4afb90c0f3236bf0ad7e7623a8b520a8"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/Mechanism.tsx": {
+    "mtime": 1779346505.5633156,
+    "hash": "21ac2163072e1d3fd95ec99b92b7b70e"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/SmoothScroll.tsx": {
+    "mtime": 1778425206.0410569,
+    "hash": "6f00e7dd4e550ec7e882159f21f32ff2"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ShareButton.tsx": {
+    "mtime": 1779346505.5649135,
+    "hash": "0cfda4856915646da8fd5ea5eaf0a35d"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/SaveButton.tsx": {
+    "mtime": 1779468838.0996912,
+    "hash": "b90d082e82a51f74e7ecb6b486975260"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/Header.tsx": {
+    "mtime": 1779346505.561679,
+    "hash": "47004c1a311382a0480d7d91e48e0fdf"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/LearningSites.tsx": {
+    "mtime": 1779346505.562804,
+    "hash": "84100128fe6d5b6016437e244d354f65"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/AuthProvider.tsx": {
+    "mtime": 1779468829.9989498,
+    "hash": "37aceb2f8da1514beceeeefd4162860d"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ImpactSection.tsx": {
+    "mtime": 1779346505.5623794,
+    "hash": "f881f6d268e8fe01181e09a345e2c29f"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/About.tsx": {
+    "mtime": 1779346505.5597632,
+    "hash": "34b929ee66ce4b0bb3a09740a7cc89cc"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/Network.tsx": {
+    "mtime": 1779346505.5641797,
+    "hash": "96e4530adede047cd54fc832620f34b5"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/blocks/shadcnblocks-com-feature108.tsx": {
+    "mtime": 1778425206.0157125,
+    "hash": "b47b2abfc4a0b86d16cae4d6bda2624a"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/blocks/blog7.tsx": {
+    "mtime": 1779346505.5658138,
+    "hash": "38bf75abf45e665a525cbda04317d538"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/navbar-with-animated-mega-dropdown.tsx": {
+    "mtime": 1778425206.0195417,
+    "hash": "96ad0774f207729492cc25b1332526ce"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/tabs.tsx": {
+    "mtime": 1778425206.0203347,
+    "hash": "485d47f9e6f866e564685e6584e1e747"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/card.tsx": {
+    "mtime": 1778510629.583304,
+    "hash": "7205b7e292c2d4ff27c7220dbb7b3332"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/slider.tsx": {
+    "mtime": 1778425206.0212312,
+    "hash": "5345e0c724b2ee363ba117f5c5e3c7ec"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/demo.tsx": {
+    "mtime": 1778425206.0218601,
+    "hash": "cd511ab53f34e06438e7e1427dd587f5"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/sheet.tsx": {
+    "mtime": 1778425206.0221577,
+    "hash": "136091919ca01aa135e9413cc05b2d23"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/sticky-footer.tsx": {
+    "mtime": 1778511594.8960156,
+    "hash": "f11a130f7920fba394c2bdb081ef511b"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/label.tsx": {
+    "mtime": 1778425206.023535,
+    "hash": "e7e0c4ad98f3485ecd3c0ca516d0a8bf"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/radial-orbital-timeline.tsx": {
+    "mtime": 1778510637.7040935,
+    "hash": "6add8855160130437ff689c24d613bd8"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/badge.tsx": {
+    "mtime": 1778425206.0245676,
+    "hash": "ad01e5e94310fd0993007d22b338378b"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/button.tsx": {
+    "mtime": 1778510629.5830736,
+    "hash": "8c3eea51322b5489017d5674bff3a750"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/ui/input.tsx": {
+    "mtime": 1778945891.432609,
+    "hash": "2b6c511fcf931538b404ff6587a6d67a"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/forms/VolunteerForm.tsx": {
+    "mtime": 1779360023.4967384,
+    "hash": "9eb27ef7ce8533b5ea80019e100a11a9"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/donations/SiteSelector.tsx": {
+    "mtime": 1779346505.5665822,
+    "hash": "cd946f0fa8a8fbd3402678f59007d727"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/donations/DonationForm.tsx": {
+    "mtime": 1779346505.5663311,
+    "hash": "5adf8ab3fa99d3a06e185a902af9d1f9"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SiteTestimonial.tsx": {
+    "mtime": 1779346505.5678515,
+    "hash": "31d8dbf4cadb68352e831c8a6575d74f"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SiteProjects.tsx": {
+    "mtime": 1778504099.294937,
+    "hash": "8b1ab2d266e09527e57d45d7bd9b8894"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/ImpactGrid.tsx": {
+    "mtime": 1778479615.5822854,
+    "hash": "9d5f30881ecc1543772973935d4f7f9d"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/ExploreOtherSites.tsx": {
+    "mtime": 1779346505.5671043,
+    "hash": "d5875791e8dbf423514260492a8bd319"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/FutureGoals.tsx": {
+    "mtime": 1778479623.4760535,
+    "hash": "a90fe1fda5a134248481ab001c7facb1"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SiteHero.tsx": {
+    "mtime": 1778479558.6759706,
+    "hash": "cf7df56dc3e0cbddfe1e2f3e52e303c3"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SiteCard.tsx": {
+    "mtime": 1779360023.4969356,
+    "hash": "0baf4ea365cfc9d951d2f72f66fe4902"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SitesBrowse.tsx": {
+    "mtime": 1779360023.497228,
+    "hash": "ecc21658e8e852f18144417edfb50c79"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SiteChallenges.tsx": {
+    "mtime": 1778479565.6184483,
+    "hash": "498e074331cd40b41f776b34c74b127d"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SitesMap.tsx": {
+    "mtime": 1779346505.5681443,
+    "hash": "3da16bb84f9bfbf517434b3aa425eafd"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SiteContact.tsx": {
+    "mtime": 1779346505.5673203,
+    "hash": "321cf1690bd4fa1eef88b53b7ad5184b"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/MarketInventions.tsx": {
+    "mtime": 1778479583.0776796,
+    "hash": "ff42bd4462d3946b5ec5742b8d95c2c4"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SiteRestorationStrategies.tsx": {
+    "mtime": 1779346505.5676968,
+    "hash": "3313c51689eecfc193b15016810f4501"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/learning-sites/SiteGallery.tsx": {
+    "mtime": 1778479631.5192719,
+    "hash": "f93ab6a0ebce0028ebf18b908a74581c"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/projects/ProjectFilters.tsx": {
+    "mtime": 1778487281.4350407,
+    "hash": "67788b1124e6289110a15f6f3c2837be"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/projects/ProjectGrid.tsx": {
+    "mtime": 1778487333.5024393,
+    "hash": "894d19b6a81f98a9218ca7b0d18236f1"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/projects/FeaturedInvention.tsx": {
+    "mtime": 1778487307.1472623,
+    "hash": "ad7e40aafc9ca3393c348377a2907481"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/projects/HubHero.tsx": {
+    "mtime": 1778487273.508024,
+    "hash": "600bbeb5231409c7da0a521dde9c5c57"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/projects/ProjectCard.tsx": {
+    "mtime": 1778487347.1213303,
+    "hash": "7bdb546695493740023b0fa8499dd5af"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/projects/ProjectDetailDrawer.tsx": {
+    "mtime": 1779346505.568599,
+    "hash": "58e6146cf32e265c919392116c05eba5"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/motion/KineticReveal.tsx": {
+    "mtime": 1778425206.0320942,
+    "hash": "160e022f7adf6b963b9befa69cd82781"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/motion/ScrollGlow.tsx": {
+    "mtime": 1778425206.0331438,
+    "hash": "dde2a22ded76658e28364c2c1b19dc23"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/about/TeamSection.tsx": {
+    "mtime": 1779346505.565554,
+    "hash": "6fe5da98fadf89564ac1ae14fa7ea486"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/stories/StoryCard.tsx": {
+    "mtime": 1778497121.4164844,
+    "hash": "e33e65dd4e5ab0afd43116beb9db9f36"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/stories/CinematicReader.tsx": {
+    "mtime": 1779346505.568914,
+    "hash": "5d2a24f89ff73679b25efa7287dc9cff"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/events/EventDetail.tsx": {
+    "mtime": 1779346505.566846,
+    "hash": "f77f15aec82a37dd5b0cc607b9df6642"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/components/events/EventCard.tsx": {
+    "mtime": 1778497140.797667,
+    "hash": "0ce30696621c1959a93d222a8ff51823"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/hooks/use-magnetic.ts": {
+    "mtime": 1778504083.5307536,
+    "hash": "daae2461614e0872c02f5c9d084989c4"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/hooks/use-mobile.ts": {
+    "mtime": 1778425206.0510325,
+    "hash": "ab44f01944131776c0ea70c22f44d8a6"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/hooks/useWindowSize.ts": {
+    "mtime": 1778425206.055527,
+    "hash": "7dd1340ddba71808d2636d60405402ef"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/utils.ts": {
+    "mtime": 1778425206.0561764,
+    "hash": "5a6fd53fdcf2be529e9cc0b718fde352"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/supabase.ts": {
+    "mtime": 1779468815.2677722,
+    "hash": "d057bd2f6c2c9a6aac52dc48c431d5d4"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/schemas/donation.schema.ts": {
+    "mtime": 1779346505.5715592,
+    "hash": "ab38311d073d2373e397084be109c0bc"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/schemas/volunteerApplication.schema.ts": {
+    "mtime": 1779346505.5720465,
+    "hash": "b537f8f1aa64bf80759f656d1015e562"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/data/projects.ts": {
+    "mtime": 1779275563.658015,
+    "hash": "5eb21750a76e8c134082f701fbd72333"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/data/learning-sites.ts": {
+    "mtime": 1779346505.5694556,
+    "hash": "e73fcc45318e5afde6fff8d3d062f5d3"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/data/team.ts": {
+    "mtime": 1779346505.5702055,
+    "hash": "5598880aed0390b0962c75695ff78cac"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/data/stories.ts": {
+    "mtime": 1779275551.603648,
+    "hash": "7dfc71f52490516dcbb1ba74b0769b63"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/data/events.ts": {
+    "mtime": 1779275567.1231904,
+    "hash": "77db7e4523625a666fbc7fd92f6f4f15"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/lib/email/resend.ts": {
+    "mtime": 1779360023.4986243,
+    "hash": "b07cba76d3f880092d51d1788eed9a63"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/PRD.md": {
+    "mtime": 1779286851.481276,
+    "hash": "89cd377afce6ee3f7a57e2f065f3a8e0"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/README.md": {
+    "mtime": 1778342074.1288116,
+    "hash": "9bf7703b2d8d5c5b8b14deb78c16464d"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/CMS_TEMPLATE_SPEC.md": {
+    "mtime": 1778342074.1287317,
+    "hash": "ff76b10d15000cd4482a3933f4c554a4"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/DESIGN.md": {
+    "mtime": 1779346505.555204,
+    "hash": "ae7d01d87d3285000713871079b83ce6"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/AGENTS.md": {
+    "mtime": 1779281888.360645,
+    "hash": "c7eafb37ff368d1e6fec8e428bb417dc"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/textual/Footpaths and Fences_ A Guide to Mosaic and Column Rights.md": {
+    "mtime": 1779283060.306037,
+    "hash": "9cddb770d399517264e0d3d2914da388"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/textual/Strategic Framework for the Barbets Duet Learning Site Network_ A 20-Year Operational Experiment.md": {
+    "mtime": 1779277354.0609312,
+    "hash": "d343910b729d0f643c7a75a50621a51c"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/textual/Rewarding the Abundance of Life_ A Business Model for Environmental Stewardship and Mosaic Rights.md": {
+    "mtime": 1779277574.620193,
+    "hash": "24901c55dbfdd374c69904470291b56a"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/textual/Ecological Case Portfolio_ The Barbets Duet Experiment.md": {
+    "mtime": 1779283265.9092126,
+    "hash": "0c703f03da137cdede59f3e8d7225d32"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/textual/We are the Barbet\u2019s Duet.md": {
+    "mtime": 1779283356.5634995,
+    "hash": "cb88ef2cd1695c2a29f98e00f65caff6"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/trd/Technology Requirement Document.docx.md": {
+    "mtime": 1779285947.521435,
+    "hash": "a9613d1acf326b94a995e57c99e8f7ad"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed.pdf": {
+    "mtime": 1778427228.341504,
+    "hash": "ff6f74ba5bcfd0b6dcc86bca6a1aa15e"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/sitemap/Group 6.pdf": {
+    "mtime": 1777352218.058904,
+    "hash": "567b7fd0ea2ac51a6cb5da0a8aa0fdc7"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_18.jpg": {
+    "mtime": 1779281292.390802,
+    "hash": "657b3cfe6b6c521d91805e20e66f53ad"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_09.jpg": {
+    "mtime": 1779281283.1435266,
+    "hash": "039677804ab4bb55d1a0d1bbe8578b99"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_08.jpg": {
+    "mtime": 1779281281.4968483,
+    "hash": "5e8043cf1291b7132a515f5615954048"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_06.jpg": {
+    "mtime": 1779281278.333635,
+    "hash": "0a65cf85053282ce126eae8147573054"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_12.jpg": {
+    "mtime": 1779281284.3296552,
+    "hash": "2b0a9f0c050fa8fefbb416c47aacbe66"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_13.jpg": {
+    "mtime": 1779281284.788381,
+    "hash": "2231365e1d01fd4a25d7e42a1d09c6ac"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_07.jpg": {
+    "mtime": 1779281279.889531,
+    "hash": "95f536e1041fd1594f0687b218a84c6d"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_11.jpg": {
+    "mtime": 1779281283.8895764,
+    "hash": "21133b65bc1b0879eb6e0c8c06d423d0"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_05.jpg": {
+    "mtime": 1779281277.9743311,
+    "hash": "152d67cb1858adf6fde43fa52975c519"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_04.jpg": {
+    "mtime": 1779281277.5594606,
+    "hash": "1259e0e14d07cfd4e4346a1d528def64"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_10.jpg": {
+    "mtime": 1779281283.5100305,
+    "hash": "bc3c2c36dca09ea38632e858dfdd9079"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_14.jpg": {
+    "mtime": 1779281285.1616032,
+    "hash": "2a659898974b006d73921f138bfa5fb5"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_01.jpg": {
+    "mtime": 1779281276.3707898,
+    "hash": "7d9d19ce3fe5bf654c9ae6ff68d90104"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_15.jpg": {
+    "mtime": 1779281285.3965263,
+    "hash": "adf8f89fd0e99a687c58aee0a182725a"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_03.jpg": {
+    "mtime": 1779281277.1235383,
+    "hash": "fbc49d52bb5ce384eaa75f7c8fed4256"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_17.jpg": {
+    "mtime": 1779281291.9647703,
+    "hash": "58c013f7bdf29f2a2afe738c0c4577ae"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_16.jpg": {
+    "mtime": 1779281288.7012947,
+    "hash": "8dd439b593b1947cae70d16b0da4e1fd"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/Barbets Duet Web Design Concept Proposal 2 2 2_compressed_Page_02.jpg": {
+    "mtime": 1779281276.8306055,
+    "hash": "72c40d4b27e0294736fb110f825c8f0f"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/logos/barbets-duet-combination-marque.svg": {
+    "mtime": 1779281682.9936037,
+    "hash": "7bbf67849a92b8d80a06447e469a1bd4"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/logos/barbets-duet-icon-logomarque.svg": {
+    "mtime": 1779281605.081257,
+    "hash": "402a3d08f96cdc34427fa57ddf132600"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/Branding/logos/barbets-icon.svg": {
+    "mtime": 1779281552.8556468,
+    "hash": "cc707cd8a7531476302560374203ead2"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/planning-docs/2-TRD.png": {
+    "mtime": 1778656027.7021327,
+    "hash": "3475e972d70133472bf932c6728e2923"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/planning-docs/1-PRD.png": {
+    "mtime": 1778655806.011384,
+    "hash": "e59e2241770fff2823b3c0289fcb430f"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/planning-docs/6-Implementation-Plan.png": {
+    "mtime": 1778656524.795074,
+    "hash": "8438bf62f05272c8703ce77289404f43"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/planning-docs/3-App-Flow.png": {
+    "mtime": 1778656064.2274213,
+    "hash": "44e32b4d3edd7978088c434c71693b74"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/planning-docs/4-UX-UI-Design-Brief.png": {
+    "mtime": 1778656111.1126294,
+    "hash": "c6f8db2d214f54659d4e34e787186323"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/planning-docs/5-Backend-Schema.png": {
+    "mtime": 1778657139.0023885,
+    "hash": "8cce44d2535bb78218c5b8cb5824a682"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/wireframes/Our Work - Desktop.png": {
+    "mtime": 1779291256.1632676,
+    "hash": "0be6a98ee687da716b10d82efa5c10d7"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/wireframes/Learning Sites Page - Desktop.png": {
+    "mtime": 1778479151.5680919,
+    "hash": "c5318e743407e3a0d9dac5d987ec0c99"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/wireframes/About Us - Desktop.png": {
+    "mtime": 1778337283.2328799,
+    "hash": "e0bc50015b3fa9fdab2b01066b78a67c"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/sitemap/Group 7.png": {
+    "mtime": 1777352218.0315616,
+    "hash": "01b56c4a9d2ed265794d06f52852b90d"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/sitemap/Group 8.jpg": {
+    "mtime": 1777352218.0239449,
+    "hash": "9656bae3cf1854c853ff3f90c00e3fe0"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/mindmap/NotebookLM Mind Map.png": {
+    "mtime": 1779276551.6678813,
+    "hash": "2607d9b47ba32b8b146e3a0fcb7694a0"
+  },
+  "/Users/ciarannash/Documents/Barbets/Barbets-Duet/pastebin/page-content/homepage-content.png": {
+    "mtime": 1777352218.0636523,
+    "hash": "b67430066d00917f52bf1eda0c59ed8e"
+  }
+}

@@ -29,7 +29,7 @@ import {
 } from 'lucide-react';
 
 import { useAuth } from '@/components/AuthProvider';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import {
   MEMBER_ROLE_LABELS,
   MEMBER_ROLE_COLOURS,

@@ -11,7 +11,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, MessageSquare, Pin, Lock, Plus, Users, Loader2 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { ForumRoomProvider, useForumOthers, useForumStatus } from '@/lib/liveblocks';
 import type { ForumThread } from '@/types/forum';
 import type { Profile } from '@/types/community';

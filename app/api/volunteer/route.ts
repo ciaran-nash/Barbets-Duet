@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { volunteerApplicationSchema } from '@/lib/schemas/volunteerApplication.schema';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { resend } from '@/lib/email/resend';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 import VolunteerConfirmation from '@/emails/VolunteerConfirmation';
 import { learningSites } from '@/lib/data/learning-sites';
 import * as React from 'react';

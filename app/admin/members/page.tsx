@@ -1,5 +1,5 @@
 import { requireRole } from '@/lib/supabase/admin-auth'
-import { createClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase-server'
 import { MemberTable } from './MemberTable'
 import type { MemberRole } from '@/lib/supabase/admin-auth'
 

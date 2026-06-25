@@ -13,6 +13,8 @@ import type { Profile } from '@/types/community';
 
 // ── Create server client ─────────────────────────────────────
 
+export { createSupabaseServerClient as createClient }
+
 export async function createSupabaseServerClient() {
   const cookieStore = await cookies();
 

@@ -17,20 +17,3 @@ export function urlFor(source: SanityImageSource) {
   return builder.image(source);
 }
 
-/**
- * Generate a responsive image URL with sensible defaults:
- * - auto=format: serves webp to browsers that support it, avif where supported
- * - fit=max: never upscales, preserves aspect ratio
- * - q=80: quality balance for CDN delivery
- */
-export function urlForOptimised(
-  source: SanityImageSource,
-  width: number,
-  height?: number
-): string {
-  let img = builder.image(source).width(width).auto('format').fit('max').quality(80);
-  if (height) {
-    img = img.height(height);
-  }
-  return img.url();
-}

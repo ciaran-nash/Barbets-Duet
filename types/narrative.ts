@@ -1,8 +1,6 @@
 import type { ImpactPoint } from '@/types/shared';
 import type { PortableTextBlock } from '@portabletext/types';
 
-/** @deprecated Use ImpactPoint from @/types/shared directly */
-export type ImpactMetric = ImpactPoint;
 
 export interface Story {
   slug: string;

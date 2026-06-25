@@ -9,13 +9,30 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      // outer shell — Double-Bezel architecture
+      "p-1.5 rounded-[2rem] ring-1 ring-white/10 bg-white/5",
       className,
     )}
     {...props}
   />
 ))
 Card.displayName = "Card"
+
+// Inner core — wraps CardHeader/Content/Footer with depth + inset highlight
+const CardInner = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-[calc(2rem-0.375rem)] bg-card text-card-foreground shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]",
+      className,
+    )}
+    {...props}
+  />
+))
+CardInner.displayName = "CardInner"
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -76,4 +93,4 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export { Card, CardInner, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Header from '@/components/Header';
 import CTA from '@/components/CTA';
 import { StickyFooter } from '@/components/ui/sticky-footer';

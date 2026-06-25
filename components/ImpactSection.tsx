@@ -144,7 +144,7 @@ export default function ImpactSection() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 flex flex-col lg:flex-row items-center">
           
           <div className="flex-1 max-w-xl mb-16 lg:mb-0">
-            <h4 className="text-sm font-sans font-bold tracking-widest mb-4">Worldwide Learning Sites</h4>
+            <span className="eyebrow border border-platinum/20 text-platinum/50 mb-4">Worldwide Learning Sites</span>
             <h2 className="text-5xl sm:text-6xl font-serif font-bold leading-tight mb-6">
               Headline highlighting Barbets results
             </h2>

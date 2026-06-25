@@ -2,8 +2,6 @@ import type { ImpactPoint } from '@/types/shared';
 
 export type ProjectMaturity = 'Idea' | 'Pilot' | 'Scaling' | 'Systemic';
 
-/** @deprecated Use ImpactPoint from @/types/shared directly */
-export type ProjectImpact = ImpactPoint;
 
 export interface Project {
   slug: string;

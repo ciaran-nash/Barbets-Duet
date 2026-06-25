@@ -12,7 +12,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import type { Session, User } from '@supabase/supabase-js';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import type { Profile } from '@/types/community';
 
 // ── Auth context shape ──────────────────────────────────────

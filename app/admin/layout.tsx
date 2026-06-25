@@ -1,5 +1,5 @@
 import { getSessionUser } from '@/lib/supabase/admin-auth'
-import { createClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
 import { AdminSidebar } from '@/components/admin/AdminSidebar'
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 interface KineticRevealProps {
   children: React.ReactNode;
@@ -11,30 +11,25 @@ interface KineticRevealProps {
   direction?: 'up' | 'down';
 }
 
-/**
- * KineticReveal
- * A high-fidelity "slice-reveal" component for typography.
- * Wraps content in an overflow-hidden container and animates it into view.
- */
-export function KineticReveal({ 
-  children, 
-  delay = 0, 
-  duration = 1.2, 
+export function KineticReveal({
+  children,
+  delay = 0,
+  duration = 0.8,
   className = "",
   direction = 'up'
 }: KineticRevealProps) {
-  const initialY = direction === 'up' ? "100%" : "-100%";
+  const initialY = direction === 'up' ? 64 : -64;
 
   return (
     <div className={`overflow-hidden py-1 ${className}`}>
       <motion.div
-        initial={{ y: initialY }}
-        whileInView={{ y: 0 }}
+        initial={{ y: initialY, opacity: 0, filter: "blur(8px)" }}
+        whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
         viewport={{ once: true, margin: "-10% 0px" }}
-        transition={{ 
-          duration, 
-          delay, 
-          ease: [0.16, 1, 0.3, 1] // Custom quint ease for luxury feel
+        transition={{
+          duration,
+          delay,
+          ease: [0.32, 0.72, 0, 1],
         }}
       >
         {children}

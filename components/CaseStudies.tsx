@@ -48,10 +48,7 @@ export default function CaseStudies() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div>
-            <h2 className="font-mono text-[10px] tracking-[0.2em] uppercase mb-6 text-neon-lime flex items-center gap-4">
-              <span className="w-12 h-[1px] bg-neon-lime"></span>
-              Case Studies
-            </h2>
+            <span className="eyebrow border border-neon-lime/30 text-neon-lime mb-6">Case Studies</span>
             <h3 className="font-serif text-4xl lg:text-7xl font-light leading-none">
               Scholarly <br />
               <span className="italic text-platinum/50">Observations</span>.

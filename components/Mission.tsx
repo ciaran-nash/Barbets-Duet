@@ -25,7 +25,7 @@ export default function Mission() {
   return (
     <section className="py-24 bg-platinum text-night-forest">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h3 className="text-sm font-semibold tracking-wider uppercase mb-6 font-serif">The Barbets Duet Mission</h3>
+        <span className="eyebrow border border-night-forest/20 text-night-forest/50 mb-6">The Barbets Duet Mission</span>
         <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 max-w-4xl mx-auto tracking-tight leading-tight">
           Restoring ecosystems through collaborative innovation
         </h2>

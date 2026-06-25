@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowRight, Share2, Download } from 'lucide-react';
 import Link from 'next/link';
 import { Project } from '@/types/project';

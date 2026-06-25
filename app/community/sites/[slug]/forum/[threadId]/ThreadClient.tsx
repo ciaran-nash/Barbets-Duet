@@ -17,7 +17,7 @@ import {
   ChevronLeft, Reply, Lock, Pin, EyeOff, Loader2,
   CornerDownRight, Users, Check
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { ForumRoomProvider, useForumMyPresence, useForumOthers, useForumStatus } from '@/lib/liveblocks';
 import type { ForumThread, ForumPost } from '@/types/forum';
 import type { Profile } from '@/types/community';

@@ -11,7 +11,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { Bell, X, ExternalLink } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { useAuth } from '@/components/AuthProvider';
 
 // ── Types ─────────────────────────────────────────────────────
