@@ -8,6 +8,7 @@
 
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import type { Session, User } from '@supabase/supabase-js';
 import type { Profile } from '@/types/community';
 
@@ -100,8 +101,6 @@ export async function getServerProfile(): Promise<Profile | null> {
 export async function requireServerAuth(
   redirectTo?: string
 ): Promise<{ user: User; profile: Profile | null }> {
-  const { redirect } = await import('next/navigation');
-
   const user = await getServerUser();
   if (!user) {
     const signInUrl = redirectTo

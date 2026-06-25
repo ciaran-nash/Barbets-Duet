@@ -10,12 +10,36 @@
  *   'event'                  — invalidates all event queries
  *   'event:{slug}'           — invalidates one event's cached page
  *
- * All queries fall back gracefully — callers should use ?? static data fallback
- * so existing pages never break if Sanity is not yet configured.
+ * All queries fall back gracefully via safeFetch(): if Sanity is unconfigured
+ * OR unreachable (network error at build/runtime), the fallback value is
+ * returned so pages never break and the build never crashes on CMS issues.
+ * Callers still chain `?? static` for the unconfigured case.
  */
 import type { LearningSite } from '@/types/learning-site';
 import type { Story, BarbetsEvent } from '@/types/narrative';
 import { sanityClient } from './client';
+
+/**
+ * Fault-tolerant Sanity fetch. Returns `fallback` when Sanity is not configured
+ * or the request throws (e.g. DNS/network failure during a build or CMS outage).
+ */
+async function safeFetch<T>(
+  fallback: T,
+  query: string,
+  params: Record<string, unknown> = {},
+  options?: { next?: { tags?: string[] } }
+): Promise<T> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return fallback;
+  try {
+    return await sanityClient.fetch<T>(query, params, options);
+  } catch (err) {
+    console.error(
+      '[sanity] fetch failed, using fallback:',
+      err instanceof Error ? err.message : err
+    );
+    return fallback;
+  }
+}
 
 // ─── Learning Sites ─────────────────────────────────────────────────────────
 
@@ -25,9 +49,8 @@ import { sanityClient } from './client';
  * the TypeScript LearningSite interface shape.
  */
 export async function getLearningSiteFromSanity(slug: string): Promise<LearningSite | null> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return null;
-
-  return sanityClient.fetch<LearningSite | null>(
+  return safeFetch<LearningSite | null>(
+    null,
     `*[_type == "learningSite" && slug.current == $slug][0]{
       "slug": slug.current,
       name,
@@ -107,9 +130,8 @@ export async function getLearningSiteFromSanity(slug: string): Promise<LearningS
  * Fetch all learning sites for the browse page and generateStaticParams.
  */
 export async function getAllLearningSitesFromSanity(): Promise<LearningSite[]> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
-
-  return sanityClient.fetch<LearningSite[]>(
+  return safeFetch<LearningSite[]>(
+    [],
     `*[_type == "learningSite"] | order(name asc) {
       "slug": slug.current,
       name,
@@ -141,9 +163,8 @@ export async function getAllLearningSitesFromSanity(): Promise<LearningSite[]> {
  * string (legacy static data) and PortableTextBlock[] (Sanity).
  */
 export async function getStoryFromSanity(slug: string): Promise<Story | null> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return null;
-
-  return sanityClient.fetch<Story | null>(
+  return safeFetch<Story | null>(
+    null,
     `*[_type == "story" && slug.current == $slug][0]{
       "slug": slug.current,
       title,
@@ -166,9 +187,8 @@ export async function getStoryFromSanity(slug: string): Promise<Story | null> {
  * Fetch all stories for index page and generateStaticParams.
  */
 export async function getAllStoriesFromSanity(): Promise<Story[]> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
-
-  return sanityClient.fetch<Story[]>(
+  return safeFetch<Story[]>(
+    [],
     `*[_type == "story"] | order(date desc) {
       "slug": slug.current,
       title,
@@ -191,9 +211,8 @@ export async function getAllStoriesFromSanity(): Promise<Story[]> {
  * Fetch a single event by slug.
  */
 export async function getEventFromSanity(slug: string): Promise<BarbetsEvent | null> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return null;
-
-  return sanityClient.fetch<BarbetsEvent | null>(
+  return safeFetch<BarbetsEvent | null>(
+    null,
     `*[_type == "barbetsEvent" && slug.current == $slug][0]{
       "slug": slug.current,
       title,
@@ -216,9 +235,8 @@ export async function getEventFromSanity(slug: string): Promise<BarbetsEvent | n
  * Fetch all events for index page and generateStaticParams.
  */
 export async function getAllEventsFromSanity(): Promise<BarbetsEvent[]> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
-
-  return sanityClient.fetch<BarbetsEvent[]>(
+  return safeFetch<BarbetsEvent[]>(
+    [],
     `*[_type == "barbetsEvent"] | order(date asc) {
       "slug": slug.current,
       title,
@@ -281,9 +299,8 @@ const T_AND_E_PROJECTION = `{
 export async function getContributionsBySite(
   siteSlug: string
 ): Promise<TrialAndErrorEntry[]> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
-
-  return sanityClient.fetch<TrialAndErrorEntry[]>(
+  return safeFetch<TrialAndErrorEntry[]>(
+    [],
     `*[_type == "trialAndError" && siteSlug == $siteSlug && status == "published"]
       | order(publishedAt desc) ${T_AND_E_PROJECTION}`,
     { siteSlug },
@@ -298,9 +315,8 @@ export async function getContributionsBySite(
 export async function getContributionsByMember(
   memberSlug: string
 ): Promise<TrialAndErrorEntry[]> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
-
-  return sanityClient.fetch<TrialAndErrorEntry[]>(
+  return safeFetch<TrialAndErrorEntry[]>(
+    [],
     `*[_type == "trialAndError" && authorMemberSlug == $memberSlug && status == "published"]
       | order(publishedAt desc) ${T_AND_E_PROJECTION}`,
     { memberSlug },
@@ -316,9 +332,8 @@ export async function getContributionsByMember(
 export async function searchContributions(
   query: string
 ): Promise<TrialAndErrorEntry[]> {
-  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return [];
-
-  return sanityClient.fetch<TrialAndErrorEntry[]>(
+  return safeFetch<TrialAndErrorEntry[]>(
+    [],
     `*[_type == "trialAndError" && status == "published" &&
        (title match $q || pt::text(prompt1) match $q || pt::text(prompt2) match $q ||
         pt::text(prompt3) match $q || pt::text(prompt4) match $q)]

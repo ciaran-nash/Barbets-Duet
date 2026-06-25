@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { db, storage, handleFirestoreError, OperationType } from '@/lib/firebase';
-import { collection, getDocs, addDoc, query, orderBy, deleteDoc, doc } from 'firebase/firestore';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { supabase } from '@/lib/supabase/client';
 import { useAuth } from '@/components/AuthProvider';
 import { Loader2, Plus, Trash2, X, Image as ImageIcon } from 'lucide-react';
 import Image from 'next/image';
@@ -16,9 +14,12 @@ interface PhotoGalleryProps {
 interface GalleryImage {
   id: string;
   url: string;
-  addedBy: string;
-  createdAt: number;
+  addedBy: string | null;
+  storagePath: string;
+  createdAt: string;
 }
+
+const BUCKET = 'site-gallery';
 
 export default function PhotoGallery({ siteId, initialImages }: PhotoGalleryProps) {
   const { user } = useAuth();
@@ -26,25 +27,28 @@ export default function PhotoGallery({ siteId, initialImages }: PhotoGalleryProp
   const [loading, setLoading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const q = query(
-          collection(db, 'sites', siteId, 'gallery'),
-          orderBy('createdAt', 'desc')
+        const { data, error } = await supabase
+          .from('site_gallery')
+          .select('id, url, added_by, storage_path, created_at')
+          .eq('site_slug', siteId)
+          .order('created_at', { ascending: false });
+        if (error) throw error;
+        setImages(
+          (data ?? []).map((row) => ({
+            id: row.id,
+            url: row.url,
+            addedBy: row.added_by,
+            storagePath: row.storage_path,
+            createdAt: row.created_at,
+          }))
         );
-        const qSnap = await getDocs(q);
-        const fetchedImages = qSnap.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        })) as GalleryImage[];
-        setImages(fetchedImages);
       } catch (error) {
-        // Fallback to empty if collection doesn't exist or permissions error
-        console.error("Error fetching gallery:", error);
+        console.error('Error fetching gallery:', error);
       } finally {
         setLoading(false);
       }
@@ -59,57 +63,50 @@ export default function PhotoGallery({ siteId, initialImages }: PhotoGalleryProp
     if (!selectedFile) return;
 
     setSubmitting(true);
-    setUploadProgress(0);
     try {
-      // Create a unique filename
-      const filename = `${Date.now()}_${selectedFile.name}`;
-      const storageRef = ref(storage, `sites/${siteId}/gallery/${filename}`);
-      
-      const uploadTask = uploadBytesResumable(storageRef, selectedFile);
-      
-      uploadTask.on('state_changed', 
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setUploadProgress(progress);
-        }, 
-        (error) => {
-          console.error("Upload failed", error);
-          setSubmitting(false);
-        }, 
-        async () => {
-          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-          
-          const docRef = await addDoc(collection(db, 'sites', siteId, 'gallery'), {
-            url: downloadURL,
-            addedBy: user.uid,
-            createdAt: Date.now()
-          });
-          
-          setImages([{
-            id: docRef.id,
-            url: downloadURL,
-            addedBy: user.uid,
-            createdAt: Date.now()
-          }, ...images]);
-          
-          setSelectedFile(null);
-          setIsAdding(false);
-          setSubmitting(false);
-        }
-      );
+      const storagePath = `${siteId}/${Date.now()}_${selectedFile.name}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from(BUCKET)
+        .upload(storagePath, selectedFile);
+      if (uploadError) throw uploadError;
+
+      const { data: pub } = supabase.storage.from(BUCKET).getPublicUrl(storagePath);
+      const url = pub.publicUrl;
+
+      const { data: row, error: insertError } = await supabase
+        .from('site_gallery')
+        .insert({ site_slug: siteId, storage_path: storagePath, url, added_by: user.id })
+        .select('id, created_at')
+        .single();
+      if (insertError) throw insertError;
+
+      setImages([
+        { id: row.id, url, addedBy: user.id, storagePath, createdAt: row.created_at },
+        ...images,
+      ]);
+
+      setSelectedFile(null);
+      setIsAdding(false);
     } catch (error) {
-      handleFirestoreError(error, OperationType.CREATE, `sites/${siteId}/gallery`);
+      console.error('[PhotoGallery] upload error:', error);
+    } finally {
       setSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string) => {
     if (!user) return;
+    const target = images.find((img) => img.id === id);
     try {
-      await deleteDoc(doc(db, 'sites', siteId, 'gallery', id));
-      setImages(images.filter(img => img.id !== id));
+      const { error } = await supabase.from('site_gallery').delete().eq('id', id);
+      if (error) throw error;
+      if (target?.storagePath) {
+        await supabase.storage.from(BUCKET).remove([target.storagePath]);
+      }
+      setImages(images.filter((img) => img.id !== id));
     } catch (error) {
-      handleFirestoreError(error, OperationType.DELETE, `sites/${siteId}/gallery/${id}`);
+      console.error('[PhotoGallery] delete error:', error);
     }
   };
 
@@ -133,7 +130,7 @@ export default function PhotoGallery({ siteId, initialImages }: PhotoGalleryProp
       <div className="flex justify-between items-center mb-8">
         <h3 className="font-serif text-2xl">Photo Gallery</h3>
         {user && !isAdding && (
-          <button 
+          <button
             onClick={() => setIsAdding(true)}
             className="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase border border-night-forest px-4 py-2 rounded-full hover:bg-night-forest hover:text-platinum transition-colors"
           >
@@ -151,8 +148,8 @@ export default function PhotoGallery({ siteId, initialImages }: PhotoGalleryProp
             </button>
           </div>
           <form onSubmit={handleAddImage} className="flex flex-col sm:flex-row gap-4">
-            <input 
-              type="file" 
+            <input
+              type="file"
               accept="image/*"
               onChange={(e) => {
                 if (e.target.files && e.target.files[0]) {
@@ -163,18 +160,13 @@ export default function PhotoGallery({ siteId, initialImages }: PhotoGalleryProp
               required
             />
             <div className="flex flex-col justify-center sm:w-32 flex-shrink-0">
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={submitting || !selectedFile}
                 className="bg-night-forest text-platinum px-6 py-3 rounded-xl font-semibold tracking-widest uppercase text-xs hover:bg-night-forest/90 transition-colors disabled:opacity-50 flex items-center justify-center min-w-[120px]"
               >
                 {submitting ? <Loader2 size={16} className="animate-spin" /> : 'Upload'}
               </button>
-              {submitting && uploadProgress > 0 && (
-                <div className="w-full bg-night-forest/20 rounded-full h-1.5 mt-2">
-                  <div className="bg-night-forest h-1.5 rounded-full" style={{ width: `${uploadProgress}%` }}></div>
-                </div>
-              )}
             </div>
           </form>
         </div>
@@ -190,16 +182,16 @@ export default function PhotoGallery({ siteId, initialImages }: PhotoGalleryProp
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {images.map(image => (
             <div key={image.id} className="relative group aspect-square rounded-2xl overflow-hidden bg-night-forest text-platinum">
-              <Image 
-                src={image.url} 
+              <Image
+                src={image.url}
                 alt="Gallery item"
                 fill
                 sizes="(max-width: 768px) 50vw, 33vw"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-night-forest/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                 {user && user.uid === image.addedBy && (
-                    <button 
+                 {user && user.id === image.addedBy && (
+                    <button
                       onClick={() => handleDelete(image.id)}
                       className="bg-white/20 hover:bg-red-500/80 backdrop-blur-md p-3 rounded-full text-white transition-colors"
                       title="Delete photo"
@@ -210,11 +202,11 @@ export default function PhotoGallery({ siteId, initialImages }: PhotoGalleryProp
               </div>
             </div>
           ))}
-          
+
           {initialImages.map((url, i) => (
             <div key={`initial-${i}`} className="relative group aspect-square rounded-2xl overflow-hidden bg-night-forest text-platinum">
-              <Image 
-                src={url} 
+              <Image
+                src={url}
                 alt="Gallery item"
                 fill
                 sizes="(max-width: 768px) 50vw, 33vw"

@@ -129,7 +129,10 @@ export default function SupportUsPage() {
       </section>
 
       {/* ── Success / cancellation banner ───────────────────────────────── */}
-      <SupportUsBanner />
+      {/* Suspense boundary required: SupportUsBanner uses useSearchParams() */}
+      <Suspense fallback={null}>
+        <SupportUsBanner />
+      </Suspense>
     </main>
   );
 }

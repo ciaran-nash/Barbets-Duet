@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { volunteerApplicationSchema } from '@/lib/schemas/volunteerApplication.schema';
-import { db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 import VolunteerConfirmation from '@/emails/VolunteerConfirmation';
 import { learningSites } from '@/lib/data/learning-sites';
 import * as React from 'react';
@@ -24,12 +28,28 @@ export async function POST(request: NextRequest) {
 
     const data = parsed.data;
 
-    // Firestore write
-    await addDoc(collection(db, 'volunteer_applications'), {
-      ...data,
-      submittedAt: serverTimestamp(),
-      status: 'pending',
+    // Supabase write
+    const { error: dbError } = await supabase.from('volunteer_applications').insert({
+      first_name: data.firstName,
+      last_name: data.lastName,
+      email: data.email,
+      location: data.location,
+      preferred_site_slug: data.preferredSiteSlug,
+      availability_start: data.availabilityStart,
+      duration_weeks: data.durationWeeks ?? null,
+      skills: data.skills,
+      motivation: data.motivation,
+      linkedin_url: data.linkedinUrl || null,
+      portfolio_url: data.portfolioUrl || null,
     });
+
+    if (dbError) {
+      console.error('[volunteer/route] Supabase insert error:', dbError.message);
+      return NextResponse.json(
+        { message: 'Could not save your application. Please try again.' },
+        { status: 500 }
+      );
+    }
 
     // Resolve site name for email (graceful fallback)
     const preferredSite = learningSites.find((s) => s.slug === data.preferredSiteSlug);

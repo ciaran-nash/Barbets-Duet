@@ -12,12 +12,8 @@
 
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { Liveblocks } from '@liveblocks/node';
+import { WebhookHandler } from '@liveblocks/node';
 import { createClient } from '@supabase/supabase-js';
-
-const liveblocks = new Liveblocks({
-  secret: process.env.LIVEBLOCKS_SECRET_KEY!,
-});
 
 // Service-role client for writing notifications (bypasses RLS)
 const supabaseAdmin = createClient(
@@ -28,10 +24,25 @@ const supabaseAdmin = createClient(
 export async function POST(request: NextRequest) {
   const rawBody = await request.text();
 
-  // Verify webhook signature
-  const signature = request.headers.get('webhook-secret') ?? '';
+  // Liveblocks signs webhooks with a dedicated signing secret (svix-style),
+  // distinct from LIVEBLOCKS_SECRET_KEY. Constructed lazily so a missing secret
+  // does not break the build.
+  const secret = process.env.LIVEBLOCKS_WEBHOOK_SECRET;
+  if (!secret) {
+    return NextResponse.json({ error: 'Webhook not configured' }, { status: 501 });
+  }
+  const webhookHandler = new WebhookHandler(secret);
+
+  // Verify webhook signature (svix-style headers from Liveblocks)
   try {
-    await liveblocks.verifyRequest(rawBody, signature);
+    webhookHandler.verifyRequest({
+      headers: {
+        'webhook-id': request.headers.get('webhook-id') ?? '',
+        'webhook-timestamp': request.headers.get('webhook-timestamp') ?? '',
+        'webhook-signature': request.headers.get('webhook-signature') ?? '',
+      },
+      rawBody,
+    });
   } catch {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
   }
