@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
   const revalidatedTags: string[] = [];
 
   for (const tag of tags) {
-    revalidateTag(tag);
+    revalidateTag(tag, 'max');
     revalidatedTags.push(tag);
   }
 
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     // Map Sanity type to tag prefix
     const tagPrefix = _type === 'barbetsEvent' ? 'event' : _type;
     const specificTag = `${tagPrefix}:${slug.current}`;
-    revalidateTag(specificTag);
+    revalidateTag(specificTag, 'max');
     revalidatedTags.push(specificTag);
   }
 
