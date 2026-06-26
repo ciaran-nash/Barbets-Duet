@@ -47,7 +47,7 @@ export interface FourReturnsResult {
 
 // ── Core calculation ──────────────────────────────────────────
 
-function calculatePercentage(
+export function calculatePercentage(
   current: number | null,
   baseline: number | null
 ): number | null {
