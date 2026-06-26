@@ -4,6 +4,8 @@ import { eventSchema } from '../schemas/event';
 import { projectSchema } from '../schemas/project';
 import { teamMemberSchema } from '../schemas/teamMember';
 import { trialAndErrorSchema } from '../schemas/trialAndError';
+import { blogSchema } from '../schemas/blog';
+import { newsSchema } from '../schemas/news';
 
 export const schemaTypes = [
   learningSiteSchema,
@@ -12,4 +14,6 @@ export const schemaTypes = [
   projectSchema,
   teamMemberSchema,
   trialAndErrorSchema,
+  blogSchema,
+  newsSchema,
 ];

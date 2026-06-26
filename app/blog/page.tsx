@@ -5,7 +5,8 @@ import Header from '@/components/Header';
 import { StickyFooter } from '@/components/ui/sticky-footer';
 import { KineticReveal } from '@/components/motion/KineticReveal';
 import { ScrollGlow } from '@/components/motion/ScrollGlow';
-import { blogPosts } from '@/lib/data/blog';
+import { blogPosts as staticBlog } from '@/lib/data/blog';
+import { getAllBlogFromSanity } from '@/lib/sanity/queries';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
 
@@ -15,7 +16,10 @@ export const metadata: Metadata = {
     'Discover the latest news on ecological restoration, community successes, and sustainable finance from the Barbets Duet team.',
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const sanityBlog = await getAllBlogFromSanity();
+  const blogPosts = sanityBlog.length > 0 ? sanityBlog : staticBlog;
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-accent-foreground overflow-x-hidden">
       <Header />

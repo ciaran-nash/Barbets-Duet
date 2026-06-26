@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Header from '@/components/Header';
 import { StickyFooter } from '@/components/ui/sticky-footer';
@@ -7,9 +5,13 @@ import CTA from '@/components/CTA';
 import { StoryCard } from '@/components/stories/StoryCard';
 import { KineticReveal } from '@/components/motion/KineticReveal';
 import { ScrollGlow } from '@/components/motion/ScrollGlow';
-import { stories } from '@/lib/data/stories';
+import { stories as staticStories } from '@/lib/data/stories';
+import { getAllStoriesFromSanity } from '@/lib/sanity/queries';
 
-export default function StoriesPage() {
+export default async function StoriesPage() {
+  const sanityStories = await getAllStoriesFromSanity();
+  const stories = sanityStories.length > 0 ? sanityStories : staticStories;
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-accent-foreground overflow-x-hidden">
       <Header />

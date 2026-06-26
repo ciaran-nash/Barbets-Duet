@@ -5,7 +5,8 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import { StickyFooter } from '@/components/ui/sticky-footer';
 import { ScrollGlow } from '@/components/motion/ScrollGlow';
-import { newsItems } from '@/lib/data/news';
+import { newsItems as staticNews } from '@/lib/data/news';
+import { getAllNewsFromSanity, getNewsFromSanity } from '@/lib/sanity/queries';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft } from 'lucide-react';
 
@@ -14,12 +15,14 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return newsItems.map((item) => ({ slug: item.slug }));
+  const sanityNews = await getAllNewsFromSanity();
+  const items = sanityNews.length > 0 ? sanityNews : staticNews;
+  return items.map((item) => ({ slug: item.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const item = newsItems.find((n) => n.slug === slug);
+  const item = (await getNewsFromSanity(slug)) ?? staticNews.find((n) => n.slug === slug);
   if (!item) return {};
   return {
     title: `${item.title} | Barbets Duet News`,
@@ -29,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function NewsItemPage({ params }: Props) {
   const { slug } = await params;
-  const item = newsItems.find((n) => n.slug === slug);
+  const item = (await getNewsFromSanity(slug)) ?? staticNews.find((n) => n.slug === slug);
   if (!item) notFound();
 
   const paragraphs = item.content.split('\n\n').filter(Boolean);

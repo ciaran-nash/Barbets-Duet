@@ -9,11 +9,10 @@ import { ProjectFilters } from '@/components/projects/ProjectFilters';
 import { ProjectGrid } from '@/components/projects/ProjectGrid';
 import { FeaturedInvention } from '@/components/projects/FeaturedInvention';
 import { ScrollGlow } from '@/components/motion/ScrollGlow';
-import { projects } from '@/lib/data/projects';
 import { ProjectDetailDrawer } from '@/components/projects/ProjectDetailDrawer';
 import { Project } from '@/types/project';
 
-export default function InnovationHubContent() {
+export default function InnovationHubContent({ projects }: { projects: Project[] }) {
   const [filter, setFilter] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Header from '@/components/Header';
 import { StickyFooter } from '@/components/ui/sticky-footer';
@@ -7,9 +5,13 @@ import CTA from '@/components/CTA';
 import { EventCard } from '@/components/events/EventCard';
 import { KineticReveal } from '@/components/motion/KineticReveal';
 import { ScrollGlow } from '@/components/motion/ScrollGlow';
-import { events } from '@/lib/data/events';
+import { events as staticEvents } from '@/lib/data/events';
+import { getAllEventsFromSanity } from '@/lib/sanity/queries';
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const sanityEvents = await getAllEventsFromSanity();
+  const events = sanityEvents.length > 0 ? sanityEvents : staticEvents;
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-accent-foreground overflow-x-hidden">
       <Header />

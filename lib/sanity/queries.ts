@@ -17,6 +17,10 @@
  */
 import type { LearningSite } from '@/types/learning-site';
 import type { Story, BarbetsEvent } from '@/types/narrative';
+import type { Project } from '@/types/project';
+import type { TeamMember } from '@/types/team';
+import type { BlogPost } from '@/lib/data/blog';
+import type { NewsItem } from '@/lib/data/news';
 import { sanityClient } from './client';
 
 /**
@@ -251,6 +255,123 @@ export async function getAllEventsFromSanity(): Promise<BarbetsEvent[]> {
     }`,
     {},
     { next: { tags: ['event'] } }
+  );
+}
+
+// ─── Projects ────────────────────────────────────────────────────────────────
+
+const PROJECT_PROJECTION = `{
+  "slug": slug.current,
+  title,
+  description,
+  category,
+  "siteSlug": associatedSite->slug.current,
+  maturity,
+  "image": image.asset->url,
+  featured,
+  impactMetrics[] { label, value, unit },
+  innovationSummary,
+  longDescription
+}`;
+
+export async function getAllProjectsFromSanity(): Promise<Project[]> {
+  return safeFetch<Project[]>(
+    [],
+    `*[_type == "project"] | order(title asc) ${PROJECT_PROJECTION}`,
+    {},
+    { next: { tags: ['project'] } }
+  );
+}
+
+export async function getProjectFromSanity(slug: string): Promise<Project | null> {
+  return safeFetch<Project | null>(
+    null,
+    `*[_type == "project" && slug.current == $slug][0] ${PROJECT_PROJECTION}`,
+    { slug },
+    { next: { tags: ['project', `project:${slug}`] } }
+  );
+}
+
+// ─── Team ────────────────────────────────────────────────────────────────────
+
+export async function getTeamFromSanity(): Promise<TeamMember[]> {
+  return safeFetch<TeamMember[]>(
+    [],
+    `*[_type == "teamMember"] | order(isCoreTeam desc, name asc) {
+      "slug": slug.current,
+      name,
+      role,
+      bio,
+      location,
+      "siteSlug": associatedSite->slug.current,
+      "siteSlugs": associatedSites[]->slug.current,
+      "avatar": avatar.asset->url,
+      joinedYear,
+      isCoreTeam
+    }`,
+    {},
+    { next: { tags: ['teamMember'] } }
+  );
+}
+
+// ─── News ────────────────────────────────────────────────────────────────────
+
+const NEWS_PROJECTION = `{
+  "slug": slug.current,
+  title,
+  summary,
+  content,
+  category,
+  date,
+  "image": image.asset->url
+}`;
+
+export async function getAllNewsFromSanity(): Promise<NewsItem[]> {
+  return safeFetch<NewsItem[]>(
+    [],
+    `*[_type == "newsItem"] | order(_createdAt desc) ${NEWS_PROJECTION}`,
+    {},
+    { next: { tags: ['newsItem'] } }
+  );
+}
+
+export async function getNewsFromSanity(slug: string): Promise<NewsItem | null> {
+  return safeFetch<NewsItem | null>(
+    null,
+    `*[_type == "newsItem" && slug.current == $slug][0] ${NEWS_PROJECTION}`,
+    { slug },
+    { next: { tags: ['newsItem', `newsItem:${slug}`] } }
+  );
+}
+
+// ─── Blog ────────────────────────────────────────────────────────────────────
+
+const BLOG_PROJECTION = `{
+  "slug": slug.current,
+  title,
+  summary,
+  content,
+  label,
+  author,
+  published,
+  "image": image.asset->url
+}`;
+
+export async function getAllBlogFromSanity(): Promise<BlogPost[]> {
+  return safeFetch<BlogPost[]>(
+    [],
+    `*[_type == "blogPost"] | order(_createdAt desc) ${BLOG_PROJECTION}`,
+    {},
+    { next: { tags: ['blogPost'] } }
+  );
+}
+
+export async function getBlogFromSanity(slug: string): Promise<BlogPost | null> {
+  return safeFetch<BlogPost | null>(
+    null,
+    `*[_type == "blogPost" && slug.current == $slug][0] ${BLOG_PROJECTION}`,
+    { slug },
+    { next: { tags: ['blogPost', `blogPost:${slug}`] } }
   );
 }
 

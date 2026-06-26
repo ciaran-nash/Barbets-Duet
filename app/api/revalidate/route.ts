@@ -32,6 +32,8 @@ const TYPE_TO_TAGS: Record<string, string[]> = {
   barbetsEvent: ['event'],
   project: ['project'],
   teamMember: ['teamMember'],
+  blogPost: ['blogPost'],
+  newsItem: ['newsItem'],
 };
 
 export async function POST(request: NextRequest) {

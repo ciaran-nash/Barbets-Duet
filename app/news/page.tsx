@@ -5,7 +5,8 @@ import Header from '@/components/Header';
 import { StickyFooter } from '@/components/ui/sticky-footer';
 import { KineticReveal } from '@/components/motion/KineticReveal';
 import { ScrollGlow } from '@/components/motion/ScrollGlow';
-import { newsItems } from '@/lib/data/news';
+import { newsItems as staticNews } from '@/lib/data/news';
+import { getAllNewsFromSanity } from '@/lib/sanity/queries';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
 
@@ -15,7 +16,10 @@ export const metadata: Metadata = {
     'The latest announcements, updates, and press releases from Barbets Duet.',
 };
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const sanityNews = await getAllNewsFromSanity();
+  const newsItems = sanityNews.length > 0 ? sanityNews : staticNews;
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-accent-foreground overflow-x-hidden">
       <Header />

@@ -1,15 +1,27 @@
 /**
- * Sanity seed script — migrates lib/data/*.ts content into Sanity
+ * Sanity seed script — migrates lib/data/*.ts content into Sanity.
  *
- * USAGE (run once after Sanity project is created):
- *   npx ts-node --project tsconfig.json scripts/seed-sanity.ts
+ * USAGE (run once after the Sanity project + write token exist):
+ *   npx tsx scripts/seed-sanity.ts
+ *   (or: npx ts-node --project tsconfig.json scripts/seed-sanity.ts)
  *
- * PREREQUISITES:
- *   - NEXT_PUBLIC_SANITY_PROJECT_ID set in .env.local
- *   - SANITY_API_TOKEN set in .env.local (must have write permissions)
+ * PREREQUISITES (.env.local):
+ *   - NEXT_PUBLIC_SANITY_PROJECT_ID
+ *   - SANITY_API_TOKEN with WRITE permission (Editor token)
  *
- * NOTE: Image URLs from Unsplash/Picsum cannot be imported as Sanity image
- * assets. The seed sets image fields to null — upload images via Studio.
+ * What it does:
+ *   - Seeds learningSite, story, barbetsEvent, project, teamMember, blogPost, newsItem.
+ *   - Uploads primary images (hero, gallery, card images, avatars) from their
+ *     source URLs as real Sanity image assets, so Sanity-backed pages render
+ *     images (not just text). Image upload is best-effort: a failed fetch logs a
+ *     warning and leaves the field empty rather than aborting the seed.
+ *   - Wires `associatedSite` references using deterministic `learningSite-{slug}` ids.
+ *
+ * Re-runnable: every document uses a deterministic _id + createOrReplace, so
+ * running twice updates in place rather than duplicating. (Re-uploads images.)
+ *
+ * ponytail: nested challenge/initiative/restoration images are left for manual
+ * Studio upload — only high-visibility images (hero, gallery, cards) are migrated.
  */
 
 import * as dotenv from 'dotenv';
@@ -21,6 +33,8 @@ import { stories } from '../lib/data/stories';
 import { events } from '../lib/data/events';
 import { projects } from '../lib/data/projects';
 import { teamMembers as team } from '../lib/data/team';
+import { newsItems } from '../lib/data/news';
+import { blogPosts } from '../lib/data/blog';
 
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
@@ -30,15 +44,63 @@ const client = createClient({
   apiVersion: '2024-01-01',
 });
 
+// ── Helpers ────────────────────────────────────────────────────────────────
+
+type SanityImage = { _type: 'image'; asset: { _type: 'reference'; _ref: string } };
+type SanityRef = { _type: 'reference'; _ref: string };
+
 function toSlug(s: string): { _type: 'slug'; current: string } {
   return { _type: 'slug', current: s };
 }
+
+function siteRef(siteSlug?: string): SanityRef | undefined {
+  return siteSlug ? { _type: 'reference', _ref: `learningSite-${siteSlug}` } : undefined;
+}
+
+function key(s: string): string {
+  return s.replace(/[^a-z0-9]+/gi, '-').toLowerCase();
+}
+
+// Cache uploads by source URL so a shared image is only fetched/uploaded once.
+const assetCache = new Map<string, string>();
+
+async function uploadImage(url?: string): Promise<SanityImage | undefined> {
+  if (!url) return undefined;
+  let assetId = assetCache.get(url);
+  if (!assetId) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const buf = Buffer.from(await res.arrayBuffer());
+      const filename = url.split('/').pop()?.split('?')[0] || 'image.jpg';
+      const asset = await client.assets.upload('image', buf, { filename });
+      assetId = asset._id;
+      assetCache.set(url, assetId);
+    } catch (err) {
+      console.warn(`  ! image skipped (${url}): ${err instanceof Error ? err.message : err}`);
+      return undefined;
+    }
+  }
+  return { _type: 'image', asset: { _type: 'reference', _ref: assetId } };
+}
+
+async function uploadGallery(urls: string[] = []): Promise<(SanityImage & { _key: string })[]> {
+  const out: (SanityImage & { _key: string })[] = [];
+  for (let i = 0; i < urls.length; i++) {
+    const img = await uploadImage(urls[i]);
+    if (img) out.push({ ...img, _key: `g${i}` });
+  }
+  return out;
+}
+
+// ── Seeders ──────────────────────────────────────────────────────────────────
 
 async function seedLearningSites() {
   console.log(`Seeding ${learningSites.length} learning sites...`);
   for (const site of learningSites) {
     const doc = {
       _type: 'learningSite',
+      _id: `learningSite-${site.slug}`,
       slug: toSlug(site.slug),
       name: site.name,
       location: site.location,
@@ -47,6 +109,8 @@ async function seedLearningSites() {
       leadPartners: site.leadPartners,
       lat: site.lat,
       lng: site.lng,
+      heroImage: await uploadImage(site.heroImage),
+      accentImage: await uploadImage(site.accentImage),
       visionEyebrow: site.visionEyebrow,
       visionStatement: site.visionStatement,
       overview: site.overview,
@@ -58,23 +122,18 @@ async function seedLearningSites() {
       initiativesIntro: site.initiativesIntro,
       initiatives: (site.initiatives ?? []).map((init) => ({
         _type: 'object',
-        _key: init.title.replace(/\s+/g, '-').toLowerCase(),
+        _key: key(init.title),
         title: init.title,
         description: init.description,
         icon: init.icon,
-        // init.image is a URL, not a Sanity asset — omit for seed
       })),
       challenges: {
         title: site.challenges.title,
         description: site.challenges.description,
         tags: site.challenges.tags,
-        // challenges.image omitted (external URL)
       },
       restorationStrategies: site.restorationStrategies
-        ? {
-            description: site.restorationStrategies.description,
-            tags: site.restorationStrategies.tags,
-          }
+        ? { description: site.restorationStrategies.description, tags: site.restorationStrategies.tags }
         : undefined,
       marketStrategies: {
         title: site.marketStrategies.title,
@@ -85,7 +144,7 @@ async function seedLearningSites() {
       impactData: {
         ecological: (site.impactData.ecological ?? []).map((stat) => ({
           _type: 'object',
-          _key: stat.label.replace(/\s+/g, '-').toLowerCase(),
+          _key: key(stat.label),
           label: stat.label,
           value: stat.value,
           description: stat.description,
@@ -93,7 +152,7 @@ async function seedLearningSites() {
         })),
         community: (site.impactData.community ?? []).map((stat) => ({
           _type: 'object',
-          _key: stat.label.replace(/\s+/g, '-').toLowerCase(),
+          _key: key(stat.label),
           label: stat.label,
           value: stat.value,
           description: stat.description,
@@ -101,6 +160,7 @@ async function seedLearningSites() {
         })),
       },
       futureGoals: site.futureGoals,
+      gallery: await uploadGallery(site.gallery),
       testimonial: site.testimonial
         ? {
             quote: site.testimonial.quote,
@@ -109,17 +169,12 @@ async function seedLearningSites() {
           }
         : undefined,
       contact: site.contact
-        ? {
-            intro: site.contact.intro,
-            buttonLabel: site.contact.buttonLabel,
-            contactLink: site.contact.contactLink,
-          }
+        ? { intro: site.contact.intro, buttonLabel: site.contact.buttonLabel, contactLink: site.contact.contactLink }
         : undefined,
-      // gallery, heroImage, relatedSites: omitted for seed (require Sanity asset refs)
     };
 
     try {
-      await client.createOrReplace({ ...doc, _id: `learningSite-${site.slug}` });
+      await client.createOrReplace(doc);
       console.log(`  ✓ ${site.name}`);
     } catch (err) {
       console.error(`  ✗ ${site.name}:`, err);
@@ -137,26 +192,27 @@ async function seedStories() {
       title: story.title,
       subtitle: story.subtitle,
       excerpt: story.excerpt,
-      // content: story.content is a plain string — convert to basic Portable Text block
       content: [
         {
           _type: 'block',
           _key: 'content-0',
           style: 'normal',
-          children: [{ _type: 'span', _key: 'span-0', text: story.content }],
+          children: [{ _type: 'span', _key: 'span-0', text: typeof story.content === 'string' ? story.content : '' }],
           markDefs: [],
         },
       ],
+      image: await uploadImage(story.image),
       category: story.category,
       date: story.date,
       readTime: story.readTime,
       impactMetrics: (story.impactMetrics ?? []).map((m) => ({
         _type: 'object',
-        _key: m.label.replace(/\s+/g, '-').toLowerCase(),
+        _key: key(m.label),
         label: m.label,
         value: m.value,
         unit: m.unit,
       })),
+      associatedSite: siteRef(story.siteSlug),
     };
 
     try {
@@ -181,8 +237,10 @@ async function seedEvents() {
       time: event.time,
       location: event.location,
       type: event.type,
+      image: await uploadImage(event.image),
       link: event.link,
       registrationStatus: event.registrationStatus,
+      associatedSite: siteRef(event.siteSlug),
     };
 
     try {
@@ -208,15 +266,15 @@ async function seedProjects() {
       category: project.category,
       maturity: project.maturity,
       featured: project.featured,
+      image: await uploadImage(project.image),
       impactMetrics: (project.impactMetrics ?? []).map((m) => ({
         _type: 'object',
-        _key: m.label.replace(/\s+/g, '-').toLowerCase(),
+        _key: key(m.label),
         label: m.label,
         value: m.value,
         unit: m.unit,
       })),
-      // associatedSite reference: set after learning sites are seeded
-      // Use: client.patch(`project-${project.slug}`).set({ associatedSite: { _type: 'reference', _ref: `learningSite-${project.siteSlug}` } }).commit()
+      associatedSite: siteRef(project.siteSlug),
     };
 
     try {
@@ -239,8 +297,15 @@ async function seedTeam() {
       role: member.role,
       bio: member.bio,
       location: member.location,
+      avatar: await uploadImage(member.avatar),
       joinedYear: member.joinedYear,
       isCoreTeam: member.isCoreTeam,
+      associatedSite: siteRef(member.siteSlug),
+      associatedSites: (member.siteSlugs ?? []).map((s, i) => ({
+        _type: 'reference',
+        _key: `s${i}`,
+        _ref: `learningSite-${s}`,
+      })),
     };
 
     try {
@@ -252,21 +317,71 @@ async function seedTeam() {
   }
 }
 
+async function seedNews() {
+  console.log(`Seeding ${newsItems.length} news items...`);
+  for (const item of newsItems) {
+    const doc = {
+      _type: 'newsItem',
+      _id: `newsItem-${item.slug}`,
+      slug: toSlug(item.slug),
+      title: item.title,
+      summary: item.summary,
+      content: item.content,
+      category: item.category,
+      date: item.date,
+      image: await uploadImage(item.image),
+    };
+
+    try {
+      await client.createOrReplace(doc);
+      console.log(`  ✓ ${item.title}`);
+    } catch (err) {
+      console.error(`  ✗ ${item.title}:`, err);
+    }
+  }
+}
+
+async function seedBlog() {
+  console.log(`Seeding ${blogPosts.length} blog posts...`);
+  for (const post of blogPosts) {
+    const doc = {
+      _type: 'blogPost',
+      _id: `blogPost-${post.slug}`,
+      slug: toSlug(post.slug),
+      title: post.title,
+      summary: post.summary,
+      content: post.content,
+      label: post.label,
+      author: post.author,
+      published: post.published,
+      image: await uploadImage(post.image),
+    };
+
+    try {
+      await client.createOrReplace(doc);
+      console.log(`  ✓ ${post.title}`);
+    } catch (err) {
+      console.error(`  ✗ ${post.title}:`, err);
+    }
+  }
+}
+
 async function main() {
   console.log('Starting Sanity seed...');
   console.log(`Project: ${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}`);
   console.log(`Dataset: ${process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'}`);
   console.log('');
 
-  await seedLearningSites();
+  await seedLearningSites(); // first — others reference learningSite-{slug}
   await seedStories();
   await seedEvents();
   await seedProjects();
   await seedTeam();
+  await seedNews();
+  await seedBlog();
 
   console.log('');
   console.log('Seed complete. Open /studio to view content.');
-  console.log('Note: Images were not migrated — upload via Studio.');
 }
 
 main().catch((err) => {

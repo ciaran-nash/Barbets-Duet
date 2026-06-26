@@ -5,7 +5,8 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import { StickyFooter } from '@/components/ui/sticky-footer';
 import { ScrollGlow } from '@/components/motion/ScrollGlow';
-import { blogPosts } from '@/lib/data/blog';
+import { blogPosts as staticBlog } from '@/lib/data/blog';
+import { getAllBlogFromSanity, getBlogFromSanity } from '@/lib/sanity/queries';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft } from 'lucide-react';
 
@@ -14,12 +15,14 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  const sanityBlog = await getAllBlogFromSanity();
+  const posts = sanityBlog.length > 0 ? sanityBlog : staticBlog;
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = (await getBlogFromSanity(slug)) ?? staticBlog.find((p) => p.slug === slug);
   if (!post) return {};
   return {
     title: `${post.title} | Barbets Duet Blog`,
@@ -29,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = (await getBlogFromSanity(slug)) ?? staticBlog.find((p) => p.slug === slug);
   if (!post) notFound();
 
   const paragraphs = (post.content as string).split('\n\n').filter(Boolean);
