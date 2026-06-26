@@ -1,48 +1,28 @@
 {
   "prd": "production-launch",
-  "status": "in-progress",
+  "status": "blocked-on-vercel-plan",
   "created": "2026-06-26",
-  "execution_mode": "feature-branch",
   "base_branch": "main",
   "current_wave": 2,
-  "waves_total": 6,
   "canonical_plan": "~/.claude/plans/can-we-plan-to-jiggly-flame.md",
-  "locked_decisions": {
-    "london_urban_canopy": "added as provisional 14th learning site, flagged for client confirm/replace",
-    "ai_search": "wired /api/search via Vercel AI Gateway (SEARCH_MODEL overridable)",
-    "pwa_scope": "cache app shell + learning-site detail pages",
-    "content": "migrated lib/data/* to Sanity; static kept as typed fallback",
-    "deploy": "git-driven via barbetsduet/barbets-duet on the Barbets Vercel account"
-  },
+  "head_commit": "917c2d0",
+  "repo": "barbetsduet/barbets-duet (origin/main = b64cde8 pushed; local main ahead with waves 3+4 unpushed)",
   "waves": {
-    "0": { "title": "Stabilize & merge admin-portal → main", "gate": "human", "status": "done", "merged_commit": "76fe75d" },
-    "1": { "title": "Content → Sanity migration", "gate": "conditional+human", "status": "code-complete", "branch": "feature/content-sanity", "commit": "c0b20d6" },
+    "0": { "title": "Stabilize & merge to main", "status": "done", "commit": "76fe75d" },
+    "1": { "title": "Content → Sanity migration", "status": "done", "commit": "b64cde8", "note": "seeded live xdhl8m8i; pushed to barbetsduet main" },
     "2": {
-      "title": "Integrations live + git-driven deploy (Barbets accounts)",
-      "gate": "human",
-      "status": "blocked-on-accounts",
-      "done": {
-        "supabase": "verified correct Barbets project qomnuladxmiszlyqtvkx; all 8 migrations applied; read-only, nothing pushed",
-        "sanity_seed": "seeded correct project xdhl8m8i — 14 sites/2 stories/2 events/3 projects/11 team/3 news/3 blog + image assets + associatedSite refs (2 image 404s skipped)",
-        "ai_gateway_search": "code done (commit 2b0958e)",
-        "wrong_vercel_cleanup": "deleted mistaken barbets-duet project from syowia-s-projects; removed local .vercel link"
-      },
-      "blocked_by": [
-        "Barbets Vercel account/team login (was on personal syowia-s-projects)",
-        "pushable barbetsduet/barbets-duet GitHub repo (currently 'Repository not found' with active gh account syowia-web)"
-      ],
-      "next_when_unblocked": [
-        "merge feature/content-sanity → main",
-        "push main to barbetsduet origin",
-        "connect Barbets Vercel → barbetsduet repo (dashboard), set env (checklist provided), deploy",
-        "configure Sanity + Liveblocks webhooks; live smoke + RLS self-promote check"
-      ]
+      "title": "Integrations live + deploy",
+      "status": "blocked-on-vercel-plan",
+      "done": "Supabase verified (migrations applied), Sanity seeded, search→AI Gateway, Vercel project barbets/barbets-duet created + 21 env vars set + git-connected + framework=Next.js, deployment protection disabled",
+      "blocker": "barbets Vercel team on free/Hobby plan: api-upload-free 24h limit + deploys stuck 'building'. Decision pending: upgrade to Pro vs cancel stuck builds + retry.",
+      "remaining": "unblock plan → cancel stuck builds → fresh git deploy → live smoke + RLS self-promote check; add LIVEBLOCKS_WEBHOOK_SECRET + real STRIPE_SECRET_KEY; configure Sanity + Liveblocks webhooks"
     },
-    "3": { "title": "Compliance, a11y, PWA", "gate": "conditional+human", "status": "pending" },
-    "4": { "title": "Testing + CI gate", "gate": "conditional", "status": "pending" },
-    "5": { "title": "Observability + launch", "gate": "human", "status": "pending" }
+    "3": { "title": "Compliance, a11y, PWA", "status": "done", "commit": "648b9ff", "note": "skip-link, prefers-reduced-motion, PWA manifest+icon. Consent banner skipped (cookieless analytics). SW offline deferred to post-deploy." },
+    "4": { "title": "Testing + CI", "status": "done", "commit": "917c2d0", "note": "Vitest 16 tests green + CI workflow (tsc/lint/vitest/build). Playwright critical-path E2E deferred — needs deployed app + real service env." },
+    "5": { "title": "Observability + launch", "status": "deploy-gated", "note": "Sentry + analytics + backups + prod smoke — needs the live deploy first." }
   },
-  "gate_history": [
-    { "wave": 0, "outcome": "human-approved", "approved_by": "user", "notes": "FF merge + hold push approved" }
+  "push_notes": [
+    "barbetsduet gh token lacks 'workflow' scope — run `gh auth refresh -h github.com -s workflow` before pushing .github/workflows/ci.yml",
+    "git push origin main is NOT rate-limited (GitHub); the api-upload-free limit only affects vercel CLI uploads"
   ]
 }
