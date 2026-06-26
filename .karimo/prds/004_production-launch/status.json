@@ -9,37 +9,35 @@
   "canonical_plan": "~/.claude/plans/can-we-plan-to-jiggly-flame.md",
   "locked_decisions": {
     "london_urban_canopy": "added as provisional 14th learning site, flagged for client confirm/replace",
-    "ai_search": "wire /api/search via Vercel AI Gateway provider/model string",
+    "ai_search": "wired /api/search via Vercel AI Gateway (SEARCH_MODEL overridable)",
     "pwa_scope": "cache app shell + learning-site detail pages",
-    "content": "migrate lib/data/* to Sanity; keep static as typed fallback"
+    "content": "migrated lib/data/* to Sanity; static kept as typed fallback",
+    "deploy": "git-driven via barbetsduet/barbets-duet on the Barbets Vercel account"
   },
   "waves": {
-    "0": {
-      "title": "Stabilize & merge admin-portal → main",
+    "0": { "title": "Stabilize & merge admin-portal → main", "gate": "human", "status": "done", "merged_commit": "76fe75d" },
+    "1": { "title": "Content → Sanity migration", "gate": "conditional+human", "status": "code-complete", "branch": "feature/content-sanity", "commit": "c0b20d6" },
+    "2": {
+      "title": "Integrations live + git-driven deploy (Barbets accounts)",
       "gate": "human",
-      "status": "done",
-      "merged_commit": "76fe75d",
-      "notes": "Fast-forward merged to main (local, unpushed per decision). pastebin/ + stray temp untracked; london-urban-canopy added."
-    },
-    "1": {
-      "title": "Content → Sanity migration",
-      "gate": "conditional+human",
-      "status": "code-complete",
-      "branch": "feature/content-sanity",
-      "commit": "c0b20d6",
-      "steps": {
-        "blog_news_schemas": "done",
-        "groq_helpers": "done",
-        "pages_rewired": "done (9 pages; 4 were already wired)",
-        "revalidate_tags": "done",
-        "seed_rebuilt_with_images_and_refs": "done",
-        "tsc_build_green": "done",
-        "static_fallback_verified": "done (build prerenders from static when Sanity unconfigured)",
-        "live_studio_edit_revalidate": "pending — requires Sanity creds (Wave 2)"
+      "status": "blocked-on-accounts",
+      "done": {
+        "supabase": "verified correct Barbets project qomnuladxmiszlyqtvkx; all 8 migrations applied; read-only, nothing pushed",
+        "sanity_seed": "seeded correct project xdhl8m8i — 14 sites/2 stories/2 events/3 projects/11 team/3 news/3 blog + image assets + associatedSite refs (2 image 404s skipped)",
+        "ai_gateway_search": "code done (commit 2b0958e)",
+        "wrong_vercel_cleanup": "deleted mistaken barbets-duet project from syowia-s-projects; removed local .vercel link"
       },
-      "deferred": "AboutContent team preview left on static (low value; flagged in-code)"
+      "blocked_by": [
+        "Barbets Vercel account/team login (was on personal syowia-s-projects)",
+        "pushable barbetsduet/barbets-duet GitHub repo (currently 'Repository not found' with active gh account syowia-web)"
+      ],
+      "next_when_unblocked": [
+        "merge feature/content-sanity → main",
+        "push main to barbetsduet origin",
+        "connect Barbets Vercel → barbetsduet repo (dashboard), set env (checklist provided), deploy",
+        "configure Sanity + Liveblocks webhooks; live smoke + RLS self-promote check"
+      ]
     },
-    "2": { "title": "Integrations live + deploy", "gate": "human", "status": "pending", "needs": "user-provided secrets + Vercel/Supabase access" },
     "3": { "title": "Compliance, a11y, PWA", "gate": "conditional+human", "status": "pending" },
     "4": { "title": "Testing + CI gate", "gate": "conditional", "status": "pending" },
     "5": { "title": "Observability + launch", "gate": "human", "status": "pending" }
