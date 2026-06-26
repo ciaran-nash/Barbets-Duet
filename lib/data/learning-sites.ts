@@ -1424,6 +1424,110 @@ export const learningSites: LearningSite[] = [
 
     relatedSitesSlugs: ['seme', 'lukenya-zumula-farm', 'arboretum-kajokoby'],
   },
+
+  // FIXME(client): Provisional entry. `london-urban-canopy` is NOT one of the 13
+  // CSV partner sites — it was referenced only by two projects in lib/data/projects.ts.
+  // Added so those projects resolve and pages render. Confirm whether this is a real
+  // Barbets Duet learning site (then replace placeholder copy/partners/images) or
+  // remove it and reassign the two projects to an existing site.
+  {
+    slug: 'london-urban-canopy',
+    name: 'London Urban Canopy',
+    location: 'Greater London, United Kingdom',
+    founded: '2021',
+    category: 'Urban Biodiversity Restoration',
+    leadPartners: ['Barbets Duet (lead partner TBC)'],
+    lat: 51.5074,
+    lng: -0.1278,
+
+    heroImage: 'https://picsum.photos/seed/london-urban-canopy-hero/1600/900',
+    accentImage: 'https://picsum.photos/seed/london-urban-canopy-accent/800/600',
+
+    visionEyebrow: 'Urban Biodiversity Grid',
+    visionStatement: 'Reversing the urban "island effect" by knitting fragmented green spaces into a connected, city-wide biodiversity grid.',
+    overview: 'London Urban Canopy applies the Barbets Duet restoration model to a dense urban environment, connecting parks, gardens, green roofs and street verges into continuous pollinator and canopy corridors. The site demonstrates that meaningful ecological restoration is possible inside a major city when private citizens, councils and businesses are given a standardised, replicable model to contribute to.',
+    focusAreas: [
+      'Urban pollinator corridors',
+      'Canopy connectivity and the heat-island effect',
+      'Citizen-led micro-restoration',
+      'Green-space biodiversity grids',
+    ],
+    restorationGoals: [
+      'Connect fragmented green spaces into continuous pollinator corridors across the city',
+      'Increase species richness in participating sites year on year',
+      'Reduce local peak temperatures through expanded canopy cover',
+      'Standardise a "Botanical Pocket" model that any citizen can replicate',
+    ],
+
+    challenges: {
+      title: 'The Urban Island Effect',
+      description: 'Dense cities fragment habitat into isolated islands, collapsing biodiversity and amplifying the urban heat-island effect. Restoration here competes with land value, hard surfaces and pollution — and there is no off-the-shelf playbook for stitching a living network back together at city scale.',
+      image: 'https://picsum.photos/seed/london-urban-canopy-challenge/1200/800',
+      tags: ['Habitat fragmentation', 'Heat-island effect', 'Land pressure', 'Pollution'],
+    },
+
+    restorationStrategies: {
+      description: 'A networked micro-restoration approach: many small, standardised "Botanical Pocket" interventions that individually are modest but collectively form a connected city-wide biodiversity grid.',
+      tags: ['Micro-restoration', 'Pollinator corridors', 'Green roofs', 'Citizen science'],
+      image: 'https://picsum.photos/seed/london-urban-canopy-restoration/1200/800',
+    },
+
+    initiativesIntro: 'London Urban Canopy turns private and public green space into a single, connected restoration network.',
+    initiatives: [
+      {
+        title: 'Botanical Pocket Network',
+        description: 'A standardised micro-restoration model that lets private citizens, schools and businesses each contribute a node to a city-wide biodiversity grid.',
+        icon: '🌿',
+      },
+      {
+        title: 'Urban Pollinator Corridors',
+        description: 'Connecting fragmented city parks through high-biodiversity pocket gardens and green roofs so pollinators can move across the urban landscape.',
+        icon: '🐝',
+      },
+      {
+        title: 'Canopy & Cooling Programme',
+        description: 'Expanding tree and canopy cover in priority neighbourhoods to measurably reduce local peak temperatures and the urban heat-island effect.',
+        icon: '🌳',
+      },
+    ],
+    initiativesImage: 'https://picsum.photos/seed/london-urban-canopy-initiatives/1200/800',
+
+    marketStrategies: {
+      title: 'Restoration as Civic Infrastructure',
+      description: 'Positioning urban biodiversity as shared civic infrastructure that councils, businesses and residents co-fund because it returns cooling, wellbeing and amenity value.',
+      strategies: [
+        'Corporate green-roof and verge sponsorship',
+        'Council biodiversity-net-gain partnerships',
+        'Citizen "Botanical Pocket" subscription kits',
+      ],
+    },
+
+    impactData: {
+      ecological: [
+        { label: 'Species Richness', value: '+42%', description: 'Increase in species richness across participating Botanical Pocket sites', trend: 'up' },
+        { label: 'Temperature Reduction', value: '-2.4°C', unit: 'local peak', description: 'Measured reduction in local peak temperature in canopy-restored zones', trend: 'down' },
+      ],
+      community: [
+        { label: 'Restoration Model', value: 'Systemic', description: 'Standardised Botanical Pocket model enabling city-wide citizen participation' },
+        { label: 'Participation', value: 'Citizen-led', description: 'Private citizens contributing nodes to a shared biodiversity grid' },
+      ],
+    },
+
+    futureGoals: 'To scale the Botanical Pocket model across every London borough, creating an unbroken pollinator and canopy network, and to publish the model as an open template for other cities.',
+
+    gallery: [
+      'https://picsum.photos/seed/london-urban-canopy-g1/1200/800',
+      'https://picsum.photos/seed/london-urban-canopy-g2/1200/800',
+      'https://picsum.photos/seed/london-urban-canopy-g3/1200/800',
+    ],
+
+    contact: {
+      buttonLabel: 'Connect with London Urban Canopy',
+      contactLink: '/get-involved',
+    },
+
+    relatedSitesSlugs: ['woodland-valley-farm'],
+  },
 ];
 
 export function getLearningSite(slug: string): LearningSite | undefined {

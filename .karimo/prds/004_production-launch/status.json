@@ -1,0 +1,37 @@
+{
+  "prd": "production-launch",
+  "status": "in-progress",
+  "created": "2026-06-26",
+  "execution_mode": "feature-branch",
+  "base_branch": "main",
+  "current_wave": 0,
+  "waves_total": 6,
+  "canonical_plan": "~/.claude/plans/can-we-plan-to-jiggly-flame.md",
+  "locked_decisions": {
+    "london_urban_canopy": "added as provisional 14th learning site, flagged for client confirm/replace",
+    "ai_search": "wire /api/search via Vercel AI Gateway provider/model string",
+    "pwa_scope": "cache app shell + learning-site detail pages",
+    "content": "migrate lib/data/* to Sanity; keep static as typed fallback"
+  },
+  "waves": {
+    "0": {
+      "title": "Stabilize & merge admin-portal → main",
+      "gate": "human",
+      "status": "in-progress",
+      "steps": {
+        "tsc_clean": "done",
+        "next_build_green": "done",
+        "ap4_ap8_landed": "verified",
+        "london_urban_canopy_added": "done",
+        "stray_temp_removed": "done",
+        "merge_to_main": "pending-human-gate"
+      }
+    },
+    "1": { "title": "Content → Sanity migration", "gate": "conditional+human", "status": "pending" },
+    "2": { "title": "Integrations live + deploy", "gate": "human", "status": "pending" },
+    "3": { "title": "Compliance, a11y, PWA", "gate": "conditional+human", "status": "pending" },
+    "4": { "title": "Testing + CI gate", "gate": "conditional", "status": "pending" },
+    "5": { "title": "Observability + launch", "gate": "human", "status": "pending" }
+  },
+  "gate_history": []
+}
