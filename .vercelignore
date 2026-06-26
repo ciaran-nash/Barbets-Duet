@@ -1,0 +1,15 @@
+# Exclude local-only cruft from any Vercel upload (git-driven builds use the repo,
+# but this keeps CLI uploads lean and well under the free-tier upload limits).
+node_modules
+.next
+.git
+pastebin
+graphify-out
+.karimo
+.planning
+.agents
+.vscode
+.claude
+docs
+*.log
+tsconfig.tsbuildinfo
