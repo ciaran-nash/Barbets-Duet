@@ -4,7 +4,7 @@
   "created": "2026-06-26",
   "execution_mode": "feature-branch",
   "base_branch": "main",
-  "current_wave": 0,
+  "current_wave": 2,
   "waves_total": 6,
   "canonical_plan": "~/.claude/plans/can-we-plan-to-jiggly-flame.md",
   "locked_decisions": {
@@ -17,21 +17,34 @@
     "0": {
       "title": "Stabilize & merge admin-portal → main",
       "gate": "human",
-      "status": "in-progress",
-      "steps": {
-        "tsc_clean": "done",
-        "next_build_green": "done",
-        "ap4_ap8_landed": "verified",
-        "london_urban_canopy_added": "done",
-        "stray_temp_removed": "done",
-        "merge_to_main": "pending-human-gate"
-      }
+      "status": "done",
+      "merged_commit": "76fe75d",
+      "notes": "Fast-forward merged to main (local, unpushed per decision). pastebin/ + stray temp untracked; london-urban-canopy added."
     },
-    "1": { "title": "Content → Sanity migration", "gate": "conditional+human", "status": "pending" },
-    "2": { "title": "Integrations live + deploy", "gate": "human", "status": "pending" },
+    "1": {
+      "title": "Content → Sanity migration",
+      "gate": "conditional+human",
+      "status": "code-complete",
+      "branch": "feature/content-sanity",
+      "commit": "c0b20d6",
+      "steps": {
+        "blog_news_schemas": "done",
+        "groq_helpers": "done",
+        "pages_rewired": "done (9 pages; 4 were already wired)",
+        "revalidate_tags": "done",
+        "seed_rebuilt_with_images_and_refs": "done",
+        "tsc_build_green": "done",
+        "static_fallback_verified": "done (build prerenders from static when Sanity unconfigured)",
+        "live_studio_edit_revalidate": "pending — requires Sanity creds (Wave 2)"
+      },
+      "deferred": "AboutContent team preview left on static (low value; flagged in-code)"
+    },
+    "2": { "title": "Integrations live + deploy", "gate": "human", "status": "pending", "needs": "user-provided secrets + Vercel/Supabase access" },
     "3": { "title": "Compliance, a11y, PWA", "gate": "conditional+human", "status": "pending" },
     "4": { "title": "Testing + CI gate", "gate": "conditional", "status": "pending" },
     "5": { "title": "Observability + launch", "gate": "human", "status": "pending" }
   },
-  "gate_history": []
+  "gate_history": [
+    { "wave": 0, "outcome": "human-approved", "approved_by": "user", "notes": "FF merge + hold push approved" }
+  ]
 }
