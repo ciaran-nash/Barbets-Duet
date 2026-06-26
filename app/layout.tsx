@@ -24,6 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Barbets Duet Global Learning Sites',
   description: 'A global network of learning sites exploring sustainable livelihoods by integrating economic activities with environmental conservation.',
+  icons: { icon: '/icon.svg' },
 };
 
 export default function RootLayout({
@@ -34,9 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scroll-smooth ${dmSans.variable} ${bioRhyme.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased" suppressHydrationWarning>
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
         <SmoothScroll />
         <AuthProvider>
-          {children}
+          <div id="main-content">{children}</div>
         </AuthProvider>
         {/* TODO(T04): Umami analytics — awaiting-credentials
             Set NEXT_PUBLIC_UMAMI_WEBSITE_ID in .env.local after creating a

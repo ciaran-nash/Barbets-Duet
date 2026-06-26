@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Barbets Duet">
+  <rect width="512" height="512" rx="96" fill="#06211A"/>
+  <circle cx="256" cy="256" r="150" fill="none" stroke="#DBFF66" stroke-width="16"/>
+  <circle cx="256" cy="256" r="92" fill="none" stroke="#006F53" stroke-width="14"/>
+  <path d="M200 200 q56 -40 112 0 q-56 40 -112 0 Z" fill="#DBFF66"/>
+  <path d="M200 312 q56 40 112 0 q-56 -40 -112 0 Z" fill="#006F53"/>
+  <circle cx="256" cy="256" r="14" fill="#F4F4F5"/>
+</svg>
