@@ -26,6 +26,7 @@ export default function SiteSelector({ selectedSlug, onSelect }: SiteSelectorPro
           <MapPin size={14} className="text-neon-lime/60" />
         </div>
         <select
+          aria-label="Select a learning site to support"
           value={selectedSlug ?? ''}
           onChange={(e) => onSelect(e.target.value || null)}
           className="w-full appearance-none bg-white/5 border border-platinum/15 rounded-none pl-10 pr-8 py-3 font-sans text-sm text-platinum/90 focus:outline-none focus:border-neon-lime/50 focus:ring-1 focus:ring-neon-lime/20 transition-colors cursor-pointer"

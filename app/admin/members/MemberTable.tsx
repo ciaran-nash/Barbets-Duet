@@ -184,6 +184,7 @@ export function MemberTable({ members }: MemberTableProps) {
                   </td>
                   <td className="px-4 py-3">
                     <select
+                      aria-label="Member role"
                       value={member.role}
                       onChange={(e) =>
                         handleRoleSelect(member, e.target.value as MemberRole)

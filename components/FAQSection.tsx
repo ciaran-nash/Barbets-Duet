@@ -170,7 +170,7 @@ export default function FAQSection() {
 
             {/* Sort Dropdown (Mock) */}
             <div className="relative w-full sm:w-48">
-              <select className="w-full appearance-none bg-white border border-night-forest/20 rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-viridian shadow-sm font-sans text-night-forest cursor-pointer">
+              <select aria-label="Sort FAQs" className="w-full appearance-none bg-white border border-night-forest/20 rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-viridian shadow-sm font-sans text-night-forest cursor-pointer">
                 <option>Most Popular</option>
                 <option>Newest</option>
               </select>

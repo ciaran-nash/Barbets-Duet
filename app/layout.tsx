@@ -4,6 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/components/AuthProvider';
 import SmoothScroll from '@/components/SmoothScroll';
+import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -21,10 +22,22 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-mono',
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_BASE_URL || 'https://barbets-duet-git-main-barbets.vercel.app';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Barbets Duet Global Learning Sites',
   description: 'A global network of learning sites exploring sustainable livelihoods by integrating economic activities with environmental conservation.',
   icons: { icon: '/icon.svg' },
+  openGraph: {
+    title: 'Barbets Duet Global Learning Sites',
+    description: 'A global network of learning sites integrating economic activity with ecological restoration.',
+    siteName: 'Barbets Duet',
+    type: 'website',
+    url: siteUrl,
+  },
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function RootLayout({
@@ -37,6 +50,7 @@ export default function RootLayout({
       <body className="font-sans antialiased" suppressHydrationWarning>
         <a href="#main-content" className="skip-to-content">Skip to content</a>
         <SmoothScroll />
+        <ServiceWorkerRegister />
         <AuthProvider>
           <div id="main-content">{children}</div>
         </AuthProvider>

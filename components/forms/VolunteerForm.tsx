@@ -262,6 +262,7 @@ export default function VolunteerForm() {
             <div>
               <label className={labelClass}>Preferred learning site</label>
               <select
+                aria-label="Preferred learning site"
                 className={inputClass}
                 value={formData.preferredSiteSlug ?? ''}
                 onChange={(e) => update('preferredSiteSlug', e.target.value)}
