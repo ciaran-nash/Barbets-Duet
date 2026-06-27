@@ -247,7 +247,6 @@ export default function ContributionFeed({
         <div className="flex items-center gap-2">
           {/* Sort */}
           <select
-            aria-label="Sort contributions"
             value={filters.sortOrder}
             onChange={(e) =>
               setFilters((f) => ({ ...f, sortOrder: e.target.value as SortOrder }))
