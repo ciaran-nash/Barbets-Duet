@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import { donationSchema } from '@/lib/schemas/donation.schema';
+import { donationLimiter } from '@/lib/arcjet';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-04-22.dahlia' });
 
@@ -18,6 +19,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2026-04
  */
 export async function POST(req: Request) {
   try {
+    // Rate limit (Arcjet) — moved out of Edge middleware to stay under 1 MB.
+    const decision = await donationLimiter.protect(req, { requested: 1 });
+    if (decision.isDenied()) {
+      return Response.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
 
     const parsed = donationSchema.safeParse(body);

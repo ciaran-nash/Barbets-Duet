@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { volunteerApplicationSchema } from '@/lib/schemas/volunteerApplication.schema';
+import { volunteerLimiter } from '@/lib/arcjet';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 
@@ -15,6 +16,16 @@ import * as React from 'react';
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit + bot/shield protection (Arcjet) — was in middleware (Edge),
+    // moved here to keep the Edge middleware under the 1 MB size limit.
+    const decision = await volunteerLimiter.protect(request, { requested: 1 });
+    if (decision.isDenied()) {
+      return NextResponse.json(
+        { message: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
 
     // Zod validation
