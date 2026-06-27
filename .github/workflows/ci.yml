@@ -38,3 +38,20 @@ jobs:
           NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
           NEXT_PUBLIC_SANITY_PROJECT_ID: placeholder
           NEXT_PUBLIC_SANITY_DATASET: production
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: E2E smoke (against live deployment)
+        run: npm run test:e2e
+        env:
+          PLAYWRIGHT_BASE_URL: https://barbets-duet-git-main-barbets.vercel.app
