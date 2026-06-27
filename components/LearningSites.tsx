@@ -94,11 +94,11 @@ export default function LearningSites() {
               <input
                 type="text"
                 placeholder="Search"
-                className="w-full pl-10 pr-4 py-3 bg-white border border-night-forest/20 rounded-md focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans"
+                className="w-full pl-10 pr-4 py-3 bg-white border border-night-forest/20 rounded-md focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans text-night-forest placeholder:text-night-forest/50"
               />
             </div>
             <div className="relative min-w-[140px]">
-              <select aria-label="Sort learning sites" className="w-full appearance-none bg-white border border-night-forest/20 rounded-md px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans cursor-pointer">
+              <select aria-label="Sort learning sites" className="w-full appearance-none bg-white border border-night-forest/20 rounded-md px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans text-night-forest cursor-pointer">
                 <option>Sort by</option>
                 <option>Alphabetical</option>
                 <option>Newest</option>

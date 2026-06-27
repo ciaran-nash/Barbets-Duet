@@ -128,7 +128,7 @@ export default function FAQSection() {
               placeholder="Search questions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white border border-night-forest/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans shadow-sm"
+              className="w-full pl-12 pr-4 py-3 bg-white border border-night-forest/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans shadow-sm text-night-forest placeholder:text-night-forest/50"
             />
           </div>
 

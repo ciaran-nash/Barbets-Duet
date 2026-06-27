@@ -97,7 +97,7 @@ export default function SiteCard({
             </div>
           )}
 
-          <span className="inline-flex items-center gap-1.5 text-xs font-sans font-semibold text-viridian group-hover:gap-2.5 transition-all">
+          <span className="inline-flex items-center gap-1.5 text-xs font-sans font-semibold text-neon-lime group-hover:gap-2.5 transition-all">
             Visit Site <ArrowRight className="w-3.5 h-3.5" />
           </span>
         </div>
