@@ -1,9 +1,17 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import { LearningSite } from '@/types/learning-site';
-import SitesMap from './SitesMap';
 import SiteCard from './SiteCard';
+
+// Lazy-load the map (maplibre-gl is heavy) — keep it out of the initial bundle.
+const SitesMap = dynamic(() => import('./SitesMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full w-full min-h-[400px] animate-pulse bg-night-forest/5" aria-hidden />
+  ),
+});
 
 interface SitesBrowseProps {
   sites: LearningSite[];

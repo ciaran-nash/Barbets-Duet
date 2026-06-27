@@ -11,11 +11,19 @@
 // ============================================================
 
 import { useState, useRef, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TreePine, Users, Globe, ArrowRight } from 'lucide-react';
-import SitesMap from '@/components/learning-sites/SitesMap';
 import SiteCard from '@/components/learning-sites/SiteCard';
+
+// Lazy-load the map (maplibre-gl is heavy) — keep it out of the initial bundle.
+const SitesMap = dynamic(() => import('@/components/learning-sites/SitesMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-full w-full min-h-[400px] animate-pulse bg-night-forest/5" aria-hidden />
+  ),
+});
 import type { LearningSite } from '@/types/learning-site';
 
 // ── Impact stats ────────────────────────────────────────────
