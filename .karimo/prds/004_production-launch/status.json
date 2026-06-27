@@ -1,28 +1,33 @@
 {
   "prd": "production-launch",
-  "status": "blocked-on-vercel-plan",
+  "status": "live-core-complete",
   "created": "2026-06-26",
   "base_branch": "main",
-  "current_wave": 2,
+  "production_url": "https://barbets-duet-git-main-barbets.vercel.app",
+  "vercel": "team=barbets, project=barbets-duet, git-connected to barbetsduet/barbets-duet, Ready",
   "canonical_plan": "~/.claude/plans/can-we-plan-to-jiggly-flame.md",
-  "head_commit": "917c2d0",
-  "repo": "barbetsduet/barbets-duet (origin/main = b64cde8 pushed; local main ahead with waves 3+4 unpushed)",
+  "deploy_gotchas_fixed": [
+    "commit author must be barbetsduet (git config set) — else deploys hang UNKNOWN/building",
+    "Arcjet moved out of Edge middleware to lib/arcjet.ts (was 1.11MB > 1MB Edge limit)",
+    "gh barbetsduet token needed workflow scope for CI file"
+  ],
   "waves": {
-    "0": { "title": "Stabilize & merge to main", "status": "done", "commit": "76fe75d" },
-    "1": { "title": "Content → Sanity migration", "status": "done", "commit": "b64cde8", "note": "seeded live xdhl8m8i; pushed to barbetsduet main" },
+    "0": { "title": "Stabilize & merge to main", "status": "done" },
+    "1": { "title": "Content → Sanity migration", "status": "done", "note": "seeded live; rendering on prod" },
     "2": {
       "title": "Integrations live + deploy",
-      "status": "blocked-on-vercel-plan",
-      "done": "Supabase verified (migrations applied), Sanity seeded, search→AI Gateway, Vercel project barbets/barbets-duet created + 21 env vars set + git-connected + framework=Next.js, deployment protection disabled",
-      "blocker": "barbets Vercel team on free/Hobby plan: api-upload-free 24h limit + deploys stuck 'building'. Decision pending: upgrade to Pro vs cancel stuck builds + retry.",
-      "remaining": "unblock plan → cancel stuck builds → fresh git deploy → live smoke + RLS self-promote check; add LIVEBLOCKS_WEBHOOK_SECRET + real STRIPE_SECRET_KEY; configure Sanity + Liveblocks webhooks"
+      "status": "done",
+      "verified_live": "all public routes 200, Sanity content rendering (incl. london-urban-canopy), /admin RBAC redirect to /auth/login, /studio loads",
+      "remaining_cred_gated": [
+        "real STRIPE_SECRET_KEY (placeholder now — donations need it)",
+        "LIVEBLOCKS_WEBHOOK_SECRET",
+        "configure Sanity webhook → /api/revalidate and Liveblocks webhook → /api/liveblocks-webhook",
+        "custom domain barbetsduet.org + update NEXT_PUBLIC_BASE_URL",
+        "RLS self-promote runtime check with a non-admin test user"
+      ]
     },
-    "3": { "title": "Compliance, a11y, PWA", "status": "done", "commit": "648b9ff", "note": "skip-link, prefers-reduced-motion, PWA manifest+icon. Consent banner skipped (cookieless analytics). SW offline deferred to post-deploy." },
-    "4": { "title": "Testing + CI", "status": "done", "commit": "917c2d0", "note": "Vitest 16 tests green + CI workflow (tsc/lint/vitest/build). Playwright critical-path E2E deferred — needs deployed app + real service env." },
-    "5": { "title": "Observability + launch", "status": "deploy-gated", "note": "Sentry + analytics + backups + prod smoke — needs the live deploy first." }
-  },
-  "push_notes": [
-    "barbetsduet gh token lacks 'workflow' scope — run `gh auth refresh -h github.com -s workflow` before pushing .github/workflows/ci.yml",
-    "git push origin main is NOT rate-limited (GitHub); the api-upload-free limit only affects vercel CLI uploads"
-  ]
+    "3": { "title": "Compliance, a11y, PWA", "status": "done", "note": "SW offline still deferred (verify on prod)" },
+    "4": { "title": "Testing + CI", "status": "done", "note": "Vitest+CI live; Playwright E2E can now run against the prod URL" },
+    "5": { "title": "Observability + launch", "status": "pending", "note": "Sentry + Vercel Analytics + Supabase PITR + Sanity export backups + final sign-off" }
+  }
 }
