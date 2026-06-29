@@ -37,8 +37,8 @@ const METRIC_CONFIG: MetricConfig[] = [
     label: 'Natural Capital',
     icon: Leaf,
     description: 'Ecological restoration — biodiversity, soil health, water cycles',
-    colour: '#006F53',     // viridian
-    accentBg: 'bg-viridian/10',
+    colour: '#556B4E',     // viridian
+    accentBg: 'bg-moss/10',
   },
   {
     key: 'social',
@@ -62,7 +62,7 @@ const METRIC_CONFIG: MetricConfig[] = [
     icon: Sparkles,
     description: 'Cultural vitality, learning, purpose-driven action',
     colour: '#DBFF66',     // neon lime — use dark text
-    accentBg: 'bg-neon-lime/20',
+    accentBg: 'bg-wheat/20',
   },
 ];
 
@@ -214,7 +214,7 @@ export default function FourReturnsDisplay({
   return (
     <section className={`py-16 ${className}`}>
       <div className="mb-8">
-        <p className="text-xs font-mono text-viridian uppercase tracking-[0.2em] mb-2">
+        <p className="text-xs font-mono text-accent uppercase tracking-[0.2em] mb-2">
           4 Returns Metrics
         </p>
         <h2 className="font-serif font-bold text-3xl md:text-4xl mb-2">

@@ -98,10 +98,10 @@ export function TeamSection({ coreTeam, siteManagers }: TeamSectionProps) {
       </section>
 
       {/* Site managers */}
-      <section className="py-24 px-6 bg-platinum text-night-forest">
+      <section className="py-24 px-6 bg-background text-foreground">
         <div className="max-w-[1600px] mx-auto">
           <KineticReveal>
-            <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-viridian mb-6 block">
+            <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-accent mb-6 block">
               Jumuiya Network
             </span>
             <h2 className="text-5xl md:text-7xl font-serif font-bold leading-[0.9] tracking-tighter mb-16">
@@ -117,20 +117,20 @@ export function TeamSection({ coreTeam, siteManagers }: TeamSectionProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="border border-night-forest/10 rounded-2xl p-8 hover:border-viridian/40 transition-colors"
+                className="border border-border/10 rounded-2xl p-8 hover:border-accent/40 transition-colors"
               >
-                <span className="text-[9px] font-mono uppercase tracking-[0.3em] text-viridian block mb-2">
+                <span className="text-[9px] font-mono uppercase tracking-[0.3em] text-accent block mb-2">
                   Site Manager
                 </span>
-                <h3 className="text-2xl font-serif font-bold leading-tight mb-1 text-night-forest">
+                <h3 className="text-2xl font-serif font-bold leading-tight mb-1 text-foreground">
                   {member.name}
                 </h3>
-                <p className="text-sm font-sans text-night-forest/50 mb-2">{member.role}</p>
+                <p className="text-sm font-sans text-foreground/50 mb-2">{member.role}</p>
                 {member.location && (
-                  <p className="text-xs font-mono text-night-forest/40 mb-6">{member.location}</p>
+                  <p className="text-xs font-mono text-foreground/40 mb-6">{member.location}</p>
                 )}
                 {member.bio && (
-                  <p className="text-sm font-sans leading-relaxed text-night-forest/70 mb-6 line-clamp-3">
+                  <p className="text-sm font-sans leading-relaxed text-foreground/70 mb-6 line-clamp-3">
                     {member.bio}
                   </p>
                 )}
@@ -138,7 +138,7 @@ export function TeamSection({ coreTeam, siteManagers }: TeamSectionProps) {
                   <Link
                     href={`/learning-sites/${member.siteSlug}`}
                     className="inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-[0.25em]
-                               text-viridian hover:opacity-70 transition-opacity"
+                               text-accent hover:opacity-70 transition-opacity"
                   >
                     View site <ArrowRight className="w-3 h-3" />
                   </Link>

@@ -53,7 +53,7 @@ function CommunityMetaBar({
       {/* Back nav */}
       <Link
         href="/community"
-        className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground transition-colors font-sans focus:outline-none focus:ring-2 focus:ring-viridian rounded"
+        className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground transition-colors font-sans focus:outline-none focus:ring-2 focus:ring-accent rounded"
       >
         <ChevronLeft className="w-4 h-4" />
         Community Network
@@ -70,7 +70,7 @@ function CommunityMetaBar({
         {site.forumLink ? (
           <Link
             href={site.forumLink}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-viridian text-white text-xs font-sans font-medium hover:bg-viridian/80 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent text-accent-foreground text-xs font-sans font-medium hover:bg-accent/80 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
           >
             <MessageSquare className="w-3.5 h-3.5" />
             Site Forum
@@ -117,7 +117,7 @@ export default function CommunitySiteContent({
 
       <main className="relative">
         <ScrollGlow top="10%" left="-5%" opacity={0.1} size={1000} />
-        <ScrollGlow top="50%" right="-5%" color="var(--color-viridian)" opacity={0.08} size={1200} />
+        <ScrollGlow top="50%" right="-5%" color="var(--color-accent)" opacity={0.08} size={1200} />
 
         {/* Community context meta bar */}
         <CommunityMetaBar site={site} />

@@ -9,7 +9,7 @@ import SiteCard from './SiteCard';
 const SitesMap = dynamic(() => import('./SitesMap'), {
   ssr: false,
   loading: () => (
-    <div className="h-full w-full min-h-[400px] animate-pulse bg-night-forest/5" aria-hidden />
+    <div className="h-full w-full min-h-[400px] animate-pulse bg-foreground/5" aria-hidden />
   ),
 });
 
@@ -132,7 +132,7 @@ export default function SitesBrowse({ sites }: SitesBrowseProps) {
                 className={[
                   'inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-sans font-medium transition-all duration-150',
                   regionFilter === value
-                    ? 'bg-accent text-night-forest'
+                    ? 'bg-accent text-foreground'
                     : 'bg-foreground/5 text-foreground/60 hover:bg-foreground/10 hover:text-foreground',
                 ].join(' ')}
               >
@@ -140,7 +140,7 @@ export default function SitesBrowse({ sites }: SitesBrowseProps) {
                 <span
                   className={[
                     'text-[10px] font-mono',
-                    regionFilter === value ? 'text-night-forest/70' : 'text-foreground/40',
+                    regionFilter === value ? 'text-foreground/70' : 'text-foreground/40',
                   ].join(' ')}
                 >
                   {count}

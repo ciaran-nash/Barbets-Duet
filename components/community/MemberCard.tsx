@@ -23,7 +23,7 @@ function AvatarPlaceholder({ name }: { name: string }) {
     .map((n) => n[0]?.toUpperCase() ?? '')
     .join('');
   return (
-    <div className="w-14 h-14 rounded-full bg-viridian/10 flex items-center justify-center text-viridian font-serif text-lg select-none shrink-0">
+    <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center text-accent font-serif text-lg select-none shrink-0">
       {initials || '?'}
     </div>
   );
@@ -33,7 +33,7 @@ function AvatarPlaceholder({ name }: { name: string }) {
 
 function TierBadge({ role }: { role: MemberRole }) {
   const label = MEMBER_ROLE_LABELS[role] ?? role;
-  const colour = MEMBER_ROLE_COLOURS[role] ?? '#2C3E35';
+  const colour = MEMBER_ROLE_COLOURS[role] ?? '#2A1F14';
   return (
     <span
       className="inline-block px-2 py-0.5 rounded-full text-[10px] uppercase tracking-widest font-semibold text-white"
@@ -81,17 +81,17 @@ export default function MemberCard({
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       className={[
-        'group relative rounded-2xl overflow-hidden bg-night-forest/5 border transition-all duration-200',
+        'group relative rounded-2xl overflow-hidden bg-foreground/5 border transition-all duration-200',
         isSelected
-          ? 'ring-2 ring-neon-lime border-neon-lime/40 scale-[1.01]'
+          ? 'ring-2 ring-ring border-accent/40 scale-[1.01]'
           : isHovered
-          ? 'border-viridian/40 scale-[1.01] shadow-lg'
-          : 'border-foreground/10 hover:border-viridian/30',
+          ? 'border-accent/40 scale-[1.01] shadow-lg'
+          : 'border-foreground/10 hover:border-accent/30',
       ].join(' ')}
     >
       <Link
         href={`/community/members/${profile.id}`}
-        className="block p-5 focus:outline-none focus:ring-2 focus:ring-viridian rounded-2xl"
+        className="block p-5 focus:outline-none focus:ring-2 focus:ring-ring rounded-2xl"
       >
         {/* Top row: avatar + name + badge */}
         <div className="flex items-start gap-4 mb-3">
@@ -116,7 +116,7 @@ export default function MemberCard({
             <TierBadge role={profile.role} />
           </div>
 
-          <ArrowRight className="w-4 h-4 text-foreground/30 group-hover:text-viridian transition-colors shrink-0 mt-1" />
+          <ArrowRight className="w-4 h-4 text-foreground/30 group-hover:text-accent transition-colors shrink-0 mt-1" />
         </div>
 
         {/* Bio snippet */}
@@ -141,7 +141,7 @@ export default function MemberCard({
 
         {/* Contribution count */}
         {contributionCount > 0 && (
-          <p className="text-xs text-viridian font-mono mt-2">
+          <p className="text-xs text-accent font-mono mt-2">
             {contributionCount} contribution{contributionCount !== 1 ? 's' : ''}
           </p>
         )}

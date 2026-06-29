@@ -28,12 +28,12 @@ export default function SiteCard({
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       className={[
-        'group relative rounded-2xl overflow-hidden bg-night-forest/5 border transition-all duration-200',
+        'group relative rounded-2xl overflow-hidden bg-foreground/5 border transition-all duration-200',
         isSelected
-          ? 'ring-2 ring-neon-lime border-neon-lime/40 scale-[1.01]'
+          ? 'ring-2 ring-ring border-accent/40 scale-[1.01]'
           : isHovered
-          ? 'border-viridian/40 scale-[1.01] shadow-lg'
-          : 'border-foreground/10 hover:border-viridian/30',
+          ? 'border-accent/40 scale-[1.01] shadow-lg'
+          : 'border-foreground/10 hover:border-accent/30',
       ].join(' ')}
     >
       <Link href={`/learning-sites/${site.slug}`} className="block">
@@ -48,14 +48,14 @@ export default function SiteCard({
           />
           {/* Category pill */}
           <div className="absolute top-4 left-4">
-            <span className="inline-block bg-night-forest/80 backdrop-blur-sm text-neon-lime text-[9px] font-mono uppercase tracking-[0.2em] px-3 py-1 rounded-full">
+            <span className="inline-block bg-bark/80 backdrop-blur-sm text-wheat text-[9px] font-mono uppercase tracking-[0.2em] px-3 py-1 rounded-full">
               {site.category}
             </span>
           </div>
           {/* Selected indicator */}
           {isSelected && (
             <div className="absolute top-4 right-4">
-              <span className="flex items-center gap-1 bg-neon-lime text-night-forest text-[9px] font-mono uppercase tracking-[0.15em] px-2 py-1 rounded-full">
+              <span className="flex items-center gap-1 bg-wheat text-bark text-[9px] font-mono uppercase tracking-[0.15em] px-2 py-1 rounded-full">
                 <MapPin className="w-2.5 h-2.5" />
                 On Map
               </span>
@@ -65,7 +65,7 @@ export default function SiteCard({
 
         {/* Content */}
         <div className="p-6">
-          <h3 className="text-xl font-serif font-bold leading-tight mb-1 group-hover:text-viridian transition-colors">
+          <h3 className="text-xl font-serif font-bold leading-tight mb-1 group-hover:text-accent transition-colors">
             {site.name}
           </h3>
           <p className="text-xs font-mono text-foreground/50 mb-3 flex items-center gap-1">
@@ -97,7 +97,7 @@ export default function SiteCard({
             </div>
           )}
 
-          <span className="inline-flex items-center gap-1.5 text-xs font-sans font-semibold text-neon-lime group-hover:gap-2.5 transition-all">
+          <span className="inline-flex items-center gap-1.5 text-xs font-sans font-semibold text-accent group-hover:gap-2.5 transition-all">
             Visit Site <ArrowRight className="w-3.5 h-3.5" />
           </span>
         </div>

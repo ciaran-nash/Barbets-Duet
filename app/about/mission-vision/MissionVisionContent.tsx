@@ -132,6 +132,78 @@ export default function MissionVisionContent() {
           </div>
         </section>
 
+        {/* Why Now — Urgency Section */}
+        <section className="py-40 px-6 border-y border-border/50 relative z-10">
+          <div className="max-w-[1600px] mx-auto">
+            <div className="mb-20">
+              <span className="text-[10px] font-mono tracking-[0.5em] uppercase text-accent mb-8 block">
+                {"// The Case for Action"}
+              </span>
+              <KineticReveal>
+                <h2 className="text-5xl md:text-7xl font-serif font-bold">Why Now?</h2>
+              </KineticReveal>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="text-xl md:text-2xl text-muted-foreground font-serif leading-relaxed max-w-3xl mt-8 italic"
+              >
+                Destruction is measured in days. Restoration is measured in generations. The window to begin is now.
+              </motion.p>
+            </div>
+
+            <div className="divide-y divide-border/30">
+              {[
+                {
+                  n: '01',
+                  title: 'Degradation is Accelerating',
+                  body: 'The founding observation of Barbets Duet was accelerating environmental damage across East Africa — vital life-support systems eroding faster than any conservation programme could respond with existing tools.',
+                },
+                {
+                  n: '02',
+                  title: 'Climate Change Is Not Abstract',
+                  body: 'Partners in the Jumuiya are clear: the earth is heading in the wrong direction. We do not have 2000 years to find the right answer — the current generation must begin the systemic invention now.',
+                },
+                {
+                  n: '03',
+                  title: 'Destruction is Fast. Restoration is Slow.',
+                  body: 'A forest can be felled in days. Rebuilding it takes generations. The only way to ensure multi-generational restoration is to start the experiments today — even imperfectly.',
+                },
+                {
+                  n: '04',
+                  title: 'Livelihoods Cannot Wait',
+                  body: 'For families in rural East Africa, restoration cannot contradict economic survival. The market mechanisms Barbets Duet invents must make it possible to feed a family and heal the land at the same time.',
+                },
+                {
+                  n: '05',
+                  title: 'The Next Generation Needs a Path',
+                  body: 'Young people entering adulthood face shrinking traditional job markets and a damaged ecological inheritance. Inventing these markets now creates the professional paths — and the world — they will inherit.',
+                },
+              ].map((item, idx) => (
+                <motion.div
+                  key={item.n}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  className="grid md:grid-cols-12 gap-8 py-12 group hover:bg-accent/3 transition-colors"
+                >
+                  <div className="md:col-span-1">
+                    <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-accent opacity-60">{item.n}</span>
+                  </div>
+                  <div className="md:col-span-4">
+                    <h3 className="text-2xl md:text-3xl font-serif font-bold group-hover:text-accent transition-colors leading-tight">{item.title}</h3>
+                  </div>
+                  <div className="md:col-span-7">
+                    <p className="text-muted-foreground font-serif text-lg leading-relaxed">{item.body}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Strategic Pillars with Standardized Magnetic Spell */}
         <section className="py-40 px-6">
           <div className="max-w-[1600px] mx-auto">

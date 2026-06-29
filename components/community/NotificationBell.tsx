@@ -104,13 +104,13 @@ export default function NotificationBell() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label={`Notifications${unreadCount > 0 ? ` (${unreadCount} unread)` : ''}`}
-        className="relative p-2 rounded-full hover:bg-foreground/5 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+        className="relative p-2 rounded-full hover:bg-foreground/5 transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
       >
         <Bell className="w-5 h-5 text-foreground/60" />
         {unreadCount > 0 && (
           <span
             aria-hidden="true"
-            className="absolute top-1 right-1 w-4 h-4 rounded-full bg-neon-lime flex items-center justify-center text-night-forest text-[9px] font-bold"
+            className="absolute top-1 right-1 w-4 h-4 rounded-full bg-accent flex items-center justify-center text-accent-foreground text-[9px] font-bold"
           >
             {unreadCount > 9 ? '9+' : unreadCount}
           </span>
@@ -155,7 +155,7 @@ export default function NotificationBell() {
                   onClick={() => markRead(n.id)}
                   className={[
                     'flex gap-3 px-4 py-3 border-b border-foreground/5 cursor-pointer hover:bg-foreground/5 transition-colors',
-                    !n.is_read ? 'bg-viridian/5' : '',
+                    !n.is_read ? 'bg-accent/5' : '',
                   ].join(' ')}
                 >
                   <div className="flex-1 min-w-0">
@@ -177,13 +177,13 @@ export default function NotificationBell() {
                     <Link
                       href={n.link}
                       onClick={(e) => e.stopPropagation()}
-                      className="shrink-0 p-1 rounded hover:bg-foreground/10 text-foreground/30 hover:text-viridian transition-colors"
+                      className="shrink-0 p-1 rounded hover:bg-foreground/10 text-foreground/30 hover:text-accent transition-colors"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                     </Link>
                   )}
                   {!n.is_read && (
-                    <span className="w-2 h-2 rounded-full bg-viridian shrink-0 mt-1" />
+                    <span className="w-2 h-2 rounded-full bg-accent shrink-0 mt-1" />
                   )}
                 </div>
               ))

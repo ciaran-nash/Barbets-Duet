@@ -46,7 +46,7 @@ function AvatarPlaceholder({ name }: { name: string }) {
     .join('');
 
   return (
-    <div className="w-24 h-24 rounded-full bg-[#2C3E35]/10 flex items-center justify-center text-[#2C3E35] font-serif text-2xl select-none">
+    <div className="w-24 h-24 rounded-full bg-[#2A1F14]/10 flex items-center justify-center text-[#2A1F14] font-serif text-2xl select-none">
       {initials || '?'}
     </div>
   );
@@ -55,7 +55,7 @@ function AvatarPlaceholder({ name }: { name: string }) {
 // ── Role badge ──────────────────────────────────────────────
 function RoleBadge({ role }: { role: string }) {
   const label = MEMBER_ROLE_LABELS[role as keyof typeof MEMBER_ROLE_LABELS] ?? role;
-  const colour = MEMBER_ROLE_COLOURS[role as keyof typeof MEMBER_ROLE_COLOURS] ?? '#2C3E35';
+  const colour = MEMBER_ROLE_COLOURS[role as keyof typeof MEMBER_ROLE_COLOURS] ?? '#2A1F14';
 
   return (
     <span
@@ -205,8 +205,8 @@ export default function MemberDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FAF9F6]">
-        <Loader2 size={32} className="animate-spin text-[#2C3E35]/40" />
+      <div className="min-h-screen flex items-center justify-center bg-[#F4EFE6]">
+        <Loader2 size={32} className="animate-spin text-[#2A1F14]/40" />
       </div>
     );
   }
@@ -222,20 +222,20 @@ export default function MemberDashboard() {
   const displayName = profile?.display_name ?? user.email ?? 'Member';
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#2C3E35]">
+    <div className="min-h-screen bg-[#F4EFE6] text-[#2A1F14]">
       {/* Top nav strip */}
-      <div className="border-b border-[#2C3E35]/10 px-6 py-4">
+      <div className="border-b border-[#2A1F14]/10 px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#2C3E35]/60 hover:text-[#2C3E35] transition-colors">
+          <Link href="/" className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#2A1F14]/60 hover:text-[#2A1F14] transition-colors">
             <Home size={14} /> Barbets Duet
           </Link>
           <div className="flex items-center gap-6">
-            <span className="text-xs text-[#2C3E35]/40 hidden sm:block">
+            <span className="text-xs text-[#2A1F14]/40 hidden sm:block">
               {user.email}
             </span>
             <button
               onClick={async () => { await logOut(); router.push('/'); }}
-              className="flex items-center gap-1.5 text-xs uppercase tracking-widest font-semibold text-[#2C3E35]/60 hover:text-[#2C3E35] transition-colors"
+              className="flex items-center gap-1.5 text-xs uppercase tracking-widest font-semibold text-[#2A1F14]/60 hover:text-[#2A1F14] transition-colors"
             >
               <LogOut size={14} /> Sign Out
             </button>
@@ -251,7 +251,7 @@ export default function MemberDashboard() {
           <div className="lg:col-span-1 space-y-6">
 
             {/* Avatar + name */}
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#2C3E35]/5 text-center">
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#2A1F14]/5 text-center">
               {/* Avatar */}
               <div className="relative w-24 h-24 mx-auto mb-4">
                 {profile?.avatar_url ? (
@@ -306,7 +306,7 @@ export default function MemberDashboard() {
                       required
                       value={editName}
                       onChange={e => setEditName(e.target.value)}
-                      className="w-full bg-[#FAF9F6] border border-[#2C3E35]/20 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#2C3E35]"
+                      className="w-full bg-[#F4EFE6] border border-[#2A1F14]/20 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#2A1F14]"
                     />
                   </div>
                   <div>
@@ -318,9 +318,9 @@ export default function MemberDashboard() {
                       onChange={e => setEditBio(e.target.value)}
                       rows={4}
                       maxLength={500}
-                      className="w-full bg-[#FAF9F6] border border-[#2C3E35]/20 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#2C3E35] resize-none"
+                      className="w-full bg-[#F4EFE6] border border-[#2A1F14]/20 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#2A1F14] resize-none"
                     />
-                    <p className="text-[10px] text-[#2C3E35]/40 mt-1 text-right">
+                    <p className="text-[10px] text-[#2A1F14]/40 mt-1 text-right">
                       {editBio.length}/500
                     </p>
                   </div>
@@ -328,7 +328,7 @@ export default function MemberDashboard() {
                     <button
                       type="submit"
                       disabled={saving}
-                      className="flex-1 bg-[#2C3E35] text-[#FAF9F6] rounded-lg py-2 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="flex-1 bg-[#2A1F14] text-[#F4EFE6] rounded-lg py-2 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 disabled:opacity-50"
                     >
                       {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
                       Save
@@ -336,7 +336,7 @@ export default function MemberDashboard() {
                     <button
                       type="button"
                       onClick={cancelEditing}
-                      className="flex-1 border border-[#2C3E35]/20 rounded-lg py-2 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2"
+                      className="flex-1 border border-[#2A1F14]/20 rounded-lg py-2 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2"
                     >
                       <X size={14} /> Cancel
                     </button>
@@ -353,14 +353,14 @@ export default function MemberDashboard() {
                   )}
 
                   {profile?.bio && (
-                    <p className="mt-4 text-sm text-[#2C3E35]/70 leading-relaxed text-left">
+                    <p className="mt-4 text-sm text-[#2A1F14]/70 leading-relaxed text-left">
                       {profile.bio}
                     </p>
                   )}
 
                   <button
                     onClick={startEditing}
-                    className="mt-5 flex items-center gap-1.5 text-xs uppercase tracking-widest text-[#2C3E35]/50 hover:text-[#2C3E35] transition-colors mx-auto"
+                    className="mt-5 flex items-center gap-1.5 text-xs uppercase tracking-widest text-[#2A1F14]/50 hover:text-[#2A1F14] transition-colors mx-auto"
                   >
                     <Edit2 size={12} /> Edit Profile
                   </button>
@@ -369,23 +369,23 @@ export default function MemberDashboard() {
             </div>
 
             {/* Site affiliations */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#2C3E35]/5">
-              <h2 className="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 mb-5 text-[#2C3E35]/60">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#2A1F14]/5">
+              <h2 className="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 mb-5 text-[#2A1F14]/60">
                 <MapPin size={14} /> Site Affiliations
               </h2>
 
               {!membershipsLoaded ? (
                 <div className="space-y-3 animate-pulse">
                   {[1, 2].map(i => (
-                    <div key={i} className="h-10 bg-[#2C3E35]/5 rounded-lg" />
+                    <div key={i} className="h-10 bg-[#2A1F14]/5 rounded-lg" />
                   ))}
                 </div>
               ) : memberships.length === 0 ? (
                 <div className="text-center py-6">
-                  <p className="text-sm text-[#2C3E35]/50 italic">No site affiliations yet.</p>
+                  <p className="text-sm text-[#2A1F14]/50 italic">No site affiliations yet.</p>
                   <Link
                     href="/learning-sites"
-                    className="mt-2 inline-block text-xs uppercase tracking-widest underline text-[#2C3E35]/60 hover:text-[#2C3E35]"
+                    className="mt-2 inline-block text-xs uppercase tracking-widest underline text-[#2A1F14]/60 hover:text-[#2A1F14]"
                   >
                     Browse learning sites
                   </Link>
@@ -402,13 +402,13 @@ export default function MemberDashboard() {
                           {m.site_name}
                         </Link>
                         {m.pentangle_group && (
-                          <p className="text-[10px] text-[#2C3E35]/50 mt-0.5">
+                          <p className="text-[10px] text-[#2A1F14]/50 mt-0.5">
                             {PENTANGLE_GROUP_LABELS[m.pentangle_group as keyof typeof PENTANGLE_GROUP_LABELS]}
                           </p>
                         )}
                       </div>
                       {m.is_primary && (
-                        <span className="text-[9px] uppercase tracking-widest bg-[#2C3E35]/10 px-2 py-0.5 rounded-full mt-0.5 shrink-0">
+                        <span className="text-[9px] uppercase tracking-widest bg-[#2A1F14]/10 px-2 py-0.5 rounded-full mt-0.5 shrink-0">
                           Primary
                         </span>
                       )}
@@ -425,7 +425,7 @@ export default function MemberDashboard() {
             {/* Network activity header */}
             <div className="flex items-end justify-between">
               <div>
-                <p className="text-[10px] uppercase tracking-widest text-[#2C3E35]/50 mb-1">
+                <p className="text-[10px] uppercase tracking-widest text-[#2A1F14]/50 mb-1">
                   Community
                 </p>
                 <h2 className="font-serif text-3xl font-light">Your Network</h2>
@@ -433,63 +433,63 @@ export default function MemberDashboard() {
             </div>
 
             {/* ── Placeholder: Forum (Wave 6) ──────────────── */}
-            <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#2C3E35]/5">
+            <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#2A1F14]/5">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-full bg-[#2C3E35]/10 flex items-center justify-center">
-                  <Users size={16} className="text-[#2C3E35]/60" />
+                <div className="w-8 h-8 rounded-full bg-[#2A1F14]/10 flex items-center justify-center">
+                  <Users size={16} className="text-[#2A1F14]/60" />
                 </div>
-                <h3 className="text-xs uppercase tracking-widest font-semibold text-[#2C3E35]/60">
+                <h3 className="text-xs uppercase tracking-widest font-semibold text-[#2A1F14]/60">
                   Site Forums
                 </h3>
-                <span className="ml-auto text-[9px] uppercase tracking-widest bg-[#2C3E35]/10 text-[#2C3E35]/50 px-2 py-0.5 rounded-full">
+                <span className="ml-auto text-[9px] uppercase tracking-widest bg-[#2A1F14]/10 text-[#2A1F14]/50 px-2 py-0.5 rounded-full">
                   Coming in Wave 6
                 </span>
               </div>
-              <p className="text-sm text-[#2C3E35]/50 italic">
+              <p className="text-sm text-[#2A1F14]/50 italic">
                 Discussion threads for your affiliated learning sites will appear here.
                 Peer-review and jumuiya governance forums are planned for Wave 6.
               </p>
             </section>
 
             {/* ── Placeholder: Peer-review chain (Wave 6) ──── */}
-            <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#2C3E35]/5">
+            <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#2A1F14]/5">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-full bg-[#2C3E35]/10 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-[#2C3E35]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-8 h-8 rounded-full bg-[#2A1F14]/10 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-[#2A1F14]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-xs uppercase tracking-widest font-semibold text-[#2C3E35]/60">
+                <h3 className="text-xs uppercase tracking-widest font-semibold text-[#2A1F14]/60">
                   Peer Review
                 </h3>
-                <span className="ml-auto text-[9px] uppercase tracking-widest bg-[#2C3E35]/10 text-[#2C3E35]/50 px-2 py-0.5 rounded-full">
+                <span className="ml-auto text-[9px] uppercase tracking-widest bg-[#2A1F14]/10 text-[#2A1F14]/50 px-2 py-0.5 rounded-full">
                   Coming in Wave 6
                 </span>
               </div>
-              <p className="text-sm text-[#2C3E35]/50 italic">
+              <p className="text-sm text-[#2A1F14]/50 italic">
                 Circular peer-review submissions and responses from your site's
                 pentangle group will be visible here.
               </p>
             </section>
 
             {/* ── Placeholder: Saved resources (Wave 6) ────── */}
-            <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#2C3E35]/5">
+            <section className="bg-white rounded-2xl p-8 shadow-sm border border-[#2A1F14]/5">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-full bg-[#2C3E35]/10 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-[#2C3E35]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-8 h-8 rounded-full bg-[#2A1F14]/10 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-[#2A1F14]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
                       d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                   </svg>
                 </div>
-                <h3 className="text-xs uppercase tracking-widest font-semibold text-[#2C3E35]/60">
+                <h3 className="text-xs uppercase tracking-widest font-semibold text-[#2A1F14]/60">
                   Saved Resources
                 </h3>
-                <span className="ml-auto text-[9px] uppercase tracking-widest bg-[#2C3E35]/10 text-[#2C3E35]/50 px-2 py-0.5 rounded-full">
+                <span className="ml-auto text-[9px] uppercase tracking-widest bg-[#2A1F14]/10 text-[#2A1F14]/50 px-2 py-0.5 rounded-full">
                   Coming in Wave 6
                 </span>
               </div>
-              <p className="text-sm text-[#2C3E35]/50 italic">
+              <p className="text-sm text-[#2A1F14]/50 italic">
                 Bookmarked case studies, reports and events will appear here.
               </p>
             </section>

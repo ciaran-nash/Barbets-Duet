@@ -10,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
       'A global network of ecological-restoration learning sites integrating economic activity with environmental conservation.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#06211A',
-    theme_color: '#06211A',
+    background_color: '#2A1F14',
+    theme_color: '#2A1F14',
     orientation: 'portrait-primary',
     categories: ['education', 'environment', 'nonprofit'],
     icons: [

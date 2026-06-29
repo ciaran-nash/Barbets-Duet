@@ -13,7 +13,7 @@ export default function GlobalError({ reset }: { error: Error; reset: () => void
           alignItems: 'center',
           justifyContent: 'center',
           background: '#F4F4F5',
-          color: '#06211A',
+          color: '#2A1F14',
           fontFamily: 'system-ui, sans-serif',
         }}
       >
@@ -30,7 +30,7 @@ export default function GlobalError({ reset }: { error: Error; reset: () => void
               cursor: 'pointer',
               fontSize: 14,
               fontWeight: 500,
-              color: '#06211A',
+              color: '#2A1F14',
               textDecoration: 'underline',
               textUnderlineOffset: 4,
             }}

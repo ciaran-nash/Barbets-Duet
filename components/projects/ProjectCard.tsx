@@ -14,10 +14,10 @@ export function ProjectCard({
     onClick: () => void
 }) {
   const maturityColors = {
-    Idea: 'bg-platinum/50 text-forest',
+    Idea: 'bg-linen/50 text-forest',
     Pilot: 'bg-accent/20 text-accent',
     Scaling: 'bg-brand/20 text-brand',
-    Systemic: 'bg-forest text-platinum'
+    Systemic: 'bg-forest text-cream'
   };
 
   return (
@@ -40,7 +40,7 @@ export function ProjectCard({
             <span className={`px-4 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest font-bold backdrop-blur-md ${maturityColors[project.maturity]}`}>
                 {project.maturity}
             </span>
-            <span className="px-4 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest font-bold bg-forest/80 text-platinum backdrop-blur-md">
+            <span className="px-4 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest font-bold bg-forest/80 text-cream backdrop-blur-md">
                 {project.category}
             </span>
         </div>

@@ -89,7 +89,7 @@ export default function SitesMap({
               >
                 {/* Pulse ring for active/hover */}
                 {(isActive || isPopup) && (
-                  <span className="absolute inset-0 rounded-full animate-ping bg-neon-lime/40" />
+                  <span className="absolute inset-0 rounded-full animate-ping bg-wheat/40" />
                 )}
 
                 {/* Marker dot */}
@@ -97,8 +97,8 @@ export default function SitesMap({
                   className={[
                     'relative block rounded-full border-2 transition-all duration-200',
                     isActive || isPopup
-                      ? 'w-4 h-4 bg-neon-lime border-night-forest shadow-[0_0_12px_rgba(219,255,102,0.6)]'
-                      : 'w-3 h-3 bg-viridian border-neon-lime/40 group-hover:bg-neon-lime group-hover:border-night-forest group-hover:w-4 group-hover:h-4',
+                      ? 'w-4 h-4 bg-wheat border-bark shadow-[0_0_12px_rgba(219,255,102,0.6)]'
+                      : 'w-3 h-3 bg-moss border-wheat/40 group-hover:bg-wheat group-hover:border-bark group-hover:w-4 group-hover:h-4',
                   ].join(' ')}
                 />
               </button>
@@ -117,29 +117,29 @@ export default function SitesMap({
             closeButton={false}
             className="karimo-map-popup"
           >
-            <div className="bg-night-forest text-platinum rounded-xl p-4 min-w-[220px] max-w-[280px]">
+            <div className="bg-band text-band-foreground rounded-xl p-4 min-w-[220px] max-w-[280px]">
               <button
                 onClick={onPopupClose}
-                className="absolute top-2 right-2 text-platinum/40 hover:text-platinum text-xs leading-none"
+                className="absolute top-2 right-2 text-band-foreground/40 hover:text-band-foreground text-xs leading-none"
                 aria-label="Close popup"
               >
                 ✕
               </button>
 
-              <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-neon-lime mb-1 block">
+              <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-band-accent mb-1 block">
                 {popupSite.category}
               </span>
               <h3 className="text-sm font-serif font-bold leading-tight mb-1">
                 {popupSite.name}
               </h3>
-              <p className="text-[11px] font-sans text-platinum/60 mb-3">
+              <p className="text-[11px] font-sans text-band-foreground/60 mb-3">
                 {popupSite.location}
               </p>
               <Link
                 href={`/learning-sites/${popupSite.slug}`}
                 className="inline-flex items-center gap-1.5 text-[11px] font-sans font-semibold
-                           bg-neon-lime text-night-forest px-3 py-1.5 rounded-full
-                           hover:bg-neon-lime/90 transition-colors"
+                           bg-band-accent text-band px-3 py-1.5 rounded-full
+                           hover:bg-band-accent/90 transition-colors"
               >
                 Visit Site <ArrowRight className="w-3 h-3" />
               </Link>
@@ -149,7 +149,7 @@ export default function SitesMap({
       </Map>
 
       {/* Attribution */}
-      <div className="absolute bottom-2 left-2 text-[9px] font-mono text-platinum/30 pointer-events-none">
+      <div className="absolute bottom-2 left-2 text-[9px] font-mono text-band-foreground/30 pointer-events-none">
         &copy; Stadia Maps &copy; OpenStreetMap
       </div>
     </div>

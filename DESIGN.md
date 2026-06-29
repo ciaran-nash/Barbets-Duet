@@ -1,226 +1,342 @@
+---
+name: Barbets Duet
+description: A global ecological restoration collective working through agroforestry, reforestation, and community-led conservation.
+colors:
+  bark: "#2A1F14"
+  moss: "#556B4E"
+  linen: "#F4EFE6"
+  cream: "#EDE8D8"
+  soil: "#6B4C35"
+  stone: "#8A8578"
+  wheat: "#C9A87A"
+  lichen: "#8B9E7A"
+  clay: "#B07055"
+  river: "#6B8E9A"
+typography:
+  display:
+    fontFamily: "BioRhyme, Georgia, serif"
+    fontSize: "clamp(3rem, 8vw, 6rem)"
+    fontWeight: 200
+    lineHeight: 0.95
+    letterSpacing: "-0.03em"
+  headline:
+    fontFamily: "BioRhyme, Georgia, serif"
+    fontSize: "clamp(2rem, 5vw, 4rem)"
+    fontWeight: 300
+    lineHeight: 1.05
+    letterSpacing: "-0.02em"
+  title:
+    fontFamily: "BioRhyme, Georgia, serif"
+    fontSize: "clamp(1.25rem, 3vw, 2.25rem)"
+    fontWeight: 300
+    lineHeight: 1.2
+  body:
+    fontFamily: "DM Sans, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.7
+  label:
+    fontFamily: "JetBrains Mono, monospace"
+    fontSize: "0.625rem"
+    fontWeight: 500
+    letterSpacing: "0.15em"
+rounded:
+  sm: "0.5rem"
+  lg: "2rem"
+  pill: "9999px"
+spacing:
+  section: "6rem"
+  card: "2rem"
+components:
+  button-primary:
+    backgroundColor: "{colors.wheat}"
+    textColor: "{colors.bark}"
+    rounded: "{rounded.pill}"
+    padding: "12px 24px"
+  button-primary-hover:
+    backgroundColor: "{colors.cream}"
+    textColor: "{colors.bark}"
+  button-ghost:
+    backgroundColor: "transparent"
+    textColor: "{colors.wheat}"
+    rounded: "{rounded.pill}"
+    padding: "12px 24px"
+  badge:
+    backgroundColor: "{colors.lichen}"
+    textColor: "{colors.bark}"
+    rounded: "{rounded.pill}"
+    padding: "4px 12px"
+  card:
+    backgroundColor: "{colors.bark}"
+    rounded: "{rounded.lg}"
+    padding: "{spacing.card}"
+---
+
 # Design System: Barbets Duet
 
-> **Canonical reference for the "Scholarly Cycle" aesthetic.**
-> All screens, components, and interactions trace back to this document.
-> Last updated: 2026-05-20
+## 1. Overview
 
-## 1. Brand Identity & Visual Atmosphere
+**Creative North Star: "The Field Journal"**
 
-Barbets Duet is a global ecological restoration collective. The visual language draws from natural history journals, scientific periodicals, and circular cultural references — not tech-startup minimalism. It is expressive, rigorous, and grounded in the living world.
+Barbets Duet is a global ecological restoration collective. Its interface is a field journal — not a dashboard, not a landing page, not a SaaS product. It carries the precision of scientific observation, the unhurried pace of someone who understands that a forest takes decades to return, and the earthy material weight of handmade things. Every screen is a document that lives in the world, not a UI layer that floats above it.
 
-The interface operates primarily in **dark mode** (Night Forest `#06211A` background) with a **light mode** variant (Platinum `#F4F4F5` background) accessible via `[data-theme="light"]`. The accent colour — Neon Lime `#DBFF66` — is used sparingly, only for CTAs, active states, and interactive highlights. It should feel like a single flash of light in the canopy, not a repeated pattern.
+The system operates in two modes, each a different personality for the same collective. **Light mode** (the default) is linen in morning sun: field notes spread on a wooden table, ink-on-paper clarity, moss and soil for emphasis — Cultivated Simplicity, handmade and unhurried. It is for reading. **Dark mode** is the older "Scholarly Cycle" palette: a deep Night Forest canvas with electric Neon Lime catching the light, like bioluminescence after dark. It is for dwelling. Wabi Sabi by day, bioluminescent by night. The mode is chosen by toggle or system preference; light is the default.
 
-A scholarly, editorial interface inspired by natural history journals and scientific periodicals. The atmosphere is measured and purposeful — "Scholarly Cycle" — where expressive slab-serif headings (BioRhyme) frame precise geometric body copy (DM Sans) against a deep Night Forest canvas.
+The palette is called **Cultivated Simplicity**: ten earth tones, all sun-faded, none saturated past the point of nature. The typography pairs BioRhyme (a slab-serif with weight variation that reads like a typeface drawn by hand) with DM Sans (a humanist sans that belongs on the page next to it). JetBrains Mono serves metadata only — coordinates, timestamps, site codes. Motion is orchestrated and intentional, driven by `motion/react` with exponential easing curves; nothing bounces.
 
-**Design dials:**
-- Density: 4 (Daily App — generous whitespace, content breathes)
-- Variance: 8 (Offset asymmetric — deliberate broken grids, bento structures)
-- Motion: 6 (Fluid CSS with spring physics on interactive elements)
+**This system explicitly rejects:** SaaS-cream backgrounds used as default warmth; glassmorphism as decoration; numbered section eyebrows as scaffolding; identical card grids; gradient text; any aesthetic that could be mistaken for an AI workflow tool, a fintech product, or a startup landing page. (Note: Neon Lime is permitted, but *only* as the dark-mode accent — see The Mode Rule. It is never used in light mode.) The measure of success is a user who cannot easily guess what genre of software built this.
 
-## 2. Colour Palette & Roles
+**Key Characteristics:**
+- Light mode default; dark mode an equal peer selected by toggle or system preference
+- Ten-color palette, used at different weights across contexts
+- BioRhyme at font-weight 200–300 only — never bold headings
+- 700ms easing on interactive elements; never linear
+- Tonal surface layering over box-shadow elevation
+- Double-Bezel card architecture as the signature component
+- Floating island navigation — never a full-width header bar
+- Noise overlay at 4% opacity for analogue grain
+- Density 4 (generous whitespace); Variance 8 (offset, asymmetric grids); Motion 6 (choreographed)
 
-These are the **only 5 base colours** in the system. No other hex values are permitted.
+### Design Influences
 
-| Token | Hex | Tailwind class | Functional Role |
-|-------|-----|------|-----------------|
-| **Neon Lime** | `#DBFF66` | `neon-lime` | Primary CTA accent, active states, focus rings, interactive highlights |
-| **Viridian** | `#006F53` | `viridian` | Brand green, light-mode accent, secondary links |
-| **Night Forest** | `#06211A` | `night-forest` | Dark background, primary text on light surfaces |
-| **White** | `#FFFFFF` | `white` | Card surfaces, content backgrounds within sections |
-| **Platinum** | `#F4F4F5` | `platinum` | Light mode background, foreground on dark backgrounds |
+Three overlapping aesthetic philosophies shape the system. Each contributes something distinct; the intersection is where the voice lives.
 
-**Semantic layer (CSS variables):**
-- `--background`: `#06211A` (dark) / `#F4F4F5` (light)
-- `--foreground`: `#F4F4F5` (dark) / `#06211A` (light)
-- `--accent`: `#DBFF66` (dark) / `#006F53` (light)
-- `--primary`: `#DBFF66` (dark) / `#006F53` (light)
-- `--brand`: `#006F53` (both modes)
+**Wabi Sabi**
+Retain: acceptance of irregularity and imperfection; visible natural textures; asymmetrical compositions; appreciation of aging and weathering; generous whitespace.
+Avoid: excessive austerity; dark Zen minimalism; overt Japanese symbolism.
+Applied as: uneven image crops; organic card shapes; grain textures; real ecological photography over staged imagery; hand-drawn divider references in illustration.
 
-**Dark mode renders:** Night Forest background, Neon Lime accents
-**Light mode renders:** Platinum background, Viridian accents
+**Japandi**
+Retain: functional minimalism; careful spacing; restrained colour use; soft geometry; clear information hierarchy.
+Avoid: sterile technology aesthetics; corporate minimalism; excessive monochrome.
+Applied as: modular layouts; legible navigation; restrained iconography; generous margins; calm, sequential user flows.
 
-**Opacity variants:** Use Tailwind modifier syntax — `text-night-forest/70`, `bg-platinum/50`, `border-platinum/10`.
+**Cottagecore / Farmhouse**
+Retain: celebration of local landscapes; handmade craft references; seasonal imagery; botanical motifs; warmth and hospitality.
+Avoid: decorative clutter; Victorian nostalgia; kitsch rural imagery; theme-park pastoral.
+Applied as: native plant illustrations; field notebook aesthetics; paper textures; editorial storytelling layouts; community photography.
 
-**Banned colour patterns:**
-- Pure black (`#000000`) — use Night Forest instead
-- Pure white text — use `text-platinum` on dark backgrounds
-- `text-black`, `bg-black`, `text-white`, `bg-white` — use brand token equivalents
-- Off-brand tokens: `#2C3E35`, `#FAF9F6`, `#C7F16C`, `#F4F4F0`, `#0B0F19`, `#E5EFE2`, `#2A4433`, `#35A1AB`, `#8CD8DF`
-- Tailwind `gray-*` classes — use `night-forest/N` opacity variants instead
-- Neon glow box-shadows — use tinted diffusion shadows at low opacity only
+**Motion character.** Animation should resemble natural processes — leaves settling in wind, sunlight shifting through cloud cover, water smoothing over stone, a page turning in a breeze. Slow transitions, exponential ease-out curves, subtle fades. Nothing bounces. Nothing flashes. Nothing accelerates.
 
-## 3. Typography Rules
-
-**Font stack:**
-- **Display / Headings:** BioRhyme — loaded via `next/font/google`, available as `font-serif` Tailwind class. Used for all h1–h3, hero headlines, pull quotes, testimonials. Tracking: `tracking-tight` for display scale, `tracking-wider` for labels/eyebrows.
-- **Body / UI text:** DM Sans — loaded via `next/font/google`, available as `font-sans` Tailwind class. Used for all body copy, navigation, form labels, metadata. Leading: `leading-relaxed`. Max line length: `max-w-[65ch]`.
-- **Code / Data / Labels:** JetBrains Mono — loaded via `next/font/google`, available as `font-mono` Tailwind class. Used for timestamps, coordinates, data labels, mono labels, tracking numbers.
-
-**Typography scale:**
-
-| Level | Class | Usage |
-|-------|-------|-------|
-| H1 Display | `font-serif text-5xl md:text-8xl font-light tracking-tight leading-[0.9]` | Hero sections, page statements |
-| H2 Section | `font-serif text-4xl md:text-6xl font-light tracking-tight leading-tight` | Section headings |
-| H3 Subsection | `font-serif text-2xl md:text-4xl font-light leading-snug` | Card headings, sub-sections |
-| Eyebrow | `font-mono text-[10px] tracking-[0.2em] uppercase` | Section labels, figure captions |
-| Body Large | `font-sans text-lg leading-relaxed` | Intro paragraphs |
-| Body | `font-sans text-base leading-relaxed` | General body copy |
-| Body Small | `font-sans text-sm leading-relaxed` | Captions, secondary copy |
-| Micro | `font-mono text-[10px] tracking-widest uppercase` | Data badges, status chips |
-
-**Banned typography:**
-- `Inter` font — banned entirely
-- Generic system serif fonts — `Times New Roman`, `Georgia`, `Garamond`
-- Title Case On Every Header — use sentence case instead
-
-## 4. Component Stylings
-
-**Buttons:**
-- Primary: `bg-night-forest text-platinum` (dark surfaces) or `bg-platinum text-night-forest` (light surfaces) with `hover:bg-*/90` and `active:scale-[0.98]`
-- CTA / Accent: `bg-neon-lime text-night-forest` for main calls to action
-- Ghost/Outline: `border-night-forest text-night-forest hover:bg-night-forest hover:text-neon-lime` on light surfaces
-- Shape: `rounded-full` for pill buttons; sharp (`rounded-none`) for editorial/archival contexts
-- No neon outer glows. No custom mouse cursors.
-
-**Cards:**
-- Use only when elevation communicates hierarchy
-- Corner radius: `rounded-[2rem]` for modern layouts; `rounded-none` for archival/journal aesthetic
-- Shadow: `shadow-sm` with no coloured glow — tinted diffusion only
-- Border: `border border-night-forest/10` (light) or `border border-platinum/10` (dark)
-- High-density contexts: replace cards with `border-t` dividers or negative space
-
-**Inputs / Forms:**
-- Label above input (never floating labels)
-- Focus ring: `focus:ring-2 focus:ring-viridian focus:border-transparent`
-- Error text below input, inline
-- Standard gap: `gap-2` between label / input / helper text blocks
-
-**Loading states:**
-- Skeletal loaders matching exact layout dimensions — no circular spinners
-- Shimmer animation: `animate-shimmer` (defined in globals.css)
-
-**Empty states:**
-- Composed visual indicating how to populate content
-- Never "No data" text alone
-
-**Navigation — current page:**
-- Active nav items use underline indicator (`h-[2px] bg-night-forest` or `bg-platinum` depending on scroll state)
-- Never rely solely on colour — always a structural indicator too
-
-## 5. Layout Principles
-
-**Grid system:**
-- CSS Grid preferred over Flexbox percentage math
-- Max-width container: `max-w-[1600px] mx-auto px-6` for full-width sections; `max-w-[1600px] mx-auto` for contained content
-- Section pattern: `<section className="pt-XX pb-XX px-6">` with internal `max-w-[1600px] mx-auto` wrapper
-- Asymmetric: `grid-template-columns: 3fr 2fr` or offset patterns preferred over `grid-cols-3 gap-6` for feature rows
-- The "3 equal columns" feature row is **banned** — use zig-zag, offset, or bento grid instead
-
-**Spacing:**
-- Section vertical padding: `pt-24 pb-24` as baseline; `pt-32 pb-32` for primary sections
-- Internal card padding: `p-8` or `p-10` for generosity
-- Double spacing before calling it done — dense layouts feel unfinished here
-
-**Viewport safety:**
-- Full-height sections: `min-h-[100dvh]` — never `h-screen` (iOS Safari jump bug)
-- No horizontal overflow on mobile — critical failure
-
-**Depth and overlap:**
-- Overlapping elements (negative margins, offset images) allowed for visual depth
-- Cards can protrude into adjacent sections via negative top margin
-
-## 6. Motion & Interaction
-
-**Spring physics baseline:**
-- `type: "spring", stiffness: 100, damping: 20` for all interactive elements
-- No linear easing on principal animations
-
-**Entry animations:**
-- Page-level: `framer-motion` `initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}`
-- Staggered lists: `staggerChildren` delay of `0.05–0.1s` per item
-
-**KineticReveal wrapper:**
-- Location: `components/motion/KineticReveal.tsx`
-- Apply to: all section headings, content blocks, stat groups
-- Never apply to navigation or interactive controls
-
-**ScrollGlow wrapper:**
-- Location: `components/motion/ScrollGlow.tsx`
-- Apply to: page backgrounds, section-level ambient effects
-- Never apply to individual elements within a section
-
-**Performance rules:**
-- Animate exclusively via `transform` and `opacity` — never `top`, `left`, `width`, `height`
-- Grain/noise overlays: fixed, `pointer-events-none` pseudo-elements only — never on scrolling containers
-- Perpetual motion components: isolated `'use client'` leaf components, memoized with `React.memo`
-- No `window.addEventListener('scroll')` — use Framer Motion hooks or Intersection Observer
-
-## 7. Anti-Patterns (Banned)
-
-**Visual:**
-- No pure black (`#000000`) anywhere
-- No neon outer glows (`box-shadow: 0 0 Xpx #DBFF66`)
-- No oversaturated accent colours (saturation > 80%)
-- No excessive gradient text on large headers
-- No AI purple/blue gradient aesthetic
-- No random dark sections in an otherwise light page (or vice versa)
-
-**Typography:**
-- No `Inter` font
-- No generic serifs (`Times New Roman`, `Georgia`, `Garamond`)
-- No Title Case On Headers — sentence case always
-- No Lorem Ipsum text anywhere
-
-**Layout:**
-- No 3-equal-column card layouts
-- No centred Hero layouts (variance > 4)
-- No `h-screen` — use `min-h-[100dvh]`
-- No complex flexbox percentage math (`w-[calc(33%-1rem)]`)
-- No arbitrary `z-50` without systemic reason
-
-**Content:**
-- No AI copywriting clichés: "Elevate", "Seamless", "Unleash", "Next-Gen", "Game-changer"
-- No exclamation marks in success messages
-- No generic names ("John Doe", "Acme Corp")
-- No fake round numbers (`99.99%`, `50%`)
-- No filler UI text ("Scroll to explore", bouncing chevrons)
-- No `href="#"` — all links point to real routes or are explicitly commented TODO
-
-**Code:**
-- No inline styles mixed with Tailwind classes
-- No hardcoded hex values in components — use CSS variables or Tailwind brand token classes
-- No `components/ui/` file modifications — shadcn/ui is CLI-managed only
-- No arbitrary z-index stacking without a z-scale system
-
-**Icons:**
-- Lucide is in use — ensure consistent `strokeWidth={1.5}` across all icons
-- No rocketship for "Launch", no shield for "Security" — use less obvious icons
-
-## 8. Agent Skills Reference
-
-| Skill | Location | When to Use |
-|-------|----------|-------------|
-| `redesign-existing-projects` | `.agents/skills/redesign-existing-projects/` | Full component audit, design debt reduction |
-| `stitch-design-taste` | `.agents/skills/stitch-design-taste/` | Generating new DESIGN.md or screen specs for Stitch |
-| `design-taste-frontend` | `.agents/skills/design-taste-frontend/` | All new component implementations — baseline rules |
-| `high-end-visual-design` | `.agents/skills/high-end-visual-design/` | Premium section builds, hero layouts, complex animations |
-| `brandkit` | `.agents/skills/brandkit/` | Brand asset reference, logo usage, icon sets |
-
-## 9. File Ownership
-
-| File | Owner | Notes |
-|------|-------|-------|
-| `app/globals.css` | Design system | Single source of truth for all tokens. Do not add off-brand values. |
-| `app/layout.tsx` | Platform | Do not touch Firebase or AuthProvider wiring. Font loading only. |
-| `components/ui/` | shadcn/ui CLI | Never edit manually. Regenerate via CLI only. |
-| `components/motion/` | Motion system | KineticReveal and ScrollGlow — apply consistently, never modify internals |
-| `lib/firebase.ts` | Backend | Firebase client init — do not change |
-| `components/AuthProvider.tsx` | Auth | Google OAuth session — do not change |
-| `.env*` | Infrastructure | Never commit, never touch in component code |
+**Voice.** Write as knowledgeable but not academic; welcoming but not sentimental; hopeful but not utopian; practical but not corporate. Preferred language: stewardship, habitat, cultivation, reciprocity, resilience, regeneration. Avoid: disruption, optimisation, scalability as a value, growth for its own sake.
 
 ---
 
-*Generated by KARIMO T01 — Brand audit & design system bootstrap*
-*PRD: barbets-duet-full-build | Wave 1 | Model: Sonnet*
-*To extend: see `.agents/skills/stitch-design-taste/` for full DESIGN.md generation spec*
+## 2. Colors
+
+The system carries **two palettes**, one per mode. **Light mode** uses Cultivated Simplicity — ten sun-faded earth tones. **Dark mode** uses the Scholarly Cycle — a deep Night Forest canvas with electric accents. They never mix (see The Mode Rule).
+
+## Light Mode: The Cultivated Simplicity Palette
+
+Ten colours, all drawn from the living world — the bark of a planted tree, the linen of a worn field notebook, the moss on a stone wall after rain. No colour is at full saturation. Every one is slightly faded, as though it has been outside for a season.
+
+### Primary
+
+- **Bark** (`#2A1F14`): The dark core. Warm near-black — not neutral, not cool, not pure black. Primary text colour on all light surfaces. The ink of the field journal.
+- **Linen** (`#F4EFE6`): The page. Warm off-white background in light mode. Carries almost no chroma — it reads as paper, not cream.
+
+### Secondary
+
+- **Soil** (`#6B4C35`): Deep earth brown. The primary interactive accent in light mode — CTAs, primary buttons, links. Used sparingly (≤10% of any screen surface).
+- **Moss** (`#556B4E`): Muted sun-faded green. The brand colour — used in the logo, focus rings (light mode), ecological tags, section dividers. Neither bright nor dull: it is the colour of old growth.
+- **Wheat** (`#C9A87A`): Faded straw in late summer. Warm gold accent for highlights and hover transitions in light mode. Reads as handwriting in candle-light.
+
+### Tertiary (Seasonal Accents)
+
+Used one at a time, never in combination. These are situational — ecological data, seasonal content, tags.
+
+- **Lichen** (`#8B9E7A`): Lichen sage. Tags, badges, ecological classification markers.
+- **Clay** (`#B07055`): Clay terracotta. Seasonal accent, warm section backgrounds, event markers.
+- **River** (`#6B8E9A`): River blue. Maps, ecological data visualisation, hydrological elements.
+
+### Neutral
+
+- **Stone** (`#8A8578`): Warm gray with a trace of bark. Structural neutrality — dividers, secondary borders, disabled states. Too warm to be a system gray; too muted to be a colour.
+- **Cream** (`#EDE8D8`): Wildflower cream. Elevated surface / card layer in light mode. Slightly richer than linen — the difference between a fresh page and a well-used one.
+
+## Dark Mode: The Scholarly Cycle Palette
+
+Four colours. Where light mode is handmade and warm, dark mode is electric and ecological — bioluminescence after dark. This palette is reserved entirely for dark mode.
+
+- **Night Forest** (`#06211A`): Very dark green. The dark-mode page background — deep canopy at night, never pure black.
+- **Platinum** (`#F4F4F5`): Cool off-white. Primary foreground / text on Night Forest.
+- **Neon Lime** (`#DBFF66`): Electric lime. The single interactive accent in dark mode — CTAs, active states, focus rings. Used on ≤10% of any screen; its electricity is the point.
+- **Viridian** (`#006F53`): Deep ecological green. The dark-mode brand colour and structural secondary.
+
+### Named Rules
+
+**The Mode Rule.** Night Forest, Neon Lime, Viridian, and Platinum belong to **dark mode only**. The Cultivated Simplicity palette belongs to **light mode only**. The two palettes never appear together. A bark surface on a Night Forest page, or Neon Lime on linen, is a defect — the modes are separate personalities, not a shared set of swatches.
+
+**The Single Flash Rule.** The primary accent — Soil (light) or Neon Lime (dark) — is used on ≤10% of any given screen. Its rarity is structural — overuse collapses the hierarchy.
+
+**The Seasonal Rule.** Lichen, Clay, and River are light-mode seasonal accents. Use one per screen context, never in combination. If a screen uses River for a map, it does not also use Clay for a tag.
+
+**The No-Pure-Black Rule.** Pure `#000000` is prohibited everywhere. Use Bark (light) or Night Forest (dark). This is not an aesthetic preference — it prevents the interface from appearing untethered from its material reference.
+
+---
+
+## 3. Typography
+
+**Display / Headline Font:** BioRhyme (loaded via `next/font/google`; Georgia, serif as browser-only fallbacks)
+**Body / UI Font:** DM Sans (loaded via `next/font/google`; sans-serif as fallback)
+**Label / Data Font:** JetBrains Mono (loaded via `next/font/google`; monospace as fallback)
+
+**Character:** BioRhyme at light weight is a slab-serif that reads as though it was set by hand — authoritative without rigidity. Paired with DM Sans's humanist stroke modulation, the combination reads like a well-designed scientific periodical: expressive at the display scale, precise at body. JetBrains Mono is the instrument reading; it appears only where data precision is the point.
+
+### Hierarchy
+
+- **Display** (weight 200, `clamp(3rem, 8vw, 6rem)`, line-height 0.95, tracking −0.03em): Hero sections, page-level statements, single-phrase impact lines. Never more than 6rem. Never bold.
+- **Headline** (weight 300, `clamp(2rem, 5vw, 4rem)`, line-height 1.05, tracking −0.02em): Section headings, major content blocks. Use `text-wrap: balance` to prevent orphans.
+- **Title** (weight 300, `clamp(1.25rem, 3vw, 2.25rem)`, line-height 1.2): Card headings, sub-section labels, named items.
+- **Body Large** (DM Sans 400, 1.125rem, line-height 1.7): Intro paragraphs, pull quotes (prose form). Max line length: 65ch.
+- **Body** (DM Sans 400, 1rem, line-height 1.7): General body copy. Max line length: 75ch. Use `text-wrap: pretty` to reduce orphaned words.
+- **Body Small** (DM Sans 400, 0.875rem, line-height 1.6): Captions, secondary metadata, helper text.
+- **Label / Eyebrow** (JetBrains Mono 500, 0.625rem, letter-spacing 0.15em, UPPERCASE): Section identifiers used deliberately — only where the metadata IS the content (a site code, a datum, a timestamp). Not as decorative scaffolding above every heading.
+- **Micro** (JetBrains Mono 500, 0.625rem, letter-spacing 0.15em, UPPERCASE): Status chips, data badges, coordinate labels.
+- **Annotation / Handwriting** `[PENDING: font TBD — Caveat recommended when first use appears]`: Occasional handwritten notes for map labels, seasonal annotations, species names, educational callouts. Use very sparingly — one or two instances per page at most. Characteristics: casual, slightly irregular, field-notebook feel. Never used for UI chrome or navigation.
+
+### Named Rules
+
+**The BioRhyme Rule.** BioRhyme is the display and headline font, always. Georgia and `serif` appear in the font stack as browser fallbacks only — they are never styled independently, never used intentionally, and their appearance in a rendered UI is a technical failure, not a design choice.
+
+**The Weight Rule.** BioRhyme headings use weight 200 (display) or 300 (headline / title). Never `font-bold`, never `font-semibold`. The weight is deliberate: heaviness belongs to the world outside, not to the type on the page.
+
+**The Case Rule.** Sentence case on all headings, always. Title Case On Section Headings is prohibited. The JetBrains Mono label/eyebrow role is the only UPPERCASE exception, and only when the label is ≤3 words.
+
+---
+
+## 4. Elevation
+
+Barbets Duet uses **tonal surface layering**, not box-shadow elevation. Depth is expressed by darkening or lightening the surface — bark to cream to linen — not by lifting elements out of the plane.
+
+The one exception is `.shadow-paper`: `box-shadow: 0 2px 8px rgba(42, 31, 20, 0.08), 0 1px 2px rgba(42, 31, 20, 0.06)`. This is a warm, bark-tinted diffuse shadow used only for interactive elevation — a hovered card, a focused input, a floating navigation pill. It reads as paper weight, not material elevation.
+
+### Surface Stack (dark mode, light to heavy)
+
+- **Base** (`--background`, Bark `#2A1F14`): The page canvas. The ground.
+- **Surface** (`--surface`, cream at 4% opacity): Barely-visible wash. Background tinting behind grouped content.
+- **Card Outer** (`bg-white/5 ring-1 ring-white/10`): The Double-Bezel outer shell — a thin translucent ring holding space around the card interior.
+- **Card Inner** (`--card`, Bark `#2A1F14` + inset highlight): The readable surface. Content lives here. The inset `box-shadow: inset 0 1px 1px rgba(255,255,255,0.08)` creates a subtle top-edge catch-light.
+- **Elevated / Interactive** (`.shadow-paper`): A hovered card or focused element lifts out of the stack with a warm bark shadow.
+
+### Surface Stack (light mode)
+
+- **Base** (`--background`, Linen `#F4EFE6`): The page. The paper.
+- **Surface** (`--surface`, bark at 4% opacity): Subtle warm tinting behind grouped sections.
+- **Card** (`--card`, Cream `#EDE8D8`): The readable elevated surface. Richer than linen — a used page rather than a fresh one.
+- **Secondary** (`--secondary`, `#D8D0BB`): A deeper warm neutral for secondary button surfaces and tier-two information containers.
+- **Elevated / Interactive** (`.shadow-paper`): Same warm bark diffuse shadow as dark mode.
+
+### Named Rules
+
+**The Flat-By-Default Rule.** Surfaces are flat at rest. `.shadow-paper` appears only as a state response — hover, focus, or floating (navigation). A design that adds shadow to static content has confused weight with importance.
+
+**The No-Glow Rule.** Coloured outer glows (`box-shadow: 0 0 Xpx #C9A87A`) are prohibited. Wheat and Moss do not glow; they illuminate. Tinted diffuse shadows only.
+
+---
+
+## 5. Components
+
+### Buttons
+
+Tactile and committed — they feel like pressing something real, not clicking a surface.
+
+- **Shape:** Fully pill (`border-radius: 9999px`). No square or rounded-lg buttons in this system.
+- **Primary (dark mode):** Wheat background (`#C9A87A`), Bark text (`#2A1F14`). Padding `12px 24px`. On hover: shifts toward Cream (`#EDE8D8`), same text.
+- **Primary (light mode):** Soil background (`#6B4C35`), Linen text (`#F4EFE6`). On hover: darkens toward Bark.
+- **Ghost:** Transparent background, Wheat text (dark) / Bark text (light), `border: 1px solid currentColor` at 25% opacity. Hover: fills subtly with muted surface wash.
+- **Transition:** `transition: all 700ms cubic-bezier(0.32, 0.72, 0, 1)` — slow entry, very fast exit. `active:scale-[0.98]` on press.
+- **Focus:** `outline: 2px solid` Wheat (dark) / Moss (light), `outline-offset: 3px`. Never remove focus outlines.
+
+### Cards: The Double-Bezel Architecture
+
+The signature structural component. Two concentric rounded rectangles — an outer shell and an inner surface — creating a bezel effect that reads as physical depth without shadows.
+
+- **Outer Shell:** `border-radius: 2rem`, `ring-1 ring-white/10`, `bg-white/5`, `padding: 0.375rem`. This is the frame.
+- **Inner Surface (`CardInner`):** `border-radius: calc(2rem - 0.375rem)`, `background: var(--card)`, `box-shadow: inset 0 1px 1px rgba(255,255,255,0.08)`. Content lives here.
+- **Dark mode:** The outer ring is a ghost of linen; the inner surface is Bark. Content floats above the page in a warm depression.
+- **Light mode:** The outer ring uses `ring-bark/10`; the inner surface is Cream on a Linen page. Content sits on a slightly richer paper.
+- **Never:** Nested Double-Bezel cards. Cards inside cards is always wrong.
+
+### Navigation: The Floating Island
+
+- **Structure:** `position: fixed`, `top: 1.5rem`, centred. A pill-shaped nav island that floats over page content.
+- **Background:** `backdrop-blur-xl` with `bg-bark/90` (dark) or `bg-linen/80` (light). It belongs to the surface below it, not to the sky above.
+- **Border:** `ring-1 ring-linen/10` (dark) / `ring-1 ring-bark/10` (light).
+- **Active state:** Structural underline indicator (`height: 2px`, colour matched to primary text). Never colour-only active state.
+- **Mobile:** Collapses to a sheet (`Sheet` component) opened by a menu trigger. Never a hamburger emoji.
+
+### Badges / Chips
+
+- **Shape:** Rounded-full pill.
+- **Default:** Lichen sage (`#8B9E7A`) background, Bark text. Reads as an ecological tag.
+- **Variants:** Soil (primary action chips), Stone (neutral/disabled), Clay (seasonal/event).
+- **Size:** Compact — `padding: 4px 12px`, `font-size: 0.625rem`, JetBrains Mono, UPPERCASE, `letter-spacing: 0.1em`.
+
+### Inputs / Fields
+
+- **Label:** Above the field, always. Never floating labels.
+- **Background:** `var(--input)` — platinum at 12% on Night Forest (dark) / bark at 10% on linen (light). Subtle wash, not a white box.
+- **Border:** `1px solid var(--border)` at rest. On focus: shifts to `var(--ring)` — Neon Lime (dark) / Moss (light).
+- **Focus ring:** `ring-2 ring-offset-1 ring-[var(--ring)]`. Always visible.
+- **Error:** Text below field, inline. Destructive red (`#ef4444`). Structural position only — never colour-only error signalling.
+- **Radius:** `0.5rem` (rounded-sm). Not pill, not sharp.
+
+### Eyebrow / Section Labels
+
+Used one way: `JetBrains Mono`, `10px`, `UPPERCASE`, `letter-spacing: 0.15em`, inside a `rounded-full` pill tag. Appears before a heading only when the label IS data — a site name, a datum, a location code. An eyebrow above every section heading as structural scaffolding is prohibited.
+
+### Illustrations
+
+When illustrations appear, they should resemble: field guide sketches, herbarium specimen drawings, ecological diagrams, hand-inked maps, botanical marginalia. Characteristics: fine ink lines (1–1.5px stroke), restrained colour fills (one or two palette tones at low opacity), scientific clarity, slight intentional irregularity. Not decorative infographics; not icon sets; not flat cartoon style. Illustrations earn their place by conveying ecological information — species identification, site geography, restoration diagrams — not by adding visual warmth.
+
+---
+
+## 6. Do's and Don'ts
+
+### Do:
+
+- **Do** use Bark (`#2A1F14`) everywhere pure black would go. Including `fill`, `stroke`, `color`, `background-color`.
+- **Do** use BioRhyme at weight 200–300 for all display and headline text. Georgia and serif are in the stack for browser safety only.
+- **Do** use sentence case on all headings, labels, and navigation items. UPPERCASE is for JetBrains Mono metadata labels only.
+- **Do** use `transition: all 700ms cubic-bezier(0.32, 0.72, 0, 1)` on interactive elements. This easing curve is part of the brand voice. 300ms linear is not.
+- **Do** wrap display headings in `text-wrap: balance` and body paragraphs in `text-wrap: pretty`.
+- **Do** cap body copy at `max-w-[65ch]` to `max-w-[75ch]`. Measure is part of legibility.
+- **Do** use the Double-Bezel card (outer shell + CardInner) for elevated content surfaces.
+- **Do** keep the floating island nav pill — `fixed top-6`, backdrop-blur, ring border. Never replace it with a full-width header bar.
+- **Do** honour `prefers-reduced-motion: reduce` — all animation-duration and transition-duration set to 0.01ms in the media query.
+- **Do** use `icon strokeWidth={1.5}` on all Lucide icons, consistently.
+- **Do** test every heading at every breakpoint for overflow. A heading word that wraps past its container is a shipped bug.
+
+### Don't:
+
+- **Don't** use pure `#000000` anywhere — not in fills, not in text, not in shadows. Use Bark.
+- **Don't** use `text-white` or `bg-white` or `text-black` — use brand token equivalents (`text-linen`, `bg-bark`).
+- **Don't** use Tailwind `gray-*` classes — use Bark/Stone/Linen opacity variants instead (`text-bark/70`, `text-linen/50`).
+- **Don't** add coloured box-shadow glows (`box-shadow: 0 0 20px #C9A87A`). Tinted diffuse warm shadows only. `.shadow-paper` is the system shadow.
+- **Don't** use gradient text (`background-clip: text` with a gradient). Wheat and Soil are solid. Emphasis through weight or size.
+- **Don't** use glassmorphism decoratively. Backdrop-blur is used on the floating nav only, for functional surface grounding — not on cards, modals, or content sections.
+- **Don't** place an eyebrow label above every section heading. JetBrains Mono eyebrows are for data labels, not structural scaffolding.
+- **Don't** use numbered section markers (`01 / 02 / 03`) as decorative scaffolding. Numbers earn their place only when the section is a real sequence where order carries meaning.
+- **Don't** use `border-left` greater than `1px` as a coloured accent stripe on cards, callouts, or list items. Rewrite with full borders, background tints, or nothing.
+- **Don't** use the three-equal-columns feature card grid. Use offset grids, asymmetric `3fr 2fr` columns, or bento structures.
+- **Don't** use `h-screen` — use `min-h-[100dvh]` to survive iOS Safari's viewport jump.
+- **Don't** mix the two palettes. Neon Lime, Night Forest, Viridian, and Platinum are dark-mode only; Cultivated Simplicity is light-mode only. See **The Mode Rule** in Colors. Neon Lime on a linen page, or Bark on a Night Forest page, is a defect.
+- **Don't** add off-brand hex values to `globals.css` or Tailwind theme config. The ten Cultivated Simplicity tokens plus the four Scholarly Cycle dark-mode tokens are the complete set.
+- **Don't** use `Inter` anywhere in the font stack.
+- **Don't** animate `top`, `left`, `width`, or `height`. Animate only `transform` and `opacity`.
+- **Don't** use AI copywriting clichés: "Elevate", "Seamless", "Unleash", "Next-Gen", "Game-changer", "Revolutionise".
+- **Don't** use exclamation marks in success messages.
+- **Don't** use `href="#"` — all links point to real routes.
+- **Don't** write copy using: disruption, optimise, scale, game-changer, unleash, seamless, next-gen. Use: stewardship, habitat, cultivation, reciprocity, resilience, regeneration.
+- **Don't** use stock photography — staged smiles, drone hero shots as dominant perspective, heavily edited colours. Use real ecological work, candid community moments, natural light, cloudy skies, soft contrast, imperfect framing.
+- **Don't** use illustration styles that read as: flat cartoon, decorative icon set, tech infographic. Field guide and herbarium styles only.
+
+**The One-Sentence Test.** If a design decision feels as though it belongs equally in a botanical field journal, a Scandinavian community workshop, and a restored farmhouse kitchen, it belongs in the brand. If it feels like a technology startup, a luxury lifestyle magazine, or a nostalgic theme-park version of rural life, it does not.
+
+---
+
+*Design system: Cultivated Simplicity — Barbets Duet*
+*North Star: "The Field Journal"*
+*Last updated: 2026-06-28*
+*Generated from live codebase — `app/globals.css`, `components/ui/`, `app/layout.tsx`*

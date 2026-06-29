@@ -56,20 +56,20 @@ export default function SignUpClient() {
 
   if (emailSent) {
     return (
-      <div className="min-h-screen bg-[#FAF9F6] text-[#2C3E35] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#F4EFE6] text-[#2A1F14] flex items-center justify-center px-6">
         <div className="w-full max-w-md text-center">
-          <div className="w-12 h-12 rounded-full bg-[#2C3E35]/10 flex items-center justify-center mx-auto mb-6">
-            <svg className="w-6 h-6 text-[#2C3E35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-12 h-12 rounded-full bg-[#2A1F14]/10 flex items-center justify-center mx-auto mb-6">
+            <svg className="w-6 h-6 text-[#2A1F14]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
           <h1 className="font-serif text-3xl font-light mb-4">Check your email</h1>
-          <p className="text-sm text-[#2C3E35]/60 mb-8">
+          <p className="text-sm text-[#2A1F14]/60 mb-8">
             We sent a confirmation link to <strong>{email}</strong>. Click it to activate your account.
           </p>
-          <p className="text-xs text-[#2C3E35]/40">
+          <p className="text-xs text-[#2A1F14]/40">
             Already confirmed?{' '}
-            <Link href="/community/sign-in" className="underline text-[#2C3E35]">
+            <Link href="/community/sign-in" className="underline text-[#2A1F14]">
               Sign in
             </Link>
           </p>
@@ -79,21 +79,21 @@ export default function SignUpClient() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#2C3E35] flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[#F4EFE6] text-[#2A1F14] flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="mb-10 text-center">
-          <p className="text-[10px] uppercase tracking-widest text-[#2C3E35]/50 mb-3">Member Portal</p>
+          <p className="text-[10px] uppercase tracking-widest text-[#2A1F14]/50 mb-3">Member Portal</p>
           <h1 className="font-serif text-4xl font-light">Join the Network</h1>
-          <p className="mt-3 text-sm text-[#2C3E35]/60">
+          <p className="mt-3 text-sm text-[#2A1F14]/60">
             Create an account to connect with learning sites and community members.
           </p>
         </div>
 
         {/* Starting role note */}
-        <div className="bg-[#2C3E35]/5 rounded-xl px-4 py-3 mb-6 text-sm text-[#2C3E35]/70">
+        <div className="bg-[#2A1F14]/5 rounded-xl px-4 py-3 mb-6 text-sm text-[#2A1F14]/70">
           New members join as{' '}
-          <span className="font-semibold text-[#2C3E35]">
+          <span className="font-semibold text-[#2A1F14]">
             {MEMBER_ROLE_LABELS['local_community']}
           </span>
           . Site coordinators can upgrade your role.
@@ -102,7 +102,7 @@ export default function SignUpClient() {
         {/* Google OAuth */}
         <button
           onClick={handleGoogleSignUp}
-          className="w-full flex items-center justify-center gap-3 bg-white border border-[#2C3E35]/20 rounded-xl py-3 px-6 text-sm font-medium hover:border-[#2C3E35]/50 transition-colors mb-6"
+          className="w-full flex items-center justify-center gap-3 bg-white border border-[#2A1F14]/20 rounded-xl py-3 px-6 text-sm font-medium hover:border-[#2A1F14]/50 transition-colors mb-6"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -114,9 +114,9 @@ export default function SignUpClient() {
         </button>
 
         <div className="flex items-center gap-4 mb-6">
-          <div className="flex-1 h-px bg-[#2C3E35]/10" />
-          <span className="text-xs text-[#2C3E35]/40 uppercase tracking-widest">or</span>
-          <div className="flex-1 h-px bg-[#2C3E35]/10" />
+          <div className="flex-1 h-px bg-[#2A1F14]/10" />
+          <span className="text-xs text-[#2A1F14]/40 uppercase tracking-widest">or</span>
+          <div className="flex-1 h-px bg-[#2A1F14]/10" />
         </div>
 
         {/* Sign-up form */}
@@ -128,7 +128,7 @@ export default function SignUpClient() {
           )}
 
           <div>
-            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2C3E35]/60">
+            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2A1F14]/60">
               Display Name
             </label>
             <input
@@ -136,13 +136,13 @@ export default function SignUpClient() {
               required
               value={displayName}
               onChange={e => setDisplayName(e.target.value)}
-              className="w-full bg-white border border-[#2C3E35]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2C3E35] transition-colors"
+              className="w-full bg-white border border-[#2A1F14]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2A1F14] transition-colors"
               placeholder="Your name"
             />
           </div>
 
           <div>
-            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2C3E35]/60">
+            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2A1F14]/60">
               Email
             </label>
             <input
@@ -150,13 +150,13 @@ export default function SignUpClient() {
               required
               value={email}
               onChange={e => setEmail(e.target.value)}
-              className="w-full bg-white border border-[#2C3E35]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2C3E35] transition-colors"
+              className="w-full bg-white border border-[#2A1F14]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2A1F14] transition-colors"
               placeholder="you@example.com"
             />
           </div>
 
           <div>
-            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2C3E35]/60">
+            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2A1F14]/60">
               Password
             </label>
             <input
@@ -165,7 +165,7 @@ export default function SignUpClient() {
               minLength={8}
               value={password}
               onChange={e => setPassword(e.target.value)}
-              className="w-full bg-white border border-[#2C3E35]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2C3E35] transition-colors"
+              className="w-full bg-white border border-[#2A1F14]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2A1F14] transition-colors"
               placeholder="Minimum 8 characters"
             />
           </div>
@@ -173,7 +173,7 @@ export default function SignUpClient() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#2C3E35] text-[#FAF9F6] rounded-xl py-3 px-6 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 hover:bg-[#1a2e25] transition-colors disabled:opacity-50"
+            className="w-full bg-[#2A1F14] text-[#F4EFE6] rounded-xl py-3 px-6 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 hover:bg-[#1a2e25] transition-colors disabled:opacity-50"
           >
             {loading
               ? <Loader2 size={16} className="animate-spin" />
@@ -182,11 +182,11 @@ export default function SignUpClient() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-[#2C3E35]/60">
+        <p className="mt-6 text-center text-sm text-[#2A1F14]/60">
           Already a member?{' '}
           <Link
             href="/community/sign-in"
-            className="underline underline-offset-2 text-[#2C3E35] hover:opacity-70"
+            className="underline underline-offset-2 text-[#2A1F14] hover:opacity-70"
           >
             Sign in
           </Link>

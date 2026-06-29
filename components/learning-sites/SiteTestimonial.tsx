@@ -10,7 +10,7 @@ export function SiteTestimonial({ site }: { site: LearningSite }) {
   const { quote, authorName, authorPosition, authorAvatar } = site.testimonial;
 
   return (
-    <section className="py-32 px-6 bg-night-forest text-platinum">
+    <section className="py-32 px-6 bg-band text-band-foreground">
       <div className="max-w-[1600px] mx-auto">
         <div className="max-w-[960px] mx-auto text-center">
           <motion.div
@@ -21,13 +21,13 @@ export function SiteTestimonial({ site }: { site: LearningSite }) {
           >
             <span
               aria-hidden="true"
-              className="block font-serif text-[120px] md:text-[180px] leading-none text-neon-lime/20
+              className="block font-serif text-[120px] md:text-[180px] leading-none text-band-accent/20
                          select-none mb-[-2rem]"
             >
               &ldquo;
             </span>
 
-            <blockquote className="font-serif italic text-3xl md:text-5xl leading-snug text-platinum mb-12">
+            <blockquote className="font-serif italic text-3xl md:text-5xl leading-snug text-band-foreground mb-12">
               {quote}
             </blockquote>
           </motion.div>
@@ -40,7 +40,7 @@ export function SiteTestimonial({ site }: { site: LearningSite }) {
             className="flex items-center justify-center gap-4"
           >
             {authorAvatar && (
-              <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0 border-2 border-neon-lime/30">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0 border-2 border-band-accent/30">
                 <Image
                   src={authorAvatar}
                   alt={authorName}
@@ -51,11 +51,11 @@ export function SiteTestimonial({ site }: { site: LearningSite }) {
               </div>
             )}
             <div className="text-left">
-              <div className="text-sm font-sans font-semibold tracking-widest uppercase text-platinum">
+              <div className="text-sm font-sans font-semibold tracking-widest uppercase text-band-foreground">
                 {authorName}
               </div>
               {authorPosition && (
-                <div className="text-xs font-mono text-platinum/50 mt-0.5">
+                <div className="text-xs font-mono text-band-foreground/50 mt-0.5">
                   {authorPosition}
                 </div>
               )}

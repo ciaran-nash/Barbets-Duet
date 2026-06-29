@@ -19,10 +19,10 @@ export default function CareersPage() {
 
       <main>
         {/* 1. Hero: Join the 20-Year Experiment */}
-        <section className="pt-64 pb-48 px-6 bg-night-forest text-platinum relative overflow-hidden">
+        <section className="pt-64 pb-48 px-6 bg-band text-band-foreground relative overflow-hidden">
           <div className="max-w-[1600px] mx-auto relative z-10">
             <KineticReveal>
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-neon-lime mb-8 block">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-band-accent mb-8 block">
                 Careers &amp; Opportunities
               </span>
             </KineticReveal>
@@ -32,7 +32,7 @@ export default function CareersPage() {
               </h1>
             </KineticReveal>
             <KineticReveal delay={0.2}>
-              <p className="text-xl md:text-2xl text-platinum/70 font-serif leading-relaxed max-w-2xl mb-16">
+              <p className="text-xl md:text-2xl text-band-foreground/70 font-serif leading-relaxed max-w-2xl mb-16">
                 Barbets Duet has spent two decades building a regenerative model for people and nature.
                 Now we&apos;re opening it up — to interns, communicators, and the next generation of stewards.
               </p>
@@ -40,7 +40,7 @@ export default function CareersPage() {
             <KineticReveal delay={0.3}>
               <Link
                 href="/get-involved"
-                className="inline-flex items-center gap-3 bg-neon-lime text-night-forest font-mono text-xs uppercase tracking-widest font-bold px-10 h-14 rounded-full hover:bg-neon-lime/90 active:scale-[0.98] transition-all"
+                className="inline-flex items-center gap-3 bg-band-accent text-band font-mono text-xs uppercase tracking-widest font-bold px-10 h-14 rounded-full hover:bg-band-accent/90 active:scale-[0.98] transition-all"
               >
                 Apply as Volunteer <ArrowRight className="w-4 h-4" />
               </Link>
@@ -272,10 +272,10 @@ export default function CareersPage() {
         </section>
 
         {/* 5. CTA Section */}
-        <section className="py-48 px-6 bg-night-forest text-platinum">
+        <section className="py-48 px-6 bg-band text-band-foreground">
           <div className="max-w-[1600px] mx-auto text-center">
             <KineticReveal>
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-neon-lime mb-8 block">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-band-accent mb-8 block">
                 Ready?
               </span>
             </KineticReveal>
@@ -285,7 +285,7 @@ export default function CareersPage() {
               </h2>
             </KineticReveal>
             <KineticReveal delay={0.2}>
-              <p className="text-xl text-platinum/60 font-serif max-w-xl mx-auto mb-16">
+              <p className="text-xl text-band-foreground/60 font-serif max-w-xl mx-auto mb-16">
                 Whether you&apos;re a student, researcher, or young person in East Africa —
                 there is a place for you in the Jumuiya.
               </p>
@@ -293,7 +293,7 @@ export default function CareersPage() {
             <KineticReveal delay={0.3}>
               <Link
                 href="/get-involved"
-                className="inline-flex items-center gap-3 bg-neon-lime text-night-forest font-mono text-xs uppercase tracking-widest font-bold px-12 h-16 rounded-full hover:bg-neon-lime/90 active:scale-[0.98] transition-all"
+                className="inline-flex items-center gap-3 bg-band-accent text-band font-mono text-xs uppercase tracking-widest font-bold px-12 h-16 rounded-full hover:bg-band-accent/90 active:scale-[0.98] transition-all"
               >
                 Get Involved <ArrowRight className="w-4 h-4" />
               </Link>

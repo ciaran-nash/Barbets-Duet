@@ -60,9 +60,9 @@ function PresenceBar() {
   if (status !== 'connected' || others.length === 0) return null;
 
   return (
-    <div className="flex items-center gap-2 px-4 py-2 bg-viridian/10 rounded-xl mb-4">
-      <Users className="w-4 h-4 text-viridian shrink-0" />
-      <span className="text-xs font-sans text-viridian">
+    <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-xl mb-4">
+      <Users className="w-4 h-4 text-accent shrink-0" />
+      <span className="text-xs font-sans text-accent">
         {others.length} collaborator{others.length !== 1 ? 's' : ''} viewing
       </span>
       <div className="flex -space-x-1 ml-auto">
@@ -70,7 +70,7 @@ function PresenceBar() {
           <div
             key={other.connectionId}
             title={other.info?.name ?? 'Collaborator'}
-            className="w-6 h-6 rounded-full bg-viridian flex items-center justify-center text-white text-[9px] font-bold ring-2 ring-white"
+            className="w-6 h-6 rounded-full bg-accent flex items-center justify-center text-accent-foreground text-[9px] font-bold ring-2 ring-white"
           >
             {(other.info?.name ?? '?')[0]?.toUpperCase()}
           </div>
@@ -203,8 +203,8 @@ function ContributeForm({ userId, displayName, siteOptions }: FormProps) {
   if (submitted) {
     return (
       <div className="text-center py-16">
-        <div className="w-14 h-14 rounded-full bg-viridian/10 flex items-center justify-center mx-auto mb-4">
-          <Check className="w-7 h-7 text-viridian" />
+        <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+          <Check className="w-7 h-7 text-accent" />
         </div>
         <h2 className="font-serif font-bold text-2xl mb-2">Submitted for review</h2>
         <p className="text-foreground/60 font-sans text-sm">
@@ -229,9 +229,9 @@ function ContributeForm({ userId, displayName, siteOptions }: FormProps) {
             className={[
               'h-1.5 flex-1 rounded-full transition-all duration-300',
               i < step
-                ? 'bg-viridian'
+                ? 'bg-accent'
                 : i === step
-                ? 'bg-viridian/60'
+                ? 'bg-accent/60'
                 : 'bg-foreground/10',
             ].join(' ')}
           />
@@ -252,7 +252,7 @@ function ContributeForm({ userId, displayName, siteOptions }: FormProps) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Give your story a name..."
-            className="w-full px-4 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-viridian mb-4"
+            className="w-full px-4 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-accent mb-4"
           />
           <label
             htmlFor="site-select"
@@ -264,7 +264,7 @@ function ContributeForm({ userId, displayName, siteOptions }: FormProps) {
             id="site-select"
             value={selectedSite}
             onChange={(e) => setSelectedSite(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-viridian"
+            className="w-full px-4 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           >
             {siteOptions.map((s) => (
               <option key={s.slug} value={s.slug}>
@@ -291,7 +291,7 @@ function ContributeForm({ userId, displayName, siteOptions }: FormProps) {
         rows={7}
         placeholder="Share your honest experience..."
         className={[
-          'w-full px-4 py-3 rounded-2xl border bg-foreground/5 font-sans text-sm leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-viridian transition-colors',
+          'w-full px-4 py-3 rounded-2xl border bg-foreground/5 font-sans text-sm leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-accent transition-colors',
           errors[current.id] ? 'border-red-500/50' : 'border-foreground/10',
         ].join(' ')}
         aria-describedby={errors[current.id] ? `${current.id}-error` : undefined}
@@ -311,7 +311,7 @@ function ContributeForm({ userId, displayName, siteOptions }: FormProps) {
         <button
           onClick={handleBack}
           disabled={step === 0}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-foreground/5 text-foreground/60 text-sm font-sans font-medium disabled:opacity-30 hover:bg-foreground/10 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-foreground/5 text-foreground/60 text-sm font-sans font-medium disabled:opacity-30 hover:bg-foreground/10 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
         >
           <ChevronLeft className="w-4 h-4" />
           Back
@@ -321,7 +321,7 @@ function ContributeForm({ userId, displayName, siteOptions }: FormProps) {
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-viridian text-white text-sm font-sans font-semibold hover:bg-viridian/80 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+            className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-accent text-accent-foreground text-sm font-sans font-semibold hover:bg-accent/80 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
           >
             {submitting ? (
               <>
@@ -338,7 +338,7 @@ function ContributeForm({ userId, displayName, siteOptions }: FormProps) {
         ) : (
           <button
             onClick={handleNext}
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-viridian text-white text-sm font-sans font-semibold hover:bg-viridian/80 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-accent text-accent-foreground text-sm font-sans font-semibold hover:bg-accent/80 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
           >
             Next
             <ChevronRight className="w-4 h-4" />
@@ -371,7 +371,7 @@ export default function ContributeClient({
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-16">
-      <p className="text-xs font-mono text-viridian uppercase tracking-[0.2em] mb-3">
+      <p className="text-xs font-mono text-accent uppercase tracking-[0.2em] mb-3">
         Share Your Experience
       </p>
       <h1 className="font-serif font-bold text-4xl mb-2">Trial &amp; Error</h1>

@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { type Variants } from 'motion/react';
 import { ChevronRight, LogIn, User as UserIcon } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 import Link from 'next/link';
 import { useAuth } from './AuthProvider';
 
@@ -174,12 +175,12 @@ export default function Header() {
         className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none"
       >
         <nav
-          className="pointer-events-auto flex items-center gap-6 px-5 py-2.5 rounded-full bg-night-forest/75 backdrop-blur-xl ring-1 ring-platinum/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+          className="pointer-events-auto flex items-center gap-6 px-5 py-2.5 rounded-full bg-background/90 backdrop-blur-xl ring-1 ring-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
           onMouseLeave={closeDropdown}
         >
           {/* Logo */}
           <Link href="/" onClick={() => setIsDropdownOpen(false)}>
-            <div className="group cursor-pointer text-platinum">
+            <div className="group cursor-pointer text-foreground">
               <h1 className="font-serif text-sm tracking-wider uppercase font-medium leading-none">
                 Barbets Duet
               </h1>
@@ -190,10 +191,10 @@ export default function Header() {
           </Link>
 
           {/* Divider */}
-          <div className="w-px h-4 bg-platinum/20 hidden lg:block" />
+          <div className="w-px h-4 bg-foreground/20 hidden lg:block" />
 
           {/* Desktop nav items */}
-          <ul className="hidden lg:flex gap-5 items-center text-[10px] font-semibold tracking-widest uppercase m-0 p-0 text-platinum">
+          <ul className="hidden lg:flex gap-5 items-center text-[10px] font-semibold tracking-widest uppercase m-0 p-0 text-foreground">
               {menuItems.map((item, index) => (
                    <li
                       key={`desktop-menu-${index}`}
@@ -206,7 +207,7 @@ export default function Header() {
                        {activeMenuItemIndex === index && isDropdownOpen && item.dropdownData && (
                           <motion.div
                               layoutId="underline"
-                              className="absolute -bottom-0.5 left-0 right-0 h-px bg-neon-lime"
+                              className="absolute -bottom-0.5 left-0 right-0 h-px bg-primary"
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               exit={{ opacity: 0 }}
@@ -218,16 +219,18 @@ export default function Header() {
           </ul>
 
           {/* Divider */}
-          <div className="w-px h-4 bg-platinum/20 hidden lg:block" />
+          <div className="w-px h-4 bg-foreground/20 hidden lg:block" />
 
           {/* CTA area */}
-          <div className="hidden lg:flex items-center gap-4 text-[10px] font-semibold tracking-widest uppercase text-platinum">
+          <div className="hidden lg:flex items-center gap-4 text-[10px] font-semibold tracking-widest uppercase text-foreground">
             <Link
               href="/support-us"
-              className="px-4 py-1.5 rounded-full border border-platinum/30 text-platinum hover:bg-platinum hover:text-night-forest transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] whitespace-nowrap active:scale-[0.98]"
+              className="px-4 py-1.5 rounded-full border border-foreground/30 text-foreground hover:bg-foreground/10 hover:text-background transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] whitespace-nowrap active:scale-[0.98]"
             >
               Support Us
             </Link>
+
+            <ThemeToggle />
 
             {user ? (
               <Link href="/dashboard" className="flex items-center gap-1.5 hover:opacity-60 transition-opacity">
@@ -247,12 +250,12 @@ export default function Header() {
             aria-label="Toggle navigation menu"
           >
             <span
-              className={`block w-full h-px bg-platinum origin-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              className={`block w-full h-px bg-foreground origin-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                 isMobileMenuOpen ? 'translate-y-[9px] rotate-45' : ''
               }`}
             />
             <span
-              className={`block w-full h-px bg-platinum origin-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              className={`block w-full h-px bg-foreground origin-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                 isMobileMenuOpen ? '-translate-y-[9px] -rotate-45' : ''
               }`}
             />
@@ -275,7 +278,7 @@ export default function Header() {
             onMouseLeave={closeDropdown}
             onAnimationComplete={handleDropdownTransitionEnd}
           >
-            <div className="rounded-[1.5rem] ring-1 ring-platinum/10 bg-night-forest/90 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden">
+            <div className="rounded-[1.5rem] ring-1 ring-foreground/10 bg-background/90 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden">
               <AnimatePresence mode="wait">
                 {menuItems[activeMenuItemIndex]?.dropdownData && (
                   <motion.div
@@ -289,7 +292,7 @@ export default function Header() {
                     <div className="flex gap-12">
                       {menuItems[activeMenuItemIndex]?.dropdownData?.map((column, colIndex) => (
                         <div key={`desktop-col-${colIndex}`} className="min-w-[180px]">
-                          <h3 className="mb-4 text-[9px] font-semibold tracking-widest uppercase text-platinum/40">
+                          <h3 className="mb-4 text-[9px] font-semibold tracking-widest uppercase text-foreground/40">
                             {column.heading}
                           </h3>
                           <ul className="flex flex-col gap-3 p-0 m-0">
@@ -297,7 +300,7 @@ export default function Header() {
                               <li key={`desktop-link-${colIndex}-${linkIndex}`}>
                                 <Link
                                   href={link.href}
-                                  className="text-base font-serif text-platinum hover:text-neon-lime transition-colors duration-300"
+                                  className="text-base font-serif text-foreground hover:text-primary transition-colors duration-300"
                                   onClick={closeDropdown}
                                 >
                                   {link.text}
@@ -321,7 +324,7 @@ export default function Header() {
         {isMobileMenuOpen && (
           <motion.div
             key="mobile-menu-overlay"
-            className="fixed inset-0 bg-night-forest/80 backdrop-blur-3xl z-40 lg:hidden"
+            className="fixed inset-0 bg-background/80 backdrop-blur-3xl z-40 lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -330,7 +333,7 @@ export default function Header() {
           >
             <motion.div
               key="mobile-menu-content"
-              className="absolute top-0 right-0 h-full w-[85%] max-w-[400px] bg-night-forest text-platinum flex flex-col p-8 overflow-y-auto ring-l ring-platinum/10"
+              className="absolute top-0 right-0 h-full w-[85%] max-w-[400px] bg-background text-foreground flex flex-col p-8 overflow-y-auto ring-1 ring-foreground/10"
               initial={{ x: '100%' }}
               animate={{ x: '0%' }}
               exit={{ x: '100%' }}
@@ -369,15 +372,15 @@ export default function Header() {
                               exit="closed"
                               variants={mobileDropdownVariants}
                               transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-                              className="mt-4 pl-4 border-l border-platinum/20 flex flex-col gap-6"
+                              className="mt-4 pl-4 border-l border-foreground/20 flex flex-col gap-6"
                             >
                               {item.dropdownData.map((column, colIndex) => (
                                 <div key={`mobile-col-${colIndex}`}>
-                                  <h4 className="text-[9px] text-platinum/40 uppercase tracking-widest mb-3">{column.heading}</h4>
+                                  <h4 className="text-[9px] text-foreground/40 uppercase tracking-widest mb-3">{column.heading}</h4>
                                   <ul className="flex flex-col gap-3 font-serif text-base capitalize tracking-normal">
                                     {column.links.map((link, linkIndex) => (
                                       <li key={`mobile-link-${colIndex}-${linkIndex}`}>
-                                        <Link href={link.href} className="hover:text-neon-lime transition-colors" onClick={handleMobileLinkClick}>
+                                        <Link href={link.href} className="hover:text-primary transition-colors" onClick={handleMobileLinkClick}>
                                           {link.text}
                                         </Link>
                                       </li>
@@ -398,10 +401,13 @@ export default function Header() {
                 ))}
               </ul>
 
-              <div className="mt-auto pt-12 border-t border-platinum/10 flex flex-col gap-4 text-xs font-semibold tracking-widest uppercase">
+              <div className="mt-auto pt-12 border-t border-foreground/10 flex flex-col gap-4 text-xs font-semibold tracking-widest uppercase">
+                <div className="flex justify-center">
+                  <ThemeToggle />
+                </div>
                 <Link
                   href="/support-us"
-                  className="text-center py-3 rounded-full border border-platinum/30 text-platinum hover:bg-platinum hover:text-night-forest transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
+                  className="text-center py-3 rounded-full border border-foreground/30 text-foreground hover:bg-foreground/10 hover:text-background transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
                   onClick={handleMobileLinkClick}
                 >
                   Support Us
@@ -410,7 +416,7 @@ export default function Header() {
                 {user ? (
                   <Link
                     href="/dashboard"
-                    className="flex justify-center items-center gap-2 py-3 bg-neon-lime text-night-forest rounded-full hover:bg-neon-lime/90 transition-colors active:scale-[0.98]"
+                    className="flex justify-center items-center gap-2 py-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors active:scale-[0.98]"
                     onClick={handleMobileLinkClick}
                   >
                     <UserIcon size={14} /> Dashboard
@@ -418,7 +424,7 @@ export default function Header() {
                 ) : (
                   <button
                     onClick={() => { handleMobileLinkClick(); signInWithGoogle(); }}
-                    className="flex justify-center items-center gap-2 py-3 bg-neon-lime text-night-forest rounded-full hover:bg-neon-lime/90 transition-colors active:scale-[0.98]"
+                    className="flex justify-center items-center gap-2 py-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors active:scale-[0.98]"
                   >
                     <LogIn size={14} /> Sign In
                   </button>

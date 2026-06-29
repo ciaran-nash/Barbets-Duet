@@ -34,7 +34,7 @@ function TagPill({
       className={[
         'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-sans font-medium transition-all duration-150',
         active
-          ? 'bg-viridian text-white'
+          ? 'bg-accent text-accent-foreground'
           : 'bg-foreground/5 text-foreground/60 hover:bg-foreground/10 hover:text-foreground',
       ].join(' ')}
     >
@@ -57,7 +57,7 @@ function EntryCard({ entry }: { entry: TrialAndErrorEntry }) {
 
   return (
     <article
-      className="rounded-2xl border border-foreground/10 bg-night-forest/5 p-5 hover:border-viridian/30 transition-all duration-150"
+      className="rounded-2xl border border-foreground/10 bg-foreground/5 p-5 hover:border-accent/30 transition-all duration-150"
       aria-label={entry.title}
     >
       {/* Header row */}
@@ -65,7 +65,7 @@ function EntryCard({ entry }: { entry: TrialAndErrorEntry }) {
         <div className="flex-1 min-w-0">
           <Link
             href={`/community/trials/${entry.slug}`}
-            className="font-serif font-semibold text-base leading-snug hover:text-viridian transition-colors focus:outline-none focus:ring-2 focus:ring-viridian rounded"
+            className="font-serif font-semibold text-base leading-snug hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded"
           >
             {entry.title}
           </Link>
@@ -75,7 +75,7 @@ function EntryCard({ entry }: { entry: TrialAndErrorEntry }) {
                 <MapPin className="w-3 h-3" />
                 <Link
                   href={`/community/sites/${entry.siteSlug}`}
-                  className="hover:text-viridian transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   {entry.siteSlug.replace(/-/g, ' ')}
                 </Link>
@@ -112,14 +112,14 @@ function EntryCard({ entry }: { entry: TrialAndErrorEntry }) {
           {entry.challengeType?.slice(0, 3).map((t) => (
             <span
               key={t}
-              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-viridian/10 text-viridian text-[10px] font-mono uppercase tracking-wide"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-mono uppercase tracking-wide"
             >
               <Tag className="w-2.5 h-2.5" />
               {t.replace(/_/g, ' ')}
             </span>
           ))}
           {entry.propertyRightsRegime && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-neon-lime/20 text-night-forest text-[10px] font-mono uppercase tracking-wide">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary/20 text-foreground text-[10px] font-mono uppercase tracking-wide">
               {entry.propertyRightsRegime}
             </span>
           )}
@@ -141,7 +141,7 @@ function EmptyState({ filtered }: { filtered: boolean }) {
       </p>
       <Link
         href="/community/contribute"
-        className="inline-flex mt-4 px-4 py-2 rounded-full bg-viridian text-white text-sm font-sans font-medium hover:bg-viridian/80 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+        className="inline-flex mt-4 px-4 py-2 rounded-full bg-accent text-accent-foreground text-sm font-sans font-medium hover:bg-accent/80 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
       >
         Add your story
       </Link>
@@ -251,7 +251,7 @@ export default function ContributionFeed({
             onChange={(e) =>
               setFilters((f) => ({ ...f, sortOrder: e.target.value as SortOrder }))
             }
-            className="px-3 py-1.5 rounded-full bg-foreground/5 text-sm font-sans text-foreground/70 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-viridian"
+            className="px-3 py-1.5 rounded-full bg-foreground/5 text-sm font-sans text-foreground/70 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-accent"
             aria-label="Sort order"
           >
             <option value="newest">Newest first</option>
@@ -264,7 +264,7 @@ export default function ContributionFeed({
             className={[
               'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-sans font-medium transition-all border',
               showFilters
-                ? 'bg-viridian text-white border-viridian'
+                ? 'bg-accent text-accent-foreground border-accent'
                 : 'bg-foreground/5 text-foreground/60 border-foreground/10 hover:bg-foreground/10',
             ].join(' ')}
             aria-expanded={showFilters}
@@ -272,7 +272,7 @@ export default function ContributionFeed({
             <Filter className="w-3.5 h-3.5" />
             Filter
             {hasActiveFilters && (
-              <span className="w-4 h-4 rounded-full bg-neon-lime text-night-forest text-[9px] font-bold flex items-center justify-center">
+              <span className="w-4 h-4 rounded-full bg-secondary text-foreground text-[9px] font-bold flex items-center justify-center">
                 !
               </span>
             )}
@@ -282,7 +282,7 @@ export default function ContributionFeed({
 
       {/* Filter panel */}
       {showFilters && (
-        <div className="rounded-2xl border border-foreground/10 bg-night-forest/5 p-4 mb-6 space-y-4">
+        <div className="rounded-2xl border border-foreground/10 bg-foreground/5 p-4 mb-6 space-y-4">
           {/* Site filter */}
           {!hideSiteFilter && allSites.length > 0 && (
             <div>

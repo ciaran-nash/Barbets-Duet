@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-platinum selection:bg-neon-lime selection:text-night-forest">
+    <main className="min-h-screen bg-background selection:bg-accent selection:text-accent-foreground">
       <Header />
       <Hero />
       <Mission />

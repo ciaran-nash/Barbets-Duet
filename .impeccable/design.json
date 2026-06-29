@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-28T00:00:00.000Z",
+  "title": "Design System: Barbets Duet",
+  "extensions": {
+    "colorMeta": {
+      "bark": {
+        "role": "neutral",
+        "displayName": "Bark",
+        "canonical": "oklch(0.18 0.035 55)",
+        "tonalRamp": [
+          "oklch(0.10 0.030 55)",
+          "oklch(0.18 0.035 55)",
+          "oklch(0.28 0.032 55)",
+          "oklch(0.38 0.030 55)",
+          "oklch(0.50 0.026 55)",
+          "oklch(0.62 0.022 55)",
+          "oklch(0.76 0.016 55)",
+          "oklch(0.90 0.010 55)"
+        ]
+      },
+      "moss": {
+        "role": "primary",
+        "displayName": "Moss",
+        "canonical": "oklch(0.43 0.065 145)",
+        "tonalRamp": [
+          "oklch(0.16 0.065 145)",
+          "oklch(0.24 0.065 145)",
+          "oklch(0.32 0.065 145)",
+          "oklch(0.43 0.065 145)",
+          "oklch(0.54 0.058 145)",
+          "oklch(0.65 0.048 145)",
+          "oklch(0.77 0.034 145)",
+          "oklch(0.90 0.018 145)"
+        ]
+      },
+      "linen": {
+        "role": "neutral",
+        "displayName": "Linen",
+        "canonical": "oklch(0.94 0.012 90)",
+        "tonalRamp": [
+          "oklch(0.18 0.012 90)",
+          "oklch(0.32 0.012 90)",
+          "oklch(0.48 0.012 90)",
+          "oklch(0.62 0.012 90)",
+          "oklch(0.74 0.012 90)",
+          "oklch(0.84 0.012 90)",
+          "oklch(0.90 0.010 90)",
+          "oklch(0.94 0.012 90)"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Cream",
+        "canonical": "oklch(0.92 0.016 90)",
+        "tonalRamp": [
+          "oklch(0.18 0.016 90)",
+          "oklch(0.30 0.016 90)",
+          "oklch(0.46 0.016 90)",
+          "oklch(0.60 0.016 90)",
+          "oklch(0.72 0.016 90)",
+          "oklch(0.82 0.016 90)",
+          "oklch(0.88 0.014 90)",
+          "oklch(0.92 0.016 90)"
+        ]
+      },
+      "soil": {
+        "role": "secondary",
+        "displayName": "Soil",
+        "canonical": "oklch(0.36 0.055 50)",
+        "tonalRamp": [
+          "oklch(0.14 0.055 50)",
+          "oklch(0.22 0.055 50)",
+          "oklch(0.30 0.055 50)",
+          "oklch(0.36 0.055 50)",
+          "oklch(0.48 0.048 50)",
+          "oklch(0.62 0.038 50)",
+          "oklch(0.76 0.026 50)",
+          "oklch(0.90 0.014 50)"
+        ]
+      },
+      "wheat": {
+        "role": "primary",
+        "displayName": "Wheat",
+        "canonical": "oklch(0.72 0.072 70)",
+        "tonalRamp": [
+          "oklch(0.20 0.072 70)",
+          "oklch(0.32 0.072 70)",
+          "oklch(0.46 0.068 70)",
+          "oklch(0.58 0.075 70)",
+          "oklch(0.72 0.072 70)",
+          "oklch(0.80 0.060 70)",
+          "oklch(0.88 0.040 70)",
+          "oklch(0.95 0.020 70)"
+        ]
+      },
+      "stone": {
+        "role": "neutral",
+        "displayName": "Stone",
+        "canonical": "oklch(0.56 0.018 70)",
+        "tonalRamp": [
+          "oklch(0.18 0.018 70)",
+          "oklch(0.28 0.018 70)",
+          "oklch(0.38 0.018 70)",
+          "oklch(0.48 0.018 70)",
+          "oklch(0.56 0.018 70)",
+          "oklch(0.68 0.015 70)",
+          "oklch(0.80 0.010 70)",
+          "oklch(0.92 0.006 70)"
+        ]
+      },
+      "lichen": {
+        "role": "tertiary",
+        "displayName": "Lichen",
+        "canonical": "oklch(0.64 0.055 145)",
+        "tonalRamp": [
+          "oklch(0.20 0.055 145)",
+          "oklch(0.32 0.055 145)",
+          "oklch(0.44 0.055 145)",
+          "oklch(0.55 0.055 145)",
+          "oklch(0.64 0.055 145)",
+          "oklch(0.74 0.044 145)",
+          "oklch(0.84 0.030 145)",
+          "oklch(0.93 0.015 145)"
+        ]
+      },
+      "clay": {
+        "role": "tertiary",
+        "displayName": "Clay",
+        "canonical": "oklch(0.56 0.085 45)",
+        "tonalRamp": [
+          "oklch(0.18 0.085 45)",
+          "oklch(0.28 0.085 45)",
+          "oklch(0.38 0.085 45)",
+          "oklch(0.48 0.085 45)",
+          "oklch(0.56 0.085 45)",
+          "oklch(0.66 0.068 45)",
+          "oklch(0.78 0.048 45)",
+          "oklch(0.91 0.024 45)"
+        ]
+      },
+      "river": {
+        "role": "tertiary",
+        "displayName": "River",
+        "canonical": "oklch(0.56 0.058 220)",
+        "tonalRamp": [
+          "oklch(0.18 0.058 220)",
+          "oklch(0.28 0.058 220)",
+          "oklch(0.38 0.058 220)",
+          "oklch(0.48 0.058 220)",
+          "oklch(0.56 0.058 220)",
+          "oklch(0.66 0.046 220)",
+          "oklch(0.78 0.032 220)",
+          "oklch(0.91 0.016 220)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero sections, page-level statements. BioRhyme at its most expressive — never bold, never above 6rem."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings. Measured authority. Use text-wrap: balance."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card headings, sub-sections, named items."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "General prose. DM Sans at reading weight. Max 75ch."
+      },
+      "label": {
+        "displayName": "Label / Eyebrow",
+        "purpose": "JetBrains Mono for metadata only — site codes, coordinates, timestamps. Not as decorative scaffolding."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-paper",
+        "value": "0 2px 8px rgba(42, 31, 20, 0.08), 0 1px 2px rgba(42, 31, 20, 0.06)",
+        "purpose": "Interactive elevation only. Hovered cards, focused inputs, floating navigation. Never on static elements."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-brand",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "The brand easing curve. Slow entry, fast exit — the feel of a physical thing settling. Used on all buttons and interactive state transitions."
+      },
+      {
+        "name": "duration-slow",
+        "value": "700ms",
+        "purpose": "Primary interactive transition duration. Used on buttons, nav, hover states."
+      },
+      {
+        "name": "duration-medium",
+        "value": "300ms",
+        "purpose": "Secondary transitions. Used on opacity, colour-only changes."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1600px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (dark mode)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pill-shaped, wheat-on-bark. The primary CTA in dark mode. 700ms brand easing.",
+      "html": "<button class=\"ds-btn-primary\">Join the restoration</button>",
+      "css": ".ds-btn-primary { background: #C9A87A; color: #2A1F14; padding: 12px 24px; border-radius: 9999px; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; cursor: pointer; transition: all 700ms cubic-bezier(0.32, 0.72, 0, 1); } .ds-btn-primary:hover { background: #EDE8D8; color: #2A1F14; } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: 2px solid #C9A87A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Primary Button (light mode)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pill-shaped, linen-on-soil. The primary CTA in light mode. Same 700ms brand easing.",
+      "html": "<button class=\"ds-btn-primary-light\">Join the restoration</button>",
+      "css": ".ds-btn-primary-light { background: #6B4C35; color: #F4EFE6; padding: 12px 24px; border-radius: 9999px; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; cursor: pointer; transition: all 700ms cubic-bezier(0.32, 0.72, 0, 1); } .ds-btn-primary-light:hover { background: #2A1F14; color: #F4EFE6; } .ds-btn-primary-light:active { transform: scale(0.98); } .ds-btn-primary-light:focus-visible { outline: 2px solid #556B4E; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Transparent, bordered. Secondary action in both modes.",
+      "html": "<button class=\"ds-btn-ghost\">Learn more</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: #C9A87A; padding: 12px 24px; border-radius: 9999px; border: 1px solid rgba(201, 168, 122, 0.25); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em; cursor: pointer; transition: all 700ms cubic-bezier(0.32, 0.72, 0, 1); } .ds-btn-ghost:hover { background: rgba(201, 168, 122, 0.08); border-color: rgba(201, 168, 122, 0.5); } .ds-btn-ghost:active { transform: scale(0.98); } .ds-btn-ghost:focus-visible { outline: 2px solid #C9A87A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Double-Bezel Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The signature component. Two concentric rounded rectangles — outer translucent shell, inner readable surface. Creates physical depth without shadows.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-inner\"><p class=\"ds-card-title\">Field Notes</p><p class=\"ds-card-body\">Observations from Auroville, India — 847 hectares restored since 2018.</p></div></div>",
+      "css": ".ds-card { border-radius: 2rem; box-shadow: 0 0 0 1px rgba(237, 232, 216, 0.10); background: rgba(237, 232, 216, 0.04); padding: 0.375rem; } .ds-card-inner { border-radius: calc(2rem - 0.375rem); background: #2A1F14; box-shadow: inset 0 1px 1px rgba(255,255,255,0.08); padding: 2rem; } .ds-card-title { font-family: 'BioRhyme', Georgia, serif; font-size: 1.5rem; font-weight: 300; color: #EDE8D8; line-height: 1.2; margin: 0 0 0.75rem; } .ds-card-body { font-family: 'DM Sans', sans-serif; font-size: 0.875rem; color: rgba(237, 232, 216, 0.70); line-height: 1.7; margin: 0; max-width: 65ch; }"
+    },
+    {
+      "name": "Badge / Ecological Tag",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Rounded pill tag. Lichen sage as default — reads as an ecological classification marker.",
+      "html": "<span class=\"ds-badge\">Agroforestry</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; background: #8B9E7A; color: #2A1F14; padding: 4px 12px; border-radius: 9999px; font-family: 'JetBrains Mono', monospace; font-size: 0.625rem; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; line-height: 1; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Field Journal",
+    "overview": "Barbets Duet is a global ecological restoration collective. Its interface is a field journal — not a dashboard, not a landing page, not a SaaS product. It carries the precision of scientific observation, the unhurried pace of someone who understands that a forest takes decades to return, and the earthy material weight of handmade things. Every screen is a document that lives in the world, not a UI layer that floats above it.\n\nThe system operates in two modes, each a different reading condition for the same journal. Dark mode (the default) is bark at night: deep, warm, quiet, with wheat annotations catching the light. Light mode is linen in morning sun: field notes spread on a wooden table, ink-on-paper clarity, moss and soil for emphasis. Neither mode is correct and the other wrong — they are the same system seen under different skies.\n\nThe palette is called Cultivated Simplicity: ten earth tones, all sun-faded, none saturated past the point of nature.",
+    "keyCharacteristics": [
+      "Dark mode primary; light mode an equal peer, not an afterthought",
+      "Ten-color palette used at different weights across contexts",
+      "BioRhyme at font-weight 200–300 only — never bold headings",
+      "700ms brand easing on interactive elements; never linear",
+      "Tonal surface layering over box-shadow elevation",
+      "Double-Bezel card as the signature component",
+      "Floating island navigation — never a full-width header bar",
+      "Noise overlay at 4% opacity for analogue grain"
+    ],
+    "rules": [
+      {
+        "name": "The Single Flash Rule",
+        "body": "Wheat (dark mode) and Soil (light mode) are used on ≤10% of any given screen. Their rarity is structural — overuse collapses the hierarchy.",
+        "section": "colors"
+      },
+      {
+        "name": "The Seasonal Rule",
+        "body": "Lichen, Clay, and River are seasonal accents. Use one per screen context, never in combination.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Pure-Black Rule",
+        "body": "Pure #000000 is prohibited everywhere. On dark surfaces use Bark. This is not an aesthetic preference — it prevents the interface from appearing untethered from its material reference.",
+        "section": "colors"
+      },
+      {
+        "name": "The BioRhyme Rule",
+        "body": "BioRhyme is the display and headline font, always. Georgia and serif appear in the font stack as browser fallbacks only — they are never styled independently.",
+        "section": "typography"
+      },
+      {
+        "name": "The Weight Rule",
+        "body": "BioRhyme headings use weight 200 (display) or 300 (headline / title). Never font-bold, never font-semibold.",
+        "section": "typography"
+      },
+      {
+        "name": "The Case Rule",
+        "body": "Sentence case on all headings, always. JetBrains Mono label/eyebrow is the only UPPERCASE exception, and only when the label is ≤3 words.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces are flat at rest. shadow-paper appears only as a state response — hover, focus, or floating. A design that adds shadow to static content has confused weight with importance.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No-Glow Rule",
+        "body": "Coloured outer glows are prohibited. Wheat and Moss do not glow; they illuminate. Tinted diffuse shadows only.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use Bark (#2A1F14) everywhere pure black would go.",
+      "Do use BioRhyme at weight 200–300 for all display and headline text.",
+      "Do use sentence case on all headings and navigation items.",
+      "Do use transition: all 700ms cubic-bezier(0.32, 0.72, 0, 1) on interactive elements.",
+      "Do wrap display headings in text-wrap: balance and body paragraphs in text-wrap: pretty.",
+      "Do cap body copy at max-w-[65ch] to max-w-[75ch].",
+      "Do use the Double-Bezel card (outer shell + CardInner) for elevated content surfaces.",
+      "Do keep the floating island nav pill — fixed top-6, backdrop-blur, ring border.",
+      "Do honour prefers-reduced-motion: reduce.",
+      "Do use icon strokeWidth={1.5} on all Lucide icons."
+    ],
+    "donts": [
+      "Don't use pure #000000 anywhere.",
+      "Don't use text-white, bg-white, text-black, or bg-black.",
+      "Don't use Tailwind gray-* classes.",
+      "Don't add coloured box-shadow glows.",
+      "Don't use gradient text (background-clip: text with a gradient).",
+      "Don't use glassmorphism decoratively.",
+      "Don't place an eyebrow label above every section heading as scaffolding.",
+      "Don't use numbered section markers (01 / 02 / 03) as decorative scaffolding.",
+      "Don't use border-left greater than 1px as a coloured accent stripe.",
+      "Don't use the three-equal-columns feature card grid.",
+      "Don't use h-screen — use min-h-[100dvh].",
+      "Don't use the old Night Forest / Neon Lime / Viridian / Platinum palette.",
+      "Don't use Inter anywhere in the font stack.",
+      "Don't animate top, left, width, or height — only transform and opacity."
+    ]
+  }
+}

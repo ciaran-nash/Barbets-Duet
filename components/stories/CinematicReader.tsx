@@ -17,7 +17,7 @@ export default function CinematicReader({ story }: { story: Story }) {
     : null;
 
   return (
-    <article className="min-h-screen bg-night-forest text-platinum">
+    <article className="min-h-screen bg-band text-band-foreground">
       {/* Hero */}
       <section className="relative h-screen w-full flex items-center justify-center p-6 overflow-hidden">
         <Image
@@ -27,7 +27,7 @@ export default function CinematicReader({ story }: { story: Story }) {
           className="object-cover opacity-60"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-night-forest/80 via-transparent to-night-forest" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bark/80 via-transparent to-bark" />
 
         <div className="relative z-10 max-w-[1200px] mx-auto text-center w-full">
           <Link
@@ -44,11 +44,11 @@ export default function CinematicReader({ story }: { story: Story }) {
             </h1>
           </KineticReveal>
 
-          <p className="text-2xl md:text-4xl font-serif italic text-platinum/80 mb-12">
+          <p className="text-2xl md:text-4xl font-serif italic text-band-foreground/80 mb-12">
             {story.subtitle}
           </p>
 
-          <div className="flex justify-center items-center gap-8 text-[10px] font-mono uppercase tracking-widest text-platinum/50">
+          <div className="flex justify-center items-center gap-8 text-[10px] font-mono uppercase tracking-widest text-band-foreground/50">
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" /> {story.readTime} Read
             </div>
@@ -86,7 +86,7 @@ export default function CinematicReader({ story }: { story: Story }) {
               )}
 
               {/* Excerpt pull-quote */}
-              <p className="text-3xl font-serif leading-relaxed italic text-neon-lime/80 mb-16">
+              <p className="text-3xl font-serif leading-relaxed italic text-band-accent/80 mb-16">
                 {story.excerpt}
               </p>
 
@@ -108,7 +108,7 @@ export default function CinematicReader({ story }: { story: Story }) {
                           <span className="text-sm font-normal opacity-60 ml-1">{metric.unit}</span>
                         )}
                       </div>
-                      <div className="text-xs font-mono uppercase tracking-widest text-platinum/50 mt-2">
+                      <div className="text-xs font-mono uppercase tracking-widest text-band-foreground/50 mt-2">
                         {metric.label}
                       </div>
                     </div>
@@ -119,15 +119,15 @@ export default function CinematicReader({ story }: { story: Story }) {
               {/* Story content */}
               <div
                 className="prose prose-invert max-w-none
-                           prose-headings:font-serif prose-headings:text-platinum prose-headings:font-bold prose-headings:leading-tight
+                           prose-headings:font-serif prose-headings:text-band-foreground prose-headings:font-bold prose-headings:leading-tight
                            prose-h2:text-4xl prose-h3:text-2xl
-                           prose-p:font-sans prose-p:text-platinum/80 prose-p:text-lg prose-p:leading-relaxed
+                           prose-p:font-sans prose-p:text-band-foreground/80 prose-p:text-lg prose-p:leading-relaxed
                            prose-strong:text-accent prose-strong:font-semibold
-                           prose-em:text-platinum/70 prose-em:italic
+                           prose-em:text-band-foreground/70 prose-em:italic
                            prose-a:text-accent prose-a:no-underline hover:prose-a:opacity-70
-                           prose-ul:text-platinum/70 prose-ol:text-platinum/70
+                           prose-ul:text-band-foreground/70 prose-ol:text-band-foreground/70
                            prose-li:font-sans prose-li:text-base
-                           prose-blockquote:border-l-accent prose-blockquote:text-platinum/60 prose-blockquote:italic prose-blockquote:font-serif"
+                           prose-blockquote:border-l-accent prose-blockquote:text-band-foreground/60 prose-blockquote:italic prose-blockquote:font-serif"
               >
                 {typeof story.content === 'string' ? (
                   <ReactMarkdown>{story.content}</ReactMarkdown>
@@ -143,17 +143,17 @@ export default function CinematicReader({ story }: { story: Story }) {
               <div className="sticky top-32 space-y-8">
                 {/* Verified impact sidebar */}
                 {story.impactMetrics.length > 0 && (
-                  <div className="p-8 bg-platinum/5 rounded-2xl border border-platinum/10">
+                  <div className="p-8 bg-band-foreground/5 rounded-2xl border border-band-border/10">
                     <h4 className="text-[10px] font-mono uppercase tracking-widest text-accent mb-8">
                       Verified Impact
                     </h4>
                     <div className="space-y-8">
                       {story.impactMetrics.map((m, i) => (
                         <div key={i}>
-                          <div className="text-[10px] font-mono uppercase text-platinum/40 mb-1">
+                          <div className="text-[10px] font-mono uppercase text-band-foreground/40 mb-1">
                             {m.label}
                           </div>
-                          <div className="text-4xl font-serif font-bold text-platinum">
+                          <div className="text-4xl font-serif font-bold text-band-foreground">
                             {m.value}
                             {m.unit && (
                               <span className="text-sm font-normal opacity-50 ml-1">{m.unit}</span>
@@ -167,8 +167,8 @@ export default function CinematicReader({ story }: { story: Story }) {
 
                 {/* Site origin sidebar */}
                 {associatedSite && (
-                  <div className="p-8 border border-platinum/10 rounded-2xl">
-                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-platinum/40 mb-4">
+                  <div className="p-8 border border-band-border/10 rounded-2xl">
+                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-band-foreground/40 mb-4">
                       Origin Site
                     </h4>
                     <Link
@@ -178,7 +178,7 @@ export default function CinematicReader({ story }: { story: Story }) {
                       <div className="text-xl font-serif font-bold group-hover:text-accent transition-colors">
                         {associatedSite.name}
                       </div>
-                      <div className="text-xs font-sans text-platinum/50 mt-1">
+                      <div className="text-xs font-sans text-band-foreground/50 mt-1">
                         {associatedSite.location}
                       </div>
                       <div className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest
@@ -190,18 +190,18 @@ export default function CinematicReader({ story }: { story: Story }) {
                 )}
 
                 {/* Meta */}
-                <div className="p-8 border border-platinum/10 rounded-2xl space-y-4">
+                <div className="p-8 border border-band-border/10 rounded-2xl space-y-4">
                   <div>
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-platinum/40 mb-1">Category</div>
-                    <div className="text-sm font-sans text-platinum">{story.category}</div>
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-band-foreground/40 mb-1">Category</div>
+                    <div className="text-sm font-sans text-band-foreground">{story.category}</div>
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-platinum/40 mb-1">Published</div>
-                    <div className="text-sm font-sans text-platinum">{story.date}</div>
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-band-foreground/40 mb-1">Published</div>
+                    <div className="text-sm font-sans text-band-foreground">{story.date}</div>
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-platinum/40 mb-1">Read Time</div>
-                    <div className="text-sm font-sans text-platinum">{story.readTime}</div>
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-band-foreground/40 mb-1">Read Time</div>
+                    <div className="text-sm font-sans text-band-foreground">{story.readTime}</div>
                   </div>
                 </div>
               </div>

@@ -73,19 +73,19 @@ const Blog7 = ({
   ],
 }: Blog7Props) => {
   return (
-    <section className="py-32 bg-platinum text-night-forest">
+    <section className="py-32 bg-background text-foreground">
       <div className="container mx-auto flex flex-col items-center gap-16 px-4 lg:px-16">
         <div className="text-center">
           <Badge variant="secondary" className="mb-6">
             {tagline}
           </Badge>
-          <h2 className="mb-3 text-pretty text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6 lg:max-w-3xl lg:text-5xl font-serif text-night-forest">
+          <h2 className="mb-3 text-pretty text-3xl font-light md:mb-4 md:text-4xl lg:mb-6 lg:max-w-3xl lg:text-5xl font-serif text-foreground">
             {heading}
           </h2>
           <p className="mb-8 text-muted-foreground md:text-base lg:max-w-2xl lg:text-lg">
             {description}
           </p>
-          <Button variant="link" className="w-full sm:w-auto text-viridian font-bold" asChild>
+          <Button variant="link" className="w-full sm:w-auto text-accent font-bold" asChild>
             <a href={buttonUrl} target="_blank">
               {buttonText}
               <ArrowRight className="ml-2 size-4" />
@@ -94,37 +94,37 @@ const Blog7 = ({
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 w-full">
           {posts.map((post) => (
-            <Card key={post.id} className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden rounded-2xl border-night-forest/10 shadow-sm hover:shadow-lg transition-shadow bg-white text-night-forest">
+            <Card key={post.id} className="grid grid-rows-[auto_auto_1fr_auto] overflow-hidden rounded-2xl border-border shadow-sm hover:shadow-paper transition-shadow duration-500 bg-card text-card-foreground">
               <div className="aspect-[16/9] w-full relative">
                 <a
                   href={post.url}
                   target="_blank"
-                  className="transition-opacity duration-200 fade-in hover:opacity-70 group block h-full w-full"
+                  className="transition-opacity duration-300 fade-in hover:opacity-70 group block h-full w-full"
                 >
                   <Image
                     src={post.image}
                     alt={post.title}
                     fill
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   />
                 </a>
               </div>
               <CardHeader>
-                <h3 className="text-lg font-bold hover:text-viridian transition-colors md:text-xl font-serif leading-snug">
+                <h3 className="text-lg font-bold hover:text-accent transition-colors duration-300 md:text-xl font-serif leading-snug">
                   <a href={post.url} target="_blank">
                     {post.title}
                   </a>
                 </h3>
               </CardHeader>
               <CardContent>
-                <p className="text-night-forest/60 line-clamp-3 leading-relaxed">{post.summary}</p>
+                <p className="text-foreground/60 line-clamp-3 leading-relaxed">{post.summary}</p>
               </CardContent>
               <CardFooter className="flex items-center justify-between">
-                <span className="text-sm text-night-forest/50">{post.published}</span>
+                <span className="text-sm text-foreground/50">{post.published}</span>
                 <a
                   href={post.url}
                   target="_blank"
-                  className="flex items-center text-night-forest hover:text-viridian font-semibold text-sm transition-colors"
+                  className="flex items-center text-foreground hover:text-accent font-semibold text-sm transition-colors duration-300"
                 >
                   Read more
                   <ArrowRight className="ml-1 size-4" />

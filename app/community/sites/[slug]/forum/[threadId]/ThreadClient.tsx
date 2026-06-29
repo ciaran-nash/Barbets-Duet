@@ -43,7 +43,7 @@ function AvatarBubble({ name, avatarUrl }: { name: string; avatarUrl?: string | 
   }
   const initial = (name ?? '?')[0]?.toUpperCase() ?? '?';
   return (
-    <div className="w-8 h-8 rounded-full bg-viridian/10 flex items-center justify-center text-viridian text-xs font-serif font-bold shrink-0">
+    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xs font-serif font-bold shrink-0">
       {initial}
     </div>
   );
@@ -69,7 +69,7 @@ function ThreadPresence() {
         </span>
       )}
       {typingUsers.length > 0 && (
-        <span className="text-viridian animate-pulse">
+        <span className="text-accent animate-pulse">
           {typingUsers[0].info?.name ?? 'Someone'} is typing...
         </span>
       )}
@@ -110,7 +110,7 @@ function PostCard({
             <span className="font-sans font-semibold text-sm">{authorName}</span>
             <span className="text-xs text-foreground/30 font-sans">{formatDate(post.created_at)}</span>
             {post.author?.role === 'site_coordinator' && (
-              <span className="px-1.5 py-0.5 rounded text-[9px] font-mono uppercase bg-viridian/10 text-viridian">
+              <span className="px-1.5 py-0.5 rounded text-[9px] font-mono uppercase bg-accent/10 text-accent">
                 Coordinator
               </span>
             )}
@@ -124,7 +124,7 @@ function PostCard({
           <div className="flex items-center gap-3 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
             <button
               onClick={() => onReply(post.id, authorName)}
-              className="inline-flex items-center gap-1 text-xs text-foreground/40 hover:text-viridian transition-colors focus:outline-none focus:ring-1 focus:ring-viridian rounded"
+              className="inline-flex items-center gap-1 text-xs text-foreground/40 hover:text-accent transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded"
             >
               <Reply className="w-3.5 h-3.5" />
               Reply
@@ -220,7 +220,7 @@ function ComposeBox({
         onBlur={handleBlur}
         rows={4}
         placeholder="Write your reply..."
-        className="w-full px-4 py-3 rounded-2xl border border-foreground/10 bg-foreground/5 font-sans text-sm leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-viridian"
+        className="w-full px-4 py-3 rounded-2xl border border-foreground/10 bg-foreground/5 font-sans text-sm leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-accent"
         maxLength={10000}
       />
 
@@ -228,7 +228,7 @@ function ComposeBox({
         <button
           type="submit"
           disabled={loading || !body.trim()}
-          className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-viridian text-white text-sm font-sans font-semibold hover:bg-viridian/80 disabled:opacity-40 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+          className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-accent text-accent-foreground text-sm font-sans font-semibold hover:bg-accent/80 disabled:opacity-40 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
           Post reply
@@ -306,7 +306,7 @@ function ThreadInner({ siteSlug, siteName, thread, posts: initialPosts, currentP
       {/* Back nav */}
       <Link
         href={`/community/sites/${siteSlug}/forum`}
-        className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground transition-colors font-sans mb-6 focus:outline-none focus:ring-2 focus:ring-viridian rounded"
+        className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground transition-colors font-sans mb-6 focus:outline-none focus:ring-2 focus:ring-accent rounded"
       >
         <ChevronLeft className="w-4 h-4" />
         {siteName} Forum
@@ -317,7 +317,7 @@ function ThreadInner({ siteSlug, siteName, thread, posts: initialPosts, currentP
         <div className="flex items-start justify-between gap-3 flex-wrap">
           <div>
             {thread.is_pinned && (
-              <span className="inline-flex items-center gap-1 text-xs font-mono text-neon-lime bg-neon-lime/10 px-2 py-0.5 rounded mb-2">
+              <span className="inline-flex items-center gap-1 text-xs font-mono text-secondary-foreground bg-secondary/10 px-2 py-0.5 rounded mb-2">
                 <Pin className="w-3 h-3" />
                 Pinned
               </span>
@@ -340,21 +340,21 @@ function ThreadInner({ siteSlug, siteName, thread, posts: initialPosts, currentP
               <button
                 onClick={() => handleThreadAction('pin')}
                 title={thread.is_pinned ? 'Unpin thread' : 'Pin thread'}
-                className="p-2 rounded-xl bg-foreground/5 hover:bg-foreground/10 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+                className="p-2 rounded-xl bg-foreground/5 hover:bg-foreground/10 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
               >
                 <Pin className="w-4 h-4 text-foreground/50" />
               </button>
               <button
                 onClick={() => handleThreadAction('lock')}
                 title="Lock thread"
-                className="p-2 rounded-xl bg-foreground/5 hover:bg-foreground/10 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+                className="p-2 rounded-xl bg-foreground/5 hover:bg-foreground/10 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
               >
                 <Lock className="w-4 h-4 text-foreground/50" />
               </button>
               <button
                 onClick={() => handleThreadAction('hide')}
                 title="Hide thread"
-                className="p-2 rounded-xl bg-foreground/5 hover:bg-amber-500/10 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+                className="p-2 rounded-xl bg-foreground/5 hover:bg-amber-500/10 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
               >
                 <EyeOff className="w-4 h-4 text-foreground/50" />
               </button>
@@ -391,7 +391,7 @@ function ThreadInner({ siteSlug, siteName, thread, posts: initialPosts, currentP
         ) : (
           <div className="mt-8 border-t border-foreground/10 pt-6 text-center">
             <p className="text-sm text-foreground/50 font-sans">
-              <Link href="/community/sign-in" className="text-viridian hover:underline">
+              <Link href="/community/sign-in" className="text-accent hover:underline">
                 Sign in
               </Link>{' '}
               to reply.

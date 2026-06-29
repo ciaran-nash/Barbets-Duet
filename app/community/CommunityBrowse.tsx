@@ -21,7 +21,7 @@ import SiteCard from '@/components/learning-sites/SiteCard';
 const SitesMap = dynamic(() => import('@/components/learning-sites/SitesMap'), {
   ssr: false,
   loading: () => (
-    <div className="h-full w-full min-h-[400px] animate-pulse bg-night-forest/5" aria-hidden />
+    <div className="h-full w-full min-h-[400px] animate-pulse bg-foreground/5" aria-hidden />
   ),
 });
 import type { LearningSite } from '@/types/learning-site';
@@ -58,7 +58,7 @@ function BentoHero() {
   return (
     <section className="px-6 pt-10 pb-8 max-w-6xl mx-auto">
       {/* Eyebrow */}
-      <p className="text-xs font-mono text-viridian uppercase tracking-[0.2em] mb-3">
+      <p className="text-xs font-mono text-accent uppercase tracking-[0.2em] mb-3">
         The Jumuiya Network
       </p>
 
@@ -74,7 +74,7 @@ function BentoHero() {
       {/* Bento grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {/* Large media tile */}
-        <div className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden min-h-[220px] bg-night-forest/10">
+        <div className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden min-h-[220px] bg-foreground/10">
           <Image
             src="https://picsum.photos/seed/community-hero/800/500"
             alt="Community of land stewards"
@@ -83,7 +83,7 @@ function BentoHero() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-night-forest/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-bark/70 to-transparent" />
           <div className="absolute bottom-4 left-4 right-4">
             <p className="text-white/90 font-serif font-semibold text-lg leading-snug">
               Practising Jumuiya — horizontal governance across borders
@@ -95,24 +95,24 @@ function BentoHero() {
         {IMPACT_STATS.map(({ label, value, icon: Icon }) => (
           <div
             key={label}
-            className="rounded-2xl bg-viridian/5 border border-viridian/10 p-5 flex flex-col justify-between min-h-[100px]"
+            className="rounded-2xl bg-accent/5 border border-accent/10 p-5 flex flex-col justify-between min-h-[100px]"
           >
-            <Icon className="w-5 h-5 text-viridian mb-3" />
+            <Icon className="w-5 h-5 text-accent mb-3" />
             <div>
-              <p className="font-serif text-2xl font-bold text-night-forest">{value}</p>
+              <p className="font-serif text-2xl font-bold text-foreground">{value}</p>
               <p className="text-xs text-foreground/50 font-sans mt-0.5">{label}</p>
             </div>
           </div>
         ))}
 
         {/* Join CTA tile */}
-        <div className="col-span-2 md:col-span-1 rounded-2xl bg-neon-lime flex flex-col justify-between p-5 min-h-[100px]">
-          <p className="font-serif font-semibold text-night-forest text-base leading-snug">
+        <div className="col-span-2 md:col-span-1 rounded-2xl bg-secondary flex flex-col justify-between p-5 min-h-[100px]">
+          <p className="font-serif font-semibold text-foreground text-base leading-snug">
             Become a member
           </p>
           <Link
             href="/community/sign-up"
-            className="inline-flex items-center gap-1.5 text-night-forest text-sm font-semibold mt-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-viridian rounded"
+            className="inline-flex items-center gap-1.5 text-foreground text-sm font-semibold mt-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-accent rounded"
           >
             Join the network <ArrowRight className="w-4 h-4" />
           </Link>
@@ -213,7 +213,7 @@ export default function CommunityBrowse({ sites }: CommunityBrowseProps) {
                 className={[
                   'inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-sans font-medium transition-all duration-150',
                   regionFilter === value
-                    ? 'bg-viridian text-white'
+                    ? 'bg-accent text-accent-foreground'
                     : 'bg-foreground/5 text-foreground/60 hover:bg-foreground/10 hover:text-foreground',
                 ].join(' ')}
               >

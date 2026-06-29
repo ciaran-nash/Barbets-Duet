@@ -26,16 +26,16 @@ export function StoryCard({ story }: { story: Story }) {
                 <span className="px-4 py-1.5 bg-brand text-forest rounded-full text-[10px] font-mono uppercase tracking-widest font-bold">
                     {story.category}
                 </span>
-                <div className="flex items-center gap-2 text-platinum/60 text-[10px] font-mono uppercase tracking-widest">
+                <div className="flex items-center gap-2 text-cream/60 text-[10px] font-mono uppercase tracking-widest">
                     <Clock className="w-3 h-3" /> {story.readTime} Read
                 </div>
             </div>
             
-            <h3 className="text-4xl md:text-5xl font-serif font-bold text-platinum leading-tight mb-4 group-hover:text-brand transition-colors">
+            <h3 className="text-4xl md:text-5xl font-serif font-bold text-cream leading-tight mb-4 group-hover:text-brand transition-colors">
                 {story.title}
             </h3>
             
-            <p className="text-platinum/70 text-lg font-serif italic line-clamp-2 mb-8 max-w-xl group-hover:text-platinum transition-colors">
+            <p className="text-cream/70 text-lg font-serif italic line-clamp-2 mb-8 max-w-xl group-hover:text-cream transition-colors">
                 {story.excerpt}
             </p>
             

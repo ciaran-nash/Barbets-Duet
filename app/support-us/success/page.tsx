@@ -13,7 +13,7 @@ export const metadata: Metadata = {
  */
 export default function DonationSuccessPage() {
   return (
-    <main className="min-h-screen bg-night-forest text-platinum flex items-center justify-center px-6">
+    <main className="min-h-screen bg-band text-band-foreground flex items-center justify-center px-6">
       {/* Grid background */}
       <div className="fixed inset-0 bg-[linear-gradient(to_right,rgba(244,244,245,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,244,245,0.025)_1px,transparent_1px)] bg-[size:6rem_6rem] pointer-events-none" />
 
@@ -23,32 +23,32 @@ export default function DonationSuccessPage() {
       <div className="relative z-10 max-w-lg w-full text-center space-y-8">
         {/* Icon */}
         <div className="flex justify-center">
-          <div className="w-20 h-20 rounded-full border border-neon-lime/30 bg-neon-lime/10 flex items-center justify-center">
-            <CheckCircle2 size={36} className="text-neon-lime" />
+          <div className="w-20 h-20 rounded-full border border-band-accent/30 bg-band-accent/10 flex items-center justify-center">
+            <CheckCircle2 size={36} className="text-band-accent" />
           </div>
         </div>
 
         {/* Eyebrow */}
-        <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-neon-lime/60 border border-neon-lime/15 px-5 py-2 rounded-full inline-block">
+        <div className="font-mono text-[10px] tracking-[0.3em] uppercase text-band-accent/60 border border-band-accent/15 px-5 py-2 rounded-full inline-block">
           [ Donation confirmed ]
         </div>
 
         {/* Heading */}
         <div>
           <h1 className="font-serif text-5xl font-light leading-[0.95] tracking-tight mb-5">
-            <span className="italic text-platinum/50">Thank</span>
+            <span className="italic text-band-foreground/50">Thank</span>
             <br />
             You
           </h1>
-          <p className="font-sans text-base text-platinum/60 leading-relaxed">
+          <p className="font-sans text-base text-band-foreground/60 leading-relaxed">
             Your contribution has been received and is going directly to ecological restoration
             and community livelihoods across the Barbets Duet network.
           </p>
         </div>
 
         {/* Confirmation detail */}
-        <div className="border border-platinum/10 bg-white/3 px-6 py-6 text-left space-y-4">
-          <p className="font-mono text-[9px] tracking-[0.25em] uppercase text-platinum/35">
+        <div className="border border-band-border/10 bg-white/3 px-6 py-6 text-left space-y-4">
+          <p className="font-mono text-[9px] tracking-[0.25em] uppercase text-band-foreground/35">
             What happens next
           </p>
           {[
@@ -57,10 +57,10 @@ export default function DonationSuccessPage() {
             'Our partners will put your contribution to work in their next restoration cycle.',
           ].map((step, i) => (
             <div key={i} className="flex gap-3 items-start">
-              <span className="font-mono text-[10px] text-neon-lime/60 shrink-0 mt-0.5">
+              <span className="font-mono text-[10px] text-band-accent/60 shrink-0 mt-0.5">
                 0{i + 1}
               </span>
-              <p className="font-sans text-sm text-platinum/65 leading-relaxed">{step}</p>
+              <p className="font-sans text-sm text-band-foreground/65 leading-relaxed">{step}</p>
             </div>
           ))}
         </div>
@@ -69,13 +69,13 @@ export default function DonationSuccessPage() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
           <Link
             href="/learning-sites"
-            className="px-8 py-3.5 bg-neon-lime text-night-forest font-mono text-[11px] tracking-[0.15em] uppercase transition-all duration-300 hover:bg-neon-lime/90 active:scale-[0.98]"
+            className="px-8 py-3.5 bg-band-accent text-band font-mono text-[11px] tracking-[0.15em] uppercase transition-all duration-300 hover:bg-band-accent/90 active:scale-[0.98]"
           >
             Explore the sites
           </Link>
           <Link
             href="/support-us"
-            className="px-8 py-3.5 bg-transparent border border-platinum/20 text-platinum/70 font-mono text-[11px] tracking-[0.15em] uppercase transition-all duration-300 hover:border-platinum/40 hover:text-platinum active:scale-[0.98]"
+            className="px-8 py-3.5 bg-transparent border border-band-border/20 text-band-foreground/70 font-mono text-[11px] tracking-[0.15em] uppercase transition-all duration-300 hover:border-band-border/40 hover:text-band-foreground active:scale-[0.98]"
           >
             Donate again
           </Link>

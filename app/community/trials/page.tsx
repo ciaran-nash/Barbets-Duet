@@ -19,7 +19,7 @@ export default async function TrialsPage() {
 
   return (
     <main className="max-w-4xl mx-auto px-6 py-16">
-      <p className="text-xs font-mono text-viridian uppercase tracking-[0.2em] mb-3">
+      <p className="text-xs font-mono text-accent uppercase tracking-[0.2em] mb-3">
         Community Knowledge
       </p>
       <h1 className="font-serif font-bold text-5xl mb-4">Trial &amp; Error</h1>

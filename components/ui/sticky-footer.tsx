@@ -46,7 +46,7 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
 						<div className="mt-10 flex flex-col gap-8 md:flex-row xl:mt-24 z-10">
 							<AnimatedContainer className="w-full max-w-[240px] min-w-2xs space-y-8 pr-4">
 								<div className="space-y-4">
-									<h2 className="font-sans font-semibold text-base text-[#FAF9F6] tracking-wide">Address:</h2>
+									<h2 className="font-sans font-semibold text-base text-[#F4EFE6] tracking-wide">Address:</h2>
 									<p className="text-white/80 text-sm leading-relaxed">
 										P.O. Box 323<br />
 										New Baltimore<br />
@@ -55,7 +55,7 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
 									</p>
 								</div>
 								<div className="space-y-4">
-									<h2 className="font-sans font-semibold text-base text-[#FAF9F6] tracking-wide">Contact:</h2>
+									<h2 className="font-sans font-semibold text-base text-[#F4EFE6] tracking-wide">Contact:</h2>
 									<a href="mailto:info@barbetsduet.com" className="hover:text-white text-white/80 transition-colors text-sm underline underline-offset-4 inline-block">
 										info@barbetsduet.com
 									</a>
@@ -69,7 +69,7 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
 									))}
 								</div>
 								<div className="space-y-4 pt-4 border-t border-white/10">
-									<h2 className="font-serif text-2xl uppercase tracking-widest text-[#FAF9F6]">Barbets Duet</h2>
+									<h2 className="font-serif text-2xl uppercase tracking-widest text-[#F4EFE6]">Barbets Duet</h2>
 									<p className="text-white/80 text-sm leading-relaxed">
 										Connecting global communities through localized learning sites. Empowering people 
 										with sustainable livelihoods and shared innovation.
@@ -83,7 +83,7 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
 									className="w-full"
 								>
 									<div className="mb-10 md:mb-0">
-										<h3 className="font-sans font-semibold text-base text-[#FAF9F6] tracking-wide">{group.label}</h3>
+										<h3 className="font-sans font-semibold text-base text-[#F4EFE6] tracking-wide">{group.label}</h3>
 										<ul className="text-white/80 mt-6 space-y-4 text-sm md:text-sm">
 											{group.links.map((link) => (
 												<li key={link.title}>

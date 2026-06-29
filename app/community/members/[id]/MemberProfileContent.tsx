@@ -22,7 +22,7 @@ function AvatarPlaceholder({ name }: { name: string }) {
     .map((n) => n[0]?.toUpperCase() ?? '')
     .join('');
   return (
-    <div className="w-24 h-24 rounded-full bg-viridian/10 flex items-center justify-center text-viridian font-serif text-3xl select-none">
+    <div className="w-24 h-24 rounded-full bg-accent/10 flex items-center justify-center text-accent font-serif text-3xl select-none">
       {initials || '?'}
     </div>
   );
@@ -30,7 +30,7 @@ function AvatarPlaceholder({ name }: { name: string }) {
 
 function TierBadge({ role }: { role: string }) {
   const label = MEMBER_ROLE_LABELS[role as keyof typeof MEMBER_ROLE_LABELS] ?? role;
-  const colour = MEMBER_ROLE_COLOURS[role as keyof typeof MEMBER_ROLE_COLOURS] ?? '#2C3E35';
+  const colour = MEMBER_ROLE_COLOURS[role as keyof typeof MEMBER_ROLE_COLOURS] ?? '#2A1F14';
   return (
     <span
       className="inline-block px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-semibold text-white"
@@ -62,7 +62,7 @@ export default function MemberProfileContent({
       {/* Back nav */}
       <Link
         href="/community"
-        className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground transition-colors font-sans mb-8 focus:outline-none focus:ring-2 focus:ring-viridian rounded"
+        className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground transition-colors font-sans mb-8 focus:outline-none focus:ring-2 focus:ring-accent rounded"
       >
         <ChevronLeft className="w-4 h-4" />
         Community Network
@@ -97,7 +97,7 @@ export default function MemberProfileContent({
                 <MapPin className="w-3 h-3 shrink-0" />
                 <Link
                   href={`/community/sites/${primarySite.site_slug}`}
-                  className="hover:text-viridian transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   {primarySite.site_name}
                 </Link>
@@ -127,11 +127,11 @@ export default function MemberProfileContent({
               <Link
                 key={m.id}
                 href={`/community/sites/${m.site_slug}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-viridian/10 text-viridian text-xs font-sans hover:bg-viridian/20 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-sans hover:bg-accent/20 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
               >
                 {m.site_name}
                 {m.is_primary && (
-                  <span className="text-[9px] font-mono text-viridian/60">(primary)</span>
+                  <span className="text-[9px] font-mono text-accent/60">(primary)</span>
                 )}
               </Link>
             ))}

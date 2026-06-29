@@ -80,7 +80,7 @@ export default function AboutContent() {
               </div>
             </div>
             
-            <div className="relative aspect-[21/9] w-full rounded-[2rem] overflow-hidden border border-platinum/10 group">
+            <div className="relative aspect-[21/9] w-full rounded-[2rem] overflow-hidden border border-border/10 group">
                 <Image 
                   src="/origins_landscape_1778511418595.png" 
                   alt="Origins and Traditions of Barbets Duet"
@@ -119,7 +119,7 @@ export default function AboutContent() {
             </div>
             
             <div className="lg:col-span-5">
-              <div className="aspect-[3/4] rounded-[2rem] border border-platinum/10 relative overflow-hidden group">
+              <div className="aspect-[3/4] rounded-[2rem] border border-border/10 relative overflow-hidden group">
                 <Image 
                   src="/timeline_abstract_1778511439800.png" 
                   alt="Barbets Duet Timeline Abstract"
@@ -256,8 +256,8 @@ export default function AboutContent() {
                     { title: 'Hudson Valley Restoration', loc: 'Hannacroix, New York, U.S.A', desc: 'Testing forest management and carbon sequestration models in temperate deciduous forests.' },
                     { title: 'Lukanya Dryland Network', loc: 'Machakos, Kenya', desc: 'Innovating dryland agriculture and water retention systems for semi-arid environments.' },
                 ].map((site, idx) => (
-                    <div key={idx} className="min-w-[400px] bg-background/40 backdrop-blur-sm border border-platinum/5 rounded-[2rem] p-10 group hover:border-accent transition-all duration-500">
-                        <div className="aspect-square rounded-2xl mb-8 overflow-hidden relative border border-platinum/5">
+                    <div key={idx} className="min-w-[400px] bg-background/40 backdrop-blur-sm border border-border/5 rounded-[2rem] p-10 group hover:border-accent transition-all duration-500">
+                        <div className="aspect-square rounded-2xl mb-8 overflow-hidden relative border border-border/5">
                             <Image 
                               src="/learning_site_tanzania_1778511459409.png" 
                               alt={site.title}
@@ -335,7 +335,7 @@ function TeamCard({ member }: { member: any }) {
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className="group relative"
     >
-      <div className="aspect-square border border-platinum/10 rounded-[2.5rem] mb-8 overflow-hidden relative group-hover:border-accent/30 transition-all duration-1000">
+      <div className="aspect-square border border-border/10 rounded-[2.5rem] mb-8 overflow-hidden relative group-hover:border-accent/30 transition-all duration-1000">
         <Image 
           src="/member_portrait_steward_1778511505484.png" 
           alt={member.name}

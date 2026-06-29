@@ -102,6 +102,46 @@ export default function PhilosophyHistoryContent() {
           </div>
         </section>
 
+        {/* Core Principles Section */}
+        <section id="core-principles" className="py-40 px-6 border-y border-border/50">
+          <div className="max-w-[1600px] mx-auto mb-24">
+            <span className="text-[10px] font-mono tracking-[0.5em] uppercase text-muted-foreground mb-8 block">
+              Core Principles
+            </span>
+            <KineticReveal>
+              <h2 className="text-5xl md:text-7xl font-serif font-bold">How We Work</h2>
+            </KineticReveal>
+            <p className="text-xl text-muted-foreground font-serif leading-relaxed max-w-2xl mt-8">
+              Seven operating principles distilled from twenty years of field experimentation across East Africa, Europe, and North America.
+            </p>
+          </div>
+
+          <div className="max-w-[1600px] mx-auto grid md:grid-cols-2 gap-0 border border-border/50 rounded-3xl overflow-hidden">
+            {[
+              { n: '01', title: 'Consistency with Site', desc: 'Work with the specific ecology, culture, and economy of each place. No two sites are treated the same.' },
+              { n: '02', title: 'Learning by Demonstration', desc: 'Real families, real ecologies, real livelihoods. Proof comes from practice, not theory.' },
+              { n: '03', title: 'Just Begin Strategy', desc: 'Start with what is available now. Waiting for perfect conditions is the enemy of systemic change.' },
+              { n: '04', title: 'Thinking Step-by-Step', desc: 'Each intervention builds on the last. Complexity is earned, never assumed.' },
+              { n: '05', title: 'Immediate Needs Focus', desc: 'Address what the community identifies as urgent first. Trust follows demonstrated relevance.' },
+              { n: '06', title: 'Least Resistance Path', desc: 'Align new market mechanisms with existing incentives wherever possible. Change works with human nature, not against it.' },
+              { n: '07', title: 'Utu Net Benefits', desc: 'Utu — Swahili for humanity and interconnectedness — frames benefit beyond profit. Decisions are evaluated on whether they strengthen the web of relationships: human, ecological, and economic.' },
+            ].map((p, idx) => (
+              <motion.div
+                key={p.n}
+                initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: Math.floor(idx / 2) * 0.15 }}
+                viewport={{ once: true }}
+                className={`group p-10 border-border/50 hover:bg-accent/5 transition-colors ${idx % 2 === 0 ? 'border-r' : ''} ${idx < 6 ? 'border-b' : ''}`}
+              >
+                <div className="text-[10px] font-mono tracking-[0.3em] uppercase text-accent mb-4 opacity-60">{p.n} //</div>
+                <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-accent transition-colors">{p.title}</h3>
+                <p className="text-muted-foreground leading-relaxed font-serif text-base italic opacity-80">{p.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
         {/* Philosophy Pillars Section */}
         <section id="philosophy-pillars" className="py-40 px-6">
           <div className="max-w-[1600px] mx-auto text-center mb-32">
@@ -115,15 +155,17 @@ export default function PhilosophyHistoryContent() {
 
           <div className="max-w-[1600px] mx-auto grid md:grid-cols-3 gap-16">
             {[
-              { title: 'Mosaic Rights', icon: '◈', desc: 'Inclusive land tenure prioritising biodiversity over exclusive extraction.' },
-              { title: 'The Duet', icon: '∿', desc: 'Cross-cultural collaboration on equal terms between Africa and the West.' },
-              { title: 'Oak Tree Paradox', icon: '🌳', desc: 'Economic systems that reward abundance rather than extraction.' },
+              { title: 'Mosaic Rights', icon: '◈', desc: 'Collective land stewardship with seasonal, layered access. Women own food crops, herders graze after harvest, those who dug the well own the water. Biodiversity thrives in the overlap.' },
+              { title: 'Column Rights', icon: '⊞', desc: 'Individual family title within a peer-governed network. Exclusive ownership incentivises long-term investment; peer review keeps it accountable to the wider Jumuiya.' },
+              { title: 'The Duet', icon: '∿', desc: 'Cross-cultural collaboration on equal terms between Africa and the West. The barbet sings the same song from two traditions simultaneously.' },
+              { title: 'Oak Tree Paradox', icon: '🌳', desc: 'A living oak supports 284 species but its financial value is realised only once dead. Economic systems must reward abundance, not extraction.' },
+              { title: 'Activities', icon: '⟳', desc: 'Four proven restoration livelihood types: Agro-forestry, Eco-tourism, Water Harvesting, Seaweed Farming. Each aligns economic incentive with ecological health.' },
             ].map((pillar, idx) => (
               <motion.div
                 key={pillar.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: idx * 0.2 }}
+                transition={{ duration: 0.8, delay: idx * 0.15 }}
                 viewport={{ once: true }}
                 className="group relative"
               >
@@ -132,7 +174,7 @@ export default function PhilosophyHistoryContent() {
                 <p className="text-muted-foreground leading-relaxed font-serif text-lg italic opacity-80">
                   {pillar.desc}
                 </p>
-                <motion.div 
+                <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: "100%" }}
                   className="h-px bg-accent/20 mt-12 origin-left"

@@ -145,7 +145,7 @@ export default function VolunteerForm() {
         <div className="flex gap-4 justify-center mt-10">
           <a
             href="/learning-sites"
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-viridian text-white text-sm font-sans font-semibold hover:bg-viridian/80 transition-colors"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-accent text-accent-foreground text-sm font-sans font-semibold hover:bg-accent/80 transition-colors"
           >
             Explore Learning Sites
           </a>
@@ -377,7 +377,7 @@ export default function VolunteerForm() {
             <button
               type="button"
               onClick={handleNext}
-              className="flex-1 px-6 py-3 rounded-xl bg-viridian text-white text-sm font-sans font-semibold hover:bg-viridian/80 transition-colors"
+              className="flex-1 px-6 py-3 rounded-xl bg-accent text-accent-foreground text-sm font-sans font-semibold hover:bg-accent/80 transition-colors"
             >
               Continue
             </button>
@@ -385,7 +385,7 @@ export default function VolunteerForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 px-6 py-3 rounded-xl bg-accent text-night-forest text-sm font-sans font-semibold disabled:opacity-50 hover:bg-accent/80 transition-colors"
+              className="flex-1 px-6 py-3 rounded-xl bg-accent text-accent-foreground text-sm font-sans font-semibold disabled:opacity-50 hover:bg-accent/80 transition-colors"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Application'}
             </button>

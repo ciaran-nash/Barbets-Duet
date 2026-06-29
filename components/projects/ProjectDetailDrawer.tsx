@@ -67,7 +67,7 @@ export function ProjectDetailDrawer({ project, isOpen, onClose }: Props) {
                                 Origin: {project.siteSlug}
                               </span>
                             )}
-                            <span className="px-4 py-2 bg-forest text-platinum rounded-full text-xs font-mono uppercase tracking-widest font-bold">Maturity: {project.maturity}</span>
+                            <span className="px-4 py-2 bg-forest text-cream rounded-full text-xs font-mono uppercase tracking-widest font-bold">Maturity: {project.maturity}</span>
                         </div>
 
                         <div className="space-y-8">

@@ -12,12 +12,12 @@ export function SiteRestorationStrategies({ site }: { site: LearningSite }) {
   if (!description && !tags?.length) return null;
 
   return (
-    <section className="py-32 px-6 bg-platinum text-night-forest">
+    <section className="py-32 px-6 bg-background text-foreground">
       <div className="max-w-[1600px] mx-auto">
         <div className="grid lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-7">
             <KineticReveal>
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-viridian mb-6 block">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-accent mb-6 block">
                 Ecological Methods
               </span>
               <h2 className="text-5xl md:text-7xl font-serif font-bold leading-[0.9] tracking-tighter mb-8">
@@ -31,7 +31,7 @@ export function SiteRestorationStrategies({ site }: { site: LearningSite }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg font-sans leading-relaxed text-night-forest/80 max-w-[580px]"
+                className="text-lg font-sans leading-relaxed text-foreground/80 max-w-[580px]"
               >
                 {description}
               </motion.p>
@@ -48,8 +48,8 @@ export function SiteRestorationStrategies({ site }: { site: LearningSite }) {
                 {tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="text-xs font-mono px-4 py-2 border border-night-forest/20 rounded-full
-                               text-night-forest/70 hover:border-viridian hover:text-viridian transition-colors"
+                    className="text-xs font-mono px-4 py-2 border border-border/20 rounded-full
+                               text-foreground/70 hover:border-accent hover:text-accent transition-colors"
                   >
                     {tag}
                   </span>
@@ -78,11 +78,11 @@ export function SiteRestorationStrategies({ site }: { site: LearningSite }) {
 
           {!image && (
             <div className="lg:col-span-5">
-              <div className="p-10 border border-night-forest/10 rounded-2xl bg-night-forest/5">
-                <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-viridian block mb-4">
+              <div className="p-10 border border-border/10 rounded-2xl bg-foreground/5">
+                <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-accent block mb-4">
                   Restoration Approach
                 </span>
-                <p className="text-sm font-sans text-night-forest/60 leading-relaxed">
+                <p className="text-sm font-sans text-foreground/60 leading-relaxed">
                   This site uses evidence-based ecological restoration informed by 20+ years of Barbets Duet network learning.
                 </p>
               </div>

@@ -49,12 +49,25 @@ interface PeerReview {
 function GovernanceExplainer() {
   return (
     <section className="py-16 max-w-4xl">
-      <p className="text-xs font-mono text-viridian uppercase tracking-[0.2em] mb-3">
+      <p className="text-xs font-mono text-accent uppercase tracking-[0.2em] mb-3">
         How We Govern Ourselves
       </p>
       <h1 className="font-serif font-bold text-4xl md:text-5xl mb-6">
         Jumuiya Governance
       </h1>
+
+      {/* Jumuiya definition */}
+      <div className="rounded-2xl bg-foreground/5 border border-border/10 p-6 mb-8">
+        <p className="text-xs font-mono text-foreground/60 uppercase tracking-widest mb-3">What is the Jumuiya?</p>
+        <p className="font-serif text-base leading-relaxed text-foreground/80">
+          <em>Jumuiya</em> — Swahili for &ldquo;community&rdquo; or &ldquo;collective&rdquo; — is the name the network chose
+          for itself at the 2014 Lukenya Convention. It describes a multi-generational institution: not a
+          headquarters, not a donor programme, but a self-governing web of learning sites bound by shared
+          principles, mutual accountability, and a common commitment to rewarding the abundance of life.
+          The Jumuiya has no central authority. Its governance is horizontal and circular.
+        </p>
+      </div>
+
       <p className="text-base text-foreground/60 font-sans leading-relaxed mb-10 max-w-2xl">
         Barbets Duet operates on the principle of <em>horizontal accountability</em>. No central
         authority determines success. Instead, each site holds its neighbour accountable through
@@ -66,7 +79,7 @@ function GovernanceExplainer() {
           {
             icon: GitBranch,
             title: 'Mosaic & Column Rights',
-            body: 'Sites operate under one of two land rights regimes. Mosaic rights are collective — land is stewarded by the community. Column rights are individual — families hold title but participate in peer governance.',
+            body: 'Sites operate under one of two land rights regimes. Mosaic rights are collective — land is stewarded by the community with layered, seasonal access. Column rights are individual — families hold title but participate in peer governance.',
           },
           {
             icon: Users,
@@ -84,15 +97,48 @@ function GovernanceExplainer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl bg-viridian/5 border border-viridian/10 p-6"
+            className="rounded-2xl bg-accent/5 border border-accent/10 p-6"
           >
-            <div className="w-10 h-10 rounded-full bg-viridian/10 flex items-center justify-center mb-4">
-              <Icon className="w-5 h-5 text-viridian" />
+            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+              <Icon className="w-5 h-5 text-accent" />
             </div>
             <h3 className="font-serif font-semibold text-base mb-2">{title}</h3>
             <p className="text-sm text-foreground/60 font-sans leading-relaxed">{body}</p>
           </motion.div>
         ))}
+      </div>
+
+      {/* Future Direction */}
+      <div className="mt-12">
+        <p className="text-xs font-mono text-accent uppercase tracking-[0.2em] mb-4">Looking Forward</p>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              title: 'Knowledge Management',
+              body: 'Systematically capturing what each site learns — what worked, what failed, what made people laugh — and making it available across the Jumuiya network so no lesson is lost.',
+            },
+            {
+              title: 'Resource Mobilisation',
+              body: 'Building self-financing capacity through market mechanism invention. The Jumuiya aims to be independent of donor cycles, sustained by the economic value it generates for ecosystems and communities.',
+            },
+            {
+              title: 'Youth Engagement — 2028 Legacy',
+              body: 'By 2028, a generation of young site stewards trained through the Jumuiya will be ready to carry its governance forward. The peer review chain is designed to be handed over, not maintained from outside.',
+            },
+          ].map(({ title, body }, idx) => (
+            <motion.div
+              key={title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="rounded-2xl bg-accent/5 border border-accent/10 p-6"
+            >
+              <h3 className="font-serif font-semibold text-base mb-2">{title}</h3>
+              <p className="text-sm text-foreground/60 font-sans leading-relaxed">{body}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -127,8 +173,8 @@ function buildTimelineData(groups: PentangleGroup[]) {
 function StatusBadge({ status }: { status: PeerReview['status'] }) {
   const config = {
     pending: { label: 'Pending', className: 'bg-amber-500/10 text-amber-600' },
-    submitted: { label: 'Submitted', className: 'bg-viridian/10 text-viridian' },
-    acknowledged: { label: 'Acknowledged', className: 'bg-neon-lime/20 text-night-forest' },
+    submitted: { label: 'Submitted', className: 'bg-accent/10 text-accent' },
+    acknowledged: { label: 'Acknowledged', className: 'bg-secondary/20 text-foreground' },
   };
   const { label, className } = config[status];
   return (
@@ -217,7 +263,7 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
 
   if (success) {
     return (
-      <div className="flex items-center gap-2 p-4 bg-viridian/5 rounded-xl text-sm text-viridian font-sans">
+      <div className="flex items-center gap-2 p-4 bg-accent/5 rounded-xl text-sm text-accent font-sans">
         <CheckCircle className="w-4 h-4 shrink-0" />
         Review submitted for {year}.
       </div>
@@ -228,7 +274,7 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
     <div className="rounded-2xl border border-foreground/10 overflow-hidden">
       <button
         onClick={() => setExpanded((v) => !v)}
-        className="w-full flex items-center justify-between p-5 text-left hover:bg-foreground/5 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+        className="w-full flex items-center justify-between p-5 text-left hover:bg-foreground/5 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
       >
         <div>
           <p className="font-sans font-semibold text-sm">
@@ -254,7 +300,7 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
               onChange={(e) => setForm((f) => ({ ...f, goalsProgress: e.target.value }))}
               rows={3}
               placeholder="How did this site progress toward its self-defined goals?"
-              className="w-full px-3 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm resize-y focus:outline-none focus:ring-2 focus:ring-viridian"
+              className="w-full px-3 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm resize-y focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
 
@@ -267,7 +313,7 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
               onChange={(e) => setForm((f) => ({ ...f, goalsExplanation: e.target.value }))}
               rows={2}
               placeholder="Any contextual factors that explain shortfalls or successes?"
-              className="w-full px-3 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm resize-y focus:outline-none focus:ring-2 focus:ring-viridian"
+              className="w-full px-3 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm resize-y focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
 
@@ -286,7 +332,7 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
                   value={form[key]}
                   onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))}
                   placeholder="e.g. 127"
-                  className="w-full px-3 py-2 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-viridian"
+                  className="w-full px-3 py-2 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                 />
               </div>
             ))}
@@ -294,8 +340,8 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
 
           {/* Baseline checklist (first submission only) */}
           {showBaseline && (
-            <div className="rounded-xl bg-viridian/5 border border-viridian/20 p-4 space-y-3">
-              <p className="text-xs font-mono text-viridian uppercase tracking-widest">
+            <div className="rounded-xl bg-accent/5 border border-accent/20 p-4 space-y-3">
+              <p className="text-xs font-mono text-accent uppercase tracking-widest">
                 Coordinator Interview Checklist — Baseline Metrics
               </p>
               <p className="text-xs text-foreground/60 font-sans">
@@ -309,7 +355,7 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
                   value={form.baselineYear}
                   onChange={(e) => setForm((f) => ({ ...f, baselineYear: e.target.value }))}
                   placeholder="e.g. 2024"
-                  className="w-full px-3 py-2 rounded-xl border border-foreground/10 bg-white/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-viridian"
+                  className="w-full px-3 py-2 rounded-xl border border-foreground/10 bg-white/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -325,7 +371,7 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
                       value={form[key]}
                       onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))}
                       placeholder="Raw value"
-                      className="w-full px-3 py-2 rounded-xl border border-foreground/10 bg-white/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-viridian"
+                      className="w-full px-3 py-2 rounded-xl border border-foreground/10 bg-white/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                     />
                   </div>
                 ))}
@@ -337,7 +383,7 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
                   onChange={(e) => setForm((f) => ({ ...f, baselineNotes: e.target.value }))}
                   rows={2}
                   placeholder="Context for these baseline figures..."
-                  className="w-full px-3 py-2.5 rounded-xl border border-foreground/10 bg-white/5 font-sans text-sm resize-y focus:outline-none focus:ring-2 focus:ring-viridian"
+                  className="w-full px-3 py-2.5 rounded-xl border border-foreground/10 bg-white/5 font-sans text-sm resize-y focus:outline-none focus:ring-2 focus:ring-accent"
                 />
               </div>
             </div>
@@ -353,7 +399,7 @@ function ReviewForm({ coordinatorSiteSlug, revieweeSlug, year, existingReview, p
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-viridian text-white text-sm font-sans font-semibold hover:bg-viridian/80 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-accent text-accent-foreground text-sm font-sans font-semibold hover:bg-accent/80 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
           >
             {submitting ? (
               <><Loader2 className="w-4 h-4 animate-spin" />Submitting...</>
@@ -415,7 +461,7 @@ export default function GovernanceClient({
       {timelineData.length > 0 && (
         <section className="py-12 border-t border-foreground/10">
           <div className="mb-6">
-            <p className="text-xs font-mono text-viridian uppercase tracking-[0.2em] mb-2">
+            <p className="text-xs font-mono text-accent uppercase tracking-[0.2em] mb-2">
               Circular Review Chain
             </p>
             <h2 className="font-serif font-bold text-3xl">East African Pentangle</h2>
@@ -423,7 +469,7 @@ export default function GovernanceClient({
               Each node reviews the next in the chain. Click to explore.
             </p>
           </div>
-          <div className="rounded-2xl bg-night-forest/5 border border-foreground/10 overflow-hidden" style={{ height: 480 }}>
+          <div className="rounded-2xl bg-foreground/5 border border-foreground/10 overflow-hidden" style={{ height: 480 }}>
             <RadialOrbitalTimeline timelineData={timelineData} />
           </div>
         </section>
@@ -433,7 +479,7 @@ export default function GovernanceClient({
       {isCoordinator && coordinatorSiteSlug && revieweeSlug && (
         <section className="py-12 border-t border-foreground/10">
           <div className="mb-6">
-            <p className="text-xs font-mono text-viridian uppercase tracking-[0.2em] mb-2">
+            <p className="text-xs font-mono text-accent uppercase tracking-[0.2em] mb-2">
               Your Review — {currentYear}
             </p>
             <h2 className="font-serif font-bold text-2xl">Coordinator Dashboard</h2>
@@ -462,7 +508,7 @@ export default function GovernanceClient({
             {reviews.map((r) => (
               <div
                 key={r.id}
-                className="flex items-center justify-between px-4 py-3 rounded-xl border border-foreground/10 bg-night-forest/5"
+                className="flex items-center justify-between px-4 py-3 rounded-xl border border-foreground/10 bg-foreground/5"
               >
                 <span className="text-sm font-sans text-foreground/70">
                   {r.reviewer_site_slug.replace(/-/g, ' ')} →{' '}

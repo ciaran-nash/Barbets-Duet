@@ -37,13 +37,13 @@ const initialFaqs: FAQ[] = [
     id: 2,
     category: 'General',
     question: 'What is Barbets Duet?',
-    answer: "Barbets Duet is a global network of restorative learning sites focused on the intersection of ecological health and community well-being. We partner with local leaders to transform degraded landscapes into thriving ecosystems.",
+    answer: "Barbets Duet is a Jumuiya — a collective, or constellation — of learning sites where families and communities experiment with new ways to make a living from healthy land. Founded in 2006 and launched at the Invention Convention in Tanzania in 2009, it is a self-financed 20-year experiment to invent the economic systems that reward ecosystem protection rather than destruction.",
   },
   {
     id: 3,
     category: 'General',
     question: 'What makes your approach different from other conservation groups?',
-    answer: "We strongly emphasize community livelihoods alongside ecological restoration. By treating economic ventures and landscape healing as intrinsically linked, we ensure long-term sustainability that benefits both people and nature.",
+    answer: "We are a business idea, not a charity — and that distinction is fundamental. We do not accept donor funding that would compromise our independence. Our starting point is the Oak Tree Paradox: a living forest has enormous life value, but markets only assign it financial value once it is dead. We are inventing the rules and mechanisms that change this, learning equally from African and Western, traditional and modern knowledge.",
   },
   {
     id: 4,
@@ -93,42 +93,42 @@ export default function FAQSection() {
   const [openIds, setOpenIds] = useState<number[]>([1]); // First one open by default
 
   const toggleAccordion = (id: number) => {
-    setOpenIds(prev => 
+    setOpenIds(prev =>
       prev.includes(id) ? prev.filter(openId => openId !== id) : [...prev, id]
     );
   };
 
   const filteredFaqs = initialFaqs.filter(faq => {
     const matchesCategory = selectedCategory === 'All Categories' || faq.category === selectedCategory;
-    const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   return (
-    <section className="py-24 bg-platinum">
+    <section className="py-24 bg-background">
       <div className="max-w-5xl mx-auto px-6">
-        
+
         <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-serif font-extrabold text-night-forest mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-serif font-light text-foreground mb-4 tracking-tight [text-wrap:balance]">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg text-night-forest/70 font-sans max-w-2xl">
+          <p className="text-lg text-foreground/70 font-sans max-w-2xl">
             Find answers to common questions about our mission, projects, partnerships, and how you can get involved.
           </p>
         </div>
 
         {/* Filter and Search Bar */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8 bg-night-forest/5 p-4 rounded-xl items-center relative z-20">
-          
+        <div className="flex flex-col md:flex-row gap-4 mb-8 bg-foreground/5 p-4 rounded-xl items-center relative z-20">
+
           <div className="relative flex-1 w-full">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-night-forest/40 w-5 h-5" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/40 w-5 h-5" />
             <input
               type="text"
               placeholder="Search questions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white border border-night-forest/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-viridian focus:border-transparent font-sans shadow-sm text-night-forest placeholder:text-night-forest/50"
+              className="w-full pl-12 pr-4 py-3 bg-card border border-border/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent font-sans shadow-sm text-foreground placeholder:text-foreground/60"
             />
           </div>
 
@@ -137,26 +137,35 @@ export default function FAQSection() {
             <div className="relative w-full sm:w-56">
               <button
                 onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-                className="w-full flex items-center justify-between bg-white border border-night-forest/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-viridian font-sans shadow-sm"
+                aria-haspopup="listbox"
+                aria-expanded={isCategoryDropdownOpen}
+                aria-label="Filter by category"
+                className="w-full flex items-center justify-between bg-card border border-border/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent font-sans shadow-sm"
               >
-                <span className="text-night-forest">{selectedCategory}</span>
-                <ChevronDown className="text-night-forest/50 w-5 h-5" />
+                <span className="text-foreground">{selectedCategory}</span>
+                <ChevronDown className="text-foreground/50 w-5 h-5" />
               </button>
 
               {isCategoryDropdownOpen && (
-                <div className="absolute top-full left-0 w-full mt-2 bg-platinum border border-night-forest/10 rounded-xl shadow-xl overflow-hidden z-30 py-2">
+                <div
+                  role="listbox"
+                  aria-label="FAQ categories"
+                  className="absolute top-full left-0 w-full mt-2 bg-background border border-border/10 rounded-xl shadow-xl overflow-hidden z-30 py-2"
+                >
                   {categories.map((category) => (
                     <button
                       key={category}
+                      role="option"
+                      aria-selected={selectedCategory === category}
                       onClick={() => {
                         setSelectedCategory(category);
                         setIsCategoryDropdownOpen(false);
                       }}
-                      className="w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-viridian/10 transition-colors font-sans text-night-forest"
+                      className="w-full text-left px-4 py-3 flex items-center gap-3 hover:bg-accent/10 transition-colors duration-300 font-sans text-foreground"
                     >
                       {selectedCategory === category && (
                          <div className="w-5 flex justify-center">
-                           <Check className="w-4 h-4 text-night-forest" />
+                           <Check className="w-4 h-4 text-foreground" />
                          </div>
                       )}
                       <span className={selectedCategory === category ? "font-semibold" : "pl-8"}>
@@ -170,49 +179,52 @@ export default function FAQSection() {
 
             {/* Sort Dropdown (Mock) */}
             <div className="relative w-full sm:w-48">
-              <select aria-label="Sort FAQs" className="w-full appearance-none bg-white border border-night-forest/20 rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-viridian shadow-sm font-sans text-night-forest cursor-pointer">
+              <select aria-label="Sort FAQs" className="w-full appearance-none bg-card border border-border/20 rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-accent shadow-sm font-sans text-foreground cursor-pointer">
                 <option>Most Popular</option>
                 <option>Newest</option>
               </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-night-forest/50 w-5 h-5 pointer-events-none" />
+              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/50 w-5 h-5 pointer-events-none" />
             </div>
           </div>
 
         </div>
 
         {/* FAQs List */}
-        <div className="space-y-0 text-night-forest">
+        <div className="space-y-0 text-foreground">
           {filteredFaqs.map((faq, index) => {
             const isOpen = openIds.includes(faq.id);
             return (
-              <div 
-                key={faq.id} 
-                className={`border-b border-night-forest/10 py-6 ${index === 0 ? 'border-t' : ''}`}
+              <div
+                key={faq.id}
+                className={`border-b border-border/10 py-6 ${index === 0 ? 'border-t' : ''}`}
               >
-                <button 
+                <button
                   onClick={() => toggleAccordion(faq.id)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-content-${faq.id}`}
                   className="w-full flex items-start justify-between text-left group gap-4"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 flex-1">
-                    <span className="px-3 py-1 rounded-full bg-viridian/10 text-viridian text-xs font-semibold whitespace-nowrap font-sans tracking-wide">
+                    <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold whitespace-nowrap font-sans tracking-wide">
                       {faq.category}
                     </span>
-                    <span className="text-lg font-sans font-bold group-hover:text-night-forest/70 transition-colors">
+                    <span className="text-lg font-sans font-bold group-hover:text-foreground/70 transition-colors duration-300">
                       {faq.question}
                     </span>
                   </div>
                   <div className="flex-shrink-0 mt-1 sm:mt-0">
                     {isOpen ? (
-                      <ChevronUp className="w-5 h-5 text-night-forest/50" />
+                      <ChevronUp className="w-5 h-5 text-foreground/50" />
                     ) : (
-                      <ChevronDown className="w-5 h-5 text-night-forest/50" />
+                      <ChevronDown className="w-5 h-5 text-foreground/50" />
                     )}
                   </div>
                 </button>
-                
+
                 <AnimatePresence initial={false}>
                   {isOpen && (
-                    <motion.div 
+                    <motion.div
+                      id={`faq-content-${faq.id}`}
                       key="content"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
@@ -221,18 +233,18 @@ export default function FAQSection() {
                       className="overflow-hidden"
                     >
                       <div className="pt-4 pb-2 pl-0 sm:pl-[140px] pr-8">
-                        <p className="text-night-forest/70 font-sans leading-relaxed mb-4">
+                        <p className="text-foreground/70 font-sans leading-relaxed mb-4">
                           {faq.answer}
                         </p>
-                        
+
                         {faq.tags && faq.tags.length > 0 && (
                           <div className="flex items-center gap-3 mt-4 mb-2">
                             {['data', 'reporting', 'metrics', 'finance', 'investment'].some(t => faq.tags?.includes(t)) && (
-                              <span className="text-sm font-semibold text-night-forest/70 font-sans">Related:</span>
+                              <span className="text-sm font-semibold text-foreground/70 font-sans">Related:</span>
                             )}
                             <div className="flex flex-wrap gap-2">
                               {faq.tags.map((tag, tagIdx) => (
-                                <span key={tagIdx} className="px-3 py-1 border border-night-forest/30 rounded-full text-sm font-semibold text-viridian font-sans">
+                                <span key={tagIdx} className="px-3 py-1 border border-border/30 rounded-full text-sm font-semibold text-accent font-sans">
                                   {tag}
                                 </span>
                               ))}
@@ -243,8 +255,8 @@ export default function FAQSection() {
                         {faq.actions && (
                           <div className="flex flex-wrap gap-3 mt-6">
                             {faq.actions.map((action, actionIdx) => (
-                              <button key={actionIdx} className="group flex items-center gap-2 px-5 py-2.5 bg-white border border-night-forest/20 text-night-forest rounded-xl hover:border-viridian hover:shadow-sm hover:text-viridian transition-all text-sm font-bold font-sans">
-                                <action.icon className="w-5 h-5 text-night-forest/40 group-hover:text-viridian transition-colors" />
+                              <button key={actionIdx} className="group flex items-center gap-2 px-5 py-2.5 bg-card border border-border/20 text-foreground rounded-xl hover:border-accent hover:shadow-sm hover:text-accent transition-all duration-500 text-sm font-bold font-sans">
+                                <action.icon className="w-5 h-5 text-foreground/40 group-hover:text-accent transition-colors duration-300" />
                                 {action.label}
                               </button>
                             ))}
@@ -257,23 +269,23 @@ export default function FAQSection() {
               </div>
             );
           })}
-          
+
           {filteredFaqs.length === 0 && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className="py-20 flex flex-col items-center justify-center text-center"
             >
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-night-forest/10 mb-6">
-                <Search className="w-8 h-8 text-night-forest/30" />
+              <div className="w-16 h-16 bg-card rounded-2xl flex items-center justify-center shadow-sm border border-border/10 mb-6">
+                <Search className="w-8 h-8 text-foreground/30" />
               </div>
-              <h3 className="text-2xl font-bold font-serif text-night-forest mb-3">No results found</h3>
-              <p className="text-night-forest/50 font-sans max-w-md mb-8">
+              <h3 className="text-2xl font-light font-serif text-foreground mb-3">No results found</h3>
+              <p className="text-foreground/50 font-sans max-w-md mb-8">
                 We couldn&apos;t find any questions matching &quot;{searchQuery}&quot;. Try adjusting your search or selecting a different category.
               </p>
-              <button 
+              <button
                 onClick={() => { setSearchQuery(''); setSelectedCategory('All Categories'); }}
-                className="px-6 py-3 bg-white border border-night-forest/20 text-night-forest rounded-full font-bold text-sm tracking-wide hover:bg-night-forest/5 hover:border-night-forest/30 transition-all font-sans shadow-sm"
+                className="px-6 py-3 bg-card border border-border/20 text-foreground rounded-full font-bold text-sm tracking-wide hover:bg-foreground/5 hover:border-border/30 transition-all duration-500 font-sans shadow-sm"
               >
                 Clear Filters
               </button>

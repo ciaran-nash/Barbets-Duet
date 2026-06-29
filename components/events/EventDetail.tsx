@@ -12,19 +12,19 @@ import { learningSites } from '@/lib/data/learning-sites';
 const statusConfig = {
   'Open': {
     label: 'Registration Open',
-    className: 'bg-viridian text-white',
-    buttonClassName: 'bg-viridian text-white hover:bg-viridian/90',
+    className: 'bg-accent text-accent-foreground',
+    buttonClassName: 'bg-accent text-accent-foreground hover:bg-accent/90',
     buttonLabel: 'Register Now',
   },
   'Waitlist': {
     label: 'Join Waitlist',
-    className: 'bg-amber-500 text-night-forest',
-    buttonClassName: 'bg-amber-500 text-night-forest hover:bg-amber-400',
+    className: 'bg-amber-500 text-bark',
+    buttonClassName: 'bg-amber-500 text-bark hover:bg-amber-400',
     buttonLabel: 'Join Waitlist',
   },
   'Closed': {
     label: 'Registration Closed',
-    className: 'bg-night-forest/40 text-foreground/40',
+    className: 'bg-foreground/40 text-foreground/40',
     buttonClassName: 'bg-foreground/10 text-foreground/30 cursor-not-allowed',
     buttonLabel: 'Registrations Closed',
   },
@@ -187,7 +187,7 @@ export default function EventDetail({ event }: Props) {
                                   active:scale-[0.98]
                                   ${event.registrationStatus === 'Closed'
                                     ? status.buttonClassName
-                                    : 'bg-viridian text-white hover:bg-viridian/90'
+                                    : 'bg-accent text-accent-foreground hover:bg-accent/90'
                                   }`}
                     >
                       {event.registrationStatus === 'Closed' ? status.buttonLabel : status.buttonLabel}

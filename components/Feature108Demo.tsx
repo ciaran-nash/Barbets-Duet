@@ -1,55 +1,70 @@
-import { Layout, Pointer, Zap } from "lucide-react";
+import { FlaskConical, Leaf, Users, TrendingUp } from "lucide-react";
 
 import { Feature108 } from "@/components/blocks/shadcnblocks-com-feature108"
 
 const demoData = {
-  badge: "shadcnblocks.com",
-  heading: "A Collection of Components Built With Shadcn & Tailwind",
-  description: "Join us to build flawless web solutions.",
+  badge: "Find your way in",
+  heading: "Who are you in this experiment?",
+  description: "Barbets Duet is a collective for anyone who believes ecological restoration and economic opportunity belong together.",
   tabs: [
     {
       value: "tab-1",
-      icon: <Zap className="h-auto w-4 shrink-0" />,
-      label: "Boost Revenue",
+      icon: <FlaskConical className="h-auto w-4 shrink-0" />,
+      label: "Restoration Professionals",
       content: {
-        badge: "Modern Tactics",
-        title: "Make your site a true standout.",
+        badge: "Trial & Error",
+        title: "Learn from 20 years of hands-on experiments.",
         description:
-          "Discover new web trends that help you craft sleek, highly functional sites that drive traffic and convert leads into customers.",
-        buttonText: "See Plans",
+          "Access the growing archive of what worked, what failed, and what was learned across six ecosystems on three continents. Each learning site documents its methods openly — so you can adapt them to your own context.",
+        buttonText: "Explore the archive",
         imageSrc:
-          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800&h=600",
-        imageAlt: "placeholder",
+          "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&q=80&w=800&h=600",
+        imageAlt: "Restoration work at a Barbets Duet learning site",
       },
     },
     {
       value: "tab-2",
-      icon: <Pointer className="h-auto w-4 shrink-0" />,
-      label: "Higher Engagement",
+      icon: <Leaf className="h-auto w-4 shrink-0" />,
+      label: "Eco-Tourists",
       content: {
-        badge: "Expert Features",
-        title: "Boost your site with top-tier design.",
+        badge: "Voluntourism",
+        title: "Work the land. See the results.",
         description:
-          "Use stellar design to easily engage users and strengthen their loyalty. Create a seamless experience that keeps them coming back for more.",
-        buttonText: "See Tools",
+          "Visit a Barbets Duet learning site and participate directly in restoration work — planting native trees, monitoring biodiversity, or helping with seaweed processing. Skills and effort welcome over donations.",
+        buttonText: "Find a site to visit",
         imageSrc:
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800&h=600",
-        imageAlt: "placeholder",
+          "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&q=80&w=800&h=600",
+        imageAlt: "Visitors working at a Barbets Duet learning site",
       },
     },
     {
       value: "tab-3",
-      icon: <Layout className="h-auto w-4 shrink-0" />,
-      label: "Stunning Layouts",
+      icon: <Users className="h-auto w-4 shrink-0" />,
+      label: "Local Communities",
       content: {
-        badge: "Elite Solutions",
-        title: "Build an advanced web experience.",
+        badge: "Jumuiya",
+        title: "Your knowledge belongs in this network.",
         description:
-          "Lift your brand with modern tech that grabs attention and drives action. Create a digital experience that stands out from the crowd.",
-        buttonText: "See Options",
+          "The Barbets Duet Jumuiya learns from African and Western, traditional and modern knowledge on equal terms. If you are managing land, water, or community resources — your experience is exactly what the network needs.",
+        buttonText: "How to join",
         imageSrc:
-          "https://images.unsplash.com/photo-1507238692062-5a0445d4dc82?auto=format&fit=crop&q=80&w=800&h=600",
-        imageAlt: "placeholder",
+          "https://images.unsplash.com/photo-1509099880921-1e4c87d3dc43?auto=format&fit=crop&q=80&w=800&h=600",
+        imageAlt: "Community members at a Barbets Duet convention",
+      },
+    },
+    {
+      value: "tab-4",
+      icon: <TrendingUp className="h-auto w-4 shrink-0" />,
+      label: "Impact Investors",
+      content: {
+        badge: "Barbet's Friends",
+        title: "Invest in the rules that reward living forests.",
+        description:
+          "We are not a charity — we are inventing the market mechanisms that make environmental care economically rational. Support specific learning sites, mosaic rights frameworks, or the Barbets revolving loan fund for site development.",
+        buttonText: "Investment pathways",
+        imageSrc:
+          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800&h=600",
+        imageAlt: "Aerial view of restored landscape",
       },
     },
   ],

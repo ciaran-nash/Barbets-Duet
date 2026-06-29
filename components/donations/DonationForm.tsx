@@ -107,7 +107,7 @@ export default function DonationForm() {
     <div className="space-y-8">
       {/* ── Donation type toggle ─────────────────────────────────────────── */}
       <div>
-        <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-platinum/50 mb-3">
+        <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-band-foreground/50 mb-3">
           Donation type
         </p>
         <div className="flex gap-2">
@@ -116,8 +116,8 @@ export default function DonationForm() {
             onClick={() => setDonationType('one-time')}
             className={`px-6 py-2.5 font-mono text-[11px] tracking-[0.15em] uppercase transition-all duration-300 border ${
               donationType === 'one-time'
-                ? 'bg-neon-lime text-night-forest border-neon-lime'
-                : 'bg-transparent text-platinum/60 border-platinum/20 hover:border-platinum/40'
+                ? 'bg-band-accent text-band border-band-accent'
+                : 'bg-transparent text-band-foreground/60 border-band-border/20 hover:border-band-border/40'
             }`}
           >
             One-time
@@ -130,7 +130,7 @@ export default function DonationForm() {
               onMouseEnter={() => setShowMonthlyTooltip(true)}
               onMouseLeave={() => setShowMonthlyTooltip(false)}
               onClick={() => setShowMonthlyTooltip(true)}
-              className="px-6 py-2.5 font-mono text-[11px] tracking-[0.15em] uppercase transition-all duration-300 border bg-transparent text-platinum/30 border-platinum/10 cursor-default"
+              className="px-6 py-2.5 font-mono text-[11px] tracking-[0.15em] uppercase transition-all duration-300 border bg-transparent text-band-foreground/30 border-band-border/10 cursor-default"
             >
               Monthly
             </button>
@@ -141,12 +141,12 @@ export default function DonationForm() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 4 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute left-0 top-full mt-2 z-20 w-56 bg-night-forest border border-platinum/20 px-4 py-3 shadow-xl"
+                  className="absolute left-0 top-full mt-2 z-20 w-56 bg-band border border-band-border/20 px-4 py-3 shadow-xl"
                 >
-                  <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-neon-lime mb-1">
+                  <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-band-accent mb-1">
                     Coming soon
                   </p>
-                  <p className="font-sans text-xs text-platinum/70 leading-relaxed">
+                  <p className="font-sans text-xs text-band-foreground/70 leading-relaxed">
                     Monthly giving is in development. One-time donations go directly to restoration work today.
                   </p>
                 </motion.div>
@@ -158,7 +158,7 @@ export default function DonationForm() {
 
       {/* ── Currency selector ────────────────────────────────────────────── */}
       <div>
-        <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-platinum/50 mb-3">
+        <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-band-foreground/50 mb-3">
           Currency
         </p>
         <div className="flex gap-2">
@@ -169,8 +169,8 @@ export default function DonationForm() {
               onClick={() => setCurrency(cur)}
               className={`px-4 py-2 font-mono text-[11px] tracking-[0.12em] uppercase transition-all duration-300 border ${
                 currency === cur
-                  ? 'bg-viridian/40 text-neon-lime border-viridian'
-                  : 'bg-transparent text-platinum/50 border-platinum/15 hover:border-platinum/30'
+                  ? 'bg-band-accent/40 text-band-accent border-band-accent'
+                  : 'bg-transparent text-band-foreground/50 border-band-border/15 hover:border-band-border/30'
               }`}
             >
               {cur}
@@ -181,7 +181,7 @@ export default function DonationForm() {
 
       {/* ── Preset amounts ───────────────────────────────────────────────── */}
       <div>
-        <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-platinum/50 mb-3">
+        <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-band-foreground/50 mb-3">
           Amount
         </p>
         <div className="grid grid-cols-4 gap-2">
@@ -192,8 +192,8 @@ export default function DonationForm() {
               onClick={() => handlePresetSelect(amount)}
               className={`py-4 font-serif text-xl font-light transition-all duration-300 border ${
                 selectedAmount === amount && !customAmount
-                  ? 'bg-neon-lime text-night-forest border-neon-lime'
-                  : 'bg-white/5 text-platinum/80 border-platinum/15 hover:border-neon-lime/40 hover:bg-white/8'
+                  ? 'bg-band-accent text-band border-band-accent'
+                  : 'bg-white/5 text-band-foreground/80 border-band-border/15 hover:border-band-accent/40 hover:bg-white/8'
               }`}
             >
               {symbol}{amount}
@@ -203,7 +203,7 @@ export default function DonationForm() {
 
         {/* Custom amount input */}
         <div className="mt-3 relative">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 font-serif text-platinum/50 text-lg select-none">
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 font-serif text-band-foreground/50 text-lg select-none">
             {symbol}
           </span>
           <input
@@ -212,7 +212,7 @@ export default function DonationForm() {
             placeholder="Custom amount"
             value={customAmount}
             onChange={(e) => handleCustomAmountChange(e.target.value)}
-            className="w-full bg-white/5 border border-platinum/15 pl-8 pr-4 py-3.5 font-sans text-sm text-platinum placeholder:text-platinum/30 focus:outline-none focus:border-neon-lime/50 focus:ring-1 focus:ring-neon-lime/20 transition-colors"
+            className="w-full bg-white/5 border border-band-border/15 pl-8 pr-4 py-3.5 font-sans text-sm text-band-foreground placeholder:text-band-foreground/30 focus:outline-none focus:border-band-accent/50 focus:ring-1 focus:ring-band-accent/20 transition-colors"
           />
         </div>
       </div>
@@ -225,17 +225,17 @@ export default function DonationForm() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="border border-neon-lime/15 bg-neon-lime/5 px-5 py-4"
+          className="border border-band-accent/15 bg-band-accent/5 px-5 py-4"
         >
-          <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-neon-lime/60 mb-1">
+          <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-band-accent/60 mb-1">
             Your donation
           </p>
-          <p className="font-serif text-2xl text-platinum">
+          <p className="font-serif text-2xl text-band-foreground">
             {symbol}{effectiveAmount.toLocaleString()}{' '}
-            <span className="text-base text-platinum/50">{currency}</span>
+            <span className="text-base text-band-foreground/50">{currency}</span>
           </p>
           {selectedSiteSlug && (
-            <p className="font-sans text-xs text-platinum/50 mt-1">
+            <p className="font-sans text-xs text-band-foreground/50 mt-1">
               Tagged to: {selectedSiteSlug.replace(/-/g, ' ')}
             </p>
           )}
@@ -261,11 +261,11 @@ export default function DonationForm() {
           type="button"
           onClick={handleStripeCheckout}
           disabled={isLoading || !isValidAmount}
-          className="w-full bg-neon-lime text-night-forest font-mono text-[11px] tracking-[0.2em] uppercase py-4 transition-all duration-300 hover:bg-neon-lime/90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+          className="w-full bg-band-accent text-band font-mono text-[11px] tracking-[0.2em] uppercase py-4 transition-all duration-300 hover:bg-band-accent/90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3"
         >
           {isLoading ? (
             <>
-              <span className="animate-spin inline-block w-4 h-4 border-2 border-night-forest/30 border-t-night-forest rounded-full" />
+              <span className="animate-spin inline-block w-4 h-4 border-2 border-band-border/30 border-t-bark rounded-full" />
               Connecting to Stripe...
             </>
           ) : (
@@ -280,10 +280,10 @@ export default function DonationForm() {
         <button
           type="button"
           onClick={handlePayPalClick}
-          className="w-full bg-white/5 text-platinum/60 font-mono text-[11px] tracking-[0.2em] uppercase py-4 border border-platinum/15 transition-all duration-300 hover:border-platinum/30 hover:bg-white/8 active:scale-[0.98]"
+          className="w-full bg-white/5 text-band-foreground/60 font-mono text-[11px] tracking-[0.2em] uppercase py-4 border border-band-border/15 transition-all duration-300 hover:border-band-border/30 hover:bg-white/8 active:scale-[0.98]"
         >
           Donate with PayPal
-          <span className="ml-2 font-sans text-[9px] tracking-normal normal-case text-platinum/30">
+          <span className="ml-2 font-sans text-[9px] tracking-normal normal-case text-band-foreground/30">
             (coming soon)
           </span>
         </button>
@@ -297,8 +297,8 @@ export default function DonationForm() {
           'Barbets Duet is a registered not-for-profit organisation',
         ].map((signal) => (
           <div key={signal} className="flex items-center gap-2">
-            <CheckCircle2 size={13} className="text-neon-lime/60 shrink-0" />
-            <p className="font-sans text-xs text-platinum/45">{signal}</p>
+            <CheckCircle2 size={13} className="text-band-accent/60 shrink-0" />
+            <p className="font-sans text-xs text-band-foreground/45">{signal}</p>
           </div>
         ))}
       </div>

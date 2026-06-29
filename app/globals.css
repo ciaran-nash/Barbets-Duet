@@ -3,82 +3,153 @@
 @plugin "@tailwindcss/typography";
 
 /* ─────────────────────────────────────────────
-   Brand Token System — Scholarly Cycle palette
+   Brand Token System — Cultivated Simplicity palette
    ──────────────────────────────────────────── */
 @theme {
-  /* Core brand colours — exact HEX, no approximations */
-  --color-neon-lime: #DBFF66;
-  --color-viridian: #006F53;
-  --color-night-forest: #06211A;
-  --color-white: #FFFFFF;
-  --color-platinum: #F4F4F5;
+  /* Primary palette — earth tones, sun-faded */
+  --color-bark: #2A1F14;      /* warm dark charcoal — replaces night-forest */
+  --color-moss: #556B4E;      /* muted sun-faded green — replaces viridian */
+  --color-stone: #8A8578;     /* warm gray — structure and neutrality */
+  --color-linen: #F4EFE6;     /* warm off-white background — replaces platinum */
+  --color-cream: #EDE8D8;     /* wildflower cream — card surfaces */
+  --color-soil: #6B4C35;      /* deep earth brown — anchors and strong CTAs */
 
-  /* Semantic aliases */
-  --color-background: #06211A;
-  --color-foreground: #F4F4F5;
-  --color-accent: #DBFF66;
-  --color-brand: #006F53;
-  --color-forest: #06211A;
+  /* Secondary accents — use sparingly, seasonal */
+  --color-wheat: #C9A87A;     /* faded wheat — accent on dark backgrounds */
+  --color-lichen: #8B9E7A;    /* lichen sage — tags and badges */
+  --color-clay: #B07055;      /* clay terracotta — seasonal accent */
+  --color-river: #6B8E9A;     /* river blue — maps and ecological data */
+
+  /* Dark mode palette — "Scholarly Cycle" — electric ecological, dark mode ONLY */
+  --color-night-forest: #06211A; /* very dark green — dark mode background */
+  --color-viridian: #006F53;     /* deep ecological green — dark mode brand */
+  --color-neon-lime: #DBFF66;    /* electric lime — dark mode CTA / accent */
+  --color-platinum: #F4F4F5;     /* cool off-white — dark mode foreground */
 
   /* Typography variables are injected by next/font into :root as CSS custom properties.
      Tailwind v4 picks them up automatically via the variable names set in layout.tsx. */
 }
 
+/* Semantic color utilities — aliased to the flipping CSS vars below.
+   `inline` resolves var() at use-site so bg-card / text-muted-foreground / etc.
+   track [data-theme]. Without this block these utilities don't exist (Tailwind v4
+   only emits a utility per --color-*) and silently render nothing. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-band: var(--band);
+  --color-band-foreground: var(--band-foreground);
+  --color-band-muted: var(--band-muted-foreground);
+  --color-band-accent: var(--band-accent);
+  --color-band-border: var(--band-border);
+}
+
 /* ─────────────────────────────────────────────
    CSS Custom Properties (semantic layer)
+   Light mode is the default. ThemeProvider sets data-theme on <html>
+   based on localStorage or system prefers-color-scheme.
    ──────────────────────────────────────────── */
-:root {
-  /* Dark mode default (Night Forest) */
-  --background: #06211A;
-  --foreground: #F4F4F5;
-  --primary: #DBFF66;
-  --secondary: #F4F4F5;
-  --accent: #DBFF66;
-  --brand: #006F53;
 
-  /* Surface & border */
-  --surface: rgba(255, 255, 255, 0.04);
-  --border: rgba(244, 244, 245, 0.12);
-  --border-strong: rgba(244, 244, 245, 0.25);
+/* Light mode — "The Field Journal under morning sun"
+   Linen paper, bark ink, soil for emphasis, moss for ecology */
+:root,
+[data-theme="light"] {
+  --background: #F4EFE6;           /* linen — the page */
+  --foreground: #2A1F14;           /* bark — the ink */
+  --primary: #6B4C35;              /* soil — CTAs, primary actions */
+  --primary-foreground: #F4EFE6;   /* linen on soil */
+  --secondary: #D8D0BB;            /* deepened cream — secondary surfaces */
+  --secondary-foreground: #2A1F14;
+  --accent: #556B4E;               /* moss — brand, focus rings */
+  --accent-foreground: #F4EFE6;    /* linen on moss */
+  --brand: #556B4E;
 
-  /* shadcn semantic tokens — wired to brand system */
-  --card: #06211A;
-  --card-foreground: #F4F4F5;
-  --popover: #06211A;
-  --popover-foreground: #F4F4F5;
-  --primary-foreground: #06211A;
-  --secondary-foreground: #06211A;
-  --muted: rgba(244, 244, 245, 0.06);
-  --muted-foreground: rgba(244, 244, 245, 0.5);
+  /* Surfaces & borders */
+  --surface: rgba(42, 31, 20, 0.04);
+  --border: rgba(42, 31, 20, 0.12);
+  --border-strong: rgba(42, 31, 20, 0.28);
+
+  /* Always-dark contrast bands (Hero, gallery, banners). Bark island on linen.
+     Carries its own accent so the Mode Rule holds — no palette mixing. */
+  --band: #2A1F14;                          /* bark */
+  --band-foreground: #F4EFE6;               /* linen on bark — ~12:1 */
+  --band-muted-foreground: rgba(244, 239, 230, 0.72);
+  --band-accent: #C9A87A;                   /* wheat — light-mode band accent */
+  --band-border: rgba(244, 239, 230, 0.14);
+
+  /* shadcn tokens */
+  --card: #EDE8D8;                 /* cream — richer than linen, a well-used page */
+  --card-foreground: #2A1F14;
+  --popover: #EDE8D8;
+  --popover-foreground: #2A1F14;
+  --muted: rgba(42, 31, 20, 0.06);
+  --muted-foreground: rgba(42, 31, 20, 0.70); /* 5.2:1 on linen — WCAG AA */
+  --input: rgba(42, 31, 20, 0.10);
+  --ring: #556B4E;                 /* moss focus ring */
   --destructive: #ef4444;
-  --destructive-foreground: #F4F4F5;
-  --input: rgba(244, 244, 245, 0.12);
-  --ring: #DBFF66;
+  --destructive-foreground: #FFFFFF;
   --radius: 0.5rem;
 
   /* Font tokens are injected by next/font (see app/layout.tsx) */
 }
 
-/* Light mode overrides */
-[data-theme="light"] {
-  --background: #F4F4F5;
-  --foreground: #06211A;
-  --primary: #006F53;
-  --accent: #006F53;
-  --surface: rgba(6, 33, 26, 0.04);
-  --border: rgba(6, 33, 26, 0.12);
-  --border-strong: rgba(6, 33, 26, 0.25);
+/* Dark mode — "The Scholarly Cycle at night"
+   Night Forest canvas, platinum text, neon lime catching the light.
+   Electric ecological — Wabi Sabi by day, bioluminescent by night. */
+[data-theme="dark"] {
+  --background: #06211A;           /* night forest — the dark canvas */
+  --foreground: #F4F4F5;           /* platinum — the ink */
+  --primary: #DBFF66;              /* neon lime — CTAs, active states */
+  --primary-foreground: #06211A;   /* night forest on lime */
+  --secondary: rgba(244, 244, 245, 0.08); /* platinum wash — secondary surfaces */
+  --secondary-foreground: #F4F4F5;
+  --accent: #DBFF66;               /* neon lime — interactive highlights */
+  --accent-foreground: #06211A;
+  --brand: #006F53;                /* viridian */
 
-  /* shadcn light overrides */
-  --card: #F4F4F5;
-  --card-foreground: #06211A;
-  --popover: #F4F4F5;
-  --popover-foreground: #06211A;
-  --primary-foreground: #F4F4F5;
-  --muted: rgba(6, 33, 26, 0.06);
-  --muted-foreground: rgba(6, 33, 26, 0.5);
-  --input: rgba(6, 33, 26, 0.12);
-  --ring: #006F53;
+  /* Surfaces & borders */
+  --surface: rgba(244, 244, 245, 0.04);
+  --border: rgba(244, 244, 245, 0.12);
+  --border-strong: rgba(244, 244, 245, 0.25);
+
+  /* Always-dark bands in dark mode: a viridian-lifted plate, distinct from the
+     #06211A night-forest canvas so the band never vanishes into the page. */
+  --band: #0d3d2e;                          /* viridian-lifted plate */
+  --band-foreground: #F4F4F5;               /* platinum */
+  --band-muted-foreground: rgba(244, 244, 245, 0.66);
+  --band-accent: #DBFF66;                   /* neon lime — Mode Rule accent */
+  --band-border: rgba(244, 244, 245, 0.16);
+
+  /* shadcn tokens */
+  --card: #0B2A22;                 /* lifted night forest — card inner surface */
+  --card-foreground: #F4F4F5;
+  --popover: #0B2A22;
+  --popover-foreground: #F4F4F5;
+  --muted: rgba(244, 244, 245, 0.06);
+  --muted-foreground: rgba(244, 244, 245, 0.60); /* 6.7:1 on night forest — WCAG AA */
+  --input: rgba(244, 244, 245, 0.12);
+  --ring: #DBFF66;
+  --destructive: #ef4444;
+  --destructive-foreground: #F4F4F5;
 }
 
 /* ─────────────────────────────────────────────
@@ -96,6 +167,11 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+
   /* Skip-to-content link (accessibility) */
   .skip-to-content {
     position: absolute;
@@ -103,10 +179,10 @@
     left: 1rem;
     z-index: 9999;
     padding: 0.5rem 1rem;
-    background: #DBFF66;
-    color: #06211A;
+    background: var(--primary);
+    color: var(--primary-foreground);
     font-weight: 600;
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 0.5rem 0.5rem;
     transition: top 0.2s;
   }
   .skip-to-content:focus {
@@ -129,11 +205,6 @@
   }
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-6px); }
@@ -152,7 +223,7 @@
   font-size: 10px;
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   font-weight: 500;
 }
 .animate-pulse {
@@ -161,12 +232,6 @@
 
 .animate-ping {
   animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(219, 255, 102, 0.08) 50%, transparent 100%);
-  background-size: 200% 100%;
-  animation: shimmer 2.5s infinite;
 }
 
 .animate-float {
@@ -196,14 +261,9 @@
   backdrop-filter: blur(16px);
 }
 
-/* Orbital gradient — brand palette */
-.bg-gradient-orbital {
-  background: linear-gradient(to bottom right, #06211A, #DBFF66);
-}
-
-/* Brand shadow — tinted to Night Forest palette */
-.shadow-orbital {
-  box-shadow: 0 0 15px rgba(219, 255, 102, 0.08);
+/* Paper shadow — warm tinted to bark palette */
+.shadow-paper {
+  box-shadow: 0 2px 8px rgba(42, 31, 20, 0.08), 0 1px 2px rgba(42, 31, 20, 0.06);
 }
 
 /* Z-index utilities */
@@ -234,64 +294,101 @@
 }
 
 /* Brand border opacity utilities */
+.border-bark\/10 {
+  border-color: rgba(42, 31, 20, 0.1);
+}
+
+.border-bark\/20 {
+  border-color: rgba(42, 31, 20, 0.2);
+}
+
+.border-linen\/10 {
+  border-color: rgba(244, 239, 230, 0.1);
+}
+
+.border-linen\/20 {
+  border-color: rgba(244, 239, 230, 0.2);
+}
+
+/* Legacy aliases — kept for backward compat during migration */
 .border-night-forest\/10 {
-  border-color: rgba(6, 33, 26, 0.1);
+  border-color: rgba(42, 31, 20, 0.1);
 }
 
 .border-night-forest\/20 {
-  border-color: rgba(6, 33, 26, 0.2);
+  border-color: rgba(42, 31, 20, 0.2);
 }
 
 .border-platinum\/10 {
-  border-color: rgba(244, 244, 245, 0.1);
+  border-color: rgba(244, 239, 230, 0.1);
 }
 
 .border-platinum\/20 {
-  border-color: rgba(244, 244, 245, 0.2);
+  border-color: rgba(244, 239, 230, 0.2);
 }
 
-/* Legacy opacity utilities (kept for backward compat, now use correct brand values) */
 .border-forest\/10 {
-  border-color: rgba(6, 33, 26, 0.1);
+  border-color: rgba(42, 31, 20, 0.1);
 }
 
 .border-forest\/20 {
-  border-color: rgba(6, 33, 26, 0.2);
+  border-color: rgba(42, 31, 20, 0.2);
 }
 
 /* Background opacity utilities */
-.bg-night-forest\/90 {
-  background-color: rgba(6, 33, 26, 0.9);
+.bg-bark\/90 {
+  background-color: rgba(42, 31, 20, 0.9);
 }
 
-.bg-platinum\/50 {
-  background-color: rgba(244, 244, 245, 0.5);
+.bg-linen\/50 {
+  background-color: rgba(244, 239, 230, 0.5);
 }
 
-.bg-platinum\/80 {
-  background-color: rgba(244, 244, 245, 0.8);
-}
-
-/* Text opacity utilities */
-.text-night-forest\/70 {
-  color: rgba(6, 33, 26, 0.7);
-}
-
-.text-night-forest\/80 {
-  color: rgba(6, 33, 26, 0.8);
+.bg-linen\/80 {
+  background-color: rgba(244, 239, 230, 0.8);
 }
 
 /* Legacy aliases */
+.bg-night-forest\/90 {
+  background-color: rgba(42, 31, 20, 0.9);
+}
+
+.bg-platinum\/50 {
+  background-color: rgba(244, 239, 230, 0.5);
+}
+
+.bg-platinum\/80 {
+  background-color: rgba(244, 239, 230, 0.8);
+}
+
+/* Text opacity utilities */
+.text-bark\/70 {
+  color: rgba(42, 31, 20, 0.7);
+}
+
+.text-bark\/80 {
+  color: rgba(42, 31, 20, 0.8);
+}
+
+/* Legacy aliases */
+.text-night-forest\/70 {
+  color: rgba(42, 31, 20, 0.7);
+}
+
+.text-night-forest\/80 {
+  color: rgba(42, 31, 20, 0.8);
+}
+
 .bg-forest\/90 {
-  background-color: rgba(6, 33, 26, 0.9);
+  background-color: rgba(42, 31, 20, 0.9);
 }
 
 .text-forest\/70 {
-  color: rgba(6, 33, 26, 0.7);
+  color: rgba(42, 31, 20, 0.7);
 }
 
 .text-forest\/80 {
-  color: rgba(6, 33, 26, 0.8);
+  color: rgba(42, 31, 20, 0.8);
 }
 
 /* Noise overlay — fixed pseudo, never on scrolling containers */
@@ -301,7 +398,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.025;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 128px 128px;

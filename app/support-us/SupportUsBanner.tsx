@@ -21,14 +21,14 @@ function BannerContent() {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-start gap-3 px-6 py-4 border shadow-2xl max-w-sm w-[calc(100%-2rem)] ${
           success
-            ? 'bg-night-forest border-neon-lime/40 text-platinum'
-            : 'bg-night-forest border-platinum/20 text-platinum/70'
+            ? 'bg-band border-band-accent/40 text-band-foreground'
+            : 'bg-band border-band-border/20 text-band-foreground/70'
         }`}
       >
         {success ? (
-          <CheckCircle2 size={18} className="text-neon-lime shrink-0 mt-0.5" />
+          <CheckCircle2 size={18} className="text-band-accent shrink-0 mt-0.5" />
         ) : (
-          <X size={18} className="text-platinum/40 shrink-0 mt-0.5" />
+          <X size={18} className="text-band-foreground/40 shrink-0 mt-0.5" />
         )}
         <div>
           <p className="font-mono text-[10px] tracking-[0.2em] uppercase mb-1">

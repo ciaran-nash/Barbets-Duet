@@ -24,8 +24,8 @@ function SitePresence() {
   if (status !== 'connected' || others.length === 0) return null;
 
   return (
-    <div className="flex items-center gap-1.5 text-xs text-viridian font-sans">
-      <span className="w-2 h-2 rounded-full bg-viridian animate-pulse" />
+    <div className="flex items-center gap-1.5 text-xs text-accent font-sans">
+      <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
       {others.length + 1} online
     </div>
   );
@@ -35,7 +35,7 @@ function SitePresence() {
 
 function StatusIcon({ status }: { status: ForumThread['status'] }) {
   if (status === 'locked') return <Lock className="w-3.5 h-3.5 text-foreground/30" />;
-  if (status === 'pinned') return <Pin className="w-3.5 h-3.5 text-neon-lime" />;
+  if (status === 'pinned') return <Pin className="w-3.5 h-3.5 text-secondary-foreground" />;
   return null;
 }
 
@@ -53,9 +53,9 @@ function ThreadRow({ thread, siteSlug }: { thread: ForumThread; siteSlug: string
   return (
     <Link
       href={`/community/sites/${siteSlug}/forum/${thread.id}`}
-      className="flex items-start gap-3 p-4 rounded-xl border border-foreground/10 hover:border-viridian/30 bg-night-forest/5 transition-all duration-150 group focus:outline-none focus:ring-2 focus:ring-viridian"
+      className="flex items-start gap-3 p-4 rounded-xl border border-foreground/10 hover:border-accent/30 bg-foreground/5 transition-all duration-150 group focus:outline-none focus:ring-2 focus:ring-accent"
     >
-      <MessageSquare className="w-5 h-5 text-foreground/30 group-hover:text-viridian transition-colors mt-0.5 shrink-0" />
+      <MessageSquare className="w-5 h-5 text-foreground/30 group-hover:text-accent transition-colors mt-0.5 shrink-0" />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-0.5">
           <StatusIcon status={thread.status} />
@@ -124,13 +124,13 @@ function NewThreadForm({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Start a new discussion..."
-          className="flex-1 px-4 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-viridian"
+          className="flex-1 px-4 py-2.5 rounded-xl border border-foreground/10 bg-foreground/5 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-accent"
           maxLength={200}
         />
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-viridian text-white text-sm font-sans font-semibold hover:bg-viridian/80 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-viridian"
+          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-accent text-accent-foreground text-sm font-sans font-semibold hover:bg-accent/80 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
           Post
@@ -171,7 +171,7 @@ export default function ForumClient({
         {/* Back nav */}
         <Link
           href={`/community/sites/${siteSlug}`}
-          className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground transition-colors font-sans mb-6 focus:outline-none focus:ring-2 focus:ring-viridian rounded"
+          className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-foreground transition-colors font-sans mb-6 focus:outline-none focus:ring-2 focus:ring-accent rounded"
         >
           <ChevronLeft className="w-4 h-4" />
           {siteName}
@@ -180,7 +180,7 @@ export default function ForumClient({
         {/* Header */}
         <div className="flex items-start justify-between mb-8 flex-wrap gap-4">
           <div>
-            <p className="text-xs font-mono text-viridian uppercase tracking-[0.2em] mb-1">
+            <p className="text-xs font-mono text-accent uppercase tracking-[0.2em] mb-1">
               Site Forum
             </p>
             <h1 className="font-serif font-bold text-3xl">{siteName}</h1>
@@ -198,7 +198,7 @@ export default function ForumClient({
         ) : (
           <div className="mb-6 p-4 rounded-xl bg-foreground/5 border border-foreground/10 text-center">
             <p className="text-sm text-foreground/50 font-sans">
-              <Link href="/community/sign-in" className="text-viridian hover:underline">
+              <Link href="/community/sign-in" className="text-accent hover:underline">
                 Sign in
               </Link>{' '}
               to start a discussion.

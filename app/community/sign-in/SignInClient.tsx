@@ -45,13 +45,13 @@ export default function SignInClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#2C3E35] flex items-center justify-center px-6">
+    <div className="min-h-screen bg-[#F4EFE6] text-[#2A1F14] flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="mb-10 text-center">
-          <p className="text-[10px] uppercase tracking-widest text-[#2C3E35]/50 mb-3">Member Portal</p>
+          <p className="text-[10px] uppercase tracking-widest text-[#2A1F14]/50 mb-3">Member Portal</p>
           <h1 className="font-serif text-4xl font-light">Welcome Back</h1>
-          <p className="mt-3 text-sm text-[#2C3E35]/60">
+          <p className="mt-3 text-sm text-[#2A1F14]/60">
             Sign in to the Barbets Duet community network.
           </p>
         </div>
@@ -59,7 +59,7 @@ export default function SignInClient() {
         {/* Google OAuth */}
         <button
           onClick={handleGoogleSignIn}
-          className="w-full flex items-center justify-center gap-3 bg-white border border-[#2C3E35]/20 rounded-xl py-3 px-6 text-sm font-medium hover:border-[#2C3E35]/50 transition-colors mb-6"
+          className="w-full flex items-center justify-center gap-3 bg-white border border-[#2A1F14]/20 rounded-xl py-3 px-6 text-sm font-medium hover:border-[#2A1F14]/50 transition-colors mb-6"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -71,9 +71,9 @@ export default function SignInClient() {
         </button>
 
         <div className="flex items-center gap-4 mb-6">
-          <div className="flex-1 h-px bg-[#2C3E35]/10" />
-          <span className="text-xs text-[#2C3E35]/40 uppercase tracking-widest">or</span>
-          <div className="flex-1 h-px bg-[#2C3E35]/10" />
+          <div className="flex-1 h-px bg-[#2A1F14]/10" />
+          <span className="text-xs text-[#2A1F14]/40 uppercase tracking-widest">or</span>
+          <div className="flex-1 h-px bg-[#2A1F14]/10" />
         </div>
 
         {/* Email / password form */}
@@ -85,7 +85,7 @@ export default function SignInClient() {
           )}
 
           <div>
-            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2C3E35]/60">
+            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2A1F14]/60">
               Email
             </label>
             <input
@@ -93,13 +93,13 @@ export default function SignInClient() {
               required
               value={email}
               onChange={e => setEmail(e.target.value)}
-              className="w-full bg-white border border-[#2C3E35]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2C3E35] transition-colors"
+              className="w-full bg-white border border-[#2A1F14]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2A1F14] transition-colors"
               placeholder="you@example.com"
             />
           </div>
 
           <div>
-            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2C3E35]/60">
+            <label className="block text-[10px] uppercase tracking-widest mb-1.5 text-[#2A1F14]/60">
               Password
             </label>
             <input
@@ -107,7 +107,7 @@ export default function SignInClient() {
               required
               value={password}
               onChange={e => setPassword(e.target.value)}
-              className="w-full bg-white border border-[#2C3E35]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2C3E35] transition-colors"
+              className="w-full bg-white border border-[#2A1F14]/20 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#2A1F14] transition-colors"
               placeholder="••••••••"
             />
           </div>
@@ -115,7 +115,7 @@ export default function SignInClient() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#2C3E35] text-[#FAF9F6] rounded-xl py-3 px-6 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 hover:bg-[#1a2e25] transition-colors disabled:opacity-50"
+            className="w-full bg-[#2A1F14] text-[#F4EFE6] rounded-xl py-3 px-6 text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 hover:bg-[#1a2e25] transition-colors disabled:opacity-50"
           >
             {loading
               ? <Loader2 size={16} className="animate-spin" />
@@ -124,11 +124,11 @@ export default function SignInClient() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-[#2C3E35]/60">
+        <p className="mt-6 text-center text-sm text-[#2A1F14]/60">
           No account yet?{' '}
           <Link
             href="/community/sign-up"
-            className="underline underline-offset-2 text-[#2C3E35] hover:opacity-70"
+            className="underline underline-offset-2 text-[#2A1F14] hover:opacity-70"
           >
             Create one
           </Link>

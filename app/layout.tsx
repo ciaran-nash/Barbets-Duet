@@ -3,6 +3,7 @@ import { DM_Sans, BioRhyme, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/components/AuthProvider';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import SmoothScroll from '@/components/SmoothScroll';
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
 
@@ -46,14 +47,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`scroll-smooth ${dmSans.variable} ${bioRhyme.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`scroll-smooth ${dmSans.variable} ${bioRhyme.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
+        {/* Anti-flash: runs before React hydrates, sets data-theme from localStorage or system pref */}
+        <script dangerouslySetInnerHTML={{__html:`(function(){try{var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));}catch(e){}})();`}} />
         <a href="#main-content" className="skip-to-content">Skip to content</a>
         <SmoothScroll />
         <ServiceWorkerRegister />
-        <AuthProvider>
-          <div id="main-content">{children}</div>
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <div id="main-content">{children}</div>
+          </AuthProvider>
+        </ThemeProvider>
         {/* TODO(T04): Umami analytics — awaiting-credentials
             Set NEXT_PUBLIC_UMAMI_WEBSITE_ID in .env.local after creating a
             website entry in the Umami Cloud dashboard (umami.is).

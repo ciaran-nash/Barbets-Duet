@@ -10,7 +10,7 @@ export function FeaturedInvention() {
   return (
     <section className="py-32 px-6">
       <div className="max-w-[1600px] mx-auto">
-        <div className="bg-forest text-platinum rounded-[3.5rem] overflow-hidden grid lg:grid-cols-12 items-stretch relative group">
+        <div className="bg-forest text-band-foreground rounded-[3.5rem] overflow-hidden grid lg:grid-cols-12 items-stretch relative group">
           <div className="lg:col-span-7 p-12 md:p-24 relative z-10 flex flex-col justify-center">
             <div className="flex items-center gap-4 mb-12">
                 <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center">
@@ -25,15 +25,15 @@ export function FeaturedInvention() {
               </h2>
             </KineticReveal>
             
-            <p className="text-xl md:text-2xl text-platinum/70 font-serif leading-relaxed mb-12 italic max-w-xl">
+            <p className="text-xl md:text-2xl text-band-foreground/70 font-serif leading-relaxed mb-12 italic max-w-xl">
                 A localized manufacturing system using agricultural waste and native fungal strains to replace petroleum-based shipping materials.
             </p>
             
             <div className="flex items-center gap-6">
-                <button className="bg-accent text-forest px-10 py-5 rounded-full font-serif font-bold hover:bg-platinum transition-colors flex items-center gap-3 group/btn">
+                <button className="bg-accent text-forest px-10 py-5 rounded-full font-serif font-bold hover:bg-band-foreground transition-colors flex items-center gap-3 group/btn">
                     Read the Research Paper <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
                 </button>
-                <div className="text-[10px] font-mono uppercase tracking-widest text-platinum/40">Status: Systemic Scaling</div>
+                <div className="text-[10px] font-mono uppercase tracking-widest text-band-foreground/40">Status: Systemic Scaling</div>
             </div>
           </div>
           
