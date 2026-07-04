@@ -10,7 +10,7 @@ import AxeBuilder from '@axe-core/playwright';
 // GATE: zero `critical` violations (the agreed bar). `serious` issues — chiefly
 // brand-palette colour-contrast — are logged for the design team (@digitalorchard)
 // to resolve, not auto-failed here (changing the brand colours is a design call).
-const pages = ['/', '/learning-sites', '/get-involved', '/support-us', '/about/team', '/blog', '/faq'];
+const pages = ['/', '/learning-sites', '/get-involved', '/support-us', '/about/team', '/blog', '/faq', '/research', '/legal/accessibility'];
 const themes = ['light', 'dark'] as const;
 
 for (const path of pages) {

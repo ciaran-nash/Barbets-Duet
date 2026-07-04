@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/research', '/about', '/about/team', '/about/mission-vision',
     '/about/philosophy-history', '/about/careers', '/get-involved', '/support-us',
     '/faq', '/community', '/legal/privacy', '/legal/terms', '/legal/cookies',
+    '/legal/accessibility',
   ];
 
   // Dynamic detail routes — sourced from static data (mirrors the build-time

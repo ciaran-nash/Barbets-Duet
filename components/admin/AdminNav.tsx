@@ -31,6 +31,11 @@ const NAV_ITEMS: NavItem[] = [
     href: '/admin/pentangles',
     roles: ['admin'],
   },
+  {
+    label: 'Settings',
+    href: '/admin/settings',
+    roles: ['admin'],
+  },
 ]
 
 interface AdminNavProps {

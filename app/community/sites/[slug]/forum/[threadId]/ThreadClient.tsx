@@ -421,10 +421,11 @@ interface ThreadClientProps {
 }
 
 export default function ThreadClient(props: ThreadClientProps) {
+  const [initialPresence] = useState(() => ({ typing: false, threadId: props.thread.id, lastSeen: Date.now() }));
   return (
     <ForumRoomProvider
       id={props.thread.liveblocks_room}
-      initialPresence={{ typing: false, threadId: props.thread.id, lastSeen: Date.now() }}
+      initialPresence={initialPresence}
     >
       <ThreadInner {...props} />
     </ForumRoomProvider>

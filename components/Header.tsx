@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { type Variants } from 'motion/react';
 import { ChevronRight, LogIn, User as UserIcon } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+import { SearchDialog } from './SearchDialog';
 import Link from 'next/link';
 import { useAuth } from './AuthProvider';
 
@@ -33,43 +34,82 @@ const aboutDropdownData: DropdownData = [
       heading: 'Who We Are',
       links: [
         { text: 'About Us', href: '/about' },
-        { text: 'Our Team', href: '/about/team' },
         { text: 'Mission & Vision', href: '/about/mission-vision' },
         { text: 'Philosophy & History', href: '/about/philosophy-history' },
+        { text: 'Our Team', href: '/about/team' },
         { text: 'Careers & Opportunities', href: '/about/careers' },
       ]
     },
     {
-      heading: 'Our Work',
+      heading: 'Legal',
       links: [
-        { text: 'Innovation Hub', href: '/projects' },
+        { text: 'Privacy Policy', href: '/legal/privacy' },
+        { text: 'Terms of Service', href: '/legal/terms' },
+        { text: 'Accessibility', href: '/legal/accessibility' },
+      ]
+    }
+];
+
+const ourWorkDropdownData: DropdownData = [
+    {
+      heading: 'On the Ground',
+      links: [
         { text: 'Learning Sites', href: '/learning-sites' },
-        { text: 'Stories', href: '/stories' },
+        { text: 'Innovation Hub', href: '/projects' },
+        { text: 'Impact Stories', href: '/stories' },
+      ]
+    },
+    {
+      heading: 'Knowledge',
+      links: [
+        { text: 'Research Hub', href: '/research' },
+        { text: 'Trials & Learnings', href: '/community/trials' },
+        { text: 'FAQs', href: '/faq' },
       ]
     }
 ];
 
 const communityDropdownData: DropdownData = [
     {
-      heading: 'Get Involved',
+      heading: 'Members',
       links: [
-        { text: 'Events', href: '/events' },
-        { text: 'Support Us', href: '/support-us' },
-        { text: 'Volunteer', href: '/get-involved' },
+        { text: 'Community Hub', href: '/community' },
+        { text: 'Member Dashboard', href: '/community/dashboard' },
+        { text: 'Become a Member', href: '/community/sign-up' },
       ]
     },
     {
-      heading: 'Resources',
+      heading: 'Participate',
       links: [
-        { text: 'Research Hub', href: '/research' },
-        { text: 'About Our Mission', href: '/about/mission-vision' },
+        { text: 'Contribute Learnings', href: '/community/contribute' },
+        { text: 'Network Governance', href: '/community/governance' },
+        { text: 'Volunteer', href: '/get-involved' },
+      ]
+    }
+];
+
+const discoverDropdownData: DropdownData = [
+    {
+      heading: 'Publications',
+      links: [
+        { text: 'Blog', href: '/blog' },
+        { text: 'News', href: '/news' },
+      ]
+    },
+    {
+      heading: 'Happenings',
+      links: [
+        { text: 'Conventions & Events', href: '/events' },
+        { text: 'Support Us', href: '/support-us' },
       ]
     }
 ];
 
 const menuItems: MenuItem[] = [
     { label: 'About', dropdownData: aboutDropdownData },
+    { label: 'Our Work', dropdownData: ourWorkDropdownData },
     { label: 'Community', dropdownData: communityDropdownData },
+    { label: 'Discover', dropdownData: discoverDropdownData },
     { label: 'Get Involved', href: '/get-involved' },
 ];
 
@@ -201,9 +241,26 @@ export default function Header() {
                       className="flex items-center relative py-1"
                       onMouseEnter={() => openDropdown(index, !!item.dropdownData)}
                    >
-                       <Link href={item.href || '#'} className="hover:opacity-60 transition-opacity duration-300">
+                       {item.dropdownData ? (
+                         <button
+                           className="uppercase tracking-widest font-semibold hover:opacity-60 transition-opacity duration-300 cursor-pointer"
+                           aria-haspopup="true"
+                           aria-expanded={activeMenuItemIndex === index && isDropdownOpen}
+                           onFocus={() => openDropdown(index, true)}
+                           onClick={() =>
+                             activeMenuItemIndex === index && isDropdownOpen
+                               ? setIsDropdownOpen(false)
+                               : openDropdown(index, true)
+                           }
+                           onKeyDown={(e) => { if (e.key === 'Escape') setIsDropdownOpen(false); }}
+                         >
                            {item.label}
-                       </Link>
+                         </button>
+                       ) : (
+                         <Link href={item.href!} className="hover:opacity-60 transition-opacity duration-300">
+                             {item.label}
+                         </Link>
+                       )}
                        {activeMenuItemIndex === index && isDropdownOpen && item.dropdownData && (
                           <motion.div
                               layoutId="underline"
@@ -241,6 +298,11 @@ export default function Header() {
                 <LogIn size={12} /> Sign In
               </button>
             )}
+          </div>
+
+          {/* Search — visible at all breakpoints */}
+          <div className="flex items-center text-foreground">
+            <SearchDialog />
           </div>
 
           {/* Mobile hamburger — 2-line morph */}
@@ -393,7 +455,7 @@ export default function Header() {
                         </AnimatePresence>
                       </>
                     ) : (
-                      <Link href={item.href || '#'} className="block py-2 hover:opacity-60 transition-opacity" onClick={handleMobileLinkClick}>
+                      <Link href={item.href!} className="block py-2 hover:opacity-60 transition-opacity" onClick={handleMobileLinkClick}>
                         {item.label}
                       </Link>
                     )}

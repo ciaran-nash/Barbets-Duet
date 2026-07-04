@@ -6,6 +6,7 @@ import { teamMemberSchema } from '../schemas/teamMember';
 import { trialAndErrorSchema } from '../schemas/trialAndError';
 import { blogSchema } from '../schemas/blog';
 import { newsSchema } from '../schemas/news';
+import { researchSchema } from '../schemas/research';
 
 export const schemaTypes = [
   learningSiteSchema,
@@ -16,4 +17,5 @@ export const schemaTypes = [
   trialAndErrorSchema,
   blogSchema,
   newsSchema,
+  researchSchema,
 ];

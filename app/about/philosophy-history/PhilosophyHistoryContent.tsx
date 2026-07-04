@@ -134,7 +134,7 @@ export default function PhilosophyHistoryContent() {
                 viewport={{ once: true }}
                 className={`group p-10 border-border/50 hover:bg-accent/5 transition-colors ${idx % 2 === 0 ? 'border-r' : ''} ${idx < 6 ? 'border-b' : ''}`}
               >
-                <div className="text-[10px] font-mono tracking-[0.3em] uppercase text-accent mb-4 opacity-60">{p.n} //</div>
+                <div className="text-[10px] font-mono tracking-[0.3em] uppercase text-accent mb-4 opacity-60">{p.n} {"//"}</div>
                 <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-accent transition-colors">{p.title}</h3>
                 <p className="text-muted-foreground leading-relaxed font-serif text-base italic opacity-80">{p.desc}</p>
               </motion.div>

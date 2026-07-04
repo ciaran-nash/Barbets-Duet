@@ -221,7 +221,7 @@ export default function FourReturnsDisplay({
           Ecological &amp; Community Impact
         </h2>
         <p className="text-sm text-foreground/60 font-sans max-w-md">
-          Progress relative to the site's own baseline year. Values above 100% indicate
+          Progress relative to the site&apos;s own baseline year. Values above 100% indicate
           improvement from starting conditions.
         </p>
       </div>

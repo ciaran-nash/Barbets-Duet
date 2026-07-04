@@ -463,3 +463,45 @@ export async function searchContributions(
     { next: { tags: ['trialAndError'] } }
   );
 }
+
+// ─── Research ────────────────────────────────────────────────────────────────
+
+export interface ResearchPaper {
+  slug: string;
+  title: string;
+  abstract: string;
+  area: string;
+  authors?: string;
+  published?: string;
+  content?: string;
+  externalUrl?: string;
+}
+
+const RESEARCH_PROJECTION = `{
+  "slug": slug.current,
+  title,
+  abstract,
+  area,
+  authors,
+  published,
+  content,
+  externalUrl
+}`;
+
+export async function getAllResearchFromSanity(): Promise<ResearchPaper[]> {
+  return safeFetch<ResearchPaper[]>(
+    [],
+    `*[_type == "researchPaper"] | order(_createdAt desc) ${RESEARCH_PROJECTION}`,
+    {},
+    { next: { tags: ['researchPaper'] } }
+  );
+}
+
+export async function getResearchFromSanity(slug: string): Promise<ResearchPaper | null> {
+  return safeFetch<ResearchPaper | null>(
+    null,
+    `*[_type == "researchPaper" && slug.current == $slug][0] ${RESEARCH_PROJECTION}`,
+    { slug },
+    { next: { tags: ['researchPaper', `researchPaper:${slug}`] } }
+  );
+}

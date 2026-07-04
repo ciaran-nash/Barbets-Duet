@@ -366,8 +366,9 @@ export default function ContributeClient({
   displayName,
   siteOptions,
 }: ContributeClientProps) {
-  // Room ID is scoped to this user + session
-  const roomId = `te-draft-${userId}-${Date.now()}`;
+  // Room ID is scoped to this user + session (stable across re-renders)
+  const [roomId] = useState(() => `te-draft-${userId}-${Date.now()}`);
+  const [initialPresence] = useState(() => ({ focusedField: null, cursor: null, lastSeen: Date.now() }));
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-16">
@@ -382,7 +383,7 @@ export default function ContributeClient({
 
       <TeDraftRoomProvider
         id={roomId}
-        initialPresence={{ focusedField: null, cursor: null, lastSeen: Date.now() }}
+        initialPresence={initialPresence}
         initialStorage={{
           prompt1: '',
           prompt2: '',

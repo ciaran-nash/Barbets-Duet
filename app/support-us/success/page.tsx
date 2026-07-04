@@ -10,8 +10,48 @@ export const metadata: Metadata = {
 /**
  * /support-us/success — Post-payment confirmation page.
  * Stripe redirects here after a successful one-time checkout session.
+ * PayPal redirects here with ?provider=paypal&token=<orderId> — the order is
+ * captured server-side before rendering.
  */
-export default function DonationSuccessPage() {
+export default async function DonationSuccessPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ provider?: string; token?: string }>;
+}) {
+  const params = await searchParams;
+
+  let paypalFailed = false;
+  if (params.provider === 'paypal' && params.token) {
+    try {
+      const { captureOrder } = await import('@/lib/paypal');
+      await captureOrder(params.token);
+    } catch (err) {
+      console.error('[donation-success] PayPal capture failed:', err instanceof Error ? err.message : err);
+      paypalFailed = true;
+    }
+  }
+  const isPayPal = params.provider === 'paypal' && !paypalFailed;
+
+  if (paypalFailed) {
+    return (
+      <main className="min-h-screen bg-band text-band-foreground flex items-center justify-center px-6">
+        <div className="relative z-10 max-w-lg w-full text-center space-y-6">
+          <h1 className="font-serif text-4xl font-light">Payment not completed</h1>
+          <p className="font-sans text-base text-band-foreground/60 leading-relaxed">
+            We couldn&apos;t confirm your PayPal payment. No funds were taken if the payment didn&apos;t
+            complete. Please try again, or use the card option.
+          </p>
+          <Link
+            href="/support-us"
+            className="inline-block px-8 py-3.5 bg-band-accent text-band font-mono text-[11px] tracking-[0.15em] uppercase transition-all duration-300 hover:bg-band-accent/90 active:scale-[0.98]"
+          >
+            Back to donations
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-band text-band-foreground flex items-center justify-center px-6">
       {/* Grid background */}
@@ -52,7 +92,7 @@ export default function DonationSuccessPage() {
             What happens next
           </p>
           {[
-            'A receipt will be emailed to you by Stripe.',
+            isPayPal ? 'A receipt will be emailed to you by PayPal.' : 'A receipt will be emailed to you by Stripe.',
             'Your donation is allocated to the learning site you selected, or to the general organisation fund.',
             'Our partners will put your contribution to work in their next restoration cycle.',
           ].map((step, i) => (

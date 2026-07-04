@@ -22,7 +22,7 @@ const CURRENCY_SYMBOLS: Record<SupportedCurrency, string> = {
  * donorEmail and donorName are NOT collected here — Stripe gathers them on the
  * hosted checkout page.
  */
-export default function DonationForm() {
+export default function DonationForm({ paypalEnabled = false }: { paypalEnabled?: boolean }) {
   const [selectedAmount, setSelectedAmount] = useState<number>(50);
   const [customAmount, setCustomAmount] = useState<string>('');
   const [currency, setCurrency] = useState<SupportedCurrency>('USD');
@@ -97,10 +97,44 @@ export default function DonationForm() {
     }
   };
 
-  /** PayPal — stub: shows a coming-soon notice */
-  const handlePayPalClick = () => {
-    // TODO(post-launch): integrate PayPal Orders API via /api/paypal-order
-    alert('PayPal integration is coming soon. Please use the Stripe option for now.');
+  /** Calls /api/paypal-order then redirects to the PayPal approval page */
+  const handlePayPalClick = async () => {
+    if (!isValidAmount) {
+      setError('Please enter a valid amount between $1 and $100,000.');
+      return;
+    }
+
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      const res = await fetch('/api/paypal-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: effectiveAmount,
+          currency,
+          donationType: 'one-time',
+          siteSlug: selectedSiteSlug ?? undefined,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error ?? 'Failed to create PayPal order');
+      }
+
+      const { approveUrl } = await res.json();
+      if (approveUrl) {
+        window.location.href = approveUrl;
+      } else {
+        throw new Error('No approval URL returned from server');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -276,17 +310,22 @@ export default function DonationForm() {
           )}
         </button>
 
-        {/* PayPal — stub */}
-        <button
-          type="button"
-          onClick={handlePayPalClick}
-          className="w-full bg-white/5 text-band-foreground/60 font-mono text-[11px] tracking-[0.2em] uppercase py-4 border border-band-border/15 transition-all duration-300 hover:border-band-border/30 hover:bg-white/8 active:scale-[0.98]"
-        >
-          Donate with PayPal
-          <span className="ml-2 font-sans text-[9px] tracking-normal normal-case text-band-foreground/30">
-            (coming soon)
-          </span>
-        </button>
+        {paypalEnabled ? (
+          <button
+            type="button"
+            onClick={handlePayPalClick}
+            disabled={isLoading || !isValidAmount}
+            className="w-full bg-white/5 text-band-foreground/80 font-mono text-[11px] tracking-[0.2em] uppercase py-4 border border-band-border/15 transition-all duration-300 hover:border-band-border/30 hover:bg-white/8 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Donate with PayPal
+          </button>
+        ) : (
+          <div className="w-full text-center py-3 border border-band-border/10">
+            <p className="font-sans text-xs text-band-foreground/40">
+              PayPal is coming soon — card payments via Stripe are available today.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Trust signals */}

@@ -31,7 +31,7 @@ export default function CookiesPage() {
           </p>
           <ul className="text-muted-foreground leading-relaxed space-y-2 list-disc pl-6">
             <li>
-              <strong className="text-foreground">Authentication cookies</strong> — set when you sign in to our community platform. These are session cookies that expire when you close your browser, unless you select "remember me."
+              <strong className="text-foreground">Authentication cookies</strong> — set when you sign in to our community platform. These are session cookies that expire when you close your browser, unless you select &quot;remember me.&quot;
             </li>
             <li>
               <strong className="text-foreground">Security cookies</strong> — used to prevent cross-site request forgery (CSRF) attacks. These are strictly necessary and cannot be disabled without affecting your ability to use our platform.
@@ -42,7 +42,7 @@ export default function CookiesPage() {
         <section>
           <h2 className="font-serif text-2xl font-semibold mb-4">3. Analytics</h2>
           <p className="text-muted-foreground leading-relaxed">
-            We use Umami Analytics, a cookieless analytics tool that does not set any cookies on your device and does not collect personally identifiable information. Umami collects aggregate, anonymised usage data to help us understand how visitors use our site. No GDPR consent banner is required for Umami's data collection.
+            We use Umami Analytics, a cookieless analytics tool that does not set any cookies on your device and does not collect personally identifiable information. Umami collects aggregate, anonymised usage data to help us understand how visitors use our site. No GDPR consent banner is required for Umami&apos;s data collection.
           </p>
         </section>
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import DonationForm from '@/components/donations/DonationForm';
 import SupportUsBanner from './SupportUsBanner';
+import { getPayPalConfig } from '@/lib/settings';
 
 export const metadata: Metadata = {
   title: 'Support Us | Barbets Duet',
@@ -19,7 +20,8 @@ export const metadata: Metadata = {
  * Renders the donation form with Stripe Checkout integration (one-time payments).
  * Monthly giving is stubbed in the UI — implementation is post-launch.
  */
-export default function SupportUsPage() {
+export default async function SupportUsPage() {
+  const paypal = await getPayPalConfig();
   return (
     <main className="min-h-screen bg-band text-band-foreground">
       {/* ── Hero / trust section ────────────────────────────────────────── */}
@@ -61,7 +63,7 @@ export default function SupportUsPage() {
             </div>
 
             <Suspense fallback={<div className="h-96 animate-pulse bg-white/5" />}>
-              <DonationForm />
+              <DonationForm paypalEnabled={paypal.enabled && paypal.ready} />
             </Suspense>
           </div>
 

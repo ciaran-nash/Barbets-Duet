@@ -33,7 +33,7 @@ export default function TermsPage() {
             <li>Use our services in any way that violates applicable law or regulation.</li>
             <li>Transmit unsolicited or unauthorised advertising or promotional material.</li>
             <li>Attempt to gain unauthorised access to any part of our systems.</li>
-            <li>Engage in any conduct that restricts or inhibits anyone's use or enjoyment of our services.</li>
+            <li>Engage in any conduct that restricts or inhibits anyone&apos;s use or enjoyment of our services.</li>
           </ul>
         </section>
 
@@ -47,7 +47,7 @@ export default function TermsPage() {
         <section>
           <h2 className="font-serif text-2xl font-semibold mb-4">4. Disclaimer of warranties</h2>
           <p className="text-muted-foreground leading-relaxed">
-            Our services are provided on an "as is" and "as available" basis without any warranties, express or implied. We do not warrant that our services will be uninterrupted, error-free, or free of harmful components.
+            Our services are provided on an &quot;as is&quot; and &quot;as available&quot; basis without any warranties, express or implied. We do not warrant that our services will be uninterrupted, error-free, or free of harmful components.
           </p>
         </section>
 

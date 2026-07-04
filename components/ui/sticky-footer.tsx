@@ -3,15 +3,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'motion/react';
-import {
-	FacebookIcon,
-	Globe,
-	InstagramIcon,
-	LinkedinIcon,
-	YoutubeIcon,
-	TwitterIcon,
-} from 'lucide-react';
-import { Button } from './button';
+import Link from 'next/link';
 
 interface FooterLink {
 	title: string;
@@ -60,14 +52,18 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
 										info@barbetsduet.com
 									</a>
 								</div>
-								<div className="flex gap-4 pt-2 pb-6">
-									{socialLinks.map((link) => (
-										<a key={link.title} href={link.href} className="text-white hover:text-white/70 transition-colors">
-											<link.icon className="size-5" />
-											<span className="sr-only">{link.title}</span>
-										</a>
-									))}
-								</div>
+								{/* Social icons return here once the org's profile URLs are supplied —
+								    links to "#" fail the dead-link e2e gate. */}
+								{socialLinks.length > 0 && (
+									<div className="flex gap-4 pt-2 pb-6">
+										{socialLinks.map((link) => (
+											<a key={link.title} href={link.href} className="text-white hover:text-white/70 transition-colors">
+												<link.icon className="size-5" />
+												<span className="sr-only">{link.title}</span>
+											</a>
+										))}
+									</div>
+								)}
 								<div className="space-y-4 pt-4 border-t border-white/10">
 									<h2 className="font-serif text-2xl uppercase tracking-widest text-[#F4EFE6]">Barbets Duet</h2>
 									<p className="text-white/80 text-sm leading-relaxed">
@@ -87,13 +83,13 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
 										<ul className="text-white/80 mt-6 space-y-4 text-sm md:text-sm">
 											{group.links.map((link) => (
 												<li key={link.title}>
-													<a
+													<Link
 														href={link.href}
 														className="hover:text-white inline-flex items-center transition-all duration-300 underline underline-offset-4"
 													>
 														{link.icon && <link.icon className="me-2 size-4" />}
 														{link.title}
-													</a>
+													</Link>
 												</li>
 											))}
 										</ul>
@@ -103,12 +99,11 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
 						</div>
 						<div className="text-white/40 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-white/10 pt-8 pb-4 text-xs tracking-wider uppercase z-10 w-full mb-8">
 							<div className="flex flex-wrap gap-4 md:gap-8 justify-center md:justify-start">
-								<a href="#" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Accessibility</a>
-								<a href="#" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Cookies Policy</a>
-								<a href="#" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Cookies Settings</a>
-								<a href="#" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Privacy Policy</a>
-								<a href="#" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Terms of Service</a>
-								<a href="#" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Sitemap</a>
+								<Link href="/legal/accessibility" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Accessibility</Link>
+								<Link href="/legal/cookies" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Cookies Policy</Link>
+								<Link href="/legal/privacy" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Privacy Policy</Link>
+								<Link href="/legal/terms" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Terms of Service</Link>
+								<a href="/sitemap.xml" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Sitemap</a>
 							</div>
 							<p className="shrink-0 text-center md:text-right">© {new Date().getFullYear()} Barbets Duet. All rights reserved.</p>
 						</div>
@@ -119,66 +114,61 @@ export function StickyFooter({ className, ...props }: StickyFooterProps) {
 	);
 }
 
-const socialLinks = [
-	{ title: 'Facebook', href: '#', icon: FacebookIcon },
-	{ title: 'Instagram', href: '#', icon: InstagramIcon },
-	{ title: 'X', href: '#', icon: TwitterIcon },
-	{ title: 'LinkedIn', href: '#', icon: LinkedinIcon },
-	{ title: 'Youtube', href: '#', icon: YoutubeIcon },
-];
+// Add entries once the org's real profile URLs are known, e.g.
+// { title: 'Instagram', href: 'https://instagram.com/…', icon: InstagramIcon }
+const socialLinks: {
+	title: string;
+	href: string;
+	icon: React.ComponentType<{ className?: string }>;
+}[] = [];
 
 const footerLinkGroups: FooterLinkGroup[] = [
 	{
 		label: 'About Us',
 		links: [
-			{ title: 'Mission & Vision', href: '#' },
-			{ title: 'Barbet\'s Philosophy', href: '#' },
-			{ title: 'Our History', href: '#' },
-			{ title: 'Our Team', href: '#' },
-			{ title: 'Financials & Accountability', href: '#' },
-			{ title: 'Careers & Opportunities', href: '#' },
+			{ title: 'Who We Are', href: '/about' },
+			{ title: 'Mission & Vision', href: '/about/mission-vision' },
+			{ title: 'Philosophy & History', href: '/about/philosophy-history' },
+			{ title: 'Our Team', href: '/about/team' },
+			{ title: 'Careers & Opportunities', href: '/about/careers' },
 		],
 	},
 	{
 		label: 'Our Work',
 		links: [
-			{ title: 'Projects', href: '#' },
-			{ title: 'Learning Sites', href: '#' },
-			{ title: 'Conventions & Events', href: '#' },
-			{ title: 'Impact Stories', href: '#' },
-			{ title: 'Research & Publications', href: '#' },
-			{ title: 'Innovation Hub', href: '#' },
+			{ title: 'Learning Sites', href: '/learning-sites' },
+			{ title: 'Innovation Hub', href: '/projects' },
+			{ title: 'Conventions & Events', href: '/events' },
+			{ title: 'Impact Stories', href: '/stories' },
+			{ title: 'Research & Publications', href: '/research' },
 		],
 	},
 	{
 		label: 'Community',
 		links: [
-			{ title: 'Partner Network', href: '#' },
-			{ title: 'Membership', href: '#' },
-			{ title: 'Exchange Programmes', href: '#' },
-			{ title: 'Barbets Friends', href: '#' },
-			{ title: 'Careers & Opportunities', href: '#' },
+			{ title: 'Community Hub', href: '/community' },
+			{ title: 'Become a Member', href: '/community/sign-up' },
+			{ title: 'Member Dashboard', href: '/community/dashboard' },
+			{ title: 'Contribute Learnings', href: '/community/contribute' },
+			{ title: 'Network Governance', href: '/community/governance' },
 		],
 	},
 	{
 		label: 'Resources',
 		links: [
-			{ title: 'Blog', href: '#' },
-			{ title: 'FAQs', href: '#' },
-			{ title: 'Innovation Hub', href: '#' },
-			{ title: 'Educational Programs', href: '#' },
-			{ title: 'Webinars & Training', href: '#' },
-			{ title: 'Tools & Calculators', href: '#' },
+			{ title: 'Blog', href: '/blog' },
+			{ title: 'News', href: '/news' },
+			{ title: 'Trials & Learnings', href: '/community/trials' },
+			{ title: 'FAQs', href: '/faq' },
 		],
 	},
 	{
 		label: 'Get Involved',
 		links: [
-			{ title: 'Donate', href: '#' },
-			{ title: 'Volunteer', href: '#' },
-			{ title: 'Advocacy', href: '#' },
-			{ title: 'Become a Partner', href: '#' },
-			{ title: 'Apply to be a Learning Site', href: '#' },
+			{ title: 'Volunteer', href: '/get-involved' },
+			{ title: 'Donate', href: '/support-us' },
+			{ title: 'Become a Partner', href: '/get-involved' },
+			{ title: 'Apply to be a Learning Site', href: '/get-involved' },
 		],
 	},
 ];

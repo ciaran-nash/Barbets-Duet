@@ -63,7 +63,7 @@ export default async function CommunitySitePage({ params }: PageProps) {
     ...(liveRow
       ? {
           memberCount: liveRow.member_count ?? staticSite.memberCount,
-          forumLink: liveRow.forum_link ?? staticSite.forumLink,
+          forumLink: liveRow.forum_link ?? staticSite.forumLink ?? `/community/sites/${slug}/forum`,
           peerReviewChainPosition:
             liveRow.peer_review_chain_position ?? staticSite.peerReviewChainPosition,
         }

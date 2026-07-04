@@ -468,7 +468,7 @@ export default function MemberDashboard() {
                 </span>
               </div>
               <p className="text-sm text-[#2A1F14]/50 italic">
-                Circular peer-review submissions and responses from your site's
+                Circular peer-review submissions and responses from your site&apos;s
                 pentangle group will be visible here.
               </p>
             </section>
